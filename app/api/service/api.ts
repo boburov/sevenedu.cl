@@ -2,7 +2,7 @@ import axios from 'axios';
 import apiEndpoins from '../api.endpoin';
 
 const api = axios.create({
-    baseURL: 'https://sevenedu.store/',
+    baseURL: 'http://147.93.72.141/',
 });
 
 api.interceptors.request.use((config) => {
@@ -71,7 +71,7 @@ export const getMe = async (navigate?: (path: string) => void) => {
     } catch (err: any) {
         if (err.response?.status === 401) {
             if (navigate) {
-                navigate('/login'); 
+                navigate('/login');
             } else {
                 window.location.href = '/login';
             }
