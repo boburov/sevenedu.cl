@@ -55,7 +55,7 @@ const Page = () => {
           return (
             <div
               key={index}
-              className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 text-white shadow-xl mb-5"
+              className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white shadow-xl mb-5"
             >
               <div className="flex items-start gap-3">
                 <div className="bg-white/20 rounded-full p-2">
@@ -66,7 +66,7 @@ const Page = () => {
                   <p className="text-sm text-white/80">{habar.notification.message}</p>
                 </div>
               </div>
-              <div className="absolute bottom-2 right-5 flex items-center gap-1 text-xs text-white/60">
+              <div className="absolute bottom-1 right-5 flex items-center gap-1 text-xs text-white/60">
                 <Clock className="w-3.5 h-3.5" />
                 <span>{timeOnly}</span>
               </div>

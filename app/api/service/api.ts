@@ -162,6 +162,10 @@ export const GetLessonsById = async (id: string) => {
     return res.data
 }
 
+export const allUsers = async () => {
+    return await api.get("user/all")
+}
+
 // ai usage
 export const sendrequestForAI = async (lessonId: string, message: string) => {
     const res = await api.post("/user/chat", {

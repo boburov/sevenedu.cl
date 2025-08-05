@@ -25,9 +25,11 @@ const Login = () => {
     try {
       const data = await login({ email, password });
       console.log(data);
-      
+
       if (data && data.token && data.checkId.userID) {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("userId", data.checkId.userID);
+
         router.push(`/user/${data.checkId.userID}`);
       } else {
         setMsg("Login muvaffaqiyatsiz");

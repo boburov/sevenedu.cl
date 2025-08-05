@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import axios from "axios";
+import apiEndpoins from "@/app/api/api.endpoin";
 
 interface Lesson {
   id: string;
@@ -32,27 +34,33 @@ const Page = () => {
   const [userHasCourse, setUserHasCourse] = useState<boolean>(false);
 
   useEffect(() => {
+
+
     const fetchData = async () => {
+      axios.get("https://sevenedu.store/" + apiEndpoins.getCategory(String(courseId)))
+        .then((elem) => {
+          setLessons(elem.data.lessons)
+        })
+        .catch((err) => {
+          console.error("❌ Xatolik:", err.message);
+        });
       if (!courseId) return;
 
-      // 1. Kursni olish
-      const course = await GetCourseById(String(courseId));
-      setLessons(course?.lessons || []);
-
-      // 2. Foydalanuvchining shu kursni olgan-olmaganini tekshirish
       try {
         const user: User = await getMe();
         const hasCourse = user.courses?.some(
           (uc) => uc.courseId === String(courseId)
         );
-        setUserHasCourse(!!hasCourse); // 👉 True bo‘lsa barcha ochiq
+        setUserHasCourse(!!hasCourse);
       } catch (err) {
-        setUserHasCourse(false); // ❌ Token yo‘q yoki foydalanuvchi topilmadi
+        setUserHasCourse(false);
       }
     };
 
     fetchData();
-  }, [courseId]);
+  }, []);
+
+
 
   return (
     <div className="container mx-auto px-4 py-10">
