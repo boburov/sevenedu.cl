@@ -2,8 +2,8 @@ import axios from 'axios';
 import apiEndpoins from '../api.endpoin';
 
 const api = axios.create({
-    baseURL: 'https://api.sevenedu.store/',
-});
+    baseURL: 'https://sevenedu.store/',
+})
 
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
