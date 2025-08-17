@@ -2,7 +2,7 @@ import axios from 'axios';
 import apiEndpoins from '../api.endpoin';
 
 const api = axios.create({
-    baseURL: 'https://sevenedu.store/',
+    baseURL: 'https://api.sevenedu.store/',
 });
 
 api.interceptors.request.use((config) => {
