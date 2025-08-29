@@ -13,6 +13,7 @@ interface Lesson {
   id: string;
   videoUrl: string;
   title: string;
+  isVisible: boolean
   isDemo?: boolean;
 }
 
@@ -77,6 +78,7 @@ const Page = () => {
         <div className="space-y-6">
           {lessons.map((lesson, index) => {
             const isLocked = !userHasCourse && lesson.isDemo === false;
+            const isDeleted = lesson.isVisible
 
             const url = isLocked
               ? "https://t.me/GraffDracula"

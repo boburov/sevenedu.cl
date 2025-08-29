@@ -112,7 +112,7 @@ const Page = () => {
         if ("unlock" in screen.orientation) {
           try {
             (screen.orientation as any).unlock();
-          } catch (_) {}
+          } catch (_) { }
         }
       }
     };
@@ -175,9 +175,8 @@ const Page = () => {
   return (
     <div
       ref={containerRef}
-      className={`relative space-y-2 w-full ${
-        isFullscreen ? "h-screen bg-black" : "max-w-4xl mx-auto px-5"
-      } transition-all duration-300`}
+      className={`relative space-y-2 w-full ${isFullscreen ? "h-screen bg-black" : "max-w-4xl mx-auto px-5"
+        } transition-all duration-300`}
     >
       <div className="relative w-full aspect-video bg-black overflow-hidden rounded-2xl shadow-2xl">
         <video
@@ -197,9 +196,8 @@ const Page = () => {
       </div>
 
       <div
-        className={`${
-          isFullscreen ? "absolute bottom-3 left-0 right-0 px-8 " : ""
-        } z-10`}
+        className={`${isFullscreen ? "absolute bottom-3 left-0 right-0 px-8 " : ""
+          } z-10`}
       >
         <div className="flex items-center gap-4 px-4 py-3 bg-black/80 backdrop-blur-md border border-white/10 text-white rounded-xl shadow-lg">
           <button onClick={seekBackward} title="2s orqaga">
