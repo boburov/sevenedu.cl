@@ -1,6 +1,6 @@
 "use client";
 
-import { GetLessonsById, showedLesson } from "@/app/api/service/api";
+import api, { GetLessonsById, showedLesson } from "@/app/api/service/api";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -26,6 +26,7 @@ interface Lesson {
 const Page = () => {
   const path = useParams();
   const lessonId = String(path.lessonId);
+  const category_id = String(path.id);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -37,29 +38,40 @@ const Page = () => {
   const [isWatched, setIsWatched] = useState(false);
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [volume, setVolume] = useState(1);
+  const [cleanedVideoUrl, setcleanedVideoUrl] = useState("")
 
-  useEffect(() => {
-    GetLessonsById(lessonId).then((data) => {
-      setLesson(data);
-    });
-    showedLesson(lessonId)
-      .then(() => {
-        setIsWatched(true);
-      })
-      .catch((err) => {
-        console.error("Xatolik yuz berdi:", err);
-      });
-  }, [lessonId]);
 
   // 🔧 Video URL tozalovchi funksiya
   const getCorrectVideoUrl = (url: string): string => {
-    if (url.includes("sevenedu.store")) return url;
+    if (url.includes("sevenedu.store") || url.includes("-")) return url;
 
     const filename = url.split("/").pop(); // "1752060391578-1751973178413.MOV"
     const parts = filename?.split("-");
     const finalPart = parts?.[parts.length - 1];
     return `https://sevenedu-bucket.s3.eu-north-1.amazonaws.com/videos/${finalPart}`;
   };
+
+  useEffect(() => {
+    api.get("courses/all").then((data) => {
+      const lessonData = data.data
+        .filter((e: any) => e.id === category_id)[0]
+        .lessons.filter((les: any) => les.id === lessonId)[0];
+
+      if (lessonData?.videoUrl) {
+        function cleanFileLink(url: string): string {
+          return url.replace(/\/videos\/\d+-/, "/videos/");
+        }
+
+        const url = getCorrectVideoUrl(lessonData.videoUrl);
+        const cleaned = cleanFileLink(url);
+
+        setcleanedVideoUrl(cleaned); // ✅ state to'ldirildi
+
+        console.log("Original:", lessonData.videoUrl);
+        console.log("Cleaned:", cleaned);
+      }
+    });
+  }, [lessonId, category_id]);
 
   const togglePlay = () => {
     const video = videoRef.current;
@@ -169,25 +181,25 @@ const Page = () => {
     }
   };
 
-  // 🔧 Final cleaned URL
-  const cleanedVideoUrl = lesson?.videoUrl ? getCorrectVideoUrl(lesson.videoUrl) : "";
-
   return (
     <div
       ref={containerRef}
       className={`relative space-y-2 w-full ${isFullscreen ? "h-screen bg-black" : "max-w-4xl mx-auto px-5"
         } transition-all duration-300`}
     >
-      <div className="relative w-full aspect-video bg-black overflow-hidden rounded-2xl shadow-2xl">
-        <video
-          ref={videoRef}
-          onTimeUpdate={handleTimeUpdate}
-          controls={false}
-          disablePictureInPicture
-          controlsList="nodownload nofullscreen noremoteplayback"
-          className="w-full h-full object-contain bg-black"
-          src={cleanedVideoUrl}
-        />
+      <div className="relative w-full aspect-video overflow-hidden rounded-2xl shadow-2xl">
+        {cleanedVideoUrl && (
+          <video
+            ref={videoRef}
+            onTimeUpdate={handleTimeUpdate}
+            controls={false}
+            disablePictureInPicture
+            controlsList="nodownload nofullscreen noremoteplayback"
+            className="w-full h-full object-cover bg-black" // object-contain -> object-cover
+            src={cleanedVideoUrl}
+          />
+        )}
+
         <div
           className="absolute inset-0 left-0 w-full cursor-pointer"
           onDoubleClick={handleDoubleClickLeft}
@@ -254,7 +266,7 @@ const Page = () => {
           <ListChecks size={30} strokeWidth={1} />
           <div>
             <div className="text-lg font-semibold">Test</div>
-            <div className="text-sm text-purple-300">{`Bilimingizni tekshiring va yutuqlaringizni ko‘ring`}</div>
+            <div className="text-sm text-purple-300">{`Bilimingizni tekshiring va yutuqlaringizni ko'ring`}</div>
           </div>
         </Link>
 
@@ -265,7 +277,7 @@ const Page = () => {
           <ListChecks size={30} strokeWidth={1} />
           <div>
             <div className="text-lg font-semibold">Savollar</div>
-            <div className="text-sm text-blue-300">{`Tushunmagan joylaringizni takror ko‘rib chiqing`}</div>
+            <div className="text-sm text-blue-300">{`Tushunmagan joylaringizni takror ko'rib chiqing`}</div>
           </div>
         </Link>
 
@@ -275,7 +287,7 @@ const Page = () => {
         >
           <MessageCircleQuestion size={30} strokeWidth={1} />
           <div>
-            <div className="text-lg font-semibold">{`Ustozdan so‘rash`}</div>
+            <div className="text-lg font-semibold">{`Ustozdan so'rash`}</div>
             <div className="text-sm text-emerald-300">{`Savolingizni ustozga bevosita yuboring`}</div>
           </div>
         </Link>

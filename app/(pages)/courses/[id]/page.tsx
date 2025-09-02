@@ -61,11 +61,9 @@ const Page = () => {
     fetchData();
   }, []);
 
-
-
   return (
     <div className="container mx-auto px-4 py-10">
-      {!lessons.length ? (
+      {!lessons.length || lessons.filter(e => e.isVisible === true).length === 0 ? (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -76,7 +74,7 @@ const Page = () => {
         </motion.div>
       ) : (
         <div className="space-y-6">
-          {lessons.map((lesson, index) => {
+          {lessons.filter(e => e.isVisible === true).map((lesson, index) => {
             const isLocked = !userHasCourse && lesson.isDemo === false;
             const isDeleted = lesson.isVisible
 
