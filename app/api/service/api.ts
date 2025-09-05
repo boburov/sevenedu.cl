@@ -167,15 +167,14 @@ export const allUsers = async () => {
 }
 
 // ai usage
-export const sendrequestForAI = async (lessonId: string, message: string) => {
-    const res = await api.post("/user/chat", {
+export const sendrequestForAI = async (lessonId: string, message: string, userId: string) => {
+    const response = await api.post('/user/chat', {
         lessonId,
         message,
+        userId
     });
-
-    return res.data
-}
-
+    return response.data;
+};
 export const addCoins = async (userId: string, coins: number) => {
     const res = await api.post(apiEndpoins.addCoin, { userId, coins });
     return res.data;
