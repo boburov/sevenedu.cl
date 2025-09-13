@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GetCourseById, getMe } from "@/app/api/service/api";
-import { Lock, Play, Pause } from "lucide-react";
+import { Lock, Play } from "lucide-react";
 import { motion } from "framer-motion";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import apiEndpoins from "@/app/api/api.endpoin";
 
@@ -26,40 +26,13 @@ interface User {
   courses: UserCourse[];
 }
 
-// Oddiy video player
-const SimpleVideoPlayer: React.FC<{
-  src: string;
-  onClose?: () => void;
-}> = ({ src, onClose }) => {
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4">
-      <div className="w-full max-w-4xl max-h-[90vh] relative flex items-center justify-center">
-        <video
-          src={src}
-          className="w-full h-full max-h-[90vh] object-contain bg-black"
-          controls
-          autoPlay
-        />
-      </div>
-      <button
-        className="absolute top-4 right-4 p-2 rounded-md bg-white/10 text-white hover:bg-white/20"
-        onClick={onClose}
-      >
-        ✕
-      </button>
-    </div>
-  );
-};
-
-// Kurs sahifasi
 const CourseLessonsPage: React.FC = () => {
   const params = useParams() as { id?: string };
   const courseId = String(params?.id || "");
+  const router = useRouter();
 
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [userHasCourse, setUserHasCourse] = useState<boolean>(false);
-  const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
-  const [showPlayer, setShowPlayer] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,7 +50,7 @@ const CourseLessonsPage: React.FC = () => {
         const user: User = await getMe();
         const hasCourse = user.courses?.some((uc) => uc.courseId === courseId);
         setUserHasCourse(Boolean(hasCourse));
-      } catch (err) {
+      } catch {
         setUserHasCourse(false);
       }
     };
@@ -92,13 +65,8 @@ const CourseLessonsPage: React.FC = () => {
       return;
     }
 
-    if (!lesson.videoUrl) {
-      alert("Bu dars uchun video URL mavjud emas.");
-      return;
-    }
-
-    setSelectedLesson(lesson);
-    setShowPlayer(true);
+    // ✅ Kurs ID va lesson ID bo‘yicha sahifaga push
+    router.push(`/courses/${courseId}/lessons/${lesson.id}`);
   };
 
   return (
@@ -142,16 +110,6 @@ const CourseLessonsPage: React.FC = () => {
               );
             })}
         </div>
-      )}
-
-      {showPlayer && selectedLesson && selectedLesson.videoUrl && (
-        <SimpleVideoPlayer
-          src={selectedLesson.videoUrl}
-          onClose={() => {
-            setShowPlayer(false);
-            setSelectedLesson(null);
-          }}
-        />
       )}
     </div>
   );
