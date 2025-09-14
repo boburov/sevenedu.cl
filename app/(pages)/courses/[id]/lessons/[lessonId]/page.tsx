@@ -3,11 +3,7 @@
 import api, { GetLessonsById, showedLesson } from "@/app/api/service/api";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import {
-  Languages,
-  ListChecks,
-  MessageCircleQuestion,
-} from "lucide-react";
+import { Languages, ListChecks, MessageCircleQuestion } from "lucide-react";
 import Link from "next/link";
 
 interface Lesson {
@@ -65,6 +61,8 @@ const Page = () => {
           <video
             ref={videoRef}
             controls
+            controlsList="nodownload" // 🔒 Download tugmasini olib tashlaydi
+            onContextMenu={(e) => e.preventDefault()} // 🔒 O'ng tugmani bloklaydi
             className="w-full h-full object-contain bg-black"
             src={cleanedVideoUrl}
           />
