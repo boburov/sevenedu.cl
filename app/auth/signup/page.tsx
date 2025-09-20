@@ -22,10 +22,15 @@ const SignupPage = () => {
   });
   const [isError, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isAllowed, setAllow] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   const handleSignup = async () => {
+    if (!isAllowed) {
+      alert("Siz avval shartnomaga rozilik berishingiz kerak");
+      return
+    }
     setIsSubmitting(true);
     setError(false);
     setErrorMessage("");
@@ -159,6 +164,18 @@ const SignupPage = () => {
                 minLength={6}
                 className="autofill:bg-white/10 w-full h-14 border rounded-md border-white/20 text-white px-3 bg-white/10"
               />
+
+              <div className="flex items-center gap-2 text-white pt-3">
+                <input type="checkbox" name="" id="" onClick={()=>setAllow(!isAllowed)}/>
+                <p className="lowercase">
+                  men{" "}
+                  <Link className="text-green-300 underline" href={"/terms"}>
+                    QUidagi hamma
+                  </Link>{" "}
+                  shartlarga rozilik beraman
+                </p>
+              </div>
+
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
