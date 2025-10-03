@@ -1,7 +1,7 @@
 "use client";
 
 import { getMe, GetCourseById } from "@/app/api/service/api";
-import { Lock, Play, Gift, Coins, UserCheck, GaugeCircle, Award } from "lucide-react";
+import { Gift, Coins, UserCheck, GaugeCircle, Award } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -38,12 +38,6 @@ const dashboardLinks = [
     title: "Tangalar",
     description: "Yig‘ilgan ballar va sarflanishi",
   },
-  {
-    href: "dashboard/certificate",
-    icon: <Award size={40} className="text-sky-300" />,
-    title: "Sertifikatlarim",
-    description: "Olingan sertifikatlar",
-  },
 ];
 
 const UserPage = () => {
@@ -54,8 +48,8 @@ const UserPage = () => {
       try {
         const data = await getMe();
         const fetchedCourses = await Promise.all(
-          data.courses.map(async (courseRef: any) =>
-            await GetCourseById(courseRef.courseId)
+          data.courses.map(
+            async (courseRef: any) => await GetCourseById(courseRef.courseId)
           )
         );
         setUserCourses(fetchedCourses);
