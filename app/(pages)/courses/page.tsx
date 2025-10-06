@@ -76,7 +76,9 @@ const UserPage = () => {
               {kurs.title}
             </h3>
             <p className="text-sm text-white/80 mb-1">
-              <strong>Darslar:</strong> {kurs.lessons?.length || 0}
+              <strong>Darslar:</strong>{" "}
+              {kurs.lessons?.filter((lesson: any) => lesson.isVisible)
+                ?.length || 0}
             </p>
             <p className="text-sm text-white/70 mb-3 line-clamp-2">
               <strong>Maqsad:</strong> {kurs.goal}
@@ -111,7 +113,9 @@ const UserPage = () => {
                 {kurs.title}
               </h3>
               <p className="text-sm text-white/80 mb-1">
-                <strong>Darslar:</strong> {kurs.lessons.length}
+                <strong>Darslar:</strong>{" "}
+                {kurs.lessons?.filter((lesson: any) => lesson.isVisible)
+                  ?.length || 0}
               </p>
               <p className="text-sm text-white/70 mb-3 line-clamp-2">
                 <strong>Maqsad:</strong> {kurs.goal}

@@ -118,8 +118,12 @@ const UserPage = () => {
                   </h3>
                   <span className="text-sm leading-2">
                     <strong>Darslar Soni:</strong>{" "}
-                    <span className="font-light">{kurs.lessons.length}</span>
+                    <span className="font-light">
+                      {kurs.lessons?.filter((lesson: any) => lesson.isVisible)
+                        ?.length || 0}
+                    </span>
                   </span>
+
                   <span className="my-1 text-sm leading-5 w-36 truncate">
                     <strong>Maqsad: </strong> {kurs.goal}
                   </span>
