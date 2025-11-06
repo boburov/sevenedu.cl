@@ -18,6 +18,7 @@ interface Lesson {
 
 interface UserCourse {
   courseId: string;
+  subscription: "FULL_CHARGE" | "MONTHLY";
 }
 
 interface User {
@@ -32,6 +33,7 @@ const CourseLessonsPage: React.FC = () => {
   const router = useRouter();
 
   const [lessons, setLessons] = useState<Lesson[]>([]);
+  const [userSubscription, setUserSubscription] = useState<"FULL_CHARGE" | "MONTHLY" | null>(null);
   const [userHasCourse, setUserHasCourse] = useState<boolean>(false);
 
   useEffect(() => {
@@ -39,40 +41,59 @@ const CourseLessonsPage: React.FC = () => {
       if (!courseId) return;
 
       try {
-        const res = await axios.get("https://sevenedu.store/" + apiEndpoins.getCategory(courseId));
+        // ✅ 1. Userni olish
+        const user: User = await getMe();
+
+        // ✅ 2. Kursni topish
+        const foundCourse = user.courses?.find((uc) => uc.courseId === courseId);
+
+        if (foundCourse) {
+          setUserHasCourse(true);
+          setUserSubscription(foundCourse.subscription);
+        } else {
+          setUserHasCourse(false);
+        }
+
+        // ✅ 3. Darslarni olish
+        const res = await axios.get(
+          "https://sevenedu.store/" + apiEndpoins.getCategory(courseId)
+        );
         const dataLessons: Lesson[] = res.data.lessons || [];
         setLessons(dataLessons);
       } catch (err: any) {
         console.error("❌ Xatolik:", err?.message || err);
-      }
-
-      try {
-        const user: User = await getMe();
-        const hasCourse = user.courses?.some((uc) => uc.courseId === courseId);
-        setUserHasCourse(Boolean(hasCourse));
-      } catch {
-        setUserHasCourse(false);
       }
     };
 
     fetchData();
   }, [courseId]);
 
-  const openLesson = (lesson: Lesson) => {
-    const isLocked = !userHasCourse && lesson.isDemo === false;
+  const openLesson = (lesson: Lesson, index: number) => {
+    let isLocked = false;
+
+    if (!userHasCourse && lesson.isDemo === false) {
+      isLocked = true;
+    } else if (userHasCourse && userSubscription === "MONTHLY" && index >= 12) {
+      isLocked = true;
+    }
+
     if (isLocked) {
-      window.open("https://t.me/GraffDracula", "_blank");
+      window.open("https://t.me/HR7EDU", "_blank");
       return;
     }
 
-    // ✅ Kurs ID va lesson ID bo‘yicha sahifaga push
     router.push(`/courses/${courseId}/lessons/${lesson.id}`);
   };
 
   return (
     <div className="container mx-auto px-4 py-10">
-      {!lessons.length || lessons.filter((e) => e.isVisible === true).length === 0 ? (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center text-white text-xl font-medium mt-10">
+      {!lessons.length ||
+      lessons.filter((e) => e.isVisible === true).length === 0 ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center text-white text-xl font-medium mt-10"
+        >
           Hozircha darslar mavjud emas <br />
           Ammo tez orada ular sizni kutmoqda!
         </motion.div>
@@ -81,12 +102,14 @@ const CourseLessonsPage: React.FC = () => {
           {lessons
             .filter((e) => e.isVisible === true)
             .map((lesson, index) => {
-              const isLocked = !userHasCourse && lesson.isDemo === false;
+              const isLocked =
+                (!userHasCourse && lesson.isDemo === false) ||
+                (userHasCourse && userSubscription === "MONTHLY" && index >= 12);
 
               return (
                 <button
                   key={lesson.id}
-                  onClick={() => openLesson(lesson)}
+                  onClick={() => openLesson(lesson, index)}
                   className="w-full text-left"
                 >
                   <motion.div
@@ -97,13 +120,20 @@ const CourseLessonsPage: React.FC = () => {
                   >
                     <div>
                       <h2 className="text-white text-lg font-semibold mb-1">
-                        {index + 1}-dars: <span className="text-green-600">{lesson.title}</span>
+                        {index + 1}-dars:{" "}
+                        <span className="text-green-600">{lesson.title}</span>
                       </h2>
-                      <p className="text-white/70 text-xs robo-light">Katta orzular katta qurbonlik talab qiladi ✨</p>
+                      <p className="text-white/70 text-xs robo-light">
+                        Katta orzular katta qurbonlik talab qiladi ✨
+                      </p>
                     </div>
 
                     <div className="flex flex-col items-center">
-                      {isLocked ? <Lock className="w-10 h-10 text-green-700" /> : <Play className="w-8 h-8 text-green-400" />}
+                      {isLocked ? (
+                        <Lock className="w-10 h-10 text-green-700" />
+                      ) : (
+                        <Play className="w-8 h-8 text-green-400" />
+                      )}
                     </div>
                   </motion.div>
                 </button>
