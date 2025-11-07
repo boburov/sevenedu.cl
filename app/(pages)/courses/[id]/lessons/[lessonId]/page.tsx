@@ -64,7 +64,7 @@ const Page = () => {
             controlsList="nodownload" // 🔒 Download tugmasini olib tashlaydi
             onContextMenu={(e) => e.preventDefault()} // 🔒 O'ng tugmani bloklaydi
             className="w-full h-full object-contain bg-black"
-            src={cleanedVideoUrl}
+            src={cleanedVideoUrl+"nd=1&hash=abc123"} 
           />
         )}
       </div>
