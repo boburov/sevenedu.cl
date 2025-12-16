@@ -19,22 +19,24 @@ const Page = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [cleanedVideoUrl, setCleanedVideoUrl] = useState("");
 
-  // 🔥 YANGI UNIVERSAL TOZALOVCHI – hammaga ishlaydi!
   const getCorrectVideoUrl = (url: string): string => {
     if (!url) return "";
 
-    // Agar allaqachon to'g'ri bucket bo'lsa – o'zgartirmay qaytar
-    if (url.includes("sevenedu-s3.s3.eu-north-1.amazonaws.com")) {
+    if (
+      url.includes("sevenedu-s3.s3.eu-north-1.amazonaws.com/videos/") &&
+      !url.match(/\d{13}-\d/)
+    ) {
       return url;
     }
 
-    // Eski bucket yoki filename bilan kelgan bo'lsa – yangi bucket ga o'tkaz
-    const filename = url.split("/").pop(); // oxirgi qism: 1752060391578-1751973178413.MOV yoki toza filename
-    if (!filename) return url;
+    let filename = url.split("/").pop() || "";
 
-    return `https://sevenedu-s3.s3.eu-north-1.amazonaws.com/videos/${filename}`;
+    const cleanedFilename = filename.replace(/^\d{13}-/, "");
+
+    if (!cleanedFilename) return url;
+
+    return `https://sevenedu-s3.s3.eu-north-1.amazonaws.com/videos/${cleanedFilename}`;
   };
-
   useEffect(() => {
     api.get("courses/all").then((data) => {
       const lessonData = data.data
