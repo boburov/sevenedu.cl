@@ -1,6 +1,5 @@
 "use client";
-
-import api, { GetLessonsById, showedLesson } from "@/app/api/service/api";
+import api from "@/app/api/service/api";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Languages, ListChecks, MessageCircleQuestion } from "lucide-react";
@@ -17,19 +16,23 @@ const Page = () => {
   const path = useParams();
   const lessonId = String(path.lessonId);
   const category_id = String(path.id);
-
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [lesson, setLesson] = useState<Lesson | null>(null);
   const [cleanedVideoUrl, setCleanedVideoUrl] = useState("");
 
-  // 🔧 Video URL tozalovchi funksiya
+  // 🔥 YANGI UNIVERSAL TOZALOVCHI – hammaga ishlaydi!
   const getCorrectVideoUrl = (url: string): string => {
-    if (url.includes("sevenedu.store") || url.includes("-")) return url;
+    if (!url) return "";
 
-    const filename = url.split("/").pop(); // "1752060391578-1751973178413.MOV"
-    const parts = filename?.split("-");
-    const finalPart = parts?.[parts.length - 1];
-    return `https://sevenedu-bucket.s3.eu-north-1.amazonaws.com/videos/${finalPart}`;
+    // Agar allaqachon to'g'ri bucket bo'lsa – o'zgartirmay qaytar
+    if (url.includes("sevenedu-s3.s3.eu-north-1.amazonaws.com")) {
+      return url;
+    }
+
+    // Eski bucket yoki filename bilan kelgan bo'lsa – yangi bucket ga o'tkaz
+    const filename = url.split("/").pop(); // oxirgi qism: 1752060391578-1751973178413.MOV yoki toza filename
+    if (!filename) return url;
+
+    return `https://sevenedu-s3.s3.eu-north-1.amazonaws.com/videos/${filename}`;
   };
 
   useEffect(() => {
@@ -39,17 +42,11 @@ const Page = () => {
         .lessons.filter((les: any) => les.id === lessonId)[0];
 
       if (lessonData?.videoUrl) {
-        function cleanFileLink(url: string): string {
-          return url.replace(/\/videos\/\d+-/, "/videos/");
-        }
+        const correctUrl = getCorrectVideoUrl(lessonData.videoUrl);
+        setCleanedVideoUrl(correctUrl);
 
-        const url = getCorrectVideoUrl(lessonData.videoUrl);
-        const cleaned = cleanFileLink(url);
-
-        setCleanedVideoUrl(cleaned); // ✅ state to'ldirildi
-
-        console.log("Original:", lessonData.videoUrl);
-        console.log("Cleaned:", cleaned);
+        console.log("Original URL:", lessonData.videoUrl);
+        console.log("Fixed URL:", correctUrl);
       }
     });
   }, [lessonId, category_id]);
@@ -61,14 +58,15 @@ const Page = () => {
           <video
             ref={videoRef}
             controls
-            controlsList="nodownload" // 🔒 Download tugmasini olib tashlaydi
-            onContextMenu={(e) => e.preventDefault()} // 🔒 O'ng tugmani bloklaydi
+            controlsList="nodownload"
+            onContextMenu={(e) => e.preventDefault()}
             className="w-full h-full object-contain bg-black"
-            src={cleanedVideoUrl} 
+            src={cleanedVideoUrl}
           />
         )}
       </div>
 
+      {/* Qolgan Link lar o'zgarmaydi */}
       <div className="space-y-4">
         <Link
           href={`${lessonId}/vocabulary`}
@@ -76,8 +74,10 @@ const Page = () => {
         >
           <Languages size={30} strokeWidth={1} />
           <div>
-            <div className="text-lg font-semibold">{`Lug'at`}</div>
-            <div className="text-sm text-yellow-300">{`Yangi so'zlarni yodlang va mashq qiling`}</div>
+            <div className="text-lg font-semibold">Lug'at</div>
+            <div className="text-sm text-yellow-300">
+              Yangi so'zlarni yodlang va mashq qiling
+            </div>
           </div>
         </Link>
 
@@ -88,7 +88,9 @@ const Page = () => {
           <ListChecks size={30} strokeWidth={1} />
           <div>
             <div className="text-lg font-semibold">Test</div>
-            <div className="text-sm text-purple-300">{`Bilimingizni tekshiring va yutuqlaringizni ko'ring`}</div>
+            <div className="text-sm text-purple-300">
+              Bilimingizni tekshiring va yutuqlaringizni ko'ring
+            </div>
           </div>
         </Link>
 
@@ -96,10 +98,12 @@ const Page = () => {
           href={`${lessonId}/quiz`}
           className="w-full h-20 bg-blue-400/10 border border-blue-700 flex items-center gap-5 px-5 text-blue-400 rounded-md hover:scale-[1.02] transition-all duration-300 shadow-sm"
         >
-          <ListChecks size={30} strokeWidth={1} />
+          <MessageCircleQuestion size={30} strokeWidth={1} />
           <div>
             <div className="text-lg font-semibold">Savollar</div>
-            <div className="text-sm text-blue-300">{`Tushunmagan joylaringizni takror ko'rib chiqing`}</div>
+            <div className="text-sm text-blue-300">
+              Tushunmagan joylaringizni takror ko'rib chiqing
+            </div>
           </div>
         </Link>
 
@@ -109,8 +113,10 @@ const Page = () => {
         >
           <MessageCircleQuestion size={30} strokeWidth={1} />
           <div>
-            <div className="text-lg font-semibold">{`Ustozdan so'rash`}</div>
-            <div className="text-sm text-emerald-300">{`Savolingizni ustozga bevosita yuboring`}</div>
+            <div className="text-lg font-semibold">Ustozdan so'rash</div>
+            <div className="text-sm text-emerald-300">
+              Savolingizni ustozga bevosita yuboring
+            </div>
           </div>
         </Link>
       </div>
