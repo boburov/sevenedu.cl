@@ -35,7 +35,8 @@ const Page = () => {
 
     if (!cleanedFilename) return url;
 
-    return `https://s3.eu-north-1.amazonaws.com/seven.edu/videos/${cleanedFilename}`;
+    return `https://sevenedu-s3.s3.eu-north-1.amazonaws.com/videos/${cleanedFilename}`;
+    // return `https://s3.eu-north-1.amazonaws.com/seven.edu/videos/${cleanedFilename}`;
   };
   useEffect(() => {
     api.get("courses/all").then((data) => {
