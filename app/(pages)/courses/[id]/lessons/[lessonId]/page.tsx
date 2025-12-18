@@ -1,21 +1,18 @@
 "use client";
+
 import api from "@/app/api/service/api";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Languages, ListChecks, MessageCircleQuestion } from "lucide-react";
 import Link from "next/link";
 
-interface Lesson {
-  title: string;
-  videoUrl: string;
-  quizs: [];
-  dictonary: [];
-}
+const SPECIAL_CATEGORY_ID = "a86c8621-b83a-4481-ac66-4176f067ca18";
 
 const Page = () => {
   const path = useParams();
   const lessonId = String(path.lessonId);
   const category_id = String(path.id);
+
   const videoRef = useRef<HTMLVideoElement>(null);
   const [cleanedVideoUrl, setCleanedVideoUrl] = useState("");
 
@@ -24,25 +21,30 @@ const Page = () => {
 
     if (
       url.includes("sevenedu-s3.s3.eu-north-1.amazonaws.com/videos/") &&
-      !url.match(/\d{13}-\d/)
+      !url.match(/\d{13}-/)
     ) {
       return url;
     }
 
     let filename = url.split("/").pop() || "";
-
     const cleanedFilename = filename.replace(/^\d{13}-/, "");
 
     if (!cleanedFilename) return url;
 
+    // Maxsus category uchun eski bucket
+    if (category_id === SPECIAL_CATEGORY_ID) {
+      return `https://s3.eu-north-1.amazonaws.com/seven.edu/videos/${cleanedFilename}`;
+    }
+
+    // Default: yangi bucket
     return `https://sevenedu-s3.s3.eu-north-1.amazonaws.com/videos/${cleanedFilename}`;
-    // return `https://s3.eu-north-1.amazonaws.com/seven.edu/videos/${cleanedFilename}`;
   };
+
   useEffect(() => {
     api.get("courses/all").then((data) => {
       const lessonData = data.data
-        .filter((e: any) => e.id === category_id)[0]
-        .lessons.filter((les: any) => les.id === lessonId)[0];
+        .find((e: any) => e.id === category_id)
+        ?.lessons.find((les: any) => les.id === lessonId);
 
       if (lessonData?.videoUrl) {
         const correctUrl = getCorrectVideoUrl(lessonData.videoUrl);
@@ -50,10 +52,12 @@ const Page = () => {
 
         console.log("Original URL:", lessonData.videoUrl);
         console.log("Fixed URL:", correctUrl);
+        console.log("Category ID:", category_id);
       }
     });
   }, [lessonId, category_id]);
 
+  // Qolgan JSX o'zgarmaydi...
   return (
     <div className="relative space-y-2 w-full max-w-4xl mx-auto px-5 transition-all duration-300">
       <div className="relative w-full aspect-video overflow-hidden rounded-2xl shadow-2xl">
@@ -69,7 +73,7 @@ const Page = () => {
         )}
       </div>
 
-      {/* Qolgan Link lar o'zgarmaydi */}
+      {/* Linklar o'zgarmaydi */}
       <div className="space-y-4">
         <Link
           href={`${lessonId}/vocabulary`}
