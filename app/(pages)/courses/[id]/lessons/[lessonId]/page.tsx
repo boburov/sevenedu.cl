@@ -19,6 +19,8 @@ const Page = () => {
   const getCorrectVideoUrl = (url: string): string => {
     if (!url) return "";
 
+    console.log(url);
+
     if (
       url.includes("sevenedu-s3.s3.eu-north-1.amazonaws.com/videos/") &&
       !url.match(/\d{13}-/)
@@ -36,8 +38,8 @@ const Page = () => {
       return `https://s3.eu-north-1.amazonaws.com/seven.edu/videos/${cleanedFilename}`;
     }
 
-    // Default: yangi bucket
     return `https://sevenedu-s3.s3.eu-north-1.amazonaws.com/videos/${cleanedFilename}`;
+    // Default: yangi bucket
   };
 
   useEffect(() => {
@@ -49,6 +51,7 @@ const Page = () => {
       if (lessonData?.videoUrl) {
         const correctUrl = getCorrectVideoUrl(lessonData.videoUrl);
         setCleanedVideoUrl(correctUrl);
+        console.log(lessonData);
 
         console.log("Original URL:", lessonData.videoUrl);
         console.log("Fixed URL:", correctUrl);

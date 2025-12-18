@@ -94,7 +94,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Header />
-
       <div onClick={() => router.back()}>
         <CircleArrowLeft
           size={50}
@@ -102,7 +101,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           className="m-4 text-white hidden max-md:block"
         />
       </div>
-
       {user && (
         <section className="container text-white pt-10 relative hidden max-md:block">
           <div
@@ -153,10 +151,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </section>
       )}
-
       {children}
       <span className="pb-20 inline-block"></span>
-
       <div className="px-3">
         <Footer />
       </div>
