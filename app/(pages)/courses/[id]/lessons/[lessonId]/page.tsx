@@ -7,6 +7,7 @@ import { Languages, ListChecks, MessageCircleQuestion } from "lucide-react";
 import Link from "next/link";
 
 const SPECIAL_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
+const SECOND_SPECIAL_ID = "a86c8621-b83a-4481-ac66-4176f067ca18";
 
 const Page = () => {
   const params = useParams();
@@ -25,7 +26,10 @@ const Page = () => {
     if (!cleanedFilename) return url;
 
     // 🔥 MAXSUS LOGIKA
-    if (category_id === SPECIAL_ID && lessonOrder && lessonOrder > 25) {
+    if (
+      (category_id === SPECIAL_ID && lessonOrder && lessonOrder > 25) ||
+      category_id === SECOND_SPECIAL_ID
+    ) {
       // 26-darsdan keyin — ESKI bucket
       return `https://s3.eu-north-1.amazonaws.com/seven.edu/videos/${cleanedFilename}`;
     }
