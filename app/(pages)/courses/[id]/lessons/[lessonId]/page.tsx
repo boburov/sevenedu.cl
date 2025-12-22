@@ -1,5 +1,4 @@
 "use client";
-
 import api from "@/app/api/service/api";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -8,51 +7,61 @@ import Link from "next/link";
 
 const SPECIAL_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
 const SECOND_SPECIAL_ID = "a86c8621-b83a-4481-ac66-4176f067ca18";
+const THIRD_SPECIAL_ID = "16c43a51-8c65-4a29-995c-f2e8ab0d6073";
 
 const Page = () => {
   const params = useParams();
   const lessonId = String(params.lessonId);
   const category_id = String(params.id);
-
   const videoRef = useRef<HTMLVideoElement>(null);
   const [cleanedVideoUrl, setCleanedVideoUrl] = useState("");
 
-  const getCorrectVideoUrl = (url: string, lessonOrder?: number): string => {
+  const getCorrectVideoUrl = (
+    url: string,
+    lessonIndexInArray?: number
+  ): string => {
     if (!url) return "";
-
     const filename = url.split("/").pop() || "";
     const cleanedFilename = filename.replace(/^\d{13}-/, "");
-
     if (!cleanedFilename) return url;
 
-    // 🔥 MAXSUS LOGIKA
+    // 🔥 lessonNumber = index + 1 (real dars raqami: 1-dars, 2-dars...)
+    const lessonNumber =
+      lessonIndexInArray !== undefined ? lessonIndexInArray + 1 : undefined;
+
+    // MAXSUS LOGIKA — endi INDEX bo'yicha!
     if (
-      (category_id === SPECIAL_ID && lessonOrder && lessonOrder > 25) ||
-      category_id === SECOND_SPECIAL_ID
+      (category_id === SPECIAL_ID && lessonNumber && lessonNumber > 25) ||
+      (category_id === THIRD_SPECIAL_ID && lessonNumber && lessonNumber > 32) || // 26-darsdan keyin eski bucket
+      category_id === SECOND_SPECIAL_ID // butun kurs eski bucket
     ) {
-      // 26-darsdan keyin — ESKI bucket
       return `https://s3.eu-north-1.amazonaws.com/seven.edu/videos/${cleanedFilename}`;
     }
 
-    // default — YANGI bucket
+    // THIRD_SPECIAL_ID uchun ham yangi bucket (32-dan keyin ham yangi)
+    // Boshqa hamma holatda — YANGI bucket
     return `https://sevenedu-s3.s3.eu-north-1.amazonaws.com/videos/${cleanedFilename}`;
   };
 
   useEffect(() => {
     api.get("courses/all").then((res) => {
       const category = res.data.find((c: any) => c.id === category_id);
-      const lesson = category?.lessons.find((l: any) => l.id === lessonId);
+      if (!category?.lessons) return;
+
+      // Darsni topamiz
+      const lessonIndex = category.lessons.findIndex(
+        (l: any) => l.id === lessonId
+      );
+      const lesson = category.lessons[lessonIndex];
 
       if (lesson?.videoUrl) {
-        const finalUrl = getCorrectVideoUrl(
-          lesson.videoUrl,
-          lesson.order // 👈 dars raqami (1,2,3...)
-        );
-
+        const finalUrl = getCorrectVideoUrl(lesson.videoUrl, lessonIndex); // indexni yuboramiz
         setCleanedVideoUrl(finalUrl);
 
-        console.log("Category:", category_id);
-        console.log("Lesson order:", lesson.order);
+        const lessonNumber = lessonIndex + 1;
+        console.log("Category ID:", category_id);
+        console.log("Dars raqami (visual):", lessonNumber);
+        console.log("Lesson order (backend):", lesson.order);
         console.log("Final video url:", finalUrl);
       }
     });
