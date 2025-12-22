@@ -30,6 +30,8 @@ interface User {
 // 🔒 maxsus kurs ID
 const SPECIAL_COURSE_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
 
+const SECOND_SPECIAL_COURSE_ID = "16c43a51-8c65-4a29-995c-f2e8ab0d6073";
+
 const CourseLessonsPage: React.FC = () => {
   const params = useParams() as { id?: string };
   const courseId = String(params?.id || "");
@@ -75,6 +77,11 @@ const CourseLessonsPage: React.FC = () => {
         if (courseId === SPECIAL_COURSE_ID) {
           finalLessons = [
             ...dataLessons.slice(0, 24), // 1–24
+            ...dataLessons.slice(64), // 65+
+          ];
+        } else if (courseId === SECOND_SPECIAL_COURSE_ID) {
+          finalLessons = [
+            ...dataLessons.slice(32, finalLessons.length), // 1–24
             ...dataLessons.slice(64), // 65+
           ];
         }
