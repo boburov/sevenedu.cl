@@ -1,0 +1,394 @@
+{
+    "videos": [
+        {
+            "key": "rus/IMG_3970.MOV",
+            "name": "IMG_3970.MOV",
+            "lesson": "1-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_3970.MOV"
+        },
+        {
+            "key": "rus/IMG_3973.MOV",
+            "name": "IMG_3973.MOV",
+            "lesson": "2-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_3973.MOV"
+        },
+        {
+            "key": "rus/IMG_3974.MOV",
+            "name": "IMG_3974.MOV",
+            "lesson": "3-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_3974.MOV"
+        },
+        {
+            "key": "rus/IMG_3975.MOV",
+            "name": "4-dars",
+            "lesson": "4-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_3975.MOV"
+        },
+        {
+            "key": "rus/IMG_3976.MOV",
+            "name": "5-dars",
+            "lesson": "5-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_3976.MOV"
+        },
+        {
+            "key": "rus/IMG_7180.MOV",
+            "name": "6-dars",
+            "lesson": "6-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7180.MOV"
+        },
+        {
+            "key": "rus/IMG_7181.MOV",
+            "name": "7-dars",
+            "lesson": "7-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7181.MOV"
+        },
+        {
+            "key": "rus/IMG_7207.MOV",
+            "name": "8-dars",
+            "lesson": "8-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7207.MOV"
+        },
+        {
+            "key": "rus/IMG_7208.MOV",
+            "name": "9-dars",
+            "lesson": "9-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7208.MOV"
+        },
+        {
+            "key": "rus/IMG_7209.MOV",
+            "name": "10-dars",
+            "lesson": "10-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7209.MOV"
+        },
+        {
+            "key": "rus/IMG_7210.MOV",
+            "name": "11-dars",
+            "lesson": "11-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7210.MOV"
+        },
+        {
+            "key": "rus/IMG_7222.MOV",
+            "name": "12-dars",
+            "lesson": "12-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7222.MOV"
+        },
+        {
+            "key": "rus/IMG_7223.MOV",
+            "name": "13-dars",
+            "lesson": "13-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7223.MOV"
+        },
+        {
+            "key": "rus/IMG_7243.MOV",
+            "name": "14-dars",
+            "lesson": "14-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7243.MOV"
+        },
+        {
+            "key": "rus/IMG_7244.MOV",
+            "name": "15-dars",
+            "lesson": "15-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7244.MOV"
+        },
+        {
+            "key": "rus/IMG_7245.MOV",
+            "name": "16-dars",
+            "lesson": "16-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7245.MOV"
+        },
+        {
+            "key": "rus/IMG_7246.MOV",
+            "name": "17-dars",
+            "lesson": "17-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7246.MOV"
+        },
+        {
+            "key": "rus/IMG_7247.MOV",
+            "name": "18-dars",
+            "lesson": "18-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7247.MOV"
+        },
+        {
+            "key": "rus/IMG_7291.MOV",
+            "name": "19-dars",
+            "lesson": "19-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7291.MOV"
+        },
+        {
+            "key": "rus/IMG_7306.MOV",
+            "name": "20-dars",
+            "lesson": "20-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7306.MOV"
+        },
+        {
+            "key": "rus/IMG_7307.MOV",
+            "name": "21-dars",
+            "lesson": "21-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7307.MOV"
+        },
+        {
+            "key": "rus/IMG_7308.MOV",
+            "name": "22-dars",
+            "lesson": "22-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7308.MOV"
+        },
+        {
+            "key": "rus/IMG_7309.MOV",
+            "name": "23-dars",
+            "lesson": "23-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7309.MOV"
+        },
+        {
+            "key": "rus/IMG_7310.MOV",
+            "name": "24-dars",
+            "lesson": "24-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/IMG_7310.MOV"
+        },
+        {
+            "key": "rus/1 NEW R M .mp4",
+            "name": "1 NEW R M .mp4",
+            "lesson": "25-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/1%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/2 NEW R M .mp4",
+            "name": "2 NEW R M .mp4",
+            "lesson": "26-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/2%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/3 NEW R M .mp4",
+            "name": "3 NEW R M .mp4",
+            "lesson": "27-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/3%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/4 NEW R M .mp4",
+            "name": "4 NEW R M .mp4",
+            "lesson": "28-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/4%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/1125.mp4",
+            "name": "29-dars",
+            "lesson": "",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/1125.mp4"
+        },
+        {
+            "key": "rus/6 NEW R M  .mp4",
+            "name": "6 NEW R M  .mp4",
+            "lesson": "30-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/6%20NEW%20R%20M%20%20.mp4"
+        },
+        {
+            "key": "rus/7 NEW R M .mp4",
+            "name": "7 NEW R M .mp4",
+            "lesson": "31-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/7%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/8 NEW R M .mp4",
+            "name": "8 NEW R M .mp4",
+            "lesson": "32-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/8%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/9 NEW R M .mp4",
+            "name": "9 NEW R M .mp4",
+            "lesson": "33-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/9%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/10 NEW R M .mp4",
+            "name": "10 NEW R M .mp4",
+            "lesson": "34-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/10%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/11 NEW R M .mp4",
+            "name": "11 NEW R M .mp4",
+            "lesson": "35-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/11%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/12 NEW R M .mp4",
+            "name": "12 NEW R M .mp4",
+            "lesson": "36-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/12%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/13 NEW R M .mp4",
+            "name": "13 NEW R M .mp4",
+            "lesson": "37-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/13%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/14 NEW R M .mp4",
+            "name": "14 NEW R M .mp4",
+            "lesson": "38-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/14%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/15 NEW R M .mp4",
+            "name": "15 NEW R M .mp4",
+            "lesson": "39-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/15%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/15 NEW R M  (2).mp4",
+            "name": "15 NEW R M  (2).mp4",
+            "lesson": "39-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/15%20NEW%20R%20M%20%20%282%29.mp4"
+        },
+        {
+            "key": "rus/16 NEW R M .mp4",
+            "name": "16 NEW R M .mp4",
+            "lesson": "40-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/16%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/17 NEW R M .mp4",
+            "name": "17 NEW R M .mp4",
+            "lesson": "41-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/17%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/18 NEW R M .mp4",
+            "name": "18 NEW R M .mp4",
+            "lesson": "42-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/18%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/19 NEW R M .mp4",
+            "name": "19 NEW R M .mp4",
+            "lesson": "43-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/19%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/20 NEW R M .mp4",
+            "name": "20 NEW R M .mp4",
+            "lesson": "44-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/20%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/21 NEW R M .mp4",
+            "name": "21 NEW R M .mp4",
+            "lesson": "45-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/21%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/22 NEW R M .mp4",
+            "name": "22 NEW R M .mp4",
+            "lesson": "46-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/22%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/23 NEW RM .mp4",
+            "name": "23 NEW RM .mp4",
+            "lesson": "47-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/23%20NEW%20RM%20.mp4"
+        },
+        {
+            "key": "rus/24 NEW RM .mp4",
+            "name": "24 NEW RM .mp4",
+            "lesson": "48-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/24%20NEW%20RM%20.mp4"
+        },
+        {
+            "key": "rus/25 New R M .mp4",
+            "name": "25 New R M .mp4",
+            "lesson": "49-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/25%20New%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/26 NEW R M .mp4",
+            "name": "26 NEW R M .mp4",
+            "lesson": "50-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/26%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/27 NEW RM .mp4",
+            "name": "27 NEW RM .mp4",
+            "lesson": "51-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/27%20NEW%20RM%20.mp4"
+        },
+        {
+            "key": "rus/28 NEW RM .mp4",
+            "name": "28 NEW RM .mp4",
+            "lesson": "52-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/28%20NEW%20RM%20.mp4"
+        },
+        {
+            "key": "rus/29 NEW RM .mp4",
+            "name": "29 NEW RM .mp4",
+            "lesson": "53-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/29%20NEW%20RM%20.mp4"
+        },
+        {
+            "key": "rus/30 NEW RM .mp4",
+            "name": "30 NEW RM .mp4",
+            "lesson": "54-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/30%20NEW%20RM%20.mp4"
+        },
+        {
+            "key": "rus/31 NEW R M .mp4",
+            "name": "31 NEW R M .mp4",
+            "lesson": "55-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/31%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/32 NEW R M .mp4",
+            "name": "32 NEW R M .mp4",
+            "lesson": "56-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/32%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/33 NEW RM .mp4",
+            "name": "33 NEW RM .mp4",
+            "lesson": "57-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/33%20NEW%20RM%20.mp4"
+        },
+        {
+            "key": "rus/34 NEW R M .mp4",
+            "name": "34 NEW R M .mp4",
+            "lesson": "58-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/34%20NEW%20R%20M%20.mp4"
+        },
+        {
+            "key": "rus/35 NEW RM .mp4",
+            "name": "35 NEW RM .mp4",
+            "lesson": "59-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/35%20NEW%20RM%20.mp4"
+        },
+        {
+            "key": "rus/36 NEW RM .mp4",
+            "name": "36 NEW RM .mp4",
+            "lesson": "60-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/36%20NEW%20RM%20.mp4"
+        },
+        {
+            "key": "rus/37 NEW RM .mp4",
+            "name": "37 NEW RM .mp4",
+            "lesson": "61-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/37%20NEW%20RM%20.mp4"
+        },
+        {
+            "key": "rus/38 NEW RM .mp4",
+            "name": "38 NEW RM .mp4",
+            "lesson": "62-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/38%20NEW%20RM%20.mp4"
+        },
+        {
+            "key": "rus/39 NEW RM .mp4",
+            "name": "39 NEW RM .mp4",
+            "lesson": "63-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/39%20NEW%20RM%20.mp4"
+        },
+        {
+            "key": "rus/40 NEW RM .mp4",
+            "name": "40 NEW RM .mp4",
+            "lesson": "64-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/rus/40%20NEW%20RM%20.mp4"
+        }
+    ]
+}

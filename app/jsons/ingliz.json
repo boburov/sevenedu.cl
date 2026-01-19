@@ -1,0 +1,284 @@
+{
+    "vid": [
+        {
+            "key": "ingliz_tili/1-dars.MOV",
+            "name": "1-dars.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/1-dars.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=55292029d14c305b27b34322445b4d1b91c6b2ce654fdee3cfda7d9c2eb08020&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/2-dars.MOV",
+            "name": "2-dars.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/2-dars.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=6dac13ee5d15cc717b6caac4a6a207a9a3af72dd0c0f864dbac64787ad56e210&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/3-dars.MOV",
+            "name": "3-dars.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/3-dars.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=58c01357f37b30a334bd63bb70f15dbf87b06fcb064ee564f0b93a6f21a8fe21&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/4-dars.MOV",
+            "name": "4-dars.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/4-dars.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=d7d97d7a82385bf2a86a4fece3fb711c832f2c9139b79a24446ad41ddf5eab9a&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/5-dars.MOV",
+            "name": "5-dars.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/5-dars.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=71b74122298352bad90415b6889b45df5a4d3d52b4034acceb0916f3a1cfa82f&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/6-dars.MOV",
+            "name": "6-dars.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/6-dars.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=151d632f3f6e4dbe31bf928ab102c012fa8b4f961f465fec9a9869a3c6fba92e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/7-dars.MOV",
+            "name": "7-dars.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/7-dars.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=700e8d3d3b89817d1bb5b49769ecde7d85651730f729d6936cd0eff5b0a4a4ba&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7903.MOV",
+            "name": "IMG_7903.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7903.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=c97804c1e4c6b33df19c0b75e7024098a3aad5143b754731f1686a14353a372c&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7904.MOV",
+            "name": "IMG_7904.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7904.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=5f616c4398999bffffb16ae2a418f7b1dd6fe7b2ab939be1ae07e3e1aa61a65b&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7905.MOV",
+            "name": "IMG_7905.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7905.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=1488eff5bb39e19d6828247878f694ed9d1afb1ab9df498b72c81f9fd63403e6&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7906.MOV",
+            "name": "IMG_7906.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7906.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=d9a5160da94838c162ffcfae9b9ab3934ca7ccaf7a60f0d39dfdc8b76c99efa1&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7907.MOV",
+            "name": "IMG_7907.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7907.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=74702e6e801a60e18653f0f6e0710cf506c8cb279963e7063ae31ca68c0e3300&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7908.MOV",
+            "name": "IMG_7908.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7908.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=ed0a077cf9cc77be66542867e1ad2bf392bf3738a5a2d7447cbcc7f6a32a03f0&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7909.MOV",
+            "name": "IMG_7909.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7909.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=e702a9f3fede2bfb3e14000dc47d0a7069d5ad1bcca95ea0b7e50d074d906d09&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7910.MOV",
+            "name": "IMG_7910.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7910.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=ef39ead39571be909970d61350de37f8e63f91e73be170f43947c73c5a2d9c46&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7911.MOV",
+            "name": "IMG_7911.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7911.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=2b30d01b86791392d25453e8c7bcce1769601db27e26259b55b1b73f8c1468be&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7934.MOV",
+            "name": "IMG_7934.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7934.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=5ba1fdf5b50a7b69f36a9d73d7a4cdf7793c1c39cb4338c7707affe233d01303&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7935.MOV",
+            "name": "IMG_7935.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7935.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=6baa0cb11a1062de2437d5f8f391396e54100027eda5bc37cd497a32e78e8cf6&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7936.MOV",
+            "name": "IMG_7936.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7936.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=92606d9abcfaef28bb46ae464311fde6183e6f6ddbc442468c53cf19f079fa70&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7941.MOV",
+            "name": "IMG_7941.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7941.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=680e99d14656ff73be0c1602c1d8bd7d11eeafa558b93940a7e019351fb0de8a&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_7943.MOV",
+            "name": "IMG_7943.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_7943.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=1ef6efd526c8a183324c5d85f0f8279c1f5441635483ab590b3ba17226ecb7a0&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8020.MOV",
+            "name": "IMG_8020.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8020.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=78913b305b67a60d0b892effd61193daa33c0fefff5f7bd6fe1fa4e9fcd18f69&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8021.MOV",
+            "name": "IMG_8021.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8021.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=45cc4c1fabaec4fbb461010e631804b49767a3f068ed1f598fa5af70ae511b3c&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8022.MOV",
+            "name": "IMG_8022.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8022.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=809ca6f4ae54b3d76ceac24cadd78a92a48d0bd5ce00920c4b97180c58cd4c68&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8185.MOV",
+            "name": "IMG_8185.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8185.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=ae986aa541014c22c41a58f88b626b3593f93c95e22ae79986714493babdd8d3&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8189.MOV",
+            "name": "IMG_8189.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8189.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=24876f64c3aeb3be122380178d2541ef31fb1a7857c342d74d2d704af1a58f55&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8190.MOV",
+            "name": "IMG_8190.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8190.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=4c26ea58190c55aa4cff1d34157dca8015de576ad660537c4c89275280edc951&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8191.MOV",
+            "name": "IMG_8191.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8191.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=c444687108d29dafcd2875b3594a6240386552d4044d863d4b3f0d0b12e9f299&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8192.MOV",
+            "name": "IMG_8192.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8192.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=fa3f75e9d8bbc106d5c005044f7c86c65b5f8377ea167fb126678abfd38e246e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8193.MOV",
+            "name": "IMG_8193.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8193.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=e0a9fc8027ca0ff709ada6d2c39d798f4e7b730141309e122bd85a0e2ca79c3f&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8194.MOV",
+            "name": "IMG_8194.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8194.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=915f7308dfd903e8cb836893cc984aaf4b101b0a5c4b57fb13bd98442ced7dc6&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8195.MOV",
+            "name": "IMG_8195.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8195.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=617c90e02a67283db28617339fde68af20ed2c0ba3c7b38eb828bad21bc78579&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8196.MOV",
+            "name": "IMG_8196.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8196.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=22d875d57332996a7b6293a526986fac6096a0b30d99c66a3132ef79a3af21cb&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8197.MOV",
+            "name": "IMG_8197.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8197.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=3bcb454704d5106ce4690bc762c0c1de85440bc329acfd9d9a115d7bc6bee675&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8198.MOV",
+            "name": "IMG_8198.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8198.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=16267b2a3a8412f0c3880febbf7f92fac4d7dee5d776f7cf388efb639ccd29c5&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8199.MOV",
+            "name": "IMG_8199.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8199.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=bea0ab882403e04300a1b83b5f7e90f0f981f9e268c9d0f3f787046cae9a8e1a&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8200.MOV",
+            "name": "IMG_8200.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8200.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=e173330d2739c85c0d5e92438d22d702c737fdfc65447ab0f288e506a17b986d&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8202.MOV",
+            "name": "IMG_8202.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8202.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=c87460f9f2ce1f9ac72ce64ea58062da1a6d0650741ab573cd7d11218fe4623d&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8203.MOV",
+            "name": "IMG_8203.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8203.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=bfe36a3651cf981079c911cf4ac734c16ad5c329139a0ce94df4dd67c36d3ccb&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8227.MOV",
+            "name": "IMG_8227.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8227.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=3895c5a3f57836999dcab0ab891773fd180cb17dedb8d2e4d959b18fc3fd4b8e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8228.MOV",
+            "name": "IMG_8228.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8228.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=50fdbe6b8d81a28c731308df27788a9171141753391cee1e9902b7d59103a4e6&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8229.MOV",
+            "name": "IMG_8229.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8229.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=d25f54bd64f1a660976735e852cc4c27d2c918cdf33d4aeefe39a60b3f69b31b&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8230.MOV",
+            "name": "IMG_8230.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8230.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=5165d123bd46e04588601bce6f571c6d39147344ae273f87aa2159d86ea1b1be&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8231.MOV",
+            "name": "IMG_8231.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8231.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=09a0d1b0f60eaf34cc60dfbc8a35a05f65de9be7753f31bfd8b8c4cb833de77a&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8232.MOV",
+            "name": "IMG_8232.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8232.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=11926f9e8c66c3a5fc4f4c25b16dd3e98af48f665fb406d21d70ab7cba2ab1d2&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8233.MOV",
+            "name": "IMG_8233.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8233.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=31cffd182c695e6f61dfd0ef66ca90e16de303ce4f9bcc7504bf72d9e3ca8b5d&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8234.MOV",
+            "name": "IMG_8234.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8234.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=9e2dd34cd43fa3e45b792412ee887845202d4c736546a13b7597af171c4bba34&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8235.MOV",
+            "name": "IMG_8235.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8235.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=8f3da7a0c17023abe39cdb2db2130f01c2b80acb0f49ff27c851eecf2a19dec0&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8236.MOV",
+            "name": "IMG_8236.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8236.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=d1c1bdb0752ebb372fb216f72b30a5a8bbfb7f1afcbbad890ba7fe0522ec09b2&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8237.MOV",
+            "name": "IMG_8237.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8237.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=686657629ac293274dc6b2aa8af8699674bef10b3e0bd5cb67e79bd87449a804&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8238.MOV",
+            "name": "IMG_8238.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8238.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=fe97f49da6d806886c3eb3c0d51de26ce38cfeee6437de98892275b712a41dc2&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8239.MOV",
+            "name": "IMG_8239.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8239.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=824adced55e7499dc8f3c1899bd24491279927aeb1a2532b3f3111d344e45b2a&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8240.MOV",
+            "name": "IMG_8240.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8240.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=bd05397ef1a130da8b41a98713e61e4605c782a4e852bc2b2ae0fb2161b64612&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8241.MOV",
+            "name": "IMG_8241.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8241.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=525843c4cf0f6053fc3e882ebd9bef7c2ab0db7eb1ce9c6a89640c08448bc158&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "ingliz_tili/IMG_8242.MOV",
+            "name": "IMG_8242.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/ingliz_tili/IMG_8242.MOV?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=e3354a4d8b6fe624c045a6defea89b08f7dfb63e897869c613aff26a69a69767&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        },
+        {
+            "key": "koreys/1-dars(720P_HD).mp4",
+            "name": "1-dars(720P_HD).mp4",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/1-dars%28720P_HD%29.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA3XXS7CTB3GUYI324%2F20260118%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260118T194405Z&X-Amz-Expires=3600&X-Amz-Signature=b8dfed3218550addeb81cae10d9816aa7bb55e4d31c9131dc5fd62b5349bed41&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+        }
+    ]
+}

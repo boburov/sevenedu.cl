@@ -1,0 +1,244 @@
+{
+    "videos": [
+        {
+            "key": "xitoy_tili/xitoy/IMG_5047.MOV",
+            "name": "1-dars",
+            "lesson": "1-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/IMG_5047.MOV"
+        },
+        {
+            "key": "xitoy_tili/xitoy/IMG_5050.MOV",
+            "name": "2-dars",
+            "lesson": "2-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/IMG_5050.MOV"
+        },
+        {
+            "key": "xitoy_tili/xitoy/IMG_5053.MOV",
+            "name": "3-dars",
+            "lesson": "3-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/IMG_5053.MOV"
+        },
+        {
+            "key": "xitoy_tili/xitoy/IMG_5056.MOV",
+            "name": "4-dars",
+            "lesson": "4-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/IMG_5056.MOV"
+        },
+        {
+            "key": "xitoy_tili/xitoy/IMG_5063.MOV",
+            "name": "5-dars",
+            "lesson": "5-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/IMG_5063.MOV"
+        },
+        {
+            "key": "xitoy_tili/xitoy/IMG_5064.MOV",
+            "name": "6-dars",
+            "lesson": "6-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/IMG_5064.MOV"
+        },
+        {
+            "key": "xitoy_tili/xitoy/IMG_5065.MOV",
+            "name": "7-dars",
+            "lesson": "7-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/IMG_5065.MOV"
+        },
+        {
+            "key": "xitoy_tili/xitoy/IMG_5040.MOV",
+            "name": "8-dars",
+            "lesson": "8-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/IMG_5040.MOV"
+        },
+        {
+            "key": "xitoy_tili/xitoy/IMG_5041.MOV",
+            "name": "9-dars",
+            "lesson": "9-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/IMG_5041.MOV"
+        },
+        {
+            "key": "xitoy_tili/xitoy/IMG_5039.MOV",
+            "name": "10-dars",
+            "lesson": "10-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/IMG_5039.MOV"
+        },
+        {
+            "key": "xitoy_tili/xitoy/IMG_5042.MOV",
+            "name": "11-dars",
+            "lesson": "11-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/IMG_5042.MOV"
+        },
+        {
+            "key": "xitoy_tili/xitoy/IMG_5043.MOV",
+            "name": "12-dars",
+            "lesson": "12-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/IMG_5043.MOV"
+        },
+        {
+            "key": "xitoy_tili/xitoy/IMG_5044.MOV",
+            "name": "13-dars",
+            "lesson": "13-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/IMG_5044.MOV"
+        },
+        {
+            "key": "xitoy_tili/xitoy/14 Mavzu OIla va Oila azolari .mp4",
+            "name": "14 Mavzu OIla va Oila azolari .mp4",
+            "lesson": "14-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/14%20Mavzu%20OIla%20va%20Oila%20azolari%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/16 Mavzu Ranglar .mp4",
+            "name": "16 Mavzu Ranglar .mp4",
+            "lesson": "15-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/16%20Mavzu%20Ranglar%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/17 Mavzu Sonlar va Sanalar .mp4",
+            "name": "17 Mavzu Sonlar va Sanalar .mp4",
+            "lesson": "16-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/17%20Mavzu%20Sonlar%20va%20Sanalar%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/18-Mavzu Uy va Uy jihozlari .mp4",
+            "name": "18-Mavzu Uy va Uy jihozlari .mp4",
+            "lesson": "17-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/18-Mavzu%20Uy%20va%20Uy%20jihozlari%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/19 Mavzu kiyim kechaklar .mp4",
+            "name": "19 Mavzu kiyim kechaklar .mp4",
+            "lesson": "18-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/19%20Mavzu%20kiyim%20kechaklar%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/20 Mavzu Tana va tana azolari .mp4",
+            "name": "20 Mavzu Tana va tana azolari .mp4",
+            "lesson": "19-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/20%20Mavzu%20Tana%20va%20tana%20azolari%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/21-Mavzu Mevalar va ularning nomlari .mp4",
+            "name": "21-Mavzu Mevalar va ularning nomlari .mp4",
+            "lesson": "20-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/21-Mavzu%20Mevalar%20va%20ularning%20nomlari%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/22-Mavzu Sabzavotlar va Poliz ekinlari .mp4",
+            "name": "22-Mavzu Sabzavotlar va Poliz ekinlari .mp4",
+            "lesson": "21-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/22-Mavzu%20Sabzavotlar%20va%20Poliz%20ekinlari%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/23-Mavzu Uy va Yovoyi Xayvonlar .mp4",
+            "name": "23-Mavzu Uy va Yovoyi Xayvonlar .mp4",
+            "lesson": "22-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/23-Mavzu%20Uy%20va%20Yovoyi%20Xayvonlar%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/24-Mavzu O`lchov birliklari .mp4",
+            "name": "24-Mavzu O`lchov birliklari .mp4",
+            "lesson": "23-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/24-Mavzu%20O%60lchov%20birliklari%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/25-Mavzu Davlatlar va Materiklar .mp4",
+            "name": "25-Mavzu Davlatlar va Materiklar .mp4",
+            "lesson": "24-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/25-Mavzu%20Davlatlar%20va%20Materiklar%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/26-Mavzu Dunyo Brendlari .mp4",
+            "name": "26-Mavzu Dunyo Brendlari .mp4",
+            "lesson": "25-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/26-Mavzu%20Dunyo%20Brendlari%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/27-Mavzu Kasb Turlari .mp4",
+            "name": "27-Mavzu Kasb Turlari .mp4",
+            "lesson": "26-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/27-Mavzu%20Kasb%20Turlari%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/28-Mavzu Vaqt Birliklari .mp4",
+            "name": "28-Mavzu Vaqt Birliklari .mp4",
+            "lesson": "27-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/28-Mavzu%20Vaqt%20Birliklari%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/29-Mavzu Tabiat Va Ob-Havo .mp4",
+            "name": "29-Mavzu Tabiat Va Ob-Havo .mp4",
+            "lesson": "28-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/29-Mavzu%20Tabiat%20Va%20Ob-Havo%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/30-Mavzu Valyuta va Pul birliklari .mp4",
+            "name": "30-Mavzu Valyuta va Pul birliklari .mp4",
+            "lesson": "29-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/30-Mavzu%20Valyuta%20va%20Pul%20birliklari%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/31-Mavzu Manzil va Yo`nalishlar.mp4",
+            "name": "31-Mavzu Manzil va Yo`nalishlar.mp4",
+            "lesson": "30-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/31-Mavzu%20Manzil%20va%20Yo%60nalishlar.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/32-Mavzu Zarur so`zlar va iboralar .mp4",
+            "name": "32-Mavzu Zarur so`zlar va iboralar .mp4",
+            "lesson": "31-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/32-Mavzu%20Zarur%20so%60zlar%20va%20iboralar%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/33-Mavzu Zavod va Maxsus texnikalar .mp4",
+            "name": "33-Mavzu Zavod va Maxsus texnikalar .mp4",
+            "lesson": "32-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/33-Mavzu%20Zavod%20va%20Maxsus%20texnikalar%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/34-Mavzu Kundalik Istemoldagi tovarlar .mp4",
+            "name": "34-Mavzu Kundalik Istemoldagi tovarlar .mp4",
+            "lesson": "33-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/34-Mavzu%20Kundalik%20Istemoldagi%20tovarlar%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/35-Mavzu Go`sht va go`sht mahsulotlari .mp4",
+            "name": "35-Mavzu Go`sht va go`sht mahsulotlari .mp4",
+            "lesson": "34-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/35-Mavzu%20Go%60sht%20va%20go%60sht%20mahsulotlari%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/36-Mavzu Binolar va joy nomlari .mp4",
+            "name": "36-Mavzu Binolar va joy nomlari .mp4",
+            "lesson": "35-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/36-Mavzu%20Binolar%20va%20joy%20nomlari%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/37-Mavzu Qurilish va qurilishga oid terinlar .mp4",
+            "name": "37-Mavzu Qurilish va qurilishga oid terinlar .mp4",
+            "lesson": "36-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/37-Mavzu%20Qurilish%20va%20qurilishga%20oid%20terinlar%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/38-Mavzu Xitoy bayramlari va urf-odatlari .mp4",
+            "name": "38-Mavzu Xitoy bayramlari va urf-odatlari .mp4",
+            "lesson": "37-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/38-Mavzu%20Xitoy%20bayramlari%20va%20urf-odatlari%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/39-Mavzu Sayohat va Sayohatga oid.mp4",
+            "name": "39-Mavzu Sayohat va Sayohatga oid.mp4",
+            "lesson": "38-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/39-Mavzu%20Sayohat%20va%20Sayohatga%20oid.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/40-Mavzu Talim va Maktab hayoti .mp4",
+            "name": "40-Mavzu Talim va Maktab hayoti .mp4",
+            "lesson": "39-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/40-Mavzu%20Talim%20va%20Maktab%20hayoti%20.mp4"
+        },
+        {
+            "key": "xitoy_tili/xitoy/41-Mavzu Savdo va Biznes .mp4",
+            "name": "41-Mavzu Savdo va Biznes .mp4",
+            "lesson": "40-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/xitoy_tili/xitoy/41-Mavzu%20Savdo%20va%20Biznes%20.mp4"
+        }
+    ]
+}

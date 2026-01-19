@@ -1,0 +1,244 @@
+{
+    "videos": [
+        {
+            "key": "arab/IMG_6908.MOV",
+            "name": "1-dars",
+            "lesson": "1-dars"
+        },
+        {
+            "key": "arab/IMG_6883.MOV",
+            "name": "IMG_6883.MOV",
+            "lesson": "3-dars"
+        },
+        {
+            "key": "arab/IMG_6884.MOV",
+            "name": "IMG_6884.MOV",
+            "lesson": "3-dars 2-qism"
+        },
+        {
+            "key": "arab/IMG_6910.MOV",
+            "name": "3-dars",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6885.MOV",
+            "name": "4-dars",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6951.MOV",
+            "name": "6-dars",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6911.MOV",
+            "name": "7-dars",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6952.MOV",
+            "name": "7-dars",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6913.MOV",
+            "name": "10-dars",
+            "lesson": ""
+        },
+        {
+            "key": "arab/Arab tili 25 dars .mp4",
+            "name": "Arab tili 25 dars .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/arab tili 26 dars .mp4",
+            "name": "arab tili 26 dars .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/arab tili 27 dars gramatika .mp4",
+            "name": "arab tili 27 dars gramatika .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/arab tili 28 dars gramatika .mp4",
+            "name": "arab tili 28 dars gramatika .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/arab tili 29 dars gramatikasi .mp4",
+            "name": "arab tili 29 dars gramatikasi .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/arab tili 30 dars gramatika .mp4",
+            "name": "arab tili 30 dars gramatika .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/arab tili 31 dars gramatika .mp4",
+            "name": "arab tili 31 dars gramatika .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/arab tili 32 dars gramatika .mp4",
+            "name": "arab tili 32 dars gramatika .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/Arab tili 33 dars .mp4",
+            "name": "Arab tili 33 dars .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/arab tili gramatika 34 .mp4",
+            "name": "arab tili gramatika 34 .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/Arab tili 35 dars .mp4",
+            "name": "Arab tili 35 dars .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/arab tili 36 dars .mp4",
+            "name": "arab tili 36 dars .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/arab tili 37 dars .mp4",
+            "name": "arab tili 37 dars .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/Arab tili 39 dars gramatika .mp4",
+            "name": "Arab tili 39 dars gramatika .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/arab tili 40 dars .mp4",
+            "name": "arab tili 40 dars .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/arab tili 41 dars .mp4",
+            "name": "arab tili 41 dars .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/arab tili 42 dars .mp4",
+            "name": "arab tili 42 dars .mp4",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6914.MOV",
+            "name": "xamza 1-dars",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6915.MOV",
+            "name": "xamza 2-dasr",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6916.MOV",
+            "name": "xamza 3-dars",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6917.MOV",
+            "name": "xamza 4-dars",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6950.MOV",
+            "name": "xamza 5-dars",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6956.MOV",
+            "name": "IMG_6956.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6957.MOV",
+            "name": "IMG_6957.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6958.MOV",
+            "name": "IMG_6958.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6959.MOV",
+            "name": "IMG_6959.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6960.MOV",
+            "name": "IMG_6960.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6961.MOV",
+            "name": "IMG_6961.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6962.MOV",
+            "name": "IMG_6962.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6964.MOV",
+            "name": "IMG_6964.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6966.MOV",
+            "name": "IMG_6966.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6969.MOV",
+            "name": "IMG_6969.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6970.MOV",
+            "name": "IMG_6970.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6971.MOV",
+            "name": "IMG_6971.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_6972.MOV",
+            "name": "IMG_6972.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_7008.MOV",
+            "name": "IMG_7008.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_7010.MOV",
+            "name": "IMG_7010.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_7011.MOV",
+            "name": "IMG_7011.MOV",
+            "lesson": ""
+        },
+        {
+            "key": "arab/IMG_7012.MOV",
+            "name": "IMG_7012.MOV",
+            "lesson": ""
+        }
+    ]
+}
