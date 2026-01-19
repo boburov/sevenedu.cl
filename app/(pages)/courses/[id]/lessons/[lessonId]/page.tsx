@@ -14,7 +14,6 @@ const XITOY_ID = "35b3e69c-d11f-4bd0-bc59-cbcf6286ec09";
 const RUS_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
 const KOREYS_ID = "91b5c1b3-4c3e-4347-ad75-19869b3c6f66";
 
-// Sening eski bucket switch logikang
 const SPECIAL_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
 const SECOND_SPECIAL_ID = "a86c8621-b83a-4481-ac66-4176f067ca18";
 const THIRD_SPECIAL_ID = "16c43a51-8c65-4a29-995c-f2e8ab0d6073";
@@ -34,7 +33,6 @@ function getJsonVideoUrlByLessonNumber(categoryId: string, lessonNumber: number)
   const item = course?.videos?.[lessonNumber - 1];
   if (!item?.key) return "";
 
-  // json key ichida bo'sh joy va boshqa belgilar bo'lishi mumkin
   return `https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/${encodeURIComponent(
     item.key
   )}`;
@@ -68,11 +66,9 @@ function resolveVideoUrl(params: {
   const { categoryId, lessonIndex, backendVideoUrl } = params;
   const lessonNumber = lessonIndex + 1;
 
-  // 1) Agar bu category JSON override bo'lsa => index bo'yicha JSON url
   const jsonUrl = getJsonVideoUrlByLessonNumber(categoryId, lessonNumber);
   if (jsonUrl) return jsonUrl;
 
-  // 2) Aks holda oldingi backend tozalash/bucket logika
   if (backendVideoUrl) return getCorrectVideoUrl(backendVideoUrl, categoryId, lessonIndex);
 
   return "";
@@ -108,8 +104,7 @@ const Page = () => {
 
       if (finalUrl) setCleanedVideoUrl(finalUrl);
 
-      // debug xohlasang:
-      // console.log({ category_id, lessonNumber: lessonIndex + 1, backendOrder: lesson?.order, finalUrl });
+      console.log({ category_id, lessonNumber: lessonIndex + 1, backendOrder: lesson?.order, finalUrl });
     });
 
     return () => {
