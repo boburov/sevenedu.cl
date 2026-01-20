@@ -1,280 +1,354 @@
 {
     "videos": [
         {
-            "key": "koreys/1-dars.MOV",
-            "name": "1-dars.MOV"
+            "key": "koreys/1-dars(720P_HD).mp4",
+            "name": "1-dars(720P_HD).mp4",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/1-dars%28720P_HD%29.mp4"
         },
         {
             "key": "koreys/2-dars.MOV",
-            "name": "2-dars.MOV"
+            "name": "2-dars.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/2-dars.MOV"
         },
         {
             "key": "koreys/3-dars.MOV",
-            "name": "3-dars.MOV"
+            "name": "3-dars.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/3-dars.MOV"
+        },
+        {
+            "key": "koreys/3-dars2.MOV",
+            "name": "3-dars2.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/3-dars2.MOV"
         },
         {
             "key": "koreys/4-dars.MOV",
-            "name": "4-dars.MOV"
+            "name": "4-dars.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/4-dars.MOV"
         },
         {
             "key": "koreys/5-dars.MOV",
-            "name": "5-dars.MOV"
+            "name": "5-dars.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/5-dars.MOV"
         },
         {
             "key": "koreys/6-dars. HD.mp4",
-            "name": "6-dars. HD.mp4"
+            "name": "6-dars. HD.mp4",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/6-dars.%20HD.mp4"
         },
         {
             "key": "koreys/kores tili 7 .mp4",
-            "name": "kores tili 7 .mp4"
+            "name": "kores tili 7 .mp4",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/kores%20tili%207%20.mp4"
         },
         {
             "key": "koreys/koreys tili 8.mp4",
-            "name": "koreys tili 8.mp4"
+            "name": "koreys tili 8.mp4",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/koreys%20tili%208.mp4"
         },
         {
             "key": "koreys/9-dars. HD.mp4",
-            "name": "9-dars. HD.mp4"
+            "name": "9-dars. HD.mp4",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/9-dars.%20HD.mp4"
         },
         {
             "key": "koreys/10-dars. HD.mp4",
-            "name": "10-dars. HD.mp4"
+            "name": "10-dars. HD.mp4",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/10-dars.%20HD.mp4"
         },
         {
             "key": "koreys/11-dars. HD.mp4",
-            "name": "11-dars. HD.mp4"
+            "name": "11-dars. HD.mp4",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/11-dars.%20HD.mp4"
         },
         {
             "key": "koreys/12-dars. HD.mp4",
-            "name": "12-dars. HD.mp4"
+            "name": "12-dars. HD.mp4",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/12-dars.%20HD.mp4"
         },
         {
             "key": "koreys/13-dars.mkv",
-            "name": "13-dars.mkv"
+            "name": "13-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/13-dars.mkv"
         },
         {
             "key": "koreys/14-dars.mkv",
-            "name": "14-dars.mkv"
+            "name": "14-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/14-dars.mkv"
         },
         {
             "key": "koreys/15-dars.mkv",
-            "name": "15-dars.mkv"
+            "name": "15-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/15-dars.mkv"
         },
         {
             "key": "koreys/16-dars.mkv",
-            "name": "16-dars.mkv"
+            "name": "16-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/16-dars.mkv"
         },
         {
             "key": "koreys/17-dars.mkv",
-            "name": "17-dars.mkv"
+            "name": "17-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/17-dars.mkv"
         },
         {
             "key": "koreys/18-dars.mkv",
-            "name": "18-dars.mkv"
+            "name": "18-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/18-dars.mkv"
         },
         {
             "key": "koreys/19-dars.mkv",
-            "name": "19-dars.mkv"
+            "name": "19-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/19-dars.mkv"
         },
         {
             "key": "koreys/20-dars.mkv",
-            "name": "20-dars.mkv"
+            "name": "20-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/20-dars.mkv"
         },
         {
             "key": "koreys/21-dars.mkv",
-            "name": "21-dars.mkv"
+            "name": "21-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/21-dars.mkv"
         },
         {
             "key": "koreys/22-dars.mkv",
-            "name": "22-dars.mkv"
+            "name": "22-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/22-dars.mkv"
         },
         {
             "key": "koreys/23-dars.mkv",
-            "name": "23-dars.mkv"
+            "name": "23-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/23-dars.mkv"
         },
         {
             "key": "koreys/24-dars.mkv",
-            "name": "24-dars.mkv"
+            "name": "24-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/24-dars.mkv"
         },
         {
             "key": "koreys/25-dars.mkv",
-            "name": "25-dars.mkv"
+            "name": "25-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/25-dars.mkv"
         },
         {
             "key": "koreys/26-dars.mkv",
-            "name": "26-dars.mkv"
+            "name": "26-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/26-dars.mkv"
         },
         {
             "key": "koreys/27-dars.mkv",
-            "name": "27-dars.mkv"
+            "name": "27-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/27-dars.mkv"
         },
         {
             "key": "koreys/28-dars.mkv",
-            "name": "28-dars.mkv"
+            "name": "28-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/28-dars.mkv"
         },
         {
             "key": "koreys/29-dars.mkv",
-            "name": "29-dars.mkv"
+            "name": "29-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/29-dars.mkv"
         },
         {
             "key": "koreys/30-dars.mkv",
-            "name": "30-dars.mkv"
+            "name": "30-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/30-dars.mkv"
         },
         {
             "key": "koreys/31-dars.mkv",
-            "name": "31-dars.mkv"
+            "name": "31-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/31-dars.mkv"
         },
         {
             "key": "koreys/32-dars.mkv",
-            "name": "32-dars.mkv"
+            "name": "32-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/32-dars.mkv"
         },
         {
             "key": "koreys/33-dars.mkv",
-            "name": "33-dars.mkv"
+            "name": "33-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/33-dars.mkv"
         },
         {
             "key": "koreys/34-dars.mkv",
-            "name": "34-dars.mkv"
+            "name": "34-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/34-dars.mkv"
         },
         {
             "key": "koreys/35-dars.mkv",
-            "name": "35-dars.mkv"
+            "name": "35-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/35-dars.mkv"
         },
         {
             "key": "koreys/36-dars.mkv",
-            "name": "36-dars.mkv"
+            "name": "36-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/36-dars.mkv"
         },
         {
             "key": "koreys/37-dars.mkv",
-            "name": "37-dars.mkv"
+            "name": "37-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/37-dars.mkv"
         },
         {
             "key": "koreys/38-dars.mkv",
-            "name": "38-dars.mkv"
+            "name": "38-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/38-dars.mkv"
         },
         {
             "key": "koreys/39-dars.mkv",
-            "name": "39-dars.mkv"
+            "name": "39-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/39-dars.mkv"
         },
         {
             "key": "koreys/40-dars.mkv",
-            "name": "40-dars.mkv"
+            "name": "40-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/40-dars.mkv"
         },
         {
             "key": "koreys/41-dars.mkv",
-            "name": "41-dars.mkv"
+            "name": "41-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/41-dars.mkv"
         },
         {
             "key": "koreys/42-dars.mkv",
-            "name": "42-dars.mkv"
+            "name": "42-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/42-dars.mkv"
         },
         {
             "key": "koreys/43-dars.mkv",
-            "name": "43-dars.mkv"
+            "name": "43-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/43-dars.mkv"
         },
         {
             "key": "koreys/44-dars.mkv",
-            "name": "44-dars.mkv"
+            "name": "44-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/44-dars.mkv"
         },
         {
             "key": "koreys/45-dars.mkv",
-            "name": "45-dars.mkv"
+            "name": "45-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/45-dars.mkv"
         },
         {
             "key": "koreys/46-dars.mkv",
-            "name": "46-dars.mkv"
+            "name": "46-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/46-dars.mkv"
         },
         {
             "key": "koreys/47-dars.mkv",
-            "name": "47-dars.mkv"
+            "name": "47-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/47-dars.mkv"
         },
         {
             "key": "koreys/48-dars.mkv",
-            "name": "48-dars.mkv"
+            "name": "48-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/48-dars.mkv"
         },
         {
             "key": "koreys/49-dars.mkv",
-            "name": "49-dars.mkv"
+            "name": "49-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/49-dars.mkv"
         },
         {
             "key": "koreys/50-dars.mkv",
-            "name": "50-dars.mkv"
+            "name": "50-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/50-dars.mkv"
         },
         {
             "key": "koreys/51-dars.mkv",
-            "name": "51-dars.mkv"
+            "name": "51-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/51-dars.mkv"
         },
         {
             "key": "koreys/52-dars.mkv",
-            "name": "52-dars.mkv"
+            "name": "52-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/52-dars.mkv"
         },
         {
             "key": "koreys/53-dars.mkv",
-            "name": "53-dars.mkv"
+            "name": "53-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/53-dars.mkv"
         },
         {
             "key": "koreys/54-dars.mkv",
-            "name": "54-dars.mkv"
+            "name": "54-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/54-dars.mkv"
         },
         {
             "key": "koreys/55-dars.mkv",
-            "name": "55-dars.mkv"
+            "name": "55-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/55-dars.mkv"
         },
         {
             "key": "koreys/56-dars.mkv",
-            "name": "56-dars.mkv"
+            "name": "56-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/56-dars.mkv"
         },
         {
             "key": "koreys/57-dars.mkv",
-            "name": "57-dars.mkv"
+            "name": "57-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/57-dars.mkv"
         },
         {
             "key": "koreys/58-dars.mkv",
-            "name": "58-dars.mkv"
+            "name": "58-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/58-dars.mkv"
         },
         {
             "key": "koreys/60-dars.mkv",
-            "name": "60-dars.mkv"
+            "name": "60-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/60-dars.mkv"
         },
         {
             "key": "koreys/61-dars.mkv",
-            "name": "61-dars.mkv"
+            "name": "61-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/61-dars.mkv"
         },
         {
             "key": "koreys/62-dars.mkv",
-            "name": "62-dars.mkv"
+            "name": "62-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/62-dars.mkv"
         },
         {
             "key": "koreys/63-dars.mkv",
-            "name": "63-dars.mkv"
+            "name": "63-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/63-dars.mkv"
         },
         {
             "key": "koreys/64-dars.mkv",
-            "name": "64-dars.mkv"
+            "name": "64-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/64-dars.mkv"
         },
         {
             "key": "koreys/65-DARS.mkv",
-            "name": "65-DARS.mkv"
+            "name": "65-DARS.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/65-DARS.mkv"
         },
         {
             "key": "koreys/66-DARS.mkv",
-            "name": "66-DARS.mkv"
+            "name": "66-DARS.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/66-DARS.mkv"
         },
         {
             "key": "koreys/67-dars.mkv",
-            "name": "67-dars.mkv"
+            "name": "67-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/67-dars.mkv"
         },
         {
             "key": "koreys/68-dars.mkv",
-            "name": "68-dars.mkv"
+            "name": "68-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/68-dars.mkv"
         },
         {
             "key": "koreys/69-dars.mkv",
-            "name": "69-dars.mkv"
+            "name": "69-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/69-dars.mkv"
         },
         {
             "key": "koreys/70-dars.mkv",
-            "name": "70-dars.mkv"
+            "name": "70-dars.mkv",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/70-dars.mkv"
         }
     ]
 }

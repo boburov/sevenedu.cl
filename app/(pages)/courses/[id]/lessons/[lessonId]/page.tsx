@@ -11,7 +11,7 @@ import koreys_tili from "@/app/jsons/koreys.json";
 import rus_tili from "@/app/jsons/rus.json";
 import arab_tili from "@/app/jsons/arab.json"
 
-const XITOY_ID = "35b3e69c-d11f-4bd0-bc59-cbcf6286ec09";
+const XITOY_ID = "c7fe73bc-e878-4897-8509-d5b21777cfb5";
 const RUS_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
 const KOREYS_ID = "91b5c1b3-4c3e-4347-ad75-19869b3c6f66";
 const ARAB_ID = "818e97e4-8b6b-481a-99ed-547ee53ba3eb";
