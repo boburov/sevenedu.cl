@@ -10,11 +10,13 @@ import xitoy_tili from "@/app/jsons/xitoy.json";
 import koreys_tili from "@/app/jsons/koreys.json";
 import rus_tili from "@/app/jsons/rus.json";
 import arab_tili from "@/app/jsons/arab.json"
+import nemis_tili from "@/app/jsons/nemis.json"
 
 const XITOY_ID = "c7fe73bc-e878-4897-8509-d5b21777cfb5";
 const RUS_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
 const KOREYS_ID = "91b5c1b3-4c3e-4347-ad75-19869b3c6f66";
 const ARAB_ID = "818e97e4-8b6b-481a-99ed-547ee53ba3eb";
+const NEMIS_TILI = "16c43a51-8c65-4a29-995c-f2e8ab0d6073"
 
 const SPECIAL_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
 const SECOND_SPECIAL_ID = "a86c8621-b83a-4481-ac66-4176f067ca18";
@@ -28,7 +30,8 @@ const jsonOverrides: Record<string, JsonCourse> = {
   [XITOY_ID]: xitoy_tili as JsonCourse,
   [RUS_ID]: rus_tili as JsonCourse,
   [KOREYS_ID]: koreys_tili as JsonCourse,
-  [ARAB_ID]: arab_tili as JsonCourse
+  [ARAB_ID]: arab_tili as JsonCourse,
+  [NEMIS_TILI]: nemis_tili as JsonCourse
 
 };
 

@@ -1,0 +1,190 @@
+{
+    "videos": [
+        {
+            "key": "nemis_tili/D 1.MP4",
+            "name": "1-dars",
+            "lesson": "1-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%201.MP4"
+        },
+        {
+            "key": "nemis_tili/D 2.MP4",
+            "name": "2-dars",
+            "lesson": "2-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%202.MP4"
+        },
+        {
+            "key": "nemis_tili/D 3.MP4",
+            "name": "3-dars",
+            "lesson": "3-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%203.MP4"
+        },
+        {
+            "key": "nemis_tili/D 4.MP4",
+            "name": "4-dars",
+            "lesson": "4-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%204.MP4"
+        },
+        {
+            "key": "nemis_tili/D 5.MP4",
+            "name": "5-dars",
+            "lesson": "5-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%205.MP4"
+        },
+        {
+            "key": "nemis_tili/D 6.MP4",
+            "name": "6-dars",
+            "lesson": "6-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%206.MP4"
+        },
+        {
+            "key": "nemis_tili/D 7.MP4",
+            "name": "7-dars",
+            "lesson": "7-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%207.MP4"
+        },
+        {
+            "key": "nemis_tili/D 8.MP4",
+            "name": "8-dars",
+            "lesson": "8-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%208.MP4"
+        },
+        {
+            "key": "nemis_tili/D 9.MP4",
+            "name": "9-dars",
+            "lesson": "9-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%209.MP4"
+        },
+        {
+            "key": "nemis_tili/D10.MP4",
+            "name": "10-dars",
+            "lesson": "10-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D10.MP4"
+        },
+        {
+            "key": "nemis_tili/D11.MP4",
+            "name": "11-dars",
+            "lesson": "11-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D11.MP4"
+        },
+        {
+            "key": "nemis_tili/D12.MP4",
+            "name": "12-dars",
+            "lesson": "12-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D12.MP4"
+        },
+        {
+            "key": "nemis_tili/D 13.MP4",
+            "name": "13-dars",
+            "lesson": "13-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2013.MP4"
+        },
+        {
+            "key": "nemis_tili/D 14.MP4",
+            "name": "14-dars",
+            "lesson": "14-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2014.MP4"
+        },
+        {
+            "key": "nemis_tili/D 15.MOV",
+            "name": "15-dars",
+            "lesson": "15-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2015.MOV"
+        },
+        {
+            "key": "nemis_tili/D 16.MOV",
+            "name": "16-dars",
+            "lesson": "16-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2016.MOV"
+        },
+        {
+            "key": "nemis_tili/D 17.MP4",
+            "name": "17-dars",
+            "lesson": "17-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2017.MP4"
+        },
+        {
+            "key": "nemis_tili/D 18.MP4",
+            "name": "18-dars",
+            "lesson": "18-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2018.MP4"
+        },
+        {
+            "key": "nemis_tili/D 19.MP4",
+            "name": "19-dars",
+            "lesson": "19-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2019.MP4"
+        },
+        {
+            "key": "nemis_tili/D 20.MP4",
+            "name": "20-dars",
+            "lesson": "20-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2020.MP4"
+        },
+        {
+            "key": "nemis_tili/D 21.MP4",
+            "name": "21-dars",
+            "lesson": "21-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2021.MP4"
+        },
+        {
+            "key": "nemis_tili/D 22.MP4",
+            "name": "22-dars",
+            "lesson": "22-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2022.MP4"
+        },
+        {
+            "key": "nemis_tili/D 23.MP4",
+            "name": "23-dars",
+            "lesson": "23-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2023.MP4"
+        },
+        {
+            "key": "nemis_tili/D 24.MP4",
+            "name": "24-dars",
+            "lesson": "24-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2024.MP4"
+        },
+        {
+            "key": "nemis_tili/D 25.MP4",
+            "name": "25-dars",
+            "lesson": "25-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2025.MP4"
+        },
+        {
+            "key": "nemis_tili/D 26.MP4",
+            "name": "26-dars",
+            "lesson": "26-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2026.MP4"
+        },
+        {
+            "key": "nemis_tili/D 27.MP4",
+            "name": "27-dars",
+            "lesson": "27-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2027.MP4"
+        },
+        {
+            "key": "nemis_tili/D 28.MP4",
+            "name": "28-dars",
+            "lesson": "28-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2028.MP4"
+        },
+        {
+            "key": "nemis_tili/D 29.MP4",
+            "name": "29-dars",
+            "lesson": "29-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2029.MP4"
+        },
+        {
+            "key": "nemis_tili/D 30.mp4",
+            "name": "30-dars",
+            "lesson": "30-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2030.mp4"
+        },
+        {
+            "key": "nemis_tili/D 31.MP4",
+            "name": "31-dars",
+            "lesson": "31-dars",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/nemis_tili/D%2031.MP4"
+        }
+    ]
+}
