@@ -9,10 +9,12 @@ import Link from "next/link";
 import xitoy_tili from "@/app/jsons/xitoy.json";
 import koreys_tili from "@/app/jsons/koreys.json";
 import rus_tili from "@/app/jsons/rus.json";
+import arab_tili from "@/app/jsons/arab.json"
 
 const XITOY_ID = "35b3e69c-d11f-4bd0-bc59-cbcf6286ec09";
 const RUS_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
 const KOREYS_ID = "91b5c1b3-4c3e-4347-ad75-19869b3c6f66";
+const ARAB_ID = "818e97e4-8b6b-481a-99ed-547ee53ba3eb";
 
 const SPECIAL_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
 const SECOND_SPECIAL_ID = "a86c8621-b83a-4481-ac66-4176f067ca18";
@@ -26,6 +28,8 @@ const jsonOverrides: Record<string, JsonCourse> = {
   [XITOY_ID]: xitoy_tili as JsonCourse,
   [RUS_ID]: rus_tili as JsonCourse,
   [KOREYS_ID]: koreys_tili as JsonCourse,
+  [ARAB_ID]: arab_tili as JsonCourse
+
 };
 
 function getJsonVideoUrlByLessonNumber(categoryId: string, lessonNumber: number) {

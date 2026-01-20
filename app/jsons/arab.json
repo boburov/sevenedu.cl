@@ -7,238 +7,253 @@
         },
         {
             "key": "arab/IMG_6883.MOV",
-            "name": "IMG_6883.MOV",
-            "lesson": "3-dars"
-        },
-        {
-            "key": "arab/IMG_6884.MOV",
-            "name": "IMG_6884.MOV",
-            "lesson": "3-dars 2-qism"
+            "name": "2-dars",
+            "lesson": "2-dars"
         },
         {
             "key": "arab/IMG_6910.MOV",
             "name": "3-dars",
-            "lesson": ""
+            "lesson": "3-dars"
+        },
+        {
+            "key": "arab/IMG_6884.MOV",
+            "name": "3-dars (2-qism)",
+            "lesson": "3-dars"
         },
         {
             "key": "arab/IMG_6885.MOV",
             "name": "4-dars",
-            "lesson": ""
+            "lesson": "4-dars"
+        },
+        {
+            "key": "arab/5-dars.MOV",
+            "name": "5-dars",
+            "lesson": "5-dars"
         },
         {
             "key": "arab/IMG_6951.MOV",
             "name": "6-dars",
-            "lesson": ""
+            "lesson": "6-dars"
         },
         {
             "key": "arab/IMG_6911.MOV",
-            "name": "7-dars",
-            "lesson": ""
+            "name": "7–8-dars",
+            "lesson": "7–8-dars"
         },
         {
-            "key": "arab/IMG_6952.MOV",
-            "name": "7-dars",
-            "lesson": ""
+            "key": "arab/9-dars.MOV",
+            "name": "9-dars",
+            "lesson": "9-dars"
         },
         {
             "key": "arab/IMG_6913.MOV",
             "name": "10-dars",
-            "lesson": ""
-        },
-        {
-            "key": "arab/Arab tili 25 dars .mp4",
-            "name": "Arab tili 25 dars .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/arab tili 26 dars .mp4",
-            "name": "arab tili 26 dars .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/arab tili 27 dars gramatika .mp4",
-            "name": "arab tili 27 dars gramatika .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/arab tili 28 dars gramatika .mp4",
-            "name": "arab tili 28 dars gramatika .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/arab tili 29 dars gramatikasi .mp4",
-            "name": "arab tili 29 dars gramatikasi .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/arab tili 30 dars gramatika .mp4",
-            "name": "arab tili 30 dars gramatika .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/arab tili 31 dars gramatika .mp4",
-            "name": "arab tili 31 dars gramatika .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/arab tili 32 dars gramatika .mp4",
-            "name": "arab tili 32 dars gramatika .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/Arab tili 33 dars .mp4",
-            "name": "Arab tili 33 dars .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/arab tili gramatika 34 .mp4",
-            "name": "arab tili gramatika 34 .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/Arab tili 35 dars .mp4",
-            "name": "Arab tili 35 dars .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/arab tili 36 dars .mp4",
-            "name": "arab tili 36 dars .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/arab tili 37 dars .mp4",
-            "name": "arab tili 37 dars .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/Arab tili 39 dars gramatika .mp4",
-            "name": "Arab tili 39 dars gramatika .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/arab tili 40 dars .mp4",
-            "name": "arab tili 40 dars .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/arab tili 41 dars .mp4",
-            "name": "arab tili 41 dars .mp4",
-            "lesson": ""
-        },
-        {
-            "key": "arab/arab tili 42 dars .mp4",
-            "name": "arab tili 42 dars .mp4",
-            "lesson": ""
+            "lesson": "10-dars"
         },
         {
             "key": "arab/IMG_6914.MOV",
-            "name": "xamza 1-dars",
-            "lesson": ""
+            "name": "Gramatika 1-dars",
+            "lesson": "Gramatika 1"
         },
         {
             "key": "arab/IMG_6915.MOV",
-            "name": "xamza 2-dasr",
-            "lesson": ""
+            "name": "Gramatika 2-dars",
+            "lesson": "Gramatika 2"
         },
         {
             "key": "arab/IMG_6916.MOV",
-            "name": "xamza 3-dars",
-            "lesson": ""
+            "name": "Gramatika 3-dars",
+            "lesson": "Gramatika 3"
         },
         {
             "key": "arab/IMG_6917.MOV",
-            "name": "xamza 4-dars",
-            "lesson": ""
+            "name": "Gramatika 4-dars",
+            "lesson": "Gramatika 4"
         },
         {
             "key": "arab/IMG_6950.MOV",
-            "name": "xamza 5-dars",
-            "lesson": ""
+            "name": "Gramatika 5-dars",
+            "lesson": "Gramatika 5"
+        },
+        {
+            "key": "arab/6-dars.MOV",
+            "name": "Gramatika 6-dars",
+            "lesson": "Gramatika 6"
+        },
+        {
+            "key": "arab/IMG_6952.MOV",
+            "name": "Gramatika 7-dars",
+            "lesson": "Gramatika 7"
         },
         {
             "key": "arab/IMG_6956.MOV",
-            "name": "IMG_6956.MOV",
-            "lesson": ""
+            "name": "Gramatika 8-dars",
+            "lesson": "Gramatika 8"
         },
         {
             "key": "arab/IMG_6957.MOV",
-            "name": "IMG_6957.MOV",
-            "lesson": ""
+            "name": "Gramatika 9-dars",
+            "lesson": "Gramatika 9"
         },
         {
             "key": "arab/IMG_6958.MOV",
-            "name": "IMG_6958.MOV",
-            "lesson": ""
+            "name": "Gramatika 10-dars",
+            "lesson": "Gramatika 10"
         },
         {
             "key": "arab/IMG_6959.MOV",
-            "name": "IMG_6959.MOV",
-            "lesson": ""
+            "name": "Gramatika 11-dars",
+            "lesson": "Gramatika 11"
         },
         {
             "key": "arab/IMG_6960.MOV",
-            "name": "IMG_6960.MOV",
-            "lesson": ""
+            "name": "Gramatika 12-dars",
+            "lesson": "Gramatika 12"
         },
         {
             "key": "arab/IMG_6961.MOV",
-            "name": "IMG_6961.MOV",
-            "lesson": ""
+            "name": "Gramatika 13-dars",
+            "lesson": "Gramatika 13"
         },
         {
             "key": "arab/IMG_6962.MOV",
-            "name": "IMG_6962.MOV",
-            "lesson": ""
+            "name": "Gramatika 14-dars",
+            "lesson": "Gramatika 14"
         },
         {
             "key": "arab/IMG_6964.MOV",
-            "name": "IMG_6964.MOV",
-            "lesson": ""
+            "name": "Gramatika 15-dars",
+            "lesson": "Gramatika 15"
         },
         {
             "key": "arab/IMG_6966.MOV",
-            "name": "IMG_6966.MOV",
-            "lesson": ""
+            "name": "Gramatika 16-dars",
+            "lesson": "Gramatika 16"
         },
         {
             "key": "arab/IMG_6969.MOV",
-            "name": "IMG_6969.MOV",
-            "lesson": ""
+            "name": "Gramatika 17-dars",
+            "lesson": "Gramatika 17"
         },
         {
             "key": "arab/IMG_6970.MOV",
-            "name": "IMG_6970.MOV",
-            "lesson": ""
+            "name": "Gramatika 18-dars",
+            "lesson": "Gramatika 18"
         },
         {
             "key": "arab/IMG_6971.MOV",
-            "name": "IMG_6971.MOV",
-            "lesson": ""
+            "name": "Gramatika 19-dars",
+            "lesson": "Gramatika 19"
         },
         {
             "key": "arab/IMG_6972.MOV",
-            "name": "IMG_6972.MOV",
-            "lesson": ""
+            "name": "Gramatika 20-dars",
+            "lesson": "Gramatika 20"
         },
         {
             "key": "arab/IMG_7008.MOV",
-            "name": "IMG_7008.MOV",
-            "lesson": ""
+            "name": "Gramatika 21-dars",
+            "lesson": "Gramatika 21"
         },
         {
             "key": "arab/IMG_7010.MOV",
-            "name": "IMG_7010.MOV",
-            "lesson": ""
-        },
-        {
-            "key": "arab/IMG_7011.MOV",
-            "name": "IMG_7011.MOV",
-            "lesson": ""
+            "name": "Gramatika 22-dars",
+            "lesson": "Gramatika 22"
         },
         {
             "key": "arab/IMG_7012.MOV",
-            "name": "IMG_7012.MOV",
-            "lesson": ""
+            "name": "Gramatika 24-dars",
+            "lesson": "Gramatika 24"
+        },
+        {
+            "key": "arab/Arab tili 25 dars .mp4",
+            "name": "25-dars",
+            "lesson": "25-dars"
+        },
+        {
+            "key": "arab/arab tili 26 dars .mp4",
+            "name": "26-dars",
+            "lesson": "26-dars"
+        },
+        {
+            "key": "arab/arab tili 27 dars gramatika .mp4",
+            "name": "27-dars",
+            "lesson": "27-dars"
+        },
+        {
+            "key": "arab/arab tili 28 dars gramatika .mp4",
+            "name": "28-dars",
+            "lesson": "28-dars"
+        },
+        {
+            "key": "arab/arab tili 29 dars gramatikasi .mp4",
+            "name": "29-dars",
+            "lesson": "29-dars"
+        },
+        {
+            "key": "arab/arab tili 30 dars gramatika .mp4",
+            "name": "30-dars",
+            "lesson": "30-dars"
+        },
+        {
+            "key": "arab/arab tili 31 dars gramatika .mp4",
+            "name": "31-dars",
+            "lesson": "31-dars"
+        },
+        {
+            "key": "arab/arab tili 32 dars gramatika .mp4",
+            "name": "32-dars",
+            "lesson": "32-dars"
+        },
+        {
+            "key": "arab/Arab tili 33 dars .mp4",
+            "name": "33-dars",
+            "lesson": "33-dars"
+        },
+        {
+            "key": "arab/arab tili gramatika 34 .mp4",
+            "name": "34-dars",
+            "lesson": "34-dars"
+        },
+        {
+            "key": "arab/Arab tili 35 dars .mp4",
+            "name": "35-dars",
+            "lesson": "35-dars"
+        },
+        {
+            "key": "arab/arab tili 36 dars .mp4",
+            "name": "36-dars",
+            "lesson": "36-dars"
+        },
+        {
+            "key": "arab/arab tili 37 dars .mp4",
+            "name": "37-dars",
+            "lesson": "37-dars"
+        },
+        {
+            "key": "arab/38-dars.mp4",
+            "name": "38-dars",
+            "lesson": "38-dars"
+        },
+        {
+            "key": "arab/Arab tili 39 dars gramatika .mp4",
+            "name": "39-dars",
+            "lesson": "39-dars"
+        },
+        {
+            "key": "arab/arab tili 40 dars .mp4",
+            "name": "40-dars",
+            "lesson": "40-dars"
+        },
+        {
+            "key": "arab/arab tili 41 dars .mp4",
+            "name": "41-dars",
+            "lesson": "41-dars"
+        },
+        {
+            "key": "arab/arab tili 42 dars .mp4",
+            "name": "42-dars",
+            "lesson": "42-dars"
         }
     ]
 }
