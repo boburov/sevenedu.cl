@@ -1,6 +1,48 @@
 {
     "videos": [
         {
+            "key": "turk_tili/T1-2.MOV",
+            "name": "T1-2.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/turk_tili/T1-2.MOV",
+            "lesson": "1–2-dars"
+        },
+        {
+            "key": "turk_tili/T3.MOV",
+            "name": "T3.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/turk_tili/T3.MOV",
+            "lesson": "3-dars"
+        },
+        {
+            "key": "turk_tili/T4.MOV",
+            "name": "T4.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/turk_tili/T4.MOV",
+            "lesson": "4-dars"
+        },
+        {
+            "key": "turk_tili/T5.MOV",
+            "name": "T5.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/turk_tili/T5.MOV",
+            "lesson": "5-dars"
+        },
+        {
+            "key": "turk_tili/T6.MOV",
+            "name": "T6.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/turk_tili/T6.MOV",
+            "lesson": "6-dars"
+        },
+        {
+            "key": "turk_tili/T7.MOV",
+            "name": "T7.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/turk_tili/T7.MOV",
+            "lesson": "7-dars"
+        },
+        {
+            "key": "turk_tili/T8.MOV",
+            "name": "T8.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/turk_tili/T8.MOV",
+            "lesson": "8-dars"
+        },
+        {
             "key": "turk_tili/2025_05_20_09_38_IMG_5882.MOV",
             "name": "2025_05_20_09_38_IMG_5882.MOV",
             "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/turk_tili/2025_05_20_09_38_IMG_5882.MOV",
@@ -173,6 +215,18 @@
             "name": "2025_06_18_15_51_IMG_6406.MOV",
             "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/turk_tili/2025_06_18_15_51_IMG_6406.MOV",
             "lesson": "38-dars"
+        },
+        {
+            "key": "turk_tili/T39.MOV",
+            "name": "T39.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/turk_tili/T39.MOV",
+            "lesson": "39-dars"
+        },
+        {
+            "key": "turk_tili/T40.MOV",
+            "name": "T40.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/turk_tili/T40.MOV",
+            "lesson": "40-dars"
         }
     ]
 }
