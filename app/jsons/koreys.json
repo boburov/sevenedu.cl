@@ -11,9 +11,9 @@
             "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/2-dars.MOV"
         },
         {
-            "key": "koreys/3-dars.MOV",
-            "name": "3-dars.MOV",
-            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/3-dars.MOV"
+            "key": "koreys/kr3.MOV",
+            "name": "kr3.MOV",
+            "url": "https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/koreys/kr3.MOV"
         },
         {
             "key": "koreys/3-dars2.MOV",
