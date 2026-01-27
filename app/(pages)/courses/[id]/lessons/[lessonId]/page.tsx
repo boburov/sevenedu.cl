@@ -128,7 +128,7 @@ const Page = () => {
         {cleanedVideoUrl && (
           <video
             ref={videoRef}
-            src={cleanedVideoUrl + "n"}
+            src={cleanedVideoUrl}
             controls
             controlsList="nodownload"
             onContextMenu={(e) => e.preventDefault()}
