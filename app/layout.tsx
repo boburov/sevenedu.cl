@@ -1,4 +1,5 @@
 import { ToastContainer } from "react-toastify";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata = {
@@ -34,8 +35,22 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-Q3DLE0CTCG"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-Q3DLE0CTCG');
+          `}
+        </Script>
         <ToastContainer position="top-right" />
-        {children}</body>
+        {children}
+      </body>
     </html>
   );
 }
