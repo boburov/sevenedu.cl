@@ -112,69 +112,103 @@ const CourseLessonsPage: React.FC = () => {
     router.push(`/courses/${courseId}/lessons/${lesson.id}`);
   };
 
-  return (
-    <div className="container mx-auto px-4 py-10">
-      {!lessons.length ||
-      lessons.filter((e) => e.isVisible === true).length === 0 ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center text-white text-xl font-medium mt-10"
-        >
-          Hozircha darslar mavjud emas <br />
-          Ammo tez orada ular sizni kutmoqda!
-        </motion.div>
-      ) : (
-        <div className="space-y-6">
-          {lessons
-            .filter((e) => e.isVisible === true)
-            .map((lesson, index) => {
-              const isLocked =
-                (!userHasCourse && lesson.isDemo === false) ||
-                (userHasCourse &&
-                  userSubscription === "MONTHLY" &&
-                  index >= 12);
+ return (
+  <div className="container mx-auto px-4 py-8 bg-background">
+    {/* Empty state */}
+    {!lessons.length || lessons.filter((e) => e.isVisible === true).length === 0 ? (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="rounded-2xl border border-border bg-surface p-6 text-center shadow-card"
+      >
+        <h2 className="text-base font-semibold text-text-primary">
+          Hozircha darslar mavjud emas
+        </h2>
+        <p className="mt-2 text-sm text-text-secondary">
+          Tez orada yangi darslar qo‘shiladi.
+        </p>
+      </motion.div>
+    ) : (
+      <div className="space-y-3">
+        {lessons
+          .filter((e) => e.isVisible === true)
+          .map((lesson, index) => {
+            const isLocked =
+              (!userHasCourse && lesson.isDemo === false) ||
+              (userHasCourse && userSubscription === "MONTHLY" && index >= 12);
 
-              return (
-                <button
-                  key={lesson.id}
-                  onClick={() => openLesson(lesson, index)}
-                  className="w-full text-left"
+            return (
+              <button
+                key={lesson.id}
+                onClick={() => openLesson(lesson, index)}
+                className="w-full text-left"
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: index * 0.03 }}
+                  className={[
+                    "relative flex items-center justify-between rounded-2xl border bg-surface p-4 shadow-card transition-shadow",
+                    "hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]",
+                    isLocked ? "border-border" : "border-border",
+                  ].join(" ")}
                 >
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: index * 0.05,
-                    }}
-                    className="flex items-center justify-between bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-5 hover:scale-[1.01] transition-transform duration-300"
-                  >
-                    <div>
-                      <h2 className="text-white text-lg font-semibold mb-1">
-                        {index + 1}-dars:{" "}
-                        <span className="text-green-600">{lesson.title}</span>
-                      </h2>
-                      <p className="text-white/70 text-xs robo-light">
-                        Katta orzular katta qurbonlik talab qiladi ✨
-                      </p>
+                  {/* left content */}
+                  <div className="min-w-0 pr-16">
+                    {/* Small chips row */}
+                    <div className="mb-1 flex items-center gap-2">
+                      <span className="inline-flex items-center rounded-full border border-border bg-surface-alt px-2.5 py-1 text-[11px] font-semibold text-text-secondary">
+                        {index + 1}-dars
+                      </span>
+
+                      {lesson.isDemo ? (
+                        <span className="inline-flex items-center rounded-full bg-primary-soft px-2.5 py-1 text-[11px] font-semibold text-primary">
+                          Demo
+                        </span>
+                      ) : null}
+
+                      {isLocked ? (
+                        <span className="inline-flex items-center rounded-full border border-border bg-surface-alt px-2.5 py-1 text-[11px] font-semibold text-text-secondary">
+                          Locked
+                        </span>
+                      ) : null}
                     </div>
 
-                    <div className="flex flex-col items-center">
-                      {isLocked ? (
-                        <Lock className="w-10 h-10 text-green-700" />
-                      ) : (
-                        <Play className="w-8 h-8 text-green-400" />
-                      )}
-                    </div>
-                  </motion.div>
-                </button>
-              );
-            })}
-        </div>
-      )}
-    </div>
-  );
+                    <h2 className="text-sm font-semibold text-text-primary truncate">
+                      {lesson.title}
+                    </h2>
+
+                    <p className="mt-1 text-xs text-text-muted line-clamp-1">
+                      Darsni ochish uchun bosing
+                    </p>
+                  </div>
+
+                  {/* right icon */}
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                    {isLocked ? (
+                      <div className="grid h-10 w-10 place-items-center rounded-full border border-border bg-surface-alt">
+                        <Lock className="h-5 w-5 text-text-secondary" />
+                      </div>
+                    ) : (
+                      <div className="grid h-10 w-10 place-items-center rounded-full bg-primary-soft">
+                        <Play className="h-5 w-5 text-primary" />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* locked overlay (very subtle) */}
+                  {isLocked ? (
+                    <div className="pointer-events-none absolute inset-0 rounded-2xl bg-[linear-gradient(135deg,rgba(124,58,237,0.08),transparent)]" />
+                  ) : null}
+                </motion.div>
+              </button>
+            );
+          })}
+      </div>
+    )}
+  </div>
+);
+
 };
 
 export default CourseLessonsPage;

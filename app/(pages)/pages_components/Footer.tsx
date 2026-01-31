@@ -47,9 +47,9 @@ const Footer = () => {
   const unreadCount = notifications?.filter((e) => !e.isRead).length || 0;
 
   return (
-    <footer className="fixed left-0 bottom-0 w-full z-50 px-1.5 pb-1.5 xl:hidden max-md:block">
-      <div className="container py-2  bg-[#343434]/60 backdrop-blur-xl border border-white/10 rounded-xl">
-        <ul className="flex items-center justify-between gap-2 px-2 py-3 rounded-lg">
+    <footer className="fixed left-0 bottom-0 w-full z-50 px-3 pb-3 xl:hidden max-md:block">
+      <div className="container py-2 bg-surface/95 backdrop-blur-xl border border-border rounded-2xl shadow-card">
+        <ul className="flex items-center justify-between gap-2 px-2 py-2">
           {navLinks.map(({ href, icon: Icon, label }, index) => {
             const isActive = pathname.startsWith(href);
 
@@ -59,20 +59,18 @@ const Footer = () => {
                   <Link
                     href={href}
                     aria-label={label}
-                    className={`flex flex-col items-center justify-center text-xs transition-all relative ${isActive ? "text-green-400" : "text-white"
-                      }`}
+                    className={`flex flex-col items-center justify-center text-xs transition-all duration-200 relative p-2 rounded-xl ${
+                      isActive
+                        ? "text-primary bg-primary-soft"
+                        : "text-text-secondary hover:text-primary hover:bg-primary-soft/50"
+                    }`}
                   >
                     {unreadCount > 0 && (
-                      <span className="absolute bg-red-800 -top-2 -right-2 w-5 h-5 flex items-center justify-center rounded-full text-xs robo-light">
+                      <span className="absolute bg-danger text-white -top-1 -right-1 w-5 h-5 flex items-center justify-center rounded-full text-xs font-medium">
                         {unreadCount}
                       </span>
                     )}
-                    <Icon
-                      size={28}
-                      strokeWidth={1}
-                      stroke={isActive ? "#fff" : "#00C835"}
-                      className="mb-1"
-                    />
+                    <Icon size={24} strokeWidth={1.5} className="mb-0.5" />
                   </Link>
                 </li>
               );
@@ -82,21 +80,18 @@ const Footer = () => {
                   <Link
                     href={href}
                     aria-label={label}
-                    className={`flex flex-col items-center justify-center text-xs transition-all ${isActive ? "text-green-400" : "text-white"
-                      }`}
+                    className={`flex flex-col items-center justify-center text-xs transition-all duration-200 p-2 rounded-xl ${
+                      isActive
+                        ? "text-primary bg-primary-soft"
+                        : "text-text-secondary hover:text-primary hover:bg-primary-soft/50"
+                    }`}
                   >
-                    <Icon
-                      size={28}
-                      strokeWidth={1}
-                      stroke={isActive ? "#fff" : "#00C835"}
-                      className="mb-1"
-                    />
+                    <Icon size={24} strokeWidth={1.5} className="mb-0.5" />
                   </Link>
                 </li>
               );
             }
           })}
-
         </ul>
       </div>
     </footer>

@@ -29,7 +29,7 @@ const SignupPage = () => {
   const handleSignup = async () => {
     if (!isAllowed) {
       alert("Siz avval shartnomaga rozilik berishingiz kerak");
-      return
+      return;
     }
     setIsSubmitting(true);
     setError(false);
@@ -79,25 +79,40 @@ const SignupPage = () => {
     }
   };
 
+  const inputClasses =
+    "w-full h-12 border border-border rounded-input px-4 bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-primary transition-all duration-200";
+
   return (
-    <div>
-      <section className="container pt-5">
-        <Link href="/">
-          <ArrowLeft size={44} strokeWidth={1.5} className="text-white" />
+    <section className="min-h-screen bg-gradient-to-br from-primary-soft/30 via-background to-background">
+      <div className="container pt-6">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors duration-200"
+        >
+          <ArrowLeft size={24} strokeWidth={1.5} />
+          <span className="text-sm font-medium">Orqaga</span>
         </Link>
 
-        <div className="flex flex-col items-center">
-          <Image src={edu7} height={100} width={120} alt="kotun" />
-          <h3 className="text-2xl font-bold text-white mb-5">
+        <div className="flex flex-col items-center pt-8 max-w-sm mx-auto">
+          <div className="bg-primary rounded-2xl p-2 mb-6">
+            <Image src={edu7} height={60} width={72} alt="SevenEdu Logo" />
+          </div>
+
+          <h3 className="text-2xl font-bold text-text-primary mb-2">
             Mehmon Sifatida Kirish
           </h3>
+          <p className="text-text-secondary text-sm mb-6">
+            Ro'yxatdan o'tish uchun ma'lumotlarni kiriting
+          </p>
 
           {isError && (
-            <div className="text-red-500 mb-4 text-center">{errorMessage}</div>
+            <div className="w-full mb-4 p-3 rounded-input bg-danger-soft text-danger text-sm font-medium text-center">
+              {errorMessage}
+            </div>
           )}
 
           <form
-            className="space-y-5"
+            className="w-full space-y-4"
             onSubmit={(e) => {
               e.preventDefault();
               handleSignup();
@@ -113,7 +128,7 @@ const SignupPage = () => {
               onChange={(e) =>
                 setUserData({ ...userData, name: e.target.value })
               }
-              className="not-focus-visible:bg-white/10 w-full h-14 border rounded-md border-white/20 text-white px-3 bg-white/10"
+              className={inputClasses}
             />
             <input
               required
@@ -125,7 +140,7 @@ const SignupPage = () => {
               onChange={(e) =>
                 setUserData({ ...userData, surname: e.target.value })
               }
-              className="autofill:bg-white/10 w-full h-14 border rounded-md border-white/20 text-white px-3 bg-white/10"
+              className={inputClasses}
             />
             <input
               required
@@ -137,7 +152,7 @@ const SignupPage = () => {
               onChange={(e) =>
                 setUserData({ ...userData, email: e.target.value })
               }
-              className="autofill:bg-white/10 w-full h-14 border rounded-md border-white/20 text-white px-3 bg-white/10"
+              className={inputClasses}
             />
             <input
               type="tel"
@@ -148,7 +163,7 @@ const SignupPage = () => {
               onChange={(e) =>
                 setUserData({ ...userData, phonenumber: e.target.value })
               }
-              className="autofill:bg-white/10 w-full h-14 border rounded-md border-white/20 text-white px-3 bg-white/10"
+              className={inputClasses}
             />
             <div className="relative w-full">
               <input
@@ -162,34 +177,44 @@ const SignupPage = () => {
                 }
                 type={showPassword ? "text" : "password"}
                 minLength={6}
-                className="autofill:bg-white/10 w-full h-14 border rounded-md border-white/20 text-white px-3 bg-white/10"
+                className={inputClasses}
               />
-
-              <div className="flex items-center gap-2 text-white pt-3">
-                <input type="checkbox" name="" id="" onClick={()=>setAllow(!isAllowed)}/>
-                <p className="lowercase">
-                  men{" "}
-                  <Link className="text-green-300 underline" href={"/terms"}>
-                    QUidagi hamma
-                  </Link>{" "}
-                  shartlarga rozilik beraman
-                </p>
-              </div>
 
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-white"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-primary transition-colors duration-200"
               >
-                {showPassword ? <EyeIcon /> : <EyeClosed />}
+                {showPassword ? <EyeIcon size={20} /> : <EyeClosed size={20} />}
               </button>
             </div>
+
+            <label className="flex items-start gap-3 cursor-pointer pt-1">
+              <input
+                type="checkbox"
+                checked={isAllowed}
+                onChange={() => setAllow(!isAllowed)}
+                className="w-5 h-5 mt-0.5 rounded border-border text-primary focus:ring-primary accent-primary"
+              />
+              <p className="text-sm text-text-secondary leading-relaxed">
+                men{" "}
+                <Link
+                  className="text-primary hover:text-primary-hover font-medium underline"
+                  href={"/terms"}
+                >
+                  Quidagi hamma
+                </Link>{" "}
+                shartlarga rozilik beraman
+              </p>
+            </label>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`bg-[#00C835] w-full py-3 rounded-md text-xl font-bold text-white mb-2 ${
-                isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+              className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${
+                isSubmitting
+                  ? "bg-primary/60 cursor-not-allowed"
+                  : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
               }`}
             >
               {isSubmitting ? "Yuborilmoqda..." : "Kirish"}
@@ -198,13 +223,13 @@ const SignupPage = () => {
 
           <Link
             href="login"
-            className="text-white/80 font-[robolight] tracking-wide underline"
+            className="mt-6 text-text-secondary hover:text-primary font-medium text-sm transition-colors duration-200"
           >
-            {` O'quvchi sifatida kirish`}
+            O'quvchi sifatida kirish
           </Link>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

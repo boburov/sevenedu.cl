@@ -22,30 +22,25 @@ export default function TestPage() {
   const [finished, setFinished] = useState(false);
   const router = useRouter();
 
-  // 🧠 Foydalanuvchi ID olish
   useEffect(() => {
     const fetchUserId = async () => {
       try {
         const res = await api.get("/auth/me");
         localStorage.setItem("userId", res.data.id);
-        console.log("🔑 userId saqlandi:", res.data.id);
       } catch (err) {
-        console.error("❌ Userni olishda xatolik:", err);
+        console.error("User fetch error:", err);
       }
     };
-
     fetchUserId();
   }, []);
 
   const launchConfetti = () => {
-    confetti({ particleCount: 100, spread: 90, origin: { x: 0, y: 0.6 } });
-    confetti({ particleCount: 100, spread: 90, origin: { x: 1, y: 0.6 } });
+    confetti({ particleCount: 90, spread: 80, origin: { x: 0, y: 0.6 } });
+    confetti({ particleCount: 90, spread: 80, origin: { x: 1, y: 0.6 } });
   };
 
   useEffect(() => {
-    if (finished && results.every((r) => r === true)) {
-      launchConfetti();
-    }
+    if (finished && results.every((r) => r === true)) launchConfetti();
   }, [finished, results]);
 
   useEffect(() => {
@@ -58,6 +53,7 @@ export default function TestPage() {
 
   const handleAnswer = async (answer: string) => {
     if (selected) return;
+
     setSelected(answer);
     const isCorrect = answer === current.correct;
     setResults((prev) => [...prev, isCorrect]);
@@ -68,25 +64,19 @@ export default function TestPage() {
 
         const correctCount = [...results, isCorrect].filter(Boolean).length;
 
-        // 📤 Natijani yuborish
         api.post(`/courses/${lessonId}/vocabulary-result`, {
           total: tests.length,
           correct: correctCount,
           wrong: tests.length - correctCount,
         });
 
-        // 🪙 5 coin berish
         if (correctCount === tests.length) {
           const userId = localStorage.getItem("userId");
           if (userId) {
             try {
-              await api.post("/user/coins", {
-                userId,
-                coins: 5,
-              });
-              console.log("✅ 5 coin qo‘shildi");
+              await api.post("/user/coins", { userId, coins: 5 });
             } catch (err) {
-              console.error("❌ Coin qo‘shishda xatolik:", err);
+              console.error("Coin add error:", err);
             }
           }
         }
@@ -94,93 +84,168 @@ export default function TestPage() {
         setIndex(index + 1);
         setSelected(null);
       }
-    }, 1000);
+    }, 900);
   };
 
+  // Empty / no tests
   if (!current)
     return (
-      <div className="mt-10 container scale-75 py-10 border border-white/10 rounded-2xl bg-white/5 shadow-2xl backdrop-blur-md text-center">
-        <div className="flex justify-center mb-4">
-          <div className="p-4 bg-white/10 rounded-full border border-white/20 shadow-inner">
-            <FileX size={32} className="text-red-400" />
+      <div className="min-h-screen bg-background px-5 py-10">
+        <div className="container max-w-xl rounded-2xl border border-border bg-surface p-6 shadow-card text-center">
+          <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-2xl bg-danger-soft">
+            <FileX size={22} className="text-danger" />
           </div>
+
+          <h2 className="text-lg font-semibold text-text-primary">
+            Testlar topilmadi
+          </h2>
+          <p className="mt-2 text-sm text-text-secondary">
+            Ushbu dars uchun hozircha test savollari mavjud emas.
+          </p>
+
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-5 inline-flex items-center gap-2 rounded-xl border border-border bg-surface-alt px-4 py-2 text-sm font-semibold text-text-primary transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
+          >
+            <RefreshCcw size={18} className="text-primary" />
+            Qayta yuklash
+          </button>
         </div>
-        <h2 className="text-2xl font-bold mb-2 text-white">Testlar topilmadi</h2>
-        <p className="text-gray-300 text-sm mb-6">
-          Ushbu dars uchun hozircha hech qanday test savollari mavjud emas.
-        </p>
-        <button
-          onClick={() => window.location.reload()}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/20 bg-white/10 hover:bg-white/20 transition text-sm text-white"
-        >
-          <RefreshCcw size={18} />
-          Qayta yuklash
-        </button>
       </div>
     );
 
+  const progress = Math.round(((index + (finished ? 1 : 0)) / tests.length) * 100);
+  const correctCount = results.filter(Boolean).length;
+
   return (
-    <div className="flex justify-center items-center h-[60vh] px-4">
-      <div className="w-full max-w-xl bg-[#1f1f1f]/60 backdrop-blur-3xl border border-[#0e0c0c] text-white p-6 rounded-2xl shadow-lg space-y-5">
-        {finished ? (
-          <div className="text-center space-y-4">
-            <CheckCircle2 size={48} className="mx-auto text-green-500" />
-            <h2 className="text-2xl font-bold">Natijangiz</h2>
-            <p>
-              {results.filter(Boolean).length} / {tests.length} to‘g‘ri javob
-            </p>
-            <span
-              onClick={() => router.back()}
-              className="px-7 py-3 bg-green-600 rounded-md cursor-pointer"
-            >
-              Bosh sahifaga qaytish
+    <div className="min-h-screen bg-background px-4 py-10">
+      <div className="mx-auto w-full max-w-xl rounded-2xl border border-border bg-surface p-6 shadow-card">
+        {/* Top bar */}
+        <div className="mb-5">
+          <div className="flex items-center justify-between">
+            <h1 className="text-base font-semibold text-text-primary">Test</h1>
+            <span className="text-xs font-semibold text-text-secondary">
+              {finished ? "Finished" : `${index + 1}/${tests.length}`}
             </span>
+          </div>
+
+          {/* Progress */}
+          <div className="mt-3 h-2 w-full rounded-full bg-surface-alt overflow-hidden">
+            <div
+              className="h-full rounded-full bg-primary transition-all"
+              style={{ width: `${finished ? 100 : (index / tests.length) * 100}%` }}
+            />
+          </div>
+        </div>
+
+        {finished ? (
+          <div className="text-center space-y-3">
+            <div className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-success-soft">
+              <CheckCircle2 size={22} className="text-success" />
+            </div>
+
+            <h2 className="text-lg font-semibold text-text-primary">
+              Natijangiz
+            </h2>
+
+            <p className="text-sm text-text-secondary">
+              <span className="font-semibold text-text-primary">
+                {correctCount}
+              </span>{" "}
+              / {tests.length} to‘g‘ri javob
+            </p>
+
+            {correctCount === tests.length ? (
+              <p className="text-xs text-primary">
+                Perfect! Sizga 5 coin berildi ✨
+              </p>
+            ) : (
+              <p className="text-xs text-text-muted">
+                Yana bir marta urinib ko‘ring.
+              </p>
+            )}
+
+            <button
+              onClick={() => router.back()}
+              className="mt-2 inline-flex items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)] active:scale-[0.99]"
+            >
+              Orqaga qaytish
+            </button>
           </div>
         ) : (
           <>
-            <h1 className="text-xl font-semibold">
-              So‘z #{index + 1} / {tests.length}:{" "}
-              <span className="text-yellow-400">{current.word}</span>
-            </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Question */}
+            <div className="mb-4">
+              <p className="text-xs font-semibold text-text-muted">
+                So‘z #{index + 1}
+              </p>
+              <h2 className="mt-1 text-lg font-semibold text-text-primary">
+                {current.word}
+              </h2>
+            </div>
+
+            {/* Options */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {current.options.map((opt, i) => {
                 const isSelected = selected === opt;
                 const isCorrect = selected && opt === current.correct;
                 const isWrong = selected === opt && opt !== current.correct;
 
+                const base =
+                  "w-full rounded-2xl border px-4 py-3 text-sm font-semibold text-left transition focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]";
+                const idle =
+                  "border-border bg-surface hover:bg-surface-alt text-text-primary";
+                const correct =
+                  "border-success bg-success-soft text-text-primary";
+                const wrong = "border-danger bg-danger-soft text-text-primary";
+
                 return (
                   <button
                     key={i}
                     onClick={() => handleAnswer(opt)}
-                    className={`w-full py-3 px-4 rounded-xl border transition-all duration-200
-                      ${isCorrect ? "border-green-500 bg-green-900/50" : ""}
-                      ${isWrong ? "border-red-500 bg-red-900/50" : ""}
-                      ${!isSelected && !isCorrect && !isWrong
-                        ? "border-neutral-600 hover:bg-neutral-800"
-                        : ""}
-                    `}
+                    className={[
+                      base,
+                      isCorrect ? correct : "",
+                      isWrong ? wrong : "",
+                      !isSelected && !isCorrect && !isWrong ? idle : "",
+                      selected ? "cursor-default" : "cursor-pointer",
+                    ].join(" ")}
                   >
                     {opt}
                   </button>
                 );
               })}
             </div>
+
+            {/* Feedback */}
             {selected && (
-              <div className="flex items-center gap-2 text-sm text-neutral-400">
+              <div className="mt-4 rounded-2xl border border-border bg-surface-alt p-3 text-sm text-text-secondary">
                 {selected === current.correct ? (
-                  <>
-                    <CheckCircle2 className="text-green-500" size={20} />
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="text-success" size={18} />
                     To‘g‘ri javob
-                  </>
+                  </div>
                 ) : (
-                  <>
-                    <XCircle className="text-red-500" size={20} />
-                    Noto‘g‘ri. To‘g‘ri javob:{" "}
-                    <strong className="text-white">{current.correct}</strong>
-                  </>
+                  <div className="flex items-start gap-2">
+                    <XCircle className="text-danger mt-0.5" size={18} />
+                    <div>
+                      <div>Noto‘g‘ri javob.</div>
+                      <div className="mt-1">
+                        To‘g‘ri javob:{" "}
+                        <span className="font-semibold text-text-primary">
+                          {current.correct}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 )}
               </div>
             )}
+
+            {/* Sub hint */}
+            <p className="mt-4 text-xs text-text-muted">
+              Tip: javobni tanlang — keyin avtomatik keyingi savolga o‘tadi.
+            </p>
           </>
         )}
       </div>

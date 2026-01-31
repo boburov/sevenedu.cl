@@ -1,38 +1,149 @@
 @import "tailwindcss";
 
+/* ========================================
+   White + Purple Emotional Premium Theme
+   ======================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #0e0f0e;
+  /* Backgrounds */
+  --background: #fafafc;
+  --surface: #ffffff;
+  --surface-alt: #f4f2f7;
+
+  /* Text */
+  --text-primary: #1a1625;
+  --text-secondary: #6b6782;
+  --text-muted: #9d99af;
+
+  /* Borders */
+  --border: #e8e5f0;
+  --border-strong: #d4cfe6;
+
+  /* Primary Purple */
+  --primary: #7c3aed;
+  --primary-hover: #6d28d9;
+  --primary-soft: #ede9fe;
+  --primary-foreground: #ffffff;
+
+  /* Focus Ring */
+  --focus-ring: rgba(124, 58, 237, 0.35);
+
+  /* Status Colors */
+  --success: #10b981;
+  --success-soft: #d1fae5;
+  --warning: #f59e0b;
+  --warning-soft: #fef3c7;
+  --danger: #ef4444;
+  --danger-soft: #fee2e2;
+  --info: #3b82f6;
+  --info-soft: #dbeafe;
 }
 
+/* Tailwind v4 Theme - Expose CSS variables as Tailwind colors */
+@theme {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-focus-ring: var(--focus-ring);
+
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+
+  --radius-card: 1rem;
+  --radius-button: 0.75rem;
+  --radius-input: 0.75rem;
+}
+
+/* Fonts */
 @font-face {
   font-family: "robobold";
-  src: url(./fonts//robobold.ttf);
-
+  src: url(./fonts/robobold.ttf);
 }
 
 @font-face {
-  font-family: 'robolight';
-  src: url(./fonts//robolightt.ttf);
+  font-family: "robolight";
+  src: url(./fonts/robolightt.ttf);
 }
 
 .robo-light {
   font-family: robolight;
 }
 
+/* Base Styles */
 body {
-  @apply min-h-screen bg-gradient-to-r from-[#0f0f0f] via-[#101d12] to-[#0d281b] font-[robobold];
+  min-height: 100vh;
+  background-color: var(--background);
+  font-family: "robobold", sans-serif;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Container */
 .container {
-  @apply w-full max-w-[1240px] mx-auto px-5;
+  @apply w-full max-w-[1240px] mx-auto px-4;
   @apply sm:px-6 lg:px-8;
 }
 
+/* Hide Next.js portal */
 nextjs-portal {
   display: none !important;
 }
 
+/* Certificate background */
 .sertificat {
-  background-image: url('./sevenedu.png') !important;
+  background-image: url("./sevenedu.png") !important;
+}
+
+/* Utility: Soft shadow for cards */
+.shadow-card {
+  box-shadow:
+    0 1px 3px rgba(26, 22, 37, 0.04),
+    0 4px 12px rgba(124, 58, 237, 0.06);
+}
+
+.shadow-card-hover {
+  box-shadow:
+    0 2px 8px rgba(26, 22, 37, 0.06),
+    0 8px 24px rgba(124, 58, 237, 0.1);
+}
+
+/* Glass effect for special elements */
+.glass-purple {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--primary-soft);
+}
+
+/* Focus ring utility */
+.focus-ring:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--background),
+    0 0 0 4px var(--focus-ring);
+}
+
+/* Transitions */
+.transition-card {
+  @apply transition-all duration-200 ease-out;
 }

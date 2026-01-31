@@ -45,23 +45,27 @@ const Header = () => {
     { href: "/dashboard", icon: ChartArea, label: "Dashboard" },
     { href: "/notifications", icon: BellRing, label: "Notifications" },
     { href: "/user/profile", icon: CircleUserIcon, label: "Profile" },
-  ];
+  ]
 
   return (
-    <header className="w-full z-50 px-1.5 pt-2 block max-md:hidden">
-      <div className="container bg-white/10 backdrop-blur-xl border border-white/10 text-white rounded-xl px-2 py-2 mx-auto flex items-center justify-between shadow-md">
+    <header className="w-full z-50 px-4 pt-3 block max-md:hidden">
+      <div className="container bg-surface border border-border rounded-2xl px-4 py-3 mx-auto flex items-center justify-between shadow-card">
         <Link href={`/user/${userId}`} className="flex items-center gap-2">
-          <Image alt="logo" src={logo} className="w-16 object-cover" />
+          <div className="bg-primary rounded-xl p-1">
+            <Image alt="logo" src={logo} className="w-12 object-cover" />
+          </div>
         </Link>
-        <ul className="flex items-center gap-4 text-base font-medium">
+        <ul className="flex items-center gap-6 text-base font-medium">
           {navLinks.map(({ href, icon: Icon, label }, index) => {
             const isActive = pathname === href;
             return (
               <li
                 key={index}
                 className={`${
-                  isActive ? "text-white" : "text-white/60"
-                } hover:text-white transition tracking-wider`}
+                  isActive
+                    ? "text-primary font-semibold"
+                    : "text-text-secondary"
+                } hover:text-primary transition-colors duration-200`}
               >
                 <Link href={href}>{label}</Link>
               </li>

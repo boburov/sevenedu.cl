@@ -40,22 +40,27 @@ const VerifyPage = () => {
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center">
-        Loading...
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-text-secondary text-sm">Yuklanmoqda...</p>
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="h-screen flex items-center justify-center text-red-500">
-        {error}
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="bg-danger-soft text-danger px-6 py-4 rounded-card text-center max-w-sm">
+          <p className="font-medium">{error}</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-primary-soft/30 via-background to-background flex items-center justify-center">
       <TwoFactorForm />
     </div>
   );

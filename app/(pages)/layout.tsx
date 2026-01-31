@@ -9,9 +9,7 @@ import {
   getMe,
   updateUserProfilePic,
 } from "../api/service/api";
-import Head from "next/head";
 import Header from "../components/Header";
-import Hero from "../components/Hero";
 
 interface User {
   id: string;
@@ -87,76 +85,105 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       await deleteUserProfilePic(user.id);
       setUser({ ...user, profilePic: "" });
     } catch (error) {
-      console.error("Rasmni o‘chirishda xatolik:", error);
+      console.error("Rasmni o'chirishda xatolik:", error);
     }
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-background">
       <Header />
-      <div onClick={() => router.back()}>
+      <div onClick={() => router.back()} className="cursor-pointer">
         <CircleArrowLeft
-          size={50}
-          strokeWidth={1}
-          className="m-4 text-white hidden max-md:block"
+          size={44}
+          strokeWidth={1.5}
+          className="m-4 text-text-secondary hover:text-primary transition-colors duration-200 hidden max-md:block"
         />
       </div>
       {user && (
-        <section className="container text-white pt-10 relative hidden max-md:block">
-          <div
-            className="flex items-center gap-3 mb-4 cursor-pointer"
-            onClick={onProfilePicClick}
-          >
-            {user.profilePic ? (
-              <div className="relative w-20 h-20">
-                <img
-                  src={user.profilePic}
-                  alt="user image"
-                  className="rounded-full border border-white/5 p-0.5 bg-gray-500 object-cover w-full h-full"
-                  sizes="80px"
-                  width={80}
-                  height={80}
-                />
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleDeleteProfilePic();
-                  }}
-                  className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-2 shadow-lg transition-all duration-300"
-                >
-                  <Trash width={16} height={16} />
-                </button>
-              </div>
-            ) : (
-              <div className="w-20 h-20 bg-gray-500 rounded-full border-2 border-white flex items-center justify-center">
-                <input
-                  type="file"
-                  accept="image/*"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                  style={{ display: "none" }}
-                />
-                <span className="text-4xl">{user.name[0].toUpperCase()}</span>
-              </div>
-            )}
+        <section className="container pt-6 hidden max-md:block">
+          {/* file input must always exist */}
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            className="hidden"
+          />
 
-            <div className="flex flex-col items-start">
-              <h2 className="text-xl font-semibold">{user.name}</h2>
-              <span className="text-sm text-gray-300">{user.email}</span>
-              <div className="mt-1 inline-flex items-end gap-2 bg-yellow-100 text-gray-900 px-3 py-0.5 rounded-full text-sm font-medium">
-                <Wallet2 width={20} /> {formatNumberWithCommas(user.coins)}{" "}
-                tanga
+          <div className="rounded-2xl border border-border bg-surface shadow-card">
+            <div className="flex items-center gap-4 p-4">
+              {/* Avatar */}
+              <button
+                type="button"
+                onClick={onProfilePicClick}
+                className="relative h-14 w-14 shrink-0 rounded-full focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
+                aria-label="Change profile photo"
+              >
+                {user.profilePic ? (
+                  <img
+                    src={user.profilePic}
+                    alt="User profile"
+                    className="h-14 w-14 rounded-full object-cover ring-4 ring-primary-soft"
+                    width={56}
+                    height={56}
+                  />
+                ) : (
+                  <div className="h-14 w-14 rounded-full bg-primary-soft grid place-items-center ring-4 ring-primary-soft">
+                    <span className="text-lg font-semibold text-primary">
+                      {user.name?.[0]?.toUpperCase()}
+                    </span>
+                  </div>
+                )}
+
+                {/* Delete photo */}
+                {user.profilePic ? (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteProfilePic();
+                    }}
+                    className="absolute -bottom-1 -right-1 inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-surface shadow-sm transition hover:bg-surface-alt focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
+                    aria-label="Remove profile photo"
+                  >
+                    <Trash width={14} height={14} className="text-text-secondary" />
+                  </button>
+                ) : null}
+              </button>
+
+              {/* Info */}
+              <div className="min-w-0 flex-1">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <h2 className="text-base font-semibold text-text-primary truncate">
+                      {user.name}
+                    </h2>
+                    <p className="text-sm text-text-secondary truncate">{user.email}</p>
+                  </div>
+
+                  {/* Coins */}
+                  <div className="shrink-0 inline-flex items-center gap-2 rounded-full border border-border bg-surface-alt px-3 py-1 text-xs font-semibold text-text-primary">
+                    <Wallet2 size={14} className="text-primary" />
+                    {formatNumberWithCommas(user.coins)} tanga
+                  </div>
+                </div>
+
+                {/* subtle helper line (optional, minimalist) */}
+                <p className="mt-2 text-xs text-text-muted">
+                  Profil rasmini o‘zgartirish uchun avatar ustiga bosing.
+                </p>
               </div>
             </div>
           </div>
         </section>
       )}
+
       {children}
-      <span className="pb-20 inline-block"></span>
+      <span className="pb-24 inline-block"></span>
       <div className="px-3">
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 

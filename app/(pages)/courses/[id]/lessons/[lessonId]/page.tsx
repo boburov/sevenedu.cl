@@ -123,67 +123,121 @@ const Page = () => {
   }, [lessonId, category_id]);
 
   return (
-    <div className="relative space-y-4 w-full max-w-4xl mx-auto px-5">
-      <div className="relative w-full aspect-video overflow-hidden rounded-2xl shadow-2xl bg-black">
-        {cleanedVideoUrl && (
-          <video
-            ref={videoRef}
-            src={cleanedVideoUrl}
-            controls
-            controlsList="nodownload"
-            onContextMenu={(e) => e.preventDefault()}
-            className="w-full h-full object-contain"
-          />
-        )}
+    <div className="w-full max-w-4xl mx-auto px-5 py-6 space-y-6 bg-background">
+      {/* Video */}
+      <div className="rounded-2xl border border-border bg-surface shadow-card overflow-hidden">
+        <div className="relative w-full aspect-video bg-black">
+          {cleanedVideoUrl ? (
+            <video
+              ref={videoRef}
+              src={cleanedVideoUrl}
+              controls
+              controlsList="nodownload"
+              onContextMenu={(e) => e.preventDefault()}
+              className="w-full h-full object-contain"
+            />
+          ) : (
+            <div className="w-full h-full grid place-items-center">
+              <div className="text-sm text-text-secondary">Video yuklanmoqda…</div>
+            </div>
+          )}
+        </div>
       </div>
 
-      <div className="space-y-4">
+      {/* Actions */}
+      <div className="space-y-3">
+        {/* helper title (optional but clean) */}
+        <div className="flex items-center justify-between">
+          <h2 className="text-sm font-semibold text-text-primary">Lesson tools</h2>
+          <span className="text-xs text-text-muted">Practice</span>
+        </div>
+
+        {/* Card link template styles applied manually (no extra components) */}
         <Link
           href={`${lessonId}/vocabulary`}
-          className="w-full h-20 bg-yellow-400/10 border border-yellow-600 flex items-center gap-5 px-5 text-yellow-400 rounded-md hover:scale-[1.02] transition-all"
+          className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
         >
-          <Languages size={30} strokeWidth={1} />
-          <div>
-            <div className="text-lg font-semibold">Lug‘at</div>
-            <div className="text-sm text-yellow-300">Yangi so‘zlarni yodlang</div>
+          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0">
+            <Languages size={22} strokeWidth={1.5} />
+          </span>
+
+          <div className="min-w-0 flex-1">
+            <div className="text-sm font-semibold text-text-primary">Lug‘at</div>
+            <div className="mt-0.5 text-xs text-text-secondary">
+              Yangi so‘zlarni yodlang
+            </div>
           </div>
+
+          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">
+            Kirish →
+          </span>
         </Link>
 
         <Link
           href={`${lessonId}/test`}
-          className="w-full h-20 bg-purple-400/10 border border-purple-700 flex items-center gap-5 px-5 text-purple-400 rounded-md hover:scale-[1.02] transition-all"
+          className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
         >
-          <ListChecks size={30} strokeWidth={1} />
-          <div>
-            <div className="text-lg font-semibold">Test</div>
-            <div className="text-sm text-purple-300">Bilimingizni tekshiring</div>
+          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0">
+            <ListChecks size={22} strokeWidth={1.5} />
+          </span>
+
+          <div className="min-w-0 flex-1">
+            <div className="text-sm font-semibold text-text-primary">Test</div>
+            <div className="mt-0.5 text-xs text-text-secondary">
+              Bilimingizni tekshiring
+            </div>
           </div>
+
+          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">
+            Kirish →
+          </span>
         </Link>
 
         <Link
           href={`${lessonId}/quiz`}
-          className="w-full h-20 bg-blue-400/10 border border-blue-700 flex items-center gap-5 px-5 text-blue-400 rounded-md hover:scale-[1.02] transition-all"
+          className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
         >
-          <MessageCircleQuestion size={30} strokeWidth={1} />
-          <div>
-            <div className="text-lg font-semibold">Savollar</div>
-            <div className="text-sm text-blue-300">Qayta ko‘rib chiqing</div>
+          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0">
+            <MessageCircleQuestion size={22} strokeWidth={1.5} />
+          </span>
+
+          <div className="min-w-0 flex-1">
+            <div className="text-sm font-semibold text-text-primary">Savollar</div>
+            <div className="mt-0.5 text-xs text-text-secondary">
+              Qayta ko‘rib chiqing
+            </div>
           </div>
+
+          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">
+            Kirish →
+          </span>
         </Link>
 
         <Link
           href={`${lessonId}/ask-for-ai`}
-          className="w-full h-20 bg-emerald-400/10 border border-emerald-700 flex items-center gap-5 px-5 text-emerald-400 rounded-md hover:scale-[1.02] transition-all"
+          className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
         >
-          <MessageCircleQuestion size={30} strokeWidth={1} />
-          <div>
-            <div className="text-lg font-semibold">Ustozdan so‘rash</div>
-            <div className="text-sm text-emerald-300">Savol yuboring</div>
+          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0">
+            <MessageCircleQuestion size={22} strokeWidth={1.5} />
+          </span>
+
+          <div className="min-w-0 flex-1">
+            <div className="text-sm font-semibold text-text-primary">
+              Ustozdan so‘rash
+            </div>
+            <div className="mt-0.5 text-xs text-text-secondary">
+              Savol yuboring
+            </div>
           </div>
+
+          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">
+            Kirish →
+          </span>
         </Link>
       </div>
     </div>
   );
+
 };
 
 export default Page;

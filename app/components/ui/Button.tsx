@@ -3,20 +3,25 @@ import { cva } from "class-variance-authority";
 import { cn } from "./utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-2xl text-sm font-semibold transition-all px-5 py-2.5 shadow-md backdrop-blur-md ring-offset-background",
+  "inline-flex items-center justify-center gap-2 rounded-button text-sm font-semibold transition-all duration-200 px-5 py-2.5 focus:outline-none focus:ring-2 focus:ring-focus-ring focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed",
   {
     variants: {
       variant: {
-        default: "bg-white/10 text-white hover:bg-white/20 border border-white/20",
-        outline: "bg-transparent border border-white/30 text-white hover:bg-white/10",
-        ghost: "bg-transparent text-white hover:bg-white/10",
-        destructive: "bg-red-500/80 text-white hover:bg-red-600 border border-red-500/60",
+        default:
+          "bg-primary text-primary-foreground hover:bg-primary-hover shadow-md hover:shadow-lg",
+        secondary:
+          "bg-transparent border-2 border-primary text-primary hover:bg-primary-soft",
+        outline:
+          "bg-transparent border border-border text-text-primary hover:bg-surface-alt hover:border-border-strong",
+        ghost: "bg-transparent text-text-secondary hover:bg-surface-alt hover:text-text-primary",
+        destructive:
+          "bg-danger text-white hover:bg-danger/90 shadow-md",
       },
       size: {
-        default: "text-sm",
-        lg: "text-base py-3 px-6",
-        sm: "text-xs py-1.5 px-3",
-        icon: "p-2",
+        default: "text-sm h-10",
+        lg: "text-base py-3 px-6 h-12",
+        sm: "text-xs py-1.5 px-3 h-8",
+        icon: "p-2 h-10 w-10",
       },
     },
     defaultVariants: {
@@ -27,7 +32,7 @@ const buttonVariants = cva(
 );
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "outline" | "ghost" | "destructive";
+  variant?: "default" | "secondary" | "outline" | "ghost" | "destructive";
   size?: "default" | "lg" | "sm" | "icon";
   icon?: ReactNode;
 }

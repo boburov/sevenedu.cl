@@ -18,7 +18,7 @@ export default function TwoFactorForm() {
 
   useEffect(() => {
     if (!email) {
-      setError("Email topilmadi. Ro‘yxatdan o‘ting.");
+      setError("Email topilmadi. Ro'yxatdan o'ting.");
     }
   }, [email]);
 
@@ -39,7 +39,7 @@ export default function TwoFactorForm() {
   const checkCode = async () => {
     const entered = code.join("");
     if (entered.length !== 6) {
-      setError("6 xonali kodni to‘liq kiriting.");
+      setError("6 xonali kodni to'liq kiriting.");
       return;
     }
 
@@ -60,7 +60,7 @@ export default function TwoFactorForm() {
       if (err instanceof Error) {
         setError(err.message);
       } else {
-        setError("Xatolik yuz berdi. Qayta urinib ko‘ring.");
+        setError("Xatolik yuz berdi. Qayta urinib ko'ring.");
       }
     } finally {
       setLoading(false);
@@ -69,14 +69,25 @@ export default function TwoFactorForm() {
 
   return (
     <div className="px-4 max-w-md mx-auto">
-      <h1 className="text-3xl font-bold mb-6 text-center text-white">
-        Emailga yuborilgan 6 xonali kodni kiriting
+      <h1 className="text-2xl font-bold mb-2 text-center text-text-primary">
+        Emailni tasdiqlash
       </h1>
+      <p className="text-text-secondary text-center mb-8 text-sm">
+        Emailga yuborilgan 6 xonali kodni kiriting
+      </p>
 
-      {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
-      {success && <p className="text-green-500 mb-4 text-center">{success}</p>}
+      {error && (
+        <div className="mb-4 p-3 rounded-input bg-danger-soft text-danger text-sm font-medium text-center">
+          {error}
+        </div>
+      )}
+      {success && (
+        <div className="mb-4 p-3 rounded-input bg-success-soft text-success text-sm font-medium text-center">
+          {success}
+        </div>
+      )}
 
-      <div className="grid grid-cols-6 gap-3 mb-6">
+      <div className="grid grid-cols-6 gap-2 mb-6">
         {code.map((ch, i) => (
           <input
             key={i}
@@ -88,7 +99,7 @@ export default function TwoFactorForm() {
             onChange={(e) => handleChange(e.target.value, i)}
             onKeyDown={(e) => handleKeyDown(e, i)}
             inputMode="text"
-            className="h-20 w-full rounded-md bg-black/30 text-center text-xl border border-black/50 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-white"
+            className="h-14 w-full rounded-input bg-surface text-center text-xl font-semibold border border-border text-text-primary focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-primary transition-all duration-200"
             disabled={loading}
           />
         ))}
@@ -98,10 +109,10 @@ export default function TwoFactorForm() {
         <button
           onClick={checkCode}
           disabled={loading}
-          className={`flex-1 uppercase text-white h-12 rounded-xs ${
+          className={`flex-1 h-12 rounded-button font-semibold text-primary-foreground transition-all duration-200 ${
             loading
-              ? "bg-gray-400"
-              : "bg-black/80 border border-black/70 hover:bg-black"
+              ? "bg-primary/60 cursor-not-allowed"
+              : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
           }`}
         >
           {loading ? "Tekshirilmoqda..." : "Tasdiqlash"}
@@ -109,7 +120,7 @@ export default function TwoFactorForm() {
         <button
           onClick={() => setCode(new Array(6).fill(""))}
           disabled={loading}
-          className="flex-1 uppercase text-gray-700 border border-gray-300 bg-white h-12 rounded-xs hover:bg-gray-50"
+          className="flex-1 h-12 rounded-button font-semibold text-text-secondary border-2 border-border bg-surface hover:bg-surface-alt transition-all duration-200"
         >
           Tozalash
         </button>
