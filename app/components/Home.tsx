@@ -9,7 +9,7 @@ const Home = () => {
     <div className="min-h-screen w-full px-4 py-10 relative flex items-center justify-center bg-gradient-to-br from-primary-soft/50 via-background to-background">
       {/* Logo yuqori chapda */}
       <div className="absolute top-6 left-6 z-10">
-        <div className="p-2 rounded-2xl bg-surface shadow-card border border-border transition-all duration-200 hover:shadow-card-hover hover:scale-105">
+        <div className="p-2 rounded-2xl shadow-card border border-border transition-all duration-200 bg-purple-500 hover:shadow-card-hover hover:scale-105">
           <Image
             src={logo}
             alt="Seven Edu Logo"
