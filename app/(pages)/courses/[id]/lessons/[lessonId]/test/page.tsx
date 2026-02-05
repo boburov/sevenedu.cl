@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react"; // ✅ useRef qo‘shildi
 import { useParams, useRouter } from "next/navigation";
 import { CheckCircle2, FileX, RefreshCcw, XCircle } from "lucide-react";
 import api from "@/app/api/service/api";
@@ -22,6 +22,33 @@ export default function TestPage() {
   const [finished, setFinished] = useState(false);
   const router = useRouter();
 
+  // ✅ Sound refs (preload + lag yo‘q)
+  const correctAudioRef = useRef<HTMLAudioElement | null>(null);
+  const wrongAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    correctAudioRef.current = new Audio("/sounds/correct.mp3");
+    wrongAudioRef.current = new Audio("/sounds/incorrect.mp3");
+
+    // preload feel
+    correctAudioRef.current.load();
+    wrongAudioRef.current.load();
+
+    // ixtiyoriy: volume
+    correctAudioRef.current.volume = 0.35;
+    wrongAudioRef.current.volume = 0.35;
+  }, []);
+
+  const play = (type: "correct" | "wrong") => {
+    const a = type === "correct" ? correctAudioRef.current : wrongAudioRef.current;
+    if (!a) return;
+    a.currentTime = 0;
+    a.play().catch(() => {
+      // Autoplay policy: user click bo‘lmasa blok bo‘lishi mumkin.
+      // Bizda click bor, lekin ba’zi browserlarda baribir catch bo‘lishi mumkin.
+    });
+  };
+
   useEffect(() => {
     const fetchUserId = async () => {
       try {
@@ -39,9 +66,14 @@ export default function TestPage() {
     confetti({ particleCount: 90, spread: 80, origin: { x: 1, y: 0.6 } });
   };
 
+  // ❌ eski: hammasi true bo‘lsa confetti
+  // ✅ yangi: 80%+ bo‘lsa confetti (finished bo‘lganda)
   useEffect(() => {
-    if (finished && results.every((r) => r === true)) launchConfetti();
-  }, [finished, results]);
+    if (!finished || tests.length === 0) return;
+    const correctCount = results.filter(Boolean).length;
+    const percent = (correctCount / tests.length) * 100;
+    if (percent >= 80) launchConfetti();
+  }, [finished, results, tests.length]);
 
   useEffect(() => {
     api.get(`/courses/${lessonId}/vocabulary-quiz`).then((res) => {
@@ -56,6 +88,10 @@ export default function TestPage() {
 
     setSelected(answer);
     const isCorrect = answer === current.correct;
+
+    // ✅ shu yerda sound
+    play(isCorrect ? "correct" : "wrong");
+
     setResults((prev) => [...prev, isCorrect]);
 
     setTimeout(async () => {
@@ -86,7 +122,6 @@ export default function TestPage() {
       }
     }, 900);
   };
-
   // Empty / no tests
   if (!current)
     return (
