@@ -1,7 +1,7 @@
 "use client";
 
 import Footer from "./pages_components/Footer";
-import { CircleArrowLeft, Trash, Wallet2 } from "lucide-react";
+import { CircleArrowLeft, Trash, Wallet2, Bell } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useRef, ChangeEvent } from "react";
 import {
@@ -25,6 +25,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const goToNotifications = () => router.push("/notifications"); // change path if yours is different
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -160,12 +161,24 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                     </h2>
                     <p className="text-sm text-text-secondary truncate">{user.email}</p>
                   </div>
+                  <div className="shrink-0 flex items-center gap-2">
+                    {/* Notifications */}
+                    <button
+                      type="button"
+                      onClick={goToNotifications}
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface-alt shadow-sm transition hover:bg-surface focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
+                      aria-label="Notifications"
+                    >
+                      <Bell size={16} className="text-primary" />
+                    </button>
 
-                  {/* Coins */}
-                  <div className="shrink-0 inline-flex items-center gap-2 rounded-full border border-border bg-surface-alt px-3 py-1 text-xs font-semibold text-text-primary">
-                    <Wallet2 size={14} className="text-primary" />
-                    {formatNumberWithCommas(user.coins)} tanga
+                    {/* Coins */}
+                    <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-alt px-3 py-1 text-xs font-semibold text-text-primary">
+                      <Wallet2 size={14} className="text-primary" />
+                      {formatNumberWithCommas(user.coins)} tanga
+                    </div>
                   </div>
+
                 </div>
 
                 {/* subtle helper line (optional, minimalist) */}

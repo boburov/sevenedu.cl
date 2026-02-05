@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ChevronDown,
   ChevronUp,
@@ -9,6 +9,9 @@ import {
   ClipboardCheck,
   ChartArea,
   CalendarDays,
+  Target,
+  Flame,
+  Activity,
 } from "lucide-react";
 import api from "@/app/api/service/api";
 
@@ -19,204 +22,196 @@ type StatEntry = {
   test: { total: number; correct: number };
 };
 
-const DailyStats = () => {
+type ViewType = "kunlik" | "oylik";
+type Range = "today" | "7d" | "30d" | "all";
+
+const percent = (c: number, t: number) =>
+  t === 0 ? 0 : Math.round((c / t) * 100);
+
+const barColor = (p: number) =>
+  p >= 90 ? "bg-emerald-500" : p >= 70 ? "bg-amber-500" : "bg-rose-500";
+
+export default function DailyStats() {
   const [data, setData] = useState<StatEntry[]>([]);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [view, setView] = useState<ViewType>("kunlik");
+  const [range, setRange] = useState<Range>("7d");
   const [loading, setLoading] = useState(true);
-  const [filterDate, setFilterDate] = useState<string>("");
-  const [viewType, setViewType] = useState<"daily" | "summary">("daily");
-
-  const getSummary = (entries: StatEntry[]) => {
-    return entries.reduce(
-      (acc, curr) => {
-        acc.vocabulary.total += curr.vocabulary?.total ?? 0;
-        acc.vocabulary.correct += curr.vocabulary?.correct ?? 0;
-        acc.quiz.total += curr.quiz?.total ?? 0;
-        acc.quiz.correct += curr.quiz?.correct ?? 0;
-        acc.test.total += curr.test?.total ?? 0;
-        acc.test.correct += curr.test?.correct ?? 0;
-        return acc;
-      },
-      {
-        vocabulary: { total: 0, correct: 0 },
-        quiz: { total: 0, correct: 0 },
-        test: { total: 0, correct: 0 },
-      }
-    );
-  };
 
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) return;
-
-        const res = await api.get("/user/daily-stats", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        const raw = res.data;
-        const dailyStats = Array.isArray(raw) ? raw : raw?.data || [];
-
-        setData(dailyStats);
-      } catch (err) {
-        console.error("Kundalik statistikani olishda xatolik:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchStats();
+    api.get("/user/kunlik-stats").then((res) => {
+      setData(res.data || []);
+      setLoading(false);
+    });
   }, []);
 
-  const filteredData = filterDate
-    ? data.filter((entry) => entry.date === filterDate)
-    : data;
-  const summary = getSummary(filteredData);
+  const filtered = useMemo(() => {
+    if (range === "all") return data;
+    const now = new Date();
+    return data.filter((d) => {
+      const date = new Date(d.date);
+      if (range === "today")
+        return date.toDateString() === now.toDateString();
+      if (range === "7d") return date >= new Date(now.setDate(now.getDate() - 6));
+      if (range === "30d") return date >= new Date(now.setDate(now.getDate() - 29));
+      return true;
+    });
+  }, [data, range]);
+
+  const oylik = useMemo(() => {
+    return filtered.reduce(
+      (a, b) => {
+        a.total +=
+          b.vocabulary.total + b.quiz.total + b.test.total;
+        a.correct +=
+          b.vocabulary.correct + b.quiz.correct + b.test.correct;
+        return a;
+      },
+      { total: 0, correct: 0 }
+    );
+  }, [filtered]);
 
   if (loading)
-    return <div className="text-white text-center py-10">Yuklanmoqda...</div>;
+    return <div className="text-center py-10 text-gray-500">Loading…</div>;
 
   return (
-    <div className="container text-white pt-6 space-y-4 max-w-3xl mx-auto">
-      {/* Switch */}
-      <div className="flex justify-center gap-4 mb-4">
-        <button
-          onClick={() => setViewType("daily")}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-            viewType === "daily"
-              ? "bg-yellow-600 text-white"
-              : "bg-gray-700 text-gray-300"
-          }`}
-        >
-          <CalendarDays className="w-5 h-5" />
-          Har kunlik
-        </button>
-        <button
-          onClick={() => setViewType("summary")}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-            viewType === "summary"
-              ? "bg-yellow-600 text-white"
-              : "bg-gray-700 text-gray-300"
-          }`}
-        >
-          <ChartArea className="w-5 h-5" />
-          Umumiy
-        </button>
+    <div className="max-w-3xl mx-auto px-4 py-6 space-y-6 bg-white">
+      {/* VIEW SWITCH */}
+      <div className="flex justify-center gap-3">
+        {["kunlik", "oylik"].map((v) => (
+          <button
+            key={v}
+            onClick={() => setView(v as ViewType)}
+            className={`px-4 py-2 rounded-xl border text-sm font-semibold ${view === v
+              ? "bg-amber-500 text-white border-amber-500"
+              : "bg-white text-gray-600 border-gray-200"
+              }`}
+          >
+            {v === "kunlik" ? "Kunlik" : "Umumiy"}
+          </button>
+        ))}
       </div>
 
-      {/* Har kunlik statistika */}
-      {viewType === "daily" && (
-        <>
-          <div className="mb-6">
-            <label className="block mb-2 text-sm text-gray-300">
-              Kunni tanlang:
-            </label>
-            <input
-              type="date"
-              value={filterDate}
-              onChange={(e) => setFilterDate(e.target.value)}
-              className="bg-gray-700 text-white p-2 rounded w-full"
-            />
-          </div>
-
-          {filteredData.map((entry) => (
-            <div
-              key={entry.date}
-              className="rounded-xl border border-gray-500/30 bg-gray-500/10 px-5 py-4 shadow"
-            >
-              <button
-                className="flex items-center justify-between w-full text-left"
-                onClick={() =>
-                  setExpanded(expanded === entry.date ? null : entry.date)
-                }
-              >
-                <span className="text-lg font-medium">{entry.date}</span>
-                {expanded === entry.date ? <ChevronUp /> : <ChevronDown />}
-              </button>
-
-              {expanded === entry.date && (
-                <div className="mt-4 space-y-3">
-                  <div className="flex justify-between items-center text-amber-400">
-                    <div className="flex items-center gap-3">
-                      <BookText /> <p>Lug'at</p>
-                    </div>
-                    <p>
-                      {entry.vocabulary?.correct ?? 0} /{" "}
-                      {entry.vocabulary?.total ?? 0}
-                    </p>
-                  </div>
-
-                  <div className="flex justify-between items-center text-rose-400">
-                    <div className="flex items-center gap-3">
-                      <HelpCircle /> <p>Savollar</p>
-                    </div>
-                    <p>
-                      {entry.quiz?.correct ?? 0} / {entry.quiz?.total ?? 0}
-                    </p>
-                  </div>
-
-                  <div className="flex justify-between items-center text-emerald-400">
-                    <div className="flex items-center gap-3">
-                      <ClipboardCheck /> <p>Test</p>
-                    </div>
-                    <p>
-                      {entry.test?.correct ?? 0} / {entry.test?.total ?? 0}
-                    </p>
-                  </div>
-                </div>
-              )}
+      {/* HERO */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {[
+          { label: "Urunishlar", value: oylik.total, icon: Activity },
+          {
+            label: "Aniqlik",
+            value: percent(oylik.correct, oylik.total) + "%",
+            icon: Target,
+          },
+          { label: "Active kunlar", value: filtered.length, icon: CalendarDays },
+          { label: "Xarakat", value: "🔥", icon: Flame },
+        ].map((x, i) => (
+          <div
+            key={i}
+            className="rounded-2xl border border-gray-200 p-4 bg-white"
+          >
+            <div className="flex items-center gap-2 text-sm text-gray-500">
+              <x.icon size={16} />
+              {x.label}
             </div>
-          ))}
+            <div className="mt-2 text-2xl font-bold text-gray-900">
+              {x.value}
+            </div>
+          </div>
+        ))}
+      </div>
 
-          {filteredData.length === 0 && (
-            <p className="text-center text-gray-400">
-              Bu sana uchun hech qanday statistika topilmadi.
-            </p>
-          )}
-        </>
+      {/* DAILY */}
+      {view === "kunlik" && (
+        <div className="space-y-3">
+          {filtered.map((d) => {
+            const total =
+              d.vocabulary.total + d.quiz.total + d.test.total;
+            const correct =
+              d.vocabulary.correct +
+              d.quiz.correct +
+              d.test.correct;
+            const p = percent(correct, total);
+
+            return (
+              <div
+                key={d.date}
+                className="border border-gray-200 rounded-2xl p-4 bg-white"
+              >
+                <button
+                  onClick={() =>
+                    setExpanded(expanded === d.date ? null : d.date)
+                  }
+                  className="w-full flex justify-between items-center"
+                >
+                  <div>
+                    <p className="font-semibold text-gray-900">{d.date}</p>
+                    <p className="text-sm text-gray-500">
+                      {correct}/{total} ({p}%)
+                    </p>
+                  </div>
+                  {expanded === d.date ? <ChevronUp /> : <ChevronDown />}
+                </button>
+
+                <div className="mt-2 h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div
+                    className={`h-full ${barColor(p)}`}
+                    style={{ width: `${p}%` }}
+                  />
+                </div>
+
+                {expanded === d.date && (
+                  <div className="mt-4 space-y-3 text-sm">
+                    {[
+                      {
+                        label: "Vocabulary",
+                        icon: BookText,
+                        ...d.vocabulary,
+                      },
+                      { label: "Quiz", icon: HelpCircle, ...d.quiz },
+                      { label: "Test", icon: ClipboardCheck, ...d.test },
+                    ].map((x) => (
+                      <div
+                        key={x.label}
+                        className="flex justify-between items-center border border-gray-200 rounded-xl px-3 py-2"
+                      >
+                        <div className="flex items-center gap-2 text-gray-700">
+                          <x.icon size={16} />
+                          {x.label}
+                        </div>
+                        <span className="font-semibold text-gray-900">
+                          {x.correct}/{x.total}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       )}
 
-      {/* Umumiy statistika */}
-      {viewType === "summary" && (
-        <div className="rounded-2xl p-6 bg-white/10 backdrop-blur-md shadow-lg border border-white/20 text-white space-y-5">
-          <h3 className="text-2xl font-bold text-center text-yellow-600 flex items-center justify-center gap-2 ">
-            <ChartArea size={40} /> Umumiy statistika
-          </h3>
+      {/* SUMMARY */}
+      {view === "oylik" && (
+        <div className="border border-gray-200 rounded-2xl p-6 bg-white space-y-4">
+          <h2 className="text-xl font-bold text-center text-gray-900">
+            Summary
+          </h2>
 
-          <div className="flex justify-between items-center bg-amber-400/10 border border-amber-400/30 rounded-xl px-4 py-3">
-            <div className="flex items-center gap-3 text-amber-300">
-              <BookText className="w-5 h-5" />
-              <p className="font-medium">Lug'at</p>
-            </div>
-            <p className="text-white font-semibold">
-              {summary.vocabulary.correct} / {summary.vocabulary.total}
+          {[
+            { label: "Vocabulary", ...oylik },
+          ].map((_, i) => (
+            <p
+              key={i}
+              className="text-center text-gray-600 text-sm"
+            >
+              Overall accuracy:{" "}
+              <span className="font-semibold text-gray-900">
+                {percent(oylik.correct, oylik.total)}%
+              </span>
             </p>
-          </div>
-
-          <div className="flex justify-between items-center bg-rose-400/10 border border-rose-400/30 rounded-xl px-4 py-3">
-            <div className="flex items-center gap-3 text-rose-300">
-              <HelpCircle className="w-5 h-5" />
-              <p className="font-medium">Savollar</p>
-            </div>
-            <p className="text-white font-semibold">
-              {summary.quiz.correct} / {summary.quiz.total}
-            </p>
-          </div>
-
-          <div className="flex justify-between items-center bg-emerald-400/10 border border-emerald-400/30 rounded-xl px-4 py-3">
-            <div className="flex items-center gap-3 text-emerald-300">
-              <ClipboardCheck className="w-5 h-5" />
-              <p className="font-medium">Test</p>
-            </div>
-            <p className="text-white font-semibold">
-              {summary.test.correct} / {summary.test.total}
-            </p>
-          </div>
+          ))}
         </div>
       )}
     </div>
   );
-};
-
-export default DailyStats;
+}

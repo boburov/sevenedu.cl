@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  BellRing,
   ChartArea,
   CircleUserIcon,
   Home,
   LayoutDashboard,
+  Medal,
 } from "lucide-react";
 import { getMe } from "@/app/api/service/api";
 
@@ -39,8 +39,8 @@ const Footer = () => {
   const navLinks = [
     { href: `/user/${userId}`, icon: Home, label: "Home" },
     { href: "/courses", icon: LayoutDashboard, label: "Courses" },
+    { href: "/rank", icon: Medal, label: "Rank" },
     { href: "/dashboard", icon: ChartArea, label: "Dashboard" },
-    { href: "/notifications", icon: BellRing, label: "Notifications" },
     { href: "/user/profile", icon: CircleUserIcon, label: "Profile" },
   ];
 
@@ -59,11 +59,10 @@ const Footer = () => {
                   <Link
                     href={href}
                     aria-label={label}
-                    className={`flex flex-col items-center justify-center text-xs transition-all duration-200 relative p-2 rounded-xl ${
-                      isActive
-                        ? "text-primary bg-primary-soft"
-                        : "text-text-secondary hover:text-primary hover:bg-primary-soft/50"
-                    }`}
+                    className={`flex flex-col items-center justify-center text-xs transition-all duration-200 relative p-2 rounded-xl ${isActive
+                      ? "text-primary bg-primary-soft"
+                      : "text-text-secondary hover:text-primary hover:bg-primary-soft/50"
+                      }`}
                   >
                     {unreadCount > 0 && (
                       <span className="absolute bg-danger text-white -top-1 -right-1 w-5 h-5 flex items-center justify-center rounded-full text-xs font-medium">
@@ -80,11 +79,10 @@ const Footer = () => {
                   <Link
                     href={href}
                     aria-label={label}
-                    className={`flex flex-col items-center justify-center text-xs transition-all duration-200 p-2 rounded-xl ${
-                      isActive
-                        ? "text-primary bg-primary-soft"
-                        : "text-text-secondary hover:text-primary hover:bg-primary-soft/50"
-                    }`}
+                    className={`flex flex-col items-center justify-center text-xs transition-all duration-200 p-2 rounded-xl ${isActive
+                      ? "text-primary bg-primary-soft"
+                      : "text-text-secondary hover:text-primary hover:bg-primary-soft/50"
+                      }`}
                   >
                     <Icon size={24} strokeWidth={1.5} className="mb-0.5" />
                   </Link>
