@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-/* ========================================
-   White + Purple Emotional Premium Theme
-   ======================================== */
 
 :root {
   /* Backgrounds */
@@ -111,7 +108,7 @@ nextjs-portal {
 
 /* Certificate background */
 .sertificat {
-  background-image: url("./sevenedu.png") !important;
+  background-image: url("./images/1741286335562.png") !important;
 }
 
 /* Utility: Soft shadow for cards */

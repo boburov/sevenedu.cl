@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BookOpenCheck, Bell, Settings, Lock, LogOut } from "lucide-react";
+import {
+  BookOpenCheck,
+  Bell,
+  Settings,
+  Lock,
+  LogOut,
+} from "lucide-react";
 import { allCourse, getMe } from "@/app/api/service/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -27,13 +33,8 @@ const UserPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    allCourse()
-      .then((data) => setCourses(data))
-      .catch((e) => console.error("allCourse error:", e));
-
-    getMe()
-      .then((data) => setUser(data))
-      .catch((e) => console.error("getMe error:", e));
+    allCourse().then(setCourses).catch(console.error);
+    getMe().then(setUser).catch(console.error);
   }, []);
 
   const handleLogout = () => {
@@ -41,72 +42,110 @@ const UserPage = () => {
     router.push("/");
   };
 
-  const cardBaseStyle =
-    "transition-all duration-300 ease-in-out transform hover:scale-[1.03] bg-gradient-to-br from-white/10 to-white/5 hover:from-white/20 hover:to-white/10 p-5 rounded-2xl flex items-center gap-4 shadow-md border border-white/10";
+  const cardStyle =
+    "group flex items-center gap-4 rounded-2xl border border-[#0b0b14]/10 p-5 shadow-sm transition-all duration-200 hover:border-purple-500/10 hover:bg-[#141428]/10";
+
+  const iconStyle =
+    "h-9 w-9 rounded-xl bg-purple-500/10 text-purple-400 p-2 group-hover:bg-purple-500/20";
 
   return (
-    <div className="container mx-auto pt-10 px-4 text-white relative">
-      <button
-        onClick={handleLogout}
-        className="fixed top-5 right-5 z-50 flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-xl shadow-lg transition-all"
-      >
-        <LogOut className="w-5 h-5" />
-        <span>Chiqish</span>
-      </button>
+    <div className="min-h-screen text-[#0b0b14]">
+      <div className="container mx-auto max-w-6xl px-4 pt-10">
+        {/* Header */}
+        <div className="mb-10 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-semibold tracking-tight">
+              Profil
+            </h1>
+            <p className="text-sm text-[#0b0b14] mt-1">
+              Hisobingiz va sozlamalaringiz
+            </p>
+          </div>
 
-      {user ? (
-        <div className="flex flex-col gap-0 mt-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
-            <div className={cardBaseStyle}>
-              <BookOpenCheck className="text-green-400 w-8 h-8" />
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-400 transition hover:bg-red-500/20"
+          >
+            <LogOut className="h-4 w-4" />
+            Chiqish
+          </button>
+        </div>
+
+        {/* Content */}
+        {user ? (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {/* My courses */}
+            <div className={cardStyle}>
+              <div className={iconStyle}>
+                <BookOpenCheck />
+              </div>
               <div>
-                <p className="text-gray-300">Kurslar soni</p>
-                <p className="font-semibold text-white">
-                  {user.courses.length} ta
+                <p className="text-sm text-[#0b0b14]">Mening kurslarim</p>
+                <p className="mt-1 text-xl font-semibold">
+                  {user.courses.length}
+                  <span className="text-sm font-normal text-[#0b0b14]"> ta</span>
                 </p>
               </div>
             </div>
 
-            <div className={cardBaseStyle}>
-              <Bell className="text-blue-400 w-8 h-8" />
+            {/* Notifications */}
+            <div className={cardStyle}>
+              <div className={iconStyle}>
+                <Bell />
+              </div>
               <div>
-                <p className="text-gray-300">Bildirishnomalar</p>
-                <p className="font-semibold text-white">0 ta</p>
+                <p className="text-sm text-[#0b0b14]">Bildirishnomalar</p>
+                <p className="mt-1 text-xl font-semibold">
+                  0
+                  <span className="text-sm font-normal text-[#0b0b14]"> ta</span>
+                </p>
               </div>
             </div>
 
-            <div className={cardBaseStyle}>
-              <BookOpenCheck className="text-purple-400 w-8 h-8" />
+            {/* All courses */}
+            <div className={cardStyle}>
+              <div className={iconStyle}>
+                <BookOpenCheck />
+              </div>
               <div>
-                <p className="text-gray-300">Umumiy kurslar</p>
-                <p className="font-semibold text-white">{courses.length} ta</p>
+                <p className="text-sm text-[#0b0b14]">Platformadagi kurslar</p>
+                <p className="mt-1 text-xl font-semibold">
+                  {courses.length}
+                  <span className="text-sm font-normal text-[#0b0b14]"> ta</span>
+                </p>
               </div>
             </div>
 
-            <Link href="settings" className={cardBaseStyle}>
-              <Settings className="text-yellow-400 w-8 h-8" />
+            {/* Settings */}
+            <Link href="/settings" className={cardStyle}>
+              <div className={iconStyle}>
+                <Settings />
+              </div>
               <div>
-                <p className="text-gray-300">Foydalanuvchi Sozlamalari</p>
-                <p className="font-semibold text-white">
-                  Profilingizni tahrirlashingiz mumkin
+                <p className="text-sm text-[#0b0b14]">Profil sozlamalari</p>
+                <p className="mt-1 text-sm text-[#0b0b14]">
+                  Shaxsiy ma’lumotlarni tahrirlash
                 </p>
               </div>
             </Link>
 
-            <Link href="settings/password" className={cardBaseStyle}>
-              <Lock className="text-gray-400 w-8 h-8" />
+            {/* Password */}
+            <Link href="/settings/password" className={cardStyle}>
+              <div className={iconStyle}>
+                <Lock />
+              </div>
               <div>
-                <p className="text-gray-300">Parol Menejment</p>
-                <p className="font-semibold text-white">
-                  Parolingizni o‘zgartirishingiz mumkin
+                <p className="text-sm text-[#0b0b14]">Parol xavfsizligi</p>
+                <p className="mt-1 text-sm text-[#0b0b14]">
+                  Parolni yangilash
                 </p>
               </div>
             </Link>
           </div>
-        </div>
-      ) : (
-        <p className="text-center text-gray-400 mt-16">Yuklanmoqda...</p>
-      )}
+        ) : (
+          <p className="mt-20 text-center text-[#0b0b14]">Yuklanmoqda...</p>
+        )}
+      </div>
     </div>
   );
 };
