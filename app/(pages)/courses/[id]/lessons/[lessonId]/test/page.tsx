@@ -25,18 +25,21 @@ export default function TestPage() {
   // ✅ Sound refs (preload + lag yo‘q)
   const correctAudioRef = useRef<HTMLAudioElement | null>(null);
   const wrongAudioRef = useRef<HTMLAudioElement | null>(null);
+  const finishAudioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     correctAudioRef.current = new Audio("/sounds/correct.mp3");
     wrongAudioRef.current = new Audio("/sounds/incorrect.mp3");
+    finishAudioRef.current = new Audio("/sounds/finish.mp3");
 
     // preload feel
     correctAudioRef.current.load();
     wrongAudioRef.current.load();
+    finishAudioRef.current.load();
 
     // ixtiyoriy: volume
-    correctAudioRef.current.volume = 0.35;
-    wrongAudioRef.current.volume = 0.35;
+    correctAudioRef.current.volume = 0.5;
+    wrongAudioRef.current.volume = 0.5;
   }, []);
 
   const play = (type: "correct" | "wrong") => {
@@ -71,8 +74,12 @@ export default function TestPage() {
   useEffect(() => {
     if (!finished || tests.length === 0) return;
     const correctCount = results.filter(Boolean).length;
+
     const percent = (correctCount / tests.length) * 100;
-    if (percent >= 80) launchConfetti();
+    if (percent >= 20) {
+      finishAudioRef.current?.play().catch(() => { });
+      launchConfetti();
+    }
   }, [finished, results, tests.length]);
 
   useEffect(() => {
