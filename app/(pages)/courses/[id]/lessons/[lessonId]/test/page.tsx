@@ -76,7 +76,7 @@ export default function TestPage() {
     const correctCount = results.filter(Boolean).length;
 
     const percent = (correctCount / tests.length) * 100;
-    if (percent >= 20) {
+    if (percent >= 70) {
       finishAudioRef.current?.play().catch(() => { });
       launchConfetti();
     }
