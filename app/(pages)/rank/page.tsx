@@ -64,7 +64,6 @@ export default function Page() {
             try {
                 setLoading(true);
                 const res = await allUsers();
-                // your console shows: response.data is the array
                 setUsers(Array.isArray(res.data) ? res.data : []);
             } finally {
                 setLoading(false);
@@ -79,7 +78,6 @@ export default function Page() {
             const diff = (b.coins ?? 0) - (a.coins ?? 0);
             if (diff !== 0) return diff;
 
-            // tie-breaker: older account first (optional, keeps rank stable)
             const at = a.createdAt ? new Date(a.createdAt).getTime() : 0;
             const bt = b.createdAt ? new Date(b.createdAt).getTime() : 0;
             return at - bt;
@@ -95,7 +93,6 @@ export default function Page() {
         return sorted.slice(start, start + PAGE_SIZE);
     }, [sorted, page, totalPages]);
 
-    // keep page valid if data changes
     useEffect(() => {
         if (page > totalPages) setPage(totalPages);
     }, [totalPages, page]);
@@ -131,8 +128,8 @@ export default function Page() {
                             const fullName = `${(u.name ?? "").trim()} ${(u.surname ?? "").trim()}`.trim();
 
                             return (
-                                <li key={u.id} className="px-2 py-3 hover:bg-surface-alt/60 transition">
-                                    <div className="grid grid-cols-[30px_250px_50px] items-center gap-2">
+                                <li key={u.id} className="px-4 py-3 hover:bg-surface-alt/60 transition">
+                                    <div className="grid grid-cols-[30px_225px_25px] items-center gap-2">
                                         {/* Rank */}
                                         <div className="text-sm font-semibold text-text-primary w-5">
                                             #{rank}

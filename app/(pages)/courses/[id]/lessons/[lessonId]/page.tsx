@@ -113,8 +113,6 @@ const Page = () => {
       });
 
       if (finalUrl) setCleanedVideoUrl(finalUrl);
-
-      console.log({ category_id, lessonNumber: lessonIndex + 1, backendOrder: lesson?.order, finalUrl });
     });
 
     return () => {
