@@ -87,53 +87,53 @@ const UserPage = () => {
 
         {/* USER COURSES */}
         <ul className="space-y-3 mb-8">
-  {userCourses.map((kurs) => {
-    const lessonsCount =
-      kurs.lessons?.filter((l: any) => l.isVisible).length || 0;
+          {userCourses.map((kurs) => {
+            const lessonsCount =
+              kurs.lessons?.filter((l: any) => l.isVisible).length || 0;
 
-    return (
-      <li
-        key={kurs.id}
-        className="relative flex items-center gap-4 p-3 bg-surface border border-border rounded-2xl shadow-card"
-      >
-        <div className="w-52 h-28 relative overflow-hidden rounded-xl border border-border bg-surface-alt">
-          <Image
-            src={getSafeThumbnail(kurs.thumbnail)}
-            alt={kurs.title}
-            fill
-            className="object-cover"
-            unoptimized
-          />
-        </div>
+            return (
+              <li
+                key={kurs.id}
+                className="relative flex items-center gap-4 p-3 bg-surface border border-border rounded-2xl shadow-card"
+              >
+                <div className="w-52 h-28 relative overflow-hidden rounded-xl border border-border bg-surface-alt">
+                  <Image
+                    src={getSafeThumbnail(kurs.thumbnail)}
+                    alt={kurs.title}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
 
-        <div className="flex flex-col justify-between h-28 w-full min-w-0">
-          <div className="min-w-0 pr-24">
-            {/* Badge */}
-            <span className="absolute top-3 right-3 inline-flex items-center rounded-full border border-border bg-primary-soft px-2.5 py-1 text-[11px] font-semibold text-primary">
-              {lessonsCount} dars
-            </span>
+                <div className="flex flex-col justify-between h-28 w-full min-w-0">
+                  <div className="min-w-0 pr-24">
+                    {/* Badge */}
+                    <span className="absolute top-3 right-3 inline-flex items-center rounded-full border border-border bg-primary-soft px-2.5 py-1 text-[11px] font-semibold text-primary">
+                      {lessonsCount} dars
+                    </span>
 
-            <h3 className="font-semibold text-text-primary text-sm truncate">
-              {kurs.title}
-            </h3>
+                    <h3 className="font-semibold text-text-primary text-sm truncate">
+                      {kurs.title}
+                    </h3>
 
-            <p className="text-xs text-text-secondary mt-1 line-clamp-2">
-              <span className="font-medium text-text-primary">Maqsad:</span>{" "}
-              {kurs.goal}
-            </p>
-          </div>
+                    <p className="text-xs text-text-secondary mt-1 line-clamp-2">
+                      <span className="font-medium text-text-primary">Maqsad:</span>{" "}
+                      {kurs.goal}
+                    </p>
+                  </div>
 
-          <Link
-            href={`/courses/${kurs.id}`}
-            className="mt-2 inline-flex items-center gap-2 text-xs font-semibold text-white bg-primary hover:bg-primary-hover transition-colors rounded-xl px-3 py-2 w-fit focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)] active:scale-[0.99]"
-          >
-            <Play size={16} /> Ko‘rish
-          </Link>
-        </div>
-      </li>
-    );
-  })}
-</ul>
+                  <Link
+                    href={`/courses/${kurs.id}`}
+                    className="mt-2 inline-flex items-center gap-2 text-xs font-semibold text-white bg-primary hover:bg-primary-hover transition-colors rounded-xl px-3 py-2 w-fit focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)] active:scale-[0.99]"
+                  >
+                    <Play size={16} /> Ko‘rish
+                  </Link>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
 
 
         {/* ALL COURSES */}
@@ -149,13 +149,30 @@ const UserPage = () => {
               return (
                 <li
                   key={kurs.id}
-                  className="flex items-center gap-4 p-3 bg-surface border border-border rounded-2xl shadow-card"
+                  className="
+      flex flex-col sm:flex-row
+      gap-3 sm:gap-4
+      p-3
+      bg-surface border border-border
+      rounded-2xl shadow-card
+    "
                 >
-                  <div className="w-[46%] h-28 relative overflow-hidden rounded-xl border border-border bg-surface-alt">
+                  {/* Thumbnail */}
+                  <div
+                    className="
+        w-full sm:w-[45%] md:w-[40%]
+        h-40 sm:h-28
+        relative overflow-hidden
+        rounded-xl border border-border
+        bg-surface-alt
+        shrink-0
+      "
+                  >
                     <Image
                       src={getSafeThumbnail(kurs.thumbnail)}
                       alt={kurs.title}
                       fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 40vw"
                       className={`object-cover ${isOwned ? "" : "opacity-60"}`}
                       unoptimized
                     />
@@ -169,49 +186,62 @@ const UserPage = () => {
                     )}
                   </div>
 
-                  <div className="flex flex-col justify-between h-28 w-full min-w-0">
+                  {/* Content */}
+                  <div className="flex flex-col justify-between min-w-0 flex-1">
                     <div className="min-w-0">
-                      <h3 className="font-semibold text-text-primary text-sm truncate">
+                      <h3 className="font-semibold text-text-primary text-sm truncate leading-5">
                         {kurs.title}
                       </h3>
 
-                      <span className="mt-1 inline-block text-xs text-text-secondary">
+                      <span className="inline-block text-xs text-text-secondary mt-1">
                         Darslar:{" "}
                         <span className="font-semibold text-text-primary">
-                          {kurs.lessons?.filter((l: any) => l.isVisible).length ||
-                            0}
+                          {kurs.lessons?.filter((l: any) => l.isVisible).length || 0}
                         </span>
                       </span>
 
-                      <p className="text-xs text-text-secondary mt-1 line-clamp-2">
-                        <span className="font-medium text-text-primary">
-                          Maqsad:
-                        </span>{" "}
+                      <p className="text-xs text-text-secondary line-clamp-2 mt-1">
+                        <span className="font-medium text-text-primary">Maqsad:</span>{" "}
                         {kurs.goal}
                       </p>
                     </div>
 
-                    <Link
-                      href={`/courses/${kurs.id}`}
-                      className={
-                        isOwned
-                          ? "mt-2 inline-flex items-center gap-2 text-xs font-semibold text-white bg-primary hover:bg-primary-hover transition-colors rounded-xl px-3 py-2 w-fit focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
-                          : "mt-2 inline-flex items-center gap-2 text-xs font-semibold text-primary border-2 border-primary hover:bg-primary-soft transition-colors rounded-xl px-3 py-2 w-fit focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
-                      }
-                    >
-                      {isOwned ? (
-                        <>
-                          <Play size={16} /> Ko‘rish
-                        </>
-                      ) : (
-                        <>
-                          <Lock size={16} /> Buyurtma
-                        </>
-                      )}
-                    </Link>
+                    {isOwned ? (
+                      <Link
+                        href={`/courses/${kurs.id}`}
+                        className="
+      mt-3 sm:mt-2 inline-flex items-center gap-2
+      text-xs font-semibold text-white
+      bg-primary hover:bg-primary-hover
+      transition-colors rounded-xl
+      px-3 py-2 w-full sm:w-fit justify-center
+      focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]
+    "
+                      >
+                        <Play size={16} /> Ko‘rish
+                      </Link>
+                    ) : (
+                      <a
+                        href="https://t.me/@HR7EDU"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="
+      mt-3 sm:mt-2 inline-flex items-center gap-2
+      text-xs font-semibold text-primary
+      border-2 border-primary hover:bg-primary-soft
+      transition-colors rounded-xl
+      px-3 py-2 w-full sm:w-fit justify-center
+      focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]
+    "
+                      >
+                        <Lock size={16} /> Buyurtma
+                      </a>
+                    )}
+
                   </div>
                 </li>
               );
+
             })}
           </ul>
         ) : (
