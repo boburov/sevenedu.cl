@@ -130,7 +130,7 @@ const UserPage = () => {
             </Link>
 
             {/* Password */}
-            <Link href="/settings/password" className={cardStyle}>
+            <Link href="/user/settings/password" className={cardStyle}>
               <div className={iconStyle}>
                 <Lock />
               </div>

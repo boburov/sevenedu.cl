@@ -1,19 +1,27 @@
 "use client";
 
 import { forgotPassword, login } from "@/app/api/service/api";
-import { ArrowLeft, School } from "lucide-react";
+import { ArrowLeft, Eye, EyeClosed, School } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const Login = () => {
+export default function Login() {
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
   const [forgotMode, setForgotMode] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+    if (token && userId) router.push(`/user/${userId}`);
+  }, [router]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,18 +32,19 @@ const Login = () => {
 
     try {
       const data = await login({ email, password });
-    
-      if (data && data.token && data.checkId.userID) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userId", data.checkId.userID);
 
-        router.push(`/user/${data.checkId.userID}`);
+      const token = data?.token;
+      const userId = data?.checkId?.userID;
+
+      if (token && userId) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("userId", userId);
+        router.push(`/user/${userId}`);
       } else {
         setMsg("Login muvaffaqiyatsiz");
       }
     } catch (error) {
-      const err = error as Error;
-      console.log(err.message);
+      console.log((error as Error)?.message);
       setMsg("Parol yoki email noto'g'ri");
     } finally {
       setLoading(false);
@@ -48,26 +57,21 @@ const Login = () => {
 
     setMsg("");
     setLoading(true);
+
     try {
       await forgotPassword(email);
       setMsg("Yangi parol emailingizga yuborildi.");
       setForgotMode(false);
     } catch (error) {
       const err = error as Error;
-      setMsg(err.message || "Email topilmadi");
+      setMsg(err?.message || "Email topilmadi");
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
-
-    if (token && userId) {
-      router.push(`/user/${userId}`);
-    }
-  }, []);
+  const inputBaseClass =
+    "w-full h-12 border border-border rounded-input px-4 bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-primary transition-all duration-200";
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-primary-soft/30 via-background to-background">
@@ -88,6 +92,7 @@ const Login = () => {
           <h3 className="text-2xl font-bold text-text-primary mb-2">
             {forgotMode ? "Parolni tiklash" : "O'quvchi sifatida kirish"}
           </h3>
+
           <p className="text-text-secondary text-sm mb-8">
             {forgotMode
               ? "Email manzilingizni kiriting"
@@ -96,11 +101,10 @@ const Login = () => {
 
           {msg && (
             <div
-              className={`w-full mb-4 p-3 rounded-input text-sm font-medium text-center ${
-                msg.includes("yuborildi")
+              className={`w-full mb-4 p-3 rounded-input text-sm font-medium text-center ${msg.includes("yuborildi")
                   ? "bg-success-soft text-success"
                   : "bg-danger-soft text-danger"
-              }`}
+                }`}
             >
               {msg}
             </div>
@@ -114,27 +118,41 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
-                className="w-full h-12 border border-border rounded-input px-4 bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-primary transition-all duration-200"
+                className={inputBaseClass}
                 required
+                autoComplete="email"
               />
-              <input
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Parol"
-                className="w-full h-12 border border-border rounded-input px-4 bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-primary transition-all duration-200"
-                required
-              />
+
+              {/* Password with toggle (design unchanged, just positioned nicely) */}
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Parol"
+                  className={`${inputBaseClass} pr-12`}
+                  required
+                  autoComplete="current-password"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-primary transition-colors"
+                  aria-label={showPassword ? "Parolni yashirish" : "Parolni ko'rsatish"}
+                >
+                  {showPassword ? <EyeClosed size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${
-                  loading
+                className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${loading
                     ? "bg-primary/60 cursor-not-allowed"
                     : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
-                }`}
+                  }`}
               >
                 {loading ? "Kirish..." : "Kirish"}
               </button>
@@ -156,18 +174,18 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Ro'yxatdan o'tgan emailingizni kiriting"
-                className="w-full h-12 border border-border rounded-input px-4 bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-primary transition-all duration-200"
+                className={inputBaseClass}
                 required
+                autoComplete="email"
               />
 
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${
-                  loading
+                className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${loading
                     ? "bg-primary/60 cursor-not-allowed"
                     : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
-                }`}
+                  }`}
               >
                 {loading ? "Yuborilmoqda..." : "Parolni tiklash"}
               </button>
@@ -195,6 +213,4 @@ const Login = () => {
       </div>
     </section>
   );
-};
-
-export default Login;
+}
