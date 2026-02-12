@@ -102,8 +102,8 @@ export default function Login() {
           {msg && (
             <div
               className={`w-full mb-4 p-3 rounded-input text-sm font-medium text-center ${msg.includes("yuborildi")
-                  ? "bg-success-soft text-success"
-                  : "bg-danger-soft text-danger"
+                ? "bg-success-soft text-success"
+                : "bg-danger-soft text-danger"
                 }`}
             >
               {msg}
@@ -113,6 +113,7 @@ export default function Login() {
           {!forgotMode ? (
             <form className="w-full space-y-4" onSubmit={handleLogin}>
               <input
+                au
                 type="email"
                 name="email"
                 value={email}
@@ -126,6 +127,7 @@ export default function Login() {
               {/* Password with toggle (design unchanged, just positioned nicely) */}
               <div className="relative">
                 <input
+                  au
                   type={showPassword ? "text" : "password"}
                   name="password"
                   value={password}
@@ -150,8 +152,8 @@ export default function Login() {
                 type="submit"
                 disabled={loading}
                 className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${loading
-                    ? "bg-primary/60 cursor-not-allowed"
-                    : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
+                  ? "bg-primary/60 cursor-not-allowed"
+                  : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
                   }`}
               >
                 {loading ? "Kirish..." : "Kirish"}
@@ -169,6 +171,7 @@ export default function Login() {
           ) : (
             <form className="w-full space-y-4" onSubmit={handleForgotPassword}>
               <input
+                au
                 type="email"
                 name="email"
                 value={email}
@@ -183,8 +186,8 @@ export default function Login() {
                 type="submit"
                 disabled={loading}
                 className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${loading
-                    ? "bg-primary/60 cursor-not-allowed"
-                    : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
+                  ? "bg-primary/60 cursor-not-allowed"
+                  : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
                   }`}
               >
                 {loading ? "Yuborilmoqda..." : "Parolni tiklash"}
