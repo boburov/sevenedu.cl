@@ -1,7 +1,7 @@
 "use client";
 
 import { forgotPassword, login } from "@/app/api/service/api";
-import { ArrowLeft, Eye, EyeClosed, School } from "lucide-react";
+import { ArrowLeft, Eye, EyeClosed, School, Terminal, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -14,14 +14,45 @@ export default function Login() {
   const [msg, setMsg] = useState("");
   const [forgotMode, setForgotMode] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
+
+  // Console modal states
+  const [showConsole, setShowConsole] = useState(false);
+  const [logs, setLogs] = useState<Array<{ type: string; message: string; timestamp: string }>>([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
     if (token && userId) router.push(`/user/${userId}`);
+
+    // Capture console logs
+    const originalLog = console.log;
+    const originalError = console.error;
+    const originalWarn = console.warn;
+
+    console.log = (...args) => {
+      setLogs(prev => [...prev, { type: 'log', message: args.join(' '), timestamp: new Date().toLocaleTimeString() }]);
+      originalLog.apply(console, args);
+    };
+
+    console.error = (...args) => {
+      setLogs(prev => [...prev, { type: 'error', message: args.join(' '), timestamp: new Date().toLocaleTimeString() }]);
+      originalError.apply(console, args);
+    };
+
+    console.warn = (...args) => {
+      setLogs(prev => [...prev, { type: 'warn', message: args.join(' '), timestamp: new Date().toLocaleTimeString() }]);
+      originalWarn.apply(console, args);
+    };
+
+    return () => {
+      console.log = originalLog;
+      console.error = originalError;
+      console.warn = originalWarn;
+    };
   }, [router]);
+
+  const clearLogs = () => setLogs([]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,8 +133,8 @@ export default function Login() {
           {msg && (
             <div
               className={`w-full mb-4 p-3 rounded-input text-sm font-medium text-center ${msg.includes("yuborildi")
-                ? "bg-success-soft text-success"
-                : "bg-danger-soft text-danger"
+                  ? "bg-success-soft text-success"
+                  : "bg-danger-soft text-danger"
                 }`}
             >
               {msg}
@@ -113,7 +144,6 @@ export default function Login() {
           {!forgotMode ? (
             <form className="w-full space-y-4" onSubmit={handleLogin}>
               <input
-                au
                 type="email"
                 name="email"
                 value={email}
@@ -124,10 +154,8 @@ export default function Login() {
                 autoComplete="email"
               />
 
-              {/* Password with toggle (design unchanged, just positioned nicely) */}
               <div className="relative">
                 <input
-                  au
                   type={showPassword ? "text" : "password"}
                   name="password"
                   value={password}
@@ -152,8 +180,8 @@ export default function Login() {
                 type="submit"
                 disabled={loading}
                 className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${loading
-                  ? "bg-primary/60 cursor-not-allowed"
-                  : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
+                    ? "bg-primary/60 cursor-not-allowed"
+                    : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
                   }`}
               >
                 {loading ? "Kirish..." : "Kirish"}
@@ -171,7 +199,6 @@ export default function Login() {
           ) : (
             <form className="w-full space-y-4" onSubmit={handleForgotPassword}>
               <input
-                au
                 type="email"
                 name="email"
                 value={email}
@@ -186,8 +213,8 @@ export default function Login() {
                 type="submit"
                 disabled={loading}
                 className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${loading
-                  ? "bg-primary/60 cursor-not-allowed"
-                  : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
+                    ? "bg-primary/60 cursor-not-allowed"
+                    : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
                   }`}
               >
                 {loading ? "Yuborilmoqda..." : "Parolni tiklash"}
@@ -214,6 +241,68 @@ export default function Login() {
           )}
         </div>
       </div>
+
+      {/* Floating Terminal Button */}
+      <button
+        onClick={() => setShowConsole(!showConsole)}
+        className="fixed bottom-6 right-6 bg-gray-900 text-white p-4 rounded-full shadow-lg hover:bg-gray-800 transition-colors z-50"
+        aria-label="Toggle Console"
+      >
+        <Terminal size={24} />
+      </button>
+
+      {/* Console Modal */}
+      {showConsole && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end sm:items-center sm:justify-center">
+          <div className="bg-gray-900 w-full sm:w-11/12 sm:max-w-4xl h-96 sm:h-3/4 rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col">
+            {/* Header */}
+            <div className="flex items-center justify-between bg-gray-800 px-4 py-3 rounded-t-2xl">
+              <div className="flex items-center gap-2">
+                <Terminal size={20} className="text-green-400" />
+                <h3 className="text-white font-semibold">Console</h3>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={clearLogs}
+                  className="text-gray-400 hover:text-white px-3 py-1 text-sm rounded hover:bg-gray-700 transition-colors"
+                >
+                  Clear
+                </button>
+                <button
+                  onClick={() => setShowConsole(false)}
+                  className="text-gray-400 hover:text-white p-1 rounded hover:bg-gray-700 transition-colors"
+                  aria-label="Close Console"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            {/* Console Content */}
+            <div className="flex-1 overflow-y-auto p-4 font-mono text-sm">
+              {logs.length === 0 ? (
+                <div className="text-gray-500 italic">No logs yet...</div>
+              ) : (
+                logs.map((log, index) => (
+                  <div
+                    key={index}
+                    className={`mb-2 ${log.type === 'error'
+                        ? 'text-red-400'
+                        : log.type === 'warn'
+                          ? 'text-yellow-400'
+                          : 'text-gray-300'
+                      }`}
+                  >
+                    <span className="text-gray-500 text-xs mr-2">[{log.timestamp}]</span>
+                    <span className="text-gray-400 mr-2">{log.type}:</span>
+                    {log.message}
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
