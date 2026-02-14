@@ -3,7 +3,7 @@
 import api from "@/app/api/service/api";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Languages, ListChecks, MessageCircleQuestion } from "lucide-react";
+import { Languages, ListChecks, MessageCircleQuestion, Mic, Microchip, SpeakerIcon } from "lucide-react";
 import Link from "next/link";
 
 import xitoy_tili from "@/app/jsons/xitoy.json";
@@ -203,6 +203,27 @@ const Page = () => {
             <div className="text-sm font-semibold text-text-primary">Savollar</div>
             <div className="mt-0.5 text-xs text-text-secondary">
               Qayta ko‘rib chiqing
+            </div>
+          </div>
+
+          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">
+            Kirish →
+          </span>
+        </Link>
+
+
+        <Link
+          href={`${lessonId}/speaking`}
+          className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
+        >
+          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0">
+            <Mic size={22} strokeWidth={1.5} />
+          </span>
+
+          <div className="min-w-0 flex-1">
+            <div className="text-sm font-semibold text-text-primary">Talafuzz</div>
+            <div className="mt-0.5 text-xs text-text-secondary">
+              Talafuzingizni tekshiring
             </div>
           </div>
 
