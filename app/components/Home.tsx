@@ -1,15 +1,19 @@
 import React from "react";
-import { GraduationCap, School2 } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
 import logo from "@/app/logo.png";
+import Google from "./auth/Google";
 
 const Home = () => {
+  const handleGoogleLogin = () => {
+    window.location.assign(`http://localhost:30066/auth/google/`);
+  };
+
   return (
-    <div className="min-h-screen w-full px-4 py-10 relative flex items-center justify-center bg-gradient-to-br from-primary-soft/50 via-background to-background">
-      {/* Logo yuqori chapda */}
-      <div className="absolute top-6 left-6 z-10">
-        <div className="p-2 rounded-2xl shadow-card border border-border transition-all duration-200 bg-purple-500 hover:shadow-card-hover hover:scale-105">
+    <div className="min-h-screen w-full px-4 py-10 flex items-center justify-center bg-gradient-to-br from-primary-soft/50 via-background to-background relative">
+
+      {/* Logo top-left */}
+      <div className="absolute top-6 left-6">
+        <div className="p-2 rounded-2xl shadow-lg border border-border bg-purple-500 hover:scale-105 transition">
           <Image
             src={logo}
             alt="Seven Edu Logo"
@@ -20,39 +24,33 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Asosiy kontent */}
-      <div className="w-full max-w-md space-y-8 text-center z-10">
-        {/* Matn */}
-        <h1 className="text-2xl sm:text-3xl font-semibold text-text-primary">
-          Platformaga kirish usulini tanlang
+      {/* Center card */}
+      <div className="bg-white/70 backdrop-blur-xl border border-gray-200 shadow-2xl rounded-3xl p-10 w-full max-w-md text-center">
+
+        <div className="flex justify-center mb-6">
+          <Image
+            src={logo}
+            alt="Seven Edu"
+            width={80}
+            height={80}
+            className="rounded-2xl"
+          />
+        </div>
+
+        <h1 className="text-2xl font-bold text-gray-800 mb-2">
+          SevenEduga hush kelibsiz
         </h1>
 
-        {/* Tugmalar */}
-        <div className="space-y-4">
-          <Link
-            href="/auth/login"
-            className="w-full flex items-center gap-4 p-4 rounded-card bg-surface hover:bg-primary-soft border border-border shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all duration-200"
-          >
-            <div className="bg-primary-soft p-3 rounded-xl">
-              <GraduationCap size={26} className="text-primary" />
-            </div>
-            <span className="text-base sm:text-lg font-medium text-text-primary">
-              O'quvchi sifatida kirish
-            </span>
-          </Link>
+        <p className="text-gray-500 mb-8">
+          Chet Tillarini Biz Bilan Oson O'rganing
+        </p>
 
-          <Link
-            href="/auth/signup"
-            className="w-full flex items-center gap-4 p-4 rounded-card bg-surface hover:bg-primary-soft border border-border shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all duration-200"
-          >
-            <div className="bg-primary-soft p-3 rounded-xl">
-              <School2 size={26} className="text-primary" />
-            </div>
-            <span className="text-base sm:text-lg font-medium text-text-primary">
-              Mehmon sifatida kirish
-            </span>
-          </Link>
-        </div>
+        <Google />
+
+        <p className="text-xs text-gray-400 mt-6">
+          By continuing you agree to our Terms & Privacy Policy
+        </p>
+
       </div>
     </div>
   );
