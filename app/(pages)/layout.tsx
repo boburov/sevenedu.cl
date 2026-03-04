@@ -32,7 +32,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          router.push("/auth/login");
+          router.push("/");
           return;
         }
 
@@ -47,7 +47,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           err?.response?.status === 401 ||
           err.message === "Token bekor qilindi"
         ) {
-          router.push("/auth/signup");
+          router.push("/");
         } else {
           console.error("Foydalanuvchi ma'lumotini olishda xatolik:", error);
         }
