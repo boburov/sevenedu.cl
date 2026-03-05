@@ -10,18 +10,16 @@ export default function GoogleButton() {
 
   useEffect(() => {
     const onMessage = (event: MessageEvent) => {
-      // accept only from SAME origin as your frontend (prevents token theft)
+      // only accept from same frontend origin
       if (event.origin !== window.location.origin) return;
 
       if (event.data?.type === "oauth" && typeof event.data.token === "string") {
         localStorage.setItem("token", event.data.token);
 
-        // cleanup
+        setLoading(false);
         window.removeEventListener("message", onMessage);
-        try {
-          popupRef.current?.close();
-        } catch {}
 
+        try { popupRef.current?.close(); } catch {}
         router.push("/dashboard");
       }
     };
@@ -38,8 +36,7 @@ export default function GoogleButton() {
     const left = window.screenX + (window.outerWidth - width) / 2;
     const top = window.screenY + (window.outerHeight - height) / 2;
 
-    const origin = encodeURIComponent(window.location.origin);
-    const url = `https://api.sevenedu.store/auth/google?origin=${origin}`;
+    const url = `https://api.sevenedu.store/auth/google`;
 
     const popup = window.open(
       url,
@@ -55,13 +52,7 @@ export default function GoogleButton() {
       return;
     }
 
-    // If popup closed without completing auth
-    const timer = window.setInterval(() => {
-      if (popup.closed) {
-        window.clearInterval(timer);
-        setLoading(false);
-      }
-    }, 500);
+    // NOTE: no popup.closed polling (COOP blocks it)
   };
 
   return (
@@ -75,7 +66,7 @@ export default function GoogleButton() {
         alt="google"
         className="w-5 h-5"
       />
-      {loading ? "Opening Google..." : "Continue with Google"}
+      {loading ? "Signing in..." : "Continue with Google"}
     </button>
   );
 }
