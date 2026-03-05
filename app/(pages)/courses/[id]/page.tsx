@@ -64,7 +64,7 @@ const CourseLessonsPage: React.FC = () => {
 
         // 2️⃣ darslarni olish
         const res = await axios.get(
-          "https://sevenedu.store/" + apiEndpoins.getCategory(courseId)
+          "https://api.sevenedu.store/" + apiEndpoins.getCategory(courseId)
         );
 
         const dataLessons: Lesson[] = res.data.lessons || [];
