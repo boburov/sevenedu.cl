@@ -9,24 +9,53 @@ export default function GoogleButton() {
   const popupRef = useRef<Window | null>(null);
 
   useEffect(() => {
+    const appOrigin =
+      process.env.NEXT_PUBLIC_APP_ORIGIN || window.location.origin;
+
+    const finishLogin = (token: string) => {
+      localStorage.setItem("token", token);
+      setLoading(false);
+
+      try {
+        popupRef.current?.close();
+      } catch {}
+
+      // replace is a bit safer here than push
+      window.location.replace("/dashboard");
+    };
+
     const onMessage = (event: MessageEvent) => {
-      // only accept from same frontend origin
-      if (event.origin !== window.location.origin) return;
+      if (event.origin !== appOrigin) return;
 
       if (event.data?.type === "oauth" && typeof event.data.token === "string") {
-        localStorage.setItem("token", event.data.token);
+        finishLogin(event.data.token);
+      }
 
+      if (event.data?.type === "oauth_error") {
         setLoading(false);
-        window.removeEventListener("message", onMessage);
+        try {
+          popupRef.current?.close();
+        } catch {}
+      }
+    };
 
-        try { popupRef.current?.close(); } catch {}
-        router.push("/dashboard");
+    const onFocus = () => {
+      if (!loading) return;
+
+      const token = localStorage.getItem("token");
+      if (token) {
+        finishLogin(token);
       }
     };
 
     window.addEventListener("message", onMessage);
-    return () => window.removeEventListener("message", onMessage);
-  }, [router]);
+    window.addEventListener("focus", onFocus);
+
+    return () => {
+      window.removeEventListener("message", onMessage);
+      window.removeEventListener("focus", onFocus);
+    };
+  }, [loading, router]);
 
   const openGooglePopup = () => {
     setLoading(true);
@@ -51,8 +80,6 @@ export default function GoogleButton() {
       alert("Popup blocked. Please allow popups for this site.");
       return;
     }
-
-    // NOTE: no popup.closed polling (COOP blocks it)
   };
 
   return (

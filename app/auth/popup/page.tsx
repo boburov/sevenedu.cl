@@ -6,13 +6,29 @@ export default function OAuthPopupPage() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const token = params.get("token");
+    const error = params.get("error");
 
-    if (token && window.opener) {
-      // Send message to opener; lock to SAME origin as this popup
-      window.opener.postMessage({ type: "oauth", token }, window.location.origin);
+    const appOrigin =
+      process.env.NEXT_PUBLIC_APP_ORIGIN || "https://sevenedu.org";
+
+    if (error && window.opener) {
+      window.opener.postMessage({ type: "oauth_error", error }, appOrigin);
+      window.close();
+      return;
     }
 
-    window.close();
+    if (token) {
+      // extra safety: save directly
+      localStorage.setItem("token", token);
+
+      if (window.opener) {
+        window.opener.postMessage({ type: "oauth", token }, appOrigin);
+      }
+    }
+
+    setTimeout(() => {
+      window.close();
+    }, 300);
   }, []);
 
   return (
