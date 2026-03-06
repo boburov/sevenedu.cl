@@ -9,16 +9,19 @@ export default function OAuthPopupPage() {
     const error = params.get("error");
 
     const appOrigin =
-      process.env.NEXT_PUBLIC_APP_ORIGIN || "https://sevenedu.org";
+      process.env.NEXT_PUBLIC_APP_ORIGIN || window.location.origin;
 
-    if (error && window.opener) {
-      window.opener.postMessage({ type: "oauth_error", error }, appOrigin);
+    console.log("popup loaded", { token, error, appOrigin });
+
+    if (error) {
+      if (window.opener) {
+        window.opener.postMessage({ type: "oauth_error", error }, appOrigin);
+      }
       window.close();
       return;
     }
 
     if (token) {
-      // extra safety: save directly
       localStorage.setItem("token", token);
 
       if (window.opener) {
@@ -28,7 +31,7 @@ export default function OAuthPopupPage() {
 
     setTimeout(() => {
       window.close();
-    }, 300);
+    }, 1000);
   }, []);
 
   return (

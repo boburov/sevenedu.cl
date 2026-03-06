@@ -1,30 +1,37 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function GoogleButton() {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const popupRef = useRef<Window | null>(null);
+  const loadingRef = useRef(false);
+
+  useEffect(() => {
+    loadingRef.current = loading;
+  }, [loading]);
 
   useEffect(() => {
     const appOrigin =
       process.env.NEXT_PUBLIC_APP_ORIGIN || window.location.origin;
 
-    const finishLogin = (token: string) => {
-      localStorage.setItem("token", token);
+    const finishLogin = (token?: string | null) => {
+      const finalToken = token || localStorage.getItem("token");
+      if (!finalToken) return;
+
+      localStorage.setItem("token", finalToken);
       setLoading(false);
 
       try {
         popupRef.current?.close();
       } catch {}
 
-      // replace is a bit safer here than push
-      window.location.replace("/dashboard");
+      window.location.href = "/dashboard";
     };
 
     const onMessage = (event: MessageEvent) => {
+      console.log("message event:", event.origin, event.data);
+
       if (event.origin !== appOrigin) return;
 
       if (event.data?.type === "oauth" && typeof event.data.token === "string") {
@@ -39,8 +46,14 @@ export default function GoogleButton() {
       }
     };
 
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === "token" && event.newValue) {
+        finishLogin(event.newValue);
+      }
+    };
+
     const onFocus = () => {
-      if (!loading) return;
+      if (!loadingRef.current) return;
 
       const token = localStorage.getItem("token");
       if (token) {
@@ -48,14 +61,26 @@ export default function GoogleButton() {
       }
     };
 
+    const interval = setInterval(() => {
+      if (!loadingRef.current) return;
+
+      const token = localStorage.getItem("token");
+      if (token) {
+        finishLogin(token);
+      }
+    }, 500);
+
     window.addEventListener("message", onMessage);
+    window.addEventListener("storage", onStorage);
     window.addEventListener("focus", onFocus);
 
     return () => {
+      clearInterval(interval);
       window.removeEventListener("message", onMessage);
+      window.removeEventListener("storage", onStorage);
       window.removeEventListener("focus", onFocus);
     };
-  }, [loading, router]);
+  }, []);
 
   const openGooglePopup = () => {
     setLoading(true);
