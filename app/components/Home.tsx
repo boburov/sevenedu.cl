@@ -2,86 +2,112 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/app/logo.png";
-import Google from "./auth/Google";
+import GoogleButton from "./auth/Google";
 
 const Home = () => {
   return (
-    <div className="min-h-screen w-full px-4 py-10 flex items-center justify-center bg-linear-to-br from-primary-soft/50 via-background to-background relative">
-      {/* Logo top-left */}
-      <div className="absolute top-6 left-6">
-        <div className="p-2 rounded-2xl shadow-lg border border-border bg-purple-500 hover:scale-105 transition">
-          <Image
-            src={logo}
-            alt="Seven Edu Logo"
-            width={50}
-            height={50}
-            className="rounded-xl object-contain"
-          />
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-linear-to-br from-violet-50 via-white to-fuchsia-50 px-4 py-10">
+      {/* soft background glow */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-violet-200/40 blur-3xl" />
+        <div className="absolute -bottom-25 -right-25 h-72 w-72 rounded-full bg-fuchsia-200/40 blur-3xl" />
+      </div>
+
+      {/* top-left brand */}
+      <div className="absolute left-6 top-6">
+        <div className="flex items-center gap-3 rounded-2xl border border-white/60 bg-white/70 px-3 py-2 shadow-lg backdrop-blur-xl">
+          <div className="rounded-xl bg-violet-600 p-2 shadow-sm">
+            <Image
+              src={logo}
+              alt="Seven Edu Logo"
+              width={32}
+              height={32}
+              className="rounded-md object-contain"
+            />
+          </div>
+          <span className="text-sm font-semibold text-slate-700">SevenEdu</span>
         </div>
       </div>
 
-      {/* Center card */}
-      <div className="bg-white/70 backdrop-blur-xl border border-gray-200 shadow-2xl rounded-3xl p-10 w-full max-w-md text-center">
-        <div className="flex justify-center mb-6">
-          <Image
-            src={logo}
-            alt="Seven Edu"
-            width={80}
-            height={80}
-            className="rounded-2xl"
-          />
+      {/* center card */}
+      <section className="relative z-10 w-full max-w-md rounded-[28px] border border-white/60 bg-white/80 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-2xl sm:p-10">
+        <div className="mb-8 flex flex-col items-center text-center">
+          <div className="mb-5 rounded-3xl bg-linear-to-br from-violet-500 to-fuchsia-500 p-px shadow-lg">
+            <div className="rounded-[22px] bg-white p-3">
+              <Image
+                src={logo}
+                alt="Seven Edu"
+                width={72}
+                height={72}
+                className="bg-violet-500 rounded-2xl object-contain"
+              />
+            </div>
+          </div>
+
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+            SevenEduga hush kelibsiz
+          </h1>
+
+          <p className="mt-3 max-w-sm text-sm leading-6 text-slate-500">
+            Chet tillarini zamonaviy va qulay usulda biz bilan oson o‘rganing.
+          </p>
         </div>
 
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">
-          SevenEduga hush kelibsiz
-        </h1>
+        <div className="space-y-3">
+          <GoogleButton />
 
-        <p className="text-gray-500 mb-8">
-          Chet Tillarini Biz Bilan Oson O&apos;rganing
-        </p>
-
-        {/* Login / Signup buttons */}
-        {/* <div className="grid grid-cols-2 gap-3 mb-5">
           <Link
             href="/auth/login"
-            className="group inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold
-                       bg-gray-900 text-white shadow-lg shadow-black/10
-                       hover:shadow-xl hover:-translate-y-0.5 transition
-                       focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900/30"
+            className="
+      flex h-12 w-full items-center justify-center
+      rounded-2xl
+      border border-slate-200
+      bg-white
+      text-sm font-semibold text-slate-700
+      shadow-sm
+      transition-all duration-200
+      hover:-translate-y-px
+      hover:border-slate-300
+      hover:bg-slate-50
+      hover:shadow-md
+      active:translate-y-0
+      active:shadow-sm
+    "
           >
-            <LogIn className="w-4 h-4 opacity-90" />
-            Login
-            <ArrowRight className="w-4 h-4 -mr-1 opacity-0 -translate-x-0.5 group-hover:opacity-100 group-hover:translate-x-0 transition" />
+            Kirish
           </Link>
 
           <Link
             href="/auth/signup"
-            className="group inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold
-                       bg-linear-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-indigo-500/20
-                       hover:shadow-xl hover:-translate-y-0.5 transition
-                       focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/30"
+            className="
+      flex h-12 w-full items-center justify-center
+      rounded-2xl
+      bg-linear-to-r from-violet-600 to-fuchsia-600
+      text-sm font-semibold text-white
+      shadow-lg shadow-violet-600/25
+      transition-all duration-200
+      hover:-translate-y-px
+      hover:shadow-xl hover:shadow-violet-600/30
+      active:translate-y-0
+      active:shadow-md
+    "
           >
-            <UserPlus className="w-4 h-4 opacity-90" />
-            Signup
-            <ArrowRight className="w-4 h-4 -mr-1 opacity-0 -translate-x-0.5 group-hover:opacity-100 group-hover:translate-x-0 transition" />
+            Ro&apos;yxatdan o&apos;tish
           </Link>
-        </div> */}
+        </div>
 
-        {/* Divider */}
-        {/* <div className="flex items-center gap-3 my-6">
-          <div className="h-px flex-1 bg-gray-200" />
-          <span className="text-xs text-gray-400">yoki</span>
-          <div className="h-px flex-1 bg-gray-200" />
-        </div> */}
-
-        {/* Google auth button/component */}
-        <Google />
-
-        <p className="text-xs text-gray-400 mt-6">
-          By continuing you agree to our Terms &amp; Privacy Policy
+        <p className="mt-6 text-center text-xs leading-5 text-slate-400">
+          Ro&apos;yxatdan o&apos;tish orqali siz{" "}
+          <Link
+            href="/terms"
+            className="font-medium text-violet-600 underline underline-offset-4 hover:text-violet-700"
+          >
+            platforma shartlariga
+          </Link>{" "}
+          rozilik bildirgan bo&apos;lasiz.
         </p>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

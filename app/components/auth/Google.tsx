@@ -24,7 +24,7 @@ export default function GoogleButton() {
 
       try {
         popupRef.current?.close();
-      } catch {}
+      } catch { }
 
       window.location.href = "/dashboard";
     };
@@ -42,7 +42,7 @@ export default function GoogleButton() {
         setLoading(false);
         try {
           popupRef.current?.close();
-        } catch {}
+        } catch { }
       }
     };
 
@@ -109,16 +109,30 @@ export default function GoogleButton() {
 
   return (
     <button
+      type="button"
       onClick={openGooglePopup}
       disabled={loading}
-      className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 hover:border-gray-400 text-gray-700 font-medium py-3 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 disabled:opacity-60"
+      className="
+        group relative overflow-hidden
+        w-full rounded-2xl p-px
+        bg-linear-to-r from-purple-500 via-indigo-500 to-blue-500
+        transition-all duration-300 hover:scale-[1.01] hover:shadow-xl
+        disabled:cursor-not-allowed disabled:opacity-70
+      "
     >
-      <img
-        src="https://www.svgrepo.com/show/475656/google-color.svg"
-        alt="google"
-        className="w-5 h-5"
-      />
-      {loading ? "Signing in..." : "Continue with Google"}
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-white via-gray-50 to-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+      <div className="relative flex items-center justify-center gap-3 rounded-2xl bg-white px-5 py-3.5">
+        <img
+          src="https://www.svgrepo.com/show/475656/google-color.svg"
+          alt="Google"
+          className="h-5 w-5"
+        />
+
+        <span className="text-sm font-semibold text-gray-800">
+          {loading ? "Kirish jarayonida..." : "Google bilan davom etish"}
+        </span>
+      </div>
     </button>
   );
 }
