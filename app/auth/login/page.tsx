@@ -53,7 +53,6 @@ export default function Login() {
   }, [router]);
 
   const clearLogs = () => setLogs([]);
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (loading) return;
@@ -74,9 +73,10 @@ export default function Login() {
       } else {
         setMsg("Login muvaffaqiyatsiz");
       }
-    } catch (error) {
-      console.log((error as Error)?.message);
-      setMsg("Parol yoki email noto'g'ri");
+    } catch (error: any) {
+      console.error("Login error:", error);
+
+      setMsg(error);
     } finally {
       setLoading(false);
     }
@@ -132,11 +132,10 @@ export default function Login() {
 
           {msg && (
             <div
-              className={`w-full mb-4 p-3 rounded-input text-sm font-medium text-center ${
-                msg.includes("yuborildi")
-                  ? "bg-success-soft text-success"
-                  : "bg-danger-soft text-danger"
-              }`}
+              className={`w-full mb-4 p-3 rounded-input text-sm font-medium text-center ${msg.includes("yuborildi")
+                ? "bg-success-soft text-success"
+                : "bg-danger-soft text-danger"
+                }`}
             >
               {msg}
             </div>
@@ -180,11 +179,10 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${
-                  loading
-                    ? "bg-primary/60 cursor-not-allowed"
-                    : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
-                }`}
+                className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${loading
+                  ? "bg-primary/60 cursor-not-allowed"
+                  : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
+                  }`}
               >
                 {loading ? "Kirish..." : "Kirish"}
               </button>
@@ -214,11 +212,10 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${
-                  loading
-                    ? "bg-primary/60 cursor-not-allowed"
-                    : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
-                }`}
+                className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${loading
+                  ? "bg-primary/60 cursor-not-allowed"
+                  : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
+                  }`}
               >
                 {loading ? "Yuborilmoqda..." : "Parolni tiklash"}
               </button>
@@ -289,13 +286,12 @@ export default function Login() {
                 logs.map((log, index) => (
                   <div
                     key={index}
-                    className={`mb-2 ${
-                      log.type === 'error'
-                        ? 'text-red-400'
-                        : log.type === 'warn'
+                    className={`mb-2 ${log.type === 'error'
+                      ? 'text-red-400'
+                      : log.type === 'warn'
                         ? 'text-yellow-400'
                         : 'text-gray-300'
-                    }`}
+                      }`}
                   >
                     <span className="text-gray-500 text-xs mr-2">[{log.timestamp}]</span>
                     <span className="text-gray-400 mr-2">{log.type}:</span>
