@@ -42,11 +42,31 @@ export default function GoogleButton() {
     };
 
     // ✅ Detect if user manually closed the popup
+    // interval ichida — opener ishlamagan holatni ushlaymiz
     const interval = setInterval(() => {
       if (!loadingRef.current) return;
+
+      // ✅ Popup yopilgan — localStorage tekshir
       if (popupRef.current?.closed) {
-        setLoading(false);
-        loadingRef.current = false;
+        const token = localStorage.getItem("token");
+        const oauthError = localStorage.getItem("oauth_error");
+
+        if (token) {
+          localStorage.removeItem("oauth_success");
+          finishLogin(token);
+        } else if (oauthError) {
+          localStorage.removeItem("oauth_error");
+          setLoading(false);
+          loadingRef.current = false;
+          setErrorMsg(oauthError.includes("oddiy")
+            ? "Bu email oddiy parol bilan ro'yxatdan o'tgan. Iltimos, email va parol bilan kiring."
+            : "Google orqali kirishda xatolik yuz berdi."
+          );
+        } else {
+          // User o'zi yopdi
+          setLoading(false);
+          loadingRef.current = false;
+        }
       }
     }, 500);
 
