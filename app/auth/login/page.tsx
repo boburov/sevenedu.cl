@@ -187,14 +187,12 @@ export default function Login() {
                 {loading ? "Kirish..." : "Kirish"}
               </button>
 
-              <button
-                type="button"
-                onClick={() => setForgotMode(true)}
+              <Link
+                href={'forgot-password'}
                 className="text-primary hover:text-primary-hover font-medium w-full text-center text-sm transition-colors duration-200"
-                disabled={loading}
               >
                 Parolni unutdingizmi?
-              </button>
+              </Link>
             </form>
           ) : (
             <form className="w-full space-y-4" onSubmit={handleForgotPassword}>
