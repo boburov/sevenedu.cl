@@ -6,6 +6,7 @@ export default function GoogleButton() {
   const [loading, setLoading] = useState(false);
   const popupRef = useRef<Window | null>(null);
   const loadingRef = useRef(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   useEffect(() => {
     loadingRef.current = loading;
@@ -40,9 +41,13 @@ export default function GoogleButton() {
 
       if (event.data?.type === "oauth_error") {
         setLoading(false);
-        try {
-          popupRef.current?.close();
-        } catch { }
+        // ✅ Show specific message based on error
+        if (event.data.error?.includes("oddiy ro'yxatdan")) {
+          setErrorMsg("Bu email oddiy parol bilan ro'yxatdan o'tgan. Iltimos, email va parol bilan kiring.");
+        } else {
+          setErrorMsg("Google orqali kirishda xatolik yuz berdi. Qayta urinib ko'ring.");
+        }
+        try { popupRef.current?.close(); } catch { }
       }
     };
 
@@ -108,31 +113,46 @@ export default function GoogleButton() {
   };
 
   return (
-    <button
-      type="button"
-      onClick={openGooglePopup}
-      disabled={loading}
-      className="
+    <div className="w-full">
+      <button
+        type="button"
+        onClick={openGooglePopup}
+        disabled={loading}
+        className="
         group relative overflow-hidden
         w-full rounded-2xl p-px
         bg-linear-to-r from-purple-500 via-indigo-500 to-blue-500
         transition-all duration-300 hover:scale-[1.01] hover:shadow-xl
         disabled:cursor-not-allowed disabled:opacity-70
       "
-    >
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-white via-gray-50 to-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      >
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-white via-gray-50 to-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-      <div className="relative flex items-center justify-center gap-3 rounded-2xl bg-white px-5 py-3.5">
-        <img
-          src="https://www.svgrepo.com/show/475656/google-color.svg"
-          alt="Google"
-          className="h-5 w-5"
-        />
+        <div className="relative flex items-center justify-center gap-3 rounded-2xl bg-white px-5 py-3.5">
+          <img
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            alt="Google"
+            className="h-5 w-5"
+          />
 
-        <span className="text-sm font-semibold text-gray-800">
-          {loading ? "Kirish jarayonida..." : "Google bilan davom etish"}
-        </span>
-      </div>
-    </button>
+          <span className="text-sm font-semibold text-gray-800">
+            {loading ? "Kirish jarayonida..." : "Google bilan davom etish"}
+          </span>
+        </div>
+      </button>
+
+      {errorMsg && (
+        <div className="mt-3 flex items-start gap-2 rounded-xl border border-red-100 bg-red-50 px-4 py-3">
+          <span className="mt-0.5 text-red-500">⚠️</span>
+          <p className="text-sm text-red-600">{errorMsg}</p>
+          <button
+            onClick={() => setErrorMsg(null)}
+            className="ml-auto text-red-400 hover:text-red-600"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+    </div>
   );
 }

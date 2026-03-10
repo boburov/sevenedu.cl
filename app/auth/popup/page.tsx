@@ -15,7 +15,10 @@ export default function OAuthPopupPage() {
 
     if (error) {
       if (window.opener) {
-        window.opener.postMessage({ type: "oauth_error", error }, appOrigin);
+        window.opener.postMessage({
+          type: "oauth_error",
+          error: decodeURIComponent(error)
+        }, appOrigin);
       }
       window.close();
       return;

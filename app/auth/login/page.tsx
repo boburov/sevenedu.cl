@@ -105,7 +105,7 @@ export default function Login() {
     "w-full h-12 border border-border rounded-input px-4 bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-primary transition-all duration-200";
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-primary-soft/30 via-background to-background">
+    <section className="min-h-screen bg-linear-to-br from-primary-soft/30 via-background to-background">
       <div className="container pt-6">
         <Link
           href="/"
