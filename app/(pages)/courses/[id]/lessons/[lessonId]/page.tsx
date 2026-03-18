@@ -3,52 +3,67 @@
 import api from "@/app/api/service/api";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Languages, ListChecks, MessageCircleQuestion, Mic, Microchip, SpeakerIcon } from "lucide-react";
+import { Languages, ListChecks, MessageCircleQuestion, Mic } from "lucide-react";
 import Link from "next/link";
 
 import xitoy_tili from "@/app/jsons/xitoy.json";
 import koreys_tili from "@/app/jsons/koreys.json";
 import rus_tili from "@/app/jsons/rus.json";
-import arab_tili from "@/app/jsons/arab.json"
-import nemis_tili from "@/app/jsons/nemis.json"
-import turk_tili from "@/app/jsons/turk.json"
+import arab_tili from "@/app/jsons/arab.json";
+import nemis_tili from "@/app/jsons/nemis.json";
+import turk_tili from "@/app/jsons/turk.json";
 
-const XITOY_ID = "c7fe73bc-e878-4897-8509-d5b21777cfb5";
-const RUS_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
+const XITOY_ID  = "c7fe73bc-e878-4897-8509-d5b21777cfb5";
+const RUS_ID    = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
 const KOREYS_ID = "91b5c1b3-4c3e-4347-ad75-19869b3c6f66";
-const ARAB_ID = "818e97e4-8b6b-481a-99ed-547ee53ba3eb";
-const NEMIS_TILI = "16c43a51-8c65-4a29-995c-f2e8ab0d6073"
-const TURK_TILI = "4154be26-c57d-4c2a-bce5-03205dedb8f7"
+const ARAB_ID   = "818e97e4-8b6b-481a-99ed-547ee53ba3eb";
+const NEMIS_TILI = "16c43a51-8c65-4a29-995c-f2e8ab0d6073";
+const TURK_TILI  = "4154be26-c57d-4c2a-bce5-03205dedb8f7";
 
-const SPECIAL_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
+const SPECIAL_ID        = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
 const SECOND_SPECIAL_ID = "a86c8621-b83a-4481-ac66-4176f067ca18";
-const THIRD_SPECIAL_ID = "16c43a51-8c65-4a29-995c-f2e8ab0d6073";
+const THIRD_SPECIAL_ID  = "16c43a51-8c65-4a29-995c-f2e8ab0d6073";
+
+type JsonVideo = {
+  key: string;
+  url?: string; // Vimeo URL: "https://vimeo.com/1234567890"
+};
 
 type JsonCourse = {
-  videos?: { key: string }[];
+  videos?: JsonVideo[];
 };
 
 const jsonOverrides: Record<string, JsonCourse> = {
-  [XITOY_ID]: xitoy_tili as JsonCourse,
-  [RUS_ID]: rus_tili as JsonCourse,
+  [XITOY_ID]:  xitoy_tili  as JsonCourse,
+  [RUS_ID]:    rus_tili    as JsonCourse,
   [KOREYS_ID]: koreys_tili as JsonCourse,
-  [ARAB_ID]: arab_tili as JsonCourse,
+  [ARAB_ID]:   arab_tili   as JsonCourse,
   [NEMIS_TILI]: nemis_tili as JsonCourse,
-  [TURK_TILI]: turk_tili as JsonCourse
-
+  [TURK_TILI]:  turk_tili  as JsonCourse,
 };
 
-function getJsonVideoUrlByLessonNumber(categoryId: string, lessonNumber: number) {
-  const course = jsonOverrides[categoryId];
-  const item = course?.videos?.[lessonNumber - 1];
-  if (!item?.key) return "";
-
-  return `https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/${encodeURIComponent(
-    item.key
-  )}`;
+/** "https://vimeo.com/1174582208" → "1174582208" */
+function extractVimeoId(url: string): string {
+  return url.split("/").pop() ?? "";
 }
 
-function getCorrectVideoUrl(url: string, categoryId: string, lessonIndex?: number) {
+function getJsonVideoUrlByLessonNumber(categoryId: string, lessonNumber: number): string {
+  const course = jsonOverrides[categoryId];
+  const item = course?.videos?.[lessonNumber - 1];
+  if (!item) return "";
+
+  // Rus tili: url fieldidan Vimeo ID olamiz
+  if (categoryId === RUS_ID && item.url) {
+    const vimeoId = extractVimeoId(item.url);
+    return vimeoId ? `vimeo:${vimeoId}` : "";
+  }
+
+  // Boshqa tillar: S3 dan key orqali
+  if (!item.key) return "";
+  return `https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/${encodeURIComponent(item.key)}`;
+}
+
+function getCorrectVideoUrl(url: string, categoryId: string, lessonIndex?: number): string {
   if (!url) return "";
 
   const filename = url.split("/").pop() || "";
@@ -58,7 +73,7 @@ function getCorrectVideoUrl(url: string, categoryId: string, lessonIndex?: numbe
   const lessonNumber = lessonIndex !== undefined ? lessonIndex + 1 : undefined;
 
   if (
-    (categoryId === SPECIAL_ID && lessonNumber && lessonNumber > 25) ||
+    (categoryId === SPECIAL_ID      && lessonNumber && lessonNumber > 25) ||
     (categoryId === THIRD_SPECIAL_ID && lessonNumber && lessonNumber > 32) ||
     categoryId === SECOND_SPECIAL_ID
   ) {
@@ -72,11 +87,10 @@ function resolveVideoUrl(params: {
   categoryId: string;
   lessonIndex: number;
   backendVideoUrl?: string;
-}) {
+}): string {
   const { categoryId, lessonIndex, backendVideoUrl } = params;
-  const lessonNumber = lessonIndex + 1;
 
-  const jsonUrl = getJsonVideoUrlByLessonNumber(categoryId, lessonNumber);
+  const jsonUrl = getJsonVideoUrlByLessonNumber(categoryId, lessonIndex + 1);
   if (jsonUrl) return jsonUrl;
 
   if (backendVideoUrl) return getCorrectVideoUrl(backendVideoUrl, categoryId, lessonIndex);
@@ -86,7 +100,7 @@ function resolveVideoUrl(params: {
 
 const Page = () => {
   const params = useParams();
-  const lessonId = String(params.lessonId);
+  const lessonId    = String(params.lessonId);
   const category_id = String(params.id);
 
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -115,148 +129,108 @@ const Page = () => {
       if (finalUrl) setCleanedVideoUrl(finalUrl);
     });
 
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [lessonId, category_id]);
+
+  const isVimeo  = cleanedVideoUrl.startsWith("vimeo:");
+  const vimeoId  = isVimeo ? cleanedVideoUrl.replace("vimeo:", "") : "";
+
+  // Vimeo embed URL — Vimeo ning o'z embed code parametrlari bilan
+  const vimeoSrc = vimeoId
+    ? `https://player.vimeo.com/video/${vimeoId}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479`
+    : "";
 
   return (
     <div className="w-full max-w-4xl mx-auto px-5 py-6 space-y-6 bg-background">
+
       {/* Video */}
       <div className="rounded-2xl border border-border bg-surface shadow-card overflow-hidden">
-        <div className="relative w-full aspect-video bg-black">
-          {cleanedVideoUrl ? (
+        {/* 
+          Vimeo o'zi tavsiya qilgan aspect-ratio wrapper:
+          padding-top: 56.25% = 16/9 nisbat 
+        */}
+        <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
+          {!cleanedVideoUrl ? (
+            <div className="absolute inset-0 grid place-items-center bg-black">
+              <span className="text-sm text-white/50">Video yuklanmoqda…</span>
+            </div>
+          ) : isVimeo ? (
+            <iframe
+              src={vimeoSrc}
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+              title="Vimeo video"
+            />
+          ) : (
             <video
               ref={videoRef}
               src={cleanedVideoUrl}
               controls
               controlsList="nodownload"
               onContextMenu={(e) => e.preventDefault()}
-              className="w-full h-full object-contain"
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+              className="object-contain bg-black"
             />
-          ) : (
-            <div className="w-full h-full grid place-items-center">
-              <div className="text-sm text-text-secondary">Video yuklanmoqda…</div>
-            </div>
           )}
         </div>
       </div>
 
       {/* Actions */}
       <div className="space-y-3">
-        {/* helper title (optional but clean) */}
         <div className="flex items-center justify-between">
           <h2 className="text-sm font-semibold text-text-primary">Lesson tools</h2>
           <span className="text-xs text-text-muted">Practice</span>
         </div>
 
-        {/* Card link template styles applied manually (no extra components) */}
-        <Link
-          href={`${lessonId}/vocabulary`}
-          className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
-        >
-          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0">
-            <Languages size={22} strokeWidth={1.5} />
-          </span>
-
+        <Link href={`${lessonId}/vocabulary`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]">
+          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0"><Languages size={22} strokeWidth={1.5} /></span>
           <div className="min-w-0 flex-1">
-            <div className="text-sm font-semibold text-text-primary">Lug‘at</div>
-            <div className="mt-0.5 text-xs text-text-secondary">
-              Yangi so‘zlarni yodlang
-            </div>
+            <div className="text-sm font-semibold text-text-primary">Lug'at</div>
+            <div className="mt-0.5 text-xs text-text-secondary">Yangi so'zlarni yodlang</div>
           </div>
-
-          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">
-            Kirish →
-          </span>
+          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">Kirish →</span>
         </Link>
 
-        <Link
-          href={`${lessonId}/test`}
-          className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
-        >
-          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0">
-            <ListChecks size={22} strokeWidth={1.5} />
-          </span>
-
+        <Link href={`${lessonId}/test`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]">
+          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0"><ListChecks size={22} strokeWidth={1.5} /></span>
           <div className="min-w-0 flex-1">
             <div className="text-sm font-semibold text-text-primary">Test</div>
-            <div className="mt-0.5 text-xs text-text-secondary">
-              Bilimingizni tekshiring
-            </div>
+            <div className="mt-0.5 text-xs text-text-secondary">Bilimingizni tekshiring</div>
           </div>
-
-          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">
-            Kirish →
-          </span>
+          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">Kirish →</span>
         </Link>
 
-        <Link
-          href={`${lessonId}/quiz`}
-          className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
-        >
-          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0">
-            <MessageCircleQuestion size={22} strokeWidth={1.5} />
-          </span>
-
+        <Link href={`${lessonId}/quiz`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]">
+          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0"><MessageCircleQuestion size={22} strokeWidth={1.5} /></span>
           <div className="min-w-0 flex-1">
             <div className="text-sm font-semibold text-text-primary">Savollar</div>
-            <div className="mt-0.5 text-xs text-text-secondary">
-              Qayta ko‘rib chiqing
-            </div>
+            <div className="mt-0.5 text-xs text-text-secondary">Qayta ko'rib chiqing</div>
           </div>
-
-          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">
-            Kirish →
-          </span>
+          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">Kirish →</span>
         </Link>
 
-
-        <Link
-          href={`${lessonId}/speaking`}
-          className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
-        >
-          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0">
-            <Mic size={22} strokeWidth={1.5} />
-          </span>
-
+        <Link href={`${lessonId}/speaking`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]">
+          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0"><Mic size={22} strokeWidth={1.5} /></span>
           <div className="min-w-0 flex-1">
             <div className="text-sm font-semibold text-text-primary">Talafuzz</div>
-            <div className="mt-0.5 text-xs text-text-secondary">
-              Talafuzingizni tekshiring
-            </div>
+            <div className="mt-0.5 text-xs text-text-secondary">Talafuzingizni tekshiring</div>
           </div>
-
-          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">
-            Kirish →
-          </span>
+          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">Kirish →</span>
         </Link>
 
-        <Link
-          href={`${lessonId}/ask-for-ai`}
-          className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
-        >
-          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0">
-            <MessageCircleQuestion size={22} strokeWidth={1.5} />
-          </span>
-
+        <Link href={`${lessonId}/ask-for-ai`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]">
+          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0"><MessageCircleQuestion size={22} strokeWidth={1.5} /></span>
           <div className="min-w-0 flex-1">
-            <div className="text-sm font-semibold text-text-primary">
-              Ustozdan so‘rash
-            </div>
-            <div className="mt-0.5 text-xs text-text-secondary">
-              Savol yuboring
-            </div>
+            <div className="text-sm font-semibold text-text-primary">Ustozdan so'rash</div>
+            <div className="mt-0.5 text-xs text-text-secondary">Savol yuboring</div>
           </div>
-
-          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">
-            Kirish →
-          </span>
+          <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">Kirish →</span>
         </Link>
       </div>
     </div>
   );
-
 };
 
 export default Page;

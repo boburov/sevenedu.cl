@@ -48,7 +48,7 @@ const Header = () => {
   ]
 
   return (
-    <header className="w-full z-50 px-4 pt-3 block max-md:hidden">
+    <header className="w-full z-50 px-4 pt-3 block max-md:hidden bg-primary/10">
       <div className="container bg-surface border border-border rounded-2xl px-4 py-3 mx-auto flex items-center justify-between shadow-card">
         <Link href={`/user/${userId}`} className="flex items-center gap-2">
           <div className="bg-primary rounded-xl p-1">
@@ -61,11 +61,10 @@ const Header = () => {
             return (
               <li
                 key={index}
-                className={`${
-                  isActive
-                    ? "text-primary font-semibold"
-                    : "text-text-secondary"
-                } hover:text-primary transition-colors duration-200`}
+                className={`${isActive
+                  ? "text-primary font-semibold"
+                  : "text-text-secondary"
+                  } hover:text-primary transition-colors duration-200`}
               >
                 <Link href={href}>{label}</Link>
               </li>

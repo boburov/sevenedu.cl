@@ -3,14 +3,14 @@ import heroimg from "@/app/images/heroimg.png";
 
 const Hero = () => {
   return (
-    <section className="relative w-full py-24 overflow-hidden max-md:hidden bg-gradient-to-br from-primary-soft via-background to-background">
-      {/* Purple gradient effect */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none z-0" />
+    <section className="relative w-full py-24 overflow-hidden max-md:hidden bg-primary/10 min-h-screen">
+      {/* Purple linear effect */}
+      <div className="absolute inset-0 pointer-events-none z-0" />
 
       <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 px-6 items-center">
         {/* LEFT TEXT SECTION */}
         <div className="flex flex-col justify-center gap-6 animate-fadeIn">
-          <h1 className="text-4xl lg:text-6xl font-extrabold tracking-tight leading-tight bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
+          <h1 className="text-4xl lg:text-6xl font-extrabold tracking-tight leading-tight bg-linear-to-r from-primary to-primary-hover bg-clip-text text-transparent">
             Xush kelibsiz, SEVEN EDU platformaga!
           </h1>
 
