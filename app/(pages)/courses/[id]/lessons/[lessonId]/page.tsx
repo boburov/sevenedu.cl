@@ -13,16 +13,16 @@ import arab_tili from "@/app/jsons/arab.json";
 import nemis_tili from "@/app/jsons/nemis.json";
 import turk_tili from "@/app/jsons/turk.json";
 
-const XITOY_ID  = "c7fe73bc-e878-4897-8509-d5b21777cfb5";
-const RUS_ID    = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
+const XITOY_ID = "c7fe73bc-e878-4897-8509-d5b21777cfb5";
+const RUS_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
 const KOREYS_ID = "91b5c1b3-4c3e-4347-ad75-19869b3c6f66";
-const ARAB_ID   = "818e97e4-8b6b-481a-99ed-547ee53ba3eb";
+const ARAB_ID = "818e97e4-8b6b-481a-99ed-547ee53ba3eb";
 const NEMIS_TILI = "16c43a51-8c65-4a29-995c-f2e8ab0d6073";
-const TURK_TILI  = "4154be26-c57d-4c2a-bce5-03205dedb8f7";
+const TURK_TILI = "4154be26-c57d-4c2a-bce5-03205dedb8f7";
 
-const SPECIAL_ID        = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
+const SPECIAL_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
 const SECOND_SPECIAL_ID = "a86c8621-b83a-4481-ac66-4176f067ca18";
-const THIRD_SPECIAL_ID  = "16c43a51-8c65-4a29-995c-f2e8ab0d6073";
+const THIRD_SPECIAL_ID = "16c43a51-8c65-4a29-995c-f2e8ab0d6073";
 
 type JsonVideo = {
   key: string;
@@ -34,12 +34,12 @@ type JsonCourse = {
 };
 
 const jsonOverrides: Record<string, JsonCourse> = {
-  [XITOY_ID]:  xitoy_tili  as JsonCourse,
-  [RUS_ID]:    rus_tili    as JsonCourse,
+  [XITOY_ID]: xitoy_tili as JsonCourse,
+  [RUS_ID]: rus_tili as JsonCourse,
   [KOREYS_ID]: koreys_tili as JsonCourse,
-  [ARAB_ID]:   arab_tili   as JsonCourse,
+  [ARAB_ID]: arab_tili as JsonCourse,
   [NEMIS_TILI]: nemis_tili as JsonCourse,
-  [TURK_TILI]:  turk_tili  as JsonCourse,
+  [TURK_TILI]: turk_tili as JsonCourse,
 };
 
 /** "https://vimeo.com/1174582208" → "1174582208" */
@@ -53,7 +53,7 @@ function getJsonVideoUrlByLessonNumber(categoryId: string, lessonNumber: number)
   if (!item) return "";
 
   // Rus tili: url fieldidan Vimeo ID olamiz
-  if (categoryId === RUS_ID && item.url) {
+  if (categoryId === RUS_ID && item.url || categoryId === XITOY_ID && item.url || categoryId === KOREYS_ID && item.url || categoryId === NEMIS_TILI && item.url || categoryId === ARAB_ID && item.url) {
     const vimeoId = extractVimeoId(item.url);
     return vimeoId ? `vimeo:${vimeoId}` : "";
   }
@@ -73,7 +73,7 @@ function getCorrectVideoUrl(url: string, categoryId: string, lessonIndex?: numbe
   const lessonNumber = lessonIndex !== undefined ? lessonIndex + 1 : undefined;
 
   if (
-    (categoryId === SPECIAL_ID      && lessonNumber && lessonNumber > 25) ||
+    (categoryId === SPECIAL_ID && lessonNumber && lessonNumber > 25) ||
     (categoryId === THIRD_SPECIAL_ID && lessonNumber && lessonNumber > 32) ||
     categoryId === SECOND_SPECIAL_ID
   ) {
@@ -100,7 +100,7 @@ function resolveVideoUrl(params: {
 
 const Page = () => {
   const params = useParams();
-  const lessonId    = String(params.lessonId);
+  const lessonId = String(params.lessonId);
   const category_id = String(params.id);
 
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -132,8 +132,8 @@ const Page = () => {
     return () => { cancelled = true; };
   }, [lessonId, category_id]);
 
-  const isVimeo  = cleanedVideoUrl.startsWith("vimeo:");
-  const vimeoId  = isVimeo ? cleanedVideoUrl.replace("vimeo:", "") : "";
+  const isVimeo = cleanedVideoUrl.startsWith("vimeo:");
+  const vimeoId = isVimeo ? cleanedVideoUrl.replace("vimeo:", "") : "";
 
   // Vimeo embed URL — Vimeo ning o'z embed code parametrlari bilan
   const vimeoSrc = vimeoId
