@@ -23,8 +23,12 @@ export default function GoogleButton() {
     };
 
     const onMessage = (event: MessageEvent) => {
-      if (event.origin !== appOrigin) return;
+      const allowedOrigins = [
+        process.env.NEXT_PUBLIC_APP_ORIGIN,
+        "https://api.sevenedu.store",
+      ];
 
+      if (!allowedOrigins.includes(event.origin)) return;
       if (event.data?.type === "oauth" && typeof event.data.token === "string") {
         finishLogin(event.data.token);
       }
