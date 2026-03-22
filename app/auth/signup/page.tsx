@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import edu7 from "@/app/images/7edu white logo.png";
 import { register } from "@/app/api/service/api";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 
 const SignupPage = () => {
   const router = useRouter();
@@ -26,58 +26,75 @@ const SignupPage = () => {
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
-  const handleSignup = async () => {
-    if (!isAllowed) {
-      alert("Siz avval shartnomaga rozilik berishingiz kerak");
-      return;
-    }
-    setIsSubmitting(true);
-    setError(false);
-    setErrorMessage("");
+const handleSignup = async () => {
+  if (!isAllowed) {
+    alert("Siz avval shartnomaga rozilik berishingiz kerak");
+    return;
+  }
+  setIsSubmitting(true);
+  setError(false);
+  setErrorMessage("");
 
-    if (
-      !userData.name ||
-      !userData.surname ||
-      !userData.email ||
-      !userData.password
-    ) {
+  if (!userData.name || !userData.surname || !userData.email || !userData.password) {
+    setError(true);
+    setErrorMessage("Iltimos, barcha maydonlarni to'ldiring");
+    setIsSubmitting(false);
+    return;
+  }
+
+  if (!/^\S+@\S+\.\S+$/.test(userData.email)) {
+    setError(true);
+    setErrorMessage("Iltimos, to'g'ri email manzil kiriting");
+    setIsSubmitting(false);
+    return;
+  }
+
+  try {
+    const res = await register(userData);
+
+    if (res.token) {
+      localStorage.setItem("email", userData.email);
+      localStorage.setItem("token", res.token);
+      router.push("verify");
+    } else {
       setError(true);
-      setErrorMessage("Iltimos, barcha maydonlarni to'ldiring");
-      return;
+      setErrorMessage("Ro'yxatdan o'tishda noma'lum xatolik yuz berdi");
     }
+  }catch (error: unknown) {
+  let message = "Ro'yxatdan o'tishda xatolik yuz berdi";
 
-    if (!/^\S+@\S+\.\S+$/.test(userData.email)) {
-      setError(true);
-      setErrorMessage("Iltimos, to'g'ri email manzil kiriting");
-      return;
+  if (axios.isAxiosError(error)) {
+    // Endi error.response?.status ishlaydi
+    switch (error.response?.status) {
+      case 400:
+        message = error.response?.data?.message || "So‘rov noto‘g‘ri";
+        break;
+      case 403:
+        message = error.response?.data?.message || "Emailingizni tasdiqlang";
+        break;
+      case 409:
+        message = error.response?.data?.message || "Bu email allaqachon ro'yxatdan o'tgan";
+        break;
+      case 404:
+        message = error.response?.data?.message || "Foydalanuvchi topilmadi";
+        break;
+      default:
+        message = error.response?.data?.message || message;
     }
+  } else if (error instanceof Error) {
+    message = error.message;
+  }
 
-    try {
-      const res = await register(userData);
+  setError(true);
+  setErrorMessage(message);
 
-      if (res.token) {
-        localStorage.setItem("email", userData.email);
-        localStorage.setItem("token", res.token);
-        router.push("verify");
-      } else {
-        setError(true);
-        setErrorMessage("Ro'yxatdan o'tishda xatolik yuz berdi");
-      }
-    } catch (error: unknown) {
-      console.error("Registration error:", error);
-
-      let message = "Ro'yxatdan o'tishda xatolik yuz berdi";
-
-      if (error instanceof AxiosError && error.response?.data?.message) {
-        message = error.response.data.message;
-      } else if (error instanceof Error) {
-        message = error.message;
-      }
-
-      setError(true);
-      setErrorMessage(message);
-    }
-  };
+  if (!(axios.isAxiosError(error) && [400, 403, 404, 409].includes(Number(error.response?.status)))) {
+    console.error("Registration error:", error);
+  }
+} finally {
+    setIsSubmitting(false);
+  }
+};
 
   const inputClasses =
     "w-full h-12 border border-border rounded-input px-4 bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-primary transition-all duration-200";
@@ -211,11 +228,10 @@ const SignupPage = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${
-                isSubmitting
-                  ? "bg-primary/60 cursor-not-allowed"
-                  : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
-              }`}
+              className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${isSubmitting
+                ? "bg-primary/60 cursor-not-allowed"
+                : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
+                }`}
             >
               {isSubmitting ? "Yuborilmoqda..." : "Kirish"}
             </button>

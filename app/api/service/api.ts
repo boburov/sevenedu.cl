@@ -19,28 +19,23 @@ api.interceptors.request.use((config) => {
 });
 
 api.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        if (process.env.NODE_ENV === 'production') {
-
-            const data = { ...error.response?.data };
-            if (data?.pin) data.pin = "***";
-            if (data?.token) data.token = "***";
-            if (data?.password) data.password = "***";
-
-            console.error("API Error:", data?.message || error.message || "Noma'lum xatolik yuz berdi.");
-        } else {
-            console.error(error);
-        }
-
-        return Promise.reject(
-            error.response?.data?.message ||
-            error.message ||
-            "Noma'lum xatolik yuz berdi."
-        );
+  (response) => response,
+  (error) => {
+    // Productionda sensitive ma'lumotlarni yashirish
+    if (process.env.NODE_ENV === 'production') {
+      const data = { ...error.response?.data };
+      if (data?.pin) data.pin = "***";
+      if (data?.token) data.token = "***";
+      if (data?.password) data.password = "***";
+      console.error("API Error:", data?.message || error.message || "Noma'lum xatolik yuz berdi.");
+    } else {
+      console.error(error);
     }
-);
 
+    // ⚡ Bu yerda faqat message emas, butun error obyektini qaytaring
+    return Promise.reject(error); // ← asliy AxiosError qaytadi
+  }
+);
 export const updateUserProfilePic = async (userId: string, formData: FormData) => {
     const response = await api.post(apiEndpoins.updateUserProfilePic(userId), formData);
     return response.data;
