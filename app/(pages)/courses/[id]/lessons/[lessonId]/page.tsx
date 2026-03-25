@@ -53,7 +53,7 @@ function getJsonVideoUrlByLessonNumber(categoryId: string, lessonNumber: number)
   if (!item) return "";
 
   // Rus tili: url fieldidan Vimeo ID olamiz
-  if (categoryId === RUS_ID && item.url || categoryId === XITOY_ID && item.url || categoryId === KOREYS_ID && item.url || categoryId === NEMIS_TILI && item.url || categoryId === ARAB_ID && item.url) {
+  if (categoryId === RUS_ID && item.url || categoryId === XITOY_ID && item.url || categoryId === KOREYS_ID && item.url || categoryId === NEMIS_TILI && item.url || categoryId === ARAB_ID && item.url || categoryId === TURK_TILI && item.url) {
     const vimeoId = extractVimeoId(item.url);
     return vimeoId ? `vimeo:${vimeoId}` : "";
   }
