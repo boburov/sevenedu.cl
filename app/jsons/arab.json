@@ -1,320 +1,166 @@
-{
-    "videos": [
-        {
-            "name": "Alifbo",
-            "url": "https://vimeo.com/1174321190"
-        },
-        {
-            "key": "arab/IMG_6908.MOV",
-            "name": "1-dars",
-            "lesson": "1-dars",
-            "url": "https://vimeo.com/1174321621"
-        },
-        {
-            "key": "arab/IMG_6883.MOV",
-            "name": "2-dars",
-            "lesson": "2-dars",
-            "url": "https://vimeo.com/1174321684"
-        },
-        {
-            "key": "arab/IMG_6910.MOV",
-            "name": "3-dars",
-            "lesson": "3-dars",
-            "url": "https://vimeo.com/1174320887"
-        },
-        {
-            "key": "arab/IMG_6884.MOV",
-            "name": "3-dars (2-qism)",
-            "lesson": "3-dars",
-            "url": "https://vimeo.com/1174320796"
-        },
-        {
-            "key": "arab/IMG_6885.MOV",
-            "name": "4-dars",
-            "lesson": "4-dars",
-            "url": "https://vimeo.com/1174321041"
-        },
-        {
-            "key": "arab/5-dars.MOV",
-            "name": "5-dars",
-            "lesson": "5-dars",
-            "url": "https://vimeo.com/1174322008"
-        },
-        {
-            "key": "arab/IMG_6951.MOV",
-            "name": "6-dars",
-            "lesson": "6-dars",
-            "url": "https://vimeo.com/1174321254"
-        },
-        {
-            "key": "arab/IMG_6911.MOV",
-            "name": "7–8-dars",
-            "lesson": "7–8-dars",
-            "url": "https://vimeo.com/1174321452"
-        },
-        {
-            "key": "arab/9-dars.MOV",
-            "name": "9-dars",
-            "lesson": "9-dars",
-            "url": "https://vimeo.com/1174321380"
-        },
-        {
-            "key": "arab/IMG_6913.MOV",
-            "name": "10-dars",
-            "lesson": "10-dars",
-            "url": "https://vimeo.com/1174321529"
-        },
-        {
-            "key": "arab/IMG_6914.MOV",
-            "name": "Gramatika 1-dars",
-            "lesson": "Gramatika 1",
-            "url": "https://vimeo.com/1174321621"
-        },
-        {
-            "key": "arab/IMG_6915.MOV",
-            "name": "Gramatika 2-dars",
-            "lesson": "Gramatika 2",
-            "url": "https://vimeo.com/1174321684"
-        },
-        {
-            "key": "arab/IMG_6916.MOV",
-            "name": "Gramatika 3-dars",
-            "lesson": "Gramatika 3",
-            "url": "https://vimeo.com/1174321731"
-        },
-        {
-            "key": "arab/IMG_6917.MOV",
-            "name": "Gramatika 4-dars",
-            "lesson": "Gramatika 4",
-            "url": "https://vimeo.com/1174321815"
-        },
-        {
-            "key": "arab/IMG_6950.MOV",
-            "name": "Gramatika 5-dars",
-            "lesson": "Gramatika 5",
-            "url": "https://vimeo.com/1174322008"
-        },
-        {
-            "key": "arab/6-dars.MOV",
-            "name": "Gramatika 6-dars",
-            "lesson": "Gramatika 6",
-            "url": "https://vimeo.com/1174322184"
-        },
-        {
-            "key": "arab/IMG_6952.MOV",
-            "name": "Gramatika 7-dars",
-            "lesson": "Gramatika 7",
-            "url": "https://vimeo.com/1174322274"
-        },
-        {
-            "key": "arab/IMG_6956.MOV",
-            "name": "Gramatika 8-dars",
-            "lesson": "Gramatika 8",
-            "url": "https://vimeo.com/1174322502"
-        },
-        {
-            "key": "arab/IMG_6957.MOV",
-            "name": "Gramatika 9-dars",
-            "lesson": "Gramatika 9",
-            "url": "https://vimeo.com/1174322502"
-        },
-        {
-            "key": "arab/IMG_6958.MOV",
-            "name": "Gramatika 10-dars",
-            "lesson": "Gramatika 10",
-            "url": "https://vimeo.com/1174322596"
-        },
-        {
-            "key": "arab/IMG_6959.MOV",
-            "name": "Gramatika 11-dars",
-            "lesson": "Gramatika 11",
-            "url": "https://vimeo.com/1174322749"
-        },
-        {
-            "key": "arab/IMG_6960.MOV",
-            "name": "Gramatika 12-dars",
-            "lesson": "Gramatika 12",
-            "url": "https://vimeo.com/1174322834"
-        },
-        {
-            "key": "arab/IMG_6961.MOV",
-            "name": "Gramatika 13-dars",
-            "lesson": "Gramatika 13",
-            "url": "https://vimeo.com/1174322947"
-        },
-        {
-            "key": "arab/IMG_6962.MOV",
-            "name": "Gramatika 14-dars",
-            "lesson": "Gramatika 14",
-            "url": "https://vimeo.com/1174323009"
-        },
-        {
-            "key": "arab/IMG_6964.MOV",
-            "name": "Gramatika 15-dars",
-            "lesson": "Gramatika 15",
-            "url": "https://vimeo.com/1174323064"
-        },
-        {
-            "key": "arab/IMG_6966.MOV",
-            "name": "Gramatika 16-dars",
-            "lesson": "Gramatika 16",
-            "url": "https://vimeo.com/1174323202"
-        },
-        {
-            "key": "arab/IMG_6969.MOV",
-            "name": "Gramatika 17-dars",
-            "lesson": "Gramatika 17",
-            "url": "https://vimeo.com/1174323375"
-        },
-        {
-            "key": "arab/IMG_6970.MOV",
-            "name": "Gramatika 18-dars",
-            "lesson": "Gramatika 18",
-            "url": "https://vimeo.com/1174323547"
-        },
-        {
-            "key": "arab/IMG_6971.MOV",
-            "name": "Gramatika 19-dars",
-            "lesson": "Gramatika 19",
-            "url": "https://vimeo.com/1174323618"
-        },
-        {
-            "key": "arab/IMG_6972.MOV",
-            "name": "Gramatika 20-dars",
-            "lesson": "Gramatika 20",
-            "url": "https://vimeo.com/1174323705"
-        },
-        {
-            "key": "arab/IMG_7008.MOV",
-            "name": "Gramatika 21-dars",
-            "lesson": "Gramatika 21",
-            "url": "https://vimeo.com/1174323775"
-        },
-        {
-            "key": "arab/IMG_7010.MOV",
-            "name": "Gramatika 22-dars",
-            "lesson": "Gramatika 22",
-            "url": "https://vimeo.com/1174323850"
-        },
-        {
-            "key": "arab/Arab tili 25 dars .mp4",
-            "name": "23-dars",
-            "lesson": "23-dars",
-            "url": "https://vimeo.com/1174323902"
-        },
-        {
-            "key": "arab/IMG_7012.MOV",
-            "name": "Gramatika 24-dars",
-            "lesson": "Gramatika 24",
-            "url": "https://vimeo.com/1174323982"
-        },
-        {
-            "key": "arab/Arab tili 25 dars .mp4",
-            "name": "25-dars",
-            "lesson": "25-dars",
-            "url": "https://vimeo.com/1174320362"
-        },
-        {
-            "key": "arab/arab tili 26 dars .mp4",
-            "name": "26-dars",
-            "lesson": "26-dars",
-            "url": "https://vimeo.com/1175521855"
-        },
-        {
-            "key": "arab/arab tili 27 dars gramatika .mp4",
-            "name": "27-dars",
-            "lesson": "27-dars",
-            "url": "https://vimeo.com/1174319333"
-        },
-        {
-            "key": "arab/arab tili 28 dars gramatika .mp4",
-            "name": "28-dars",
-            "lesson": "28-dars",
-            "url": "https://vimeo.com/1174319470"
-        },
-        {
-            "key": "arab/arab tili 29 dars gramatikasi .mp4",
-            "name": "29-dars",
-            "lesson": "29-dars",
-            "url": "https://vimeo.com/1174319589"
-        },
-        {
-            "key": "arab/arab tili 30 dars gramatika .mp4",
-            "name": "30-dars",
-            "lesson": "30-dars",
-            "url": "https://vimeo.com/1174319680"
-        },
-        {
-            "key": "arab/arab tili 31 dars gramatika .mp4",
-            "name": "31-dars",
-            "lesson": "31-dars",
-            "url": "https://vimeo.com/1174319783"
-        },
-        {
-            "key": "arab/arab tili 32 dars gramatika .mp4",
-            "name": "32-dars",
-            "lesson": "32-dars",
-            "url": "https://vimeo.com/1174319898"
-        },
-        {
-            "key": "arab/Arab tili 33 dars .mp4",
-            "name": "33-dars",
-            "lesson": "33-dars",
-            "url": "https://vimeo.com/1174320442"
-        },
-        {
-            "key": "arab/arab tili gramatika 34 .mp4",
-            "name": "34-dars",
-            "lesson": "34-dars",
-            "url": "https://vimeo.com/1174320658"
-        },
-        {
-            "key": "arab/Arab tili 35 dars .mp4",
-            "name": "35-dars",
-            "lesson": "35-dars",
-            "url": "https://vimeo.com/1174320516"
-        },
-        {
-            "key": "arab/arab tili 36 dars .mp4",
-            "name": "36-dars",
-            "lesson": "36-dars",
-            "url": "https://vimeo.com/1174320014"
-        },
-        {
-            "key": "arab/arab tili 37 dars .mp4",
-            "name": "37-dars",
-            "lesson": "37-dars",
-            "url": "https://vimeo.com/1174320067"
-        },
-        {
-            "key": "arab/38-dars.mp4",
-            "name": "38-dars",
-            "lesson": "38-dars",
-            "url": "https://vimeo.com/1174320701"
-        },
-        {
-            "key": "arab/Arab tili 39 dars gramatika .mp4",
-            "name": "39-dars",
-            "lesson": "39-dars",
-            "url": "https://vimeo.com/1174320588"
-        },
-        {
-            "key": "arab/arab tili 40 dars .mp4",
-            "name": "40-dars",
-            "lesson": "40-dars",
-            "url": "https://vimeo.com/1174320148"
-        },
-        {
-            "key": "arab/arab tili 41 dars .mp4",
-            "name": "41-dars",
-            "lesson": "41-dars",
-            "url": "https://vimeo.com/1174320212"
-        },
-        {
-            "key": "arab/arab tili 42 dars .mp4",
-            "name": "42-dars",
-            "lesson": "42-dars",
-            "url": "https://vimeo.com/1174320295"
-        }
-    ]
-}
+[
+    {
+        "id": "070b86ac-7917-4564-9ac1-f198bfea5ab3",
+        "videoUrl": "https://vimeo.com/1174321621"
+    },
+    {
+        "id": "f972c6ed-6576-49ad-b466-cbb4f3f367b0",
+        "videoUrl": "https://vimeo.com/1174321684"
+    },
+    {
+        "id": "9e0ae084-6ed0-45c2-a5d9-67ca2c8563a1",
+        "videoUrl": "https://vimeo.com/1174320887"
+    },
+    {
+        "id": "9837ffd9-f812-4527-abd0-ebac4cc67758",
+        "videoUrl": "https://vimeo.com/1174321041"
+    },
+    {
+        "id": "c74f40f2-d693-467c-b46f-272771c59551",
+        "videoUrl": "https://vimeo.com/1174322008"
+    },
+    {
+        "id": "341dcf77-a439-4908-8cab-de504a09d791",
+        "videoUrl": "https://vimeo.com/1174321254"
+    },
+    {
+        "id": "52b47a74-d8b7-4fa5-9027-7c932c0961cd",
+        "videoUrl": "https://vimeo.com/1174321452"
+    },
+    {
+        "id": "b6286f1e-10e3-4269-a4ac-8ec86aa493c5",
+        "videoUrl": "https://vimeo.com/1174321380"
+    },
+    {
+        "id": "d111f0c0-4a2b-4189-937b-a5b5bbac4586",
+        "videoUrl": "https://vimeo.com/1174321529"
+    },
+    {
+        "id": "ae5fb541-8eb9-468e-a379-69b694a2fd01",
+        "videoUrl": "https://vimeo.com/1174321621"
+    },
+    {
+        "id": "42ccc031-968f-4331-abd2-69f4cf5c98b0",
+        "videoUrl": "https://vimeo.com/1174321684"
+    },
+    {
+        "id": "8826071c-5fb0-4a78-8dc0-86228b5d2248",
+        "videoUrl": "https://vimeo.com/1174321731"
+    },
+    {
+        "id": "f7e15f66-3930-4950-83b3-5441690d72ae",
+        "videoUrl": "https://vimeo.com/1174321815"
+    },
+    {
+        "id": "cd8dd33c-5550-4f2f-89cf-e4f686a7413d",
+        "videoUrl": "https://vimeo.com/1174322008"
+    },
+    {
+        "id": "4892ae97-bf11-4d78-8c3e-97f6bebd186a",
+        "videoUrl": "https://vimeo.com/1174322184"
+    },
+    {
+        "id": "cc8d592c-c2c3-480f-b659-4c886e1ff916",
+        "videoUrl": "https://vimeo.com/1174322274"
+    },
+    {
+        "id": "fd0a6481-a095-4db1-9913-7b6002721af2",
+        "videoUrl": "https://vimeo.com/1174322502"
+    },
+    {
+        "id": "71721f06-5f7c-4303-99d7-614c3633a1cc",
+        "videoUrl": "https://vimeo.com/1174322502"
+    },
+    {
+        "id": "a72d2a36-8bbe-4a54-8aac-95cc5e53dfe0",
+        "videoUrl": "https://vimeo.com/1174322596"
+    },
+    {
+        "id": "0141f3e1-a29b-4b6f-8ced-ad3492e520a5",
+        "videoUrl": "https://vimeo.com/1174322749"
+    },
+    {
+        "id": "ae2e6ef8-882e-46f1-9e19-d51e76ecb3cf",
+        "videoUrl": "https://vimeo.com/1174322834"
+    },
+    {
+        "id": "59331558-af5d-427b-848a-eeb234d99b50",
+        "videoUrl": "https://vimeo.com/1174322947"
+    },
+    {
+        "id": "741e3a26-3d2f-4336-a33e-7a627ee3f03f",
+        "videoUrl": "https://vimeo.com/1174323009"
+    },
+    {
+        "id": "fa515fd8-40a7-4432-87a8-1d68672bb945",
+        "videoUrl": "https://vimeo.com/1174323064"
+    },
+    {
+        "id": "6903266a-792e-44c6-a100-f6e2ff173946",
+        "videoUrl": "https://vimeo.com/1174323202"
+    },
+    {
+        "id": "3062a68c-6f8e-4ceb-9041-39bce3c66a53",
+        "videoUrl": "https://vimeo.com/1174323375"
+    },
+    {
+        "id": "c7b83d52-2089-4952-8407-23a2a03c92bc",
+        "videoUrl": "https://vimeo.com/1174323547"
+    },
+    {
+        "id": "fea71f7e-69bf-48ad-935d-99818369d955",
+        "videoUrl": "https://vimeo.com/1174323618"
+    },
+    {
+        "id": "2cd34fe9-4a94-4078-a701-8a87c976161f",
+        "videoUrl": "https://vimeo.com/1174323705"
+    },
+    {
+        "id": "98c5f189-62bc-4a87-b7ec-74c6f4431a69",
+        "videoUrl": "https://vimeo.com/1174323775"
+    },
+    {
+        "id": "a45a9f8a-a1a2-4fd9-aed2-c886c0aeabb9",
+        "videoUrl": "https://vimeo.com/1174323850"
+    },
+    {
+        "id": "02813a4e-d22c-4a9e-a0ee-3d7968c2352d",
+        "videoUrl": "https://vimeo.com/1174323902"
+    },
+    {
+        "id": "6c4b69b6-b4a3-412a-8db2-8b9a2917bd97",
+        "videoUrl": "https://vimeo.com/1174323982"
+    },
+    {
+        "id": "d4da9bb9-5031-4779-a13d-385e19f14816",
+        "videoUrl": "https://vimeo.com/1174320362"
+    },
+    {
+        "id": "9cea330b-cd98-4c76-9001-42fe50868f48",
+        "videoUrl": "https://vimeo.com/1175521855"
+    },
+    {
+        "id": "53f9c524-3a7f-48a4-9c3a-738c71a6bc24",
+        "videoUrl": "https://vimeo.com/1174319333"
+    },
+    {
+        "id": "61e63ef2-0535-46b5-96ca-b90151e2c5ba",
+        "videoUrl": "https://vimeo.com/1174319470"
+    },
+    {
+        "id": "1e87292c-5c45-499d-8ca7-3d5addd1041f",
+        "videoUrl": "https://vimeo.com/1174319589"
+    },
+    {
+        "id": "cf221bc2-bfa8-494b-bfb5-e23fdf9dbf64",
+        "videoUrl": "https://vimeo.com/1174319680"
+    },
+    {
+        "id": "00103151-7dbb-409e-a5aa-c781f940328e",
+        "videoUrl": "https://vimeo.com/1174319783"
+    },
+    {
+        "id": "7363419a-b986-42dc-8345-491cc0f0946f",
+        "videoUrl": "https://vimeo.com/1174319898"
+    }
+]

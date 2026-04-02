@@ -1,190 +1,126 @@
-{
-    "videos": [
-        {
-            "key": "nemis_tili/D 1.MP4",
-            "name": "1-dars",
-            "lesson": "1-dars",
-            "url": "https://vimeo.com/1174504700"
-        },
-        {
-            "key": "nemis_tili/D 2.MP4",
-            "name": "2-dars",
-            "lesson": "2-dars",
-            "url": "https://vimeo.com/1174505046"
-        },
-        {
-            "key": "nemis_tili/D 3.MP4",
-            "name": "3-dars",
-            "lesson": "3-dars",
-            "url": "https://vimeo.com/1174505267"
-        },
-        {
-            "key": "nemis_tili/D 4.MP4",
-            "name": "4-dars",
-            "lesson": "4-dars",
-            "url": "https://vimeo.com/1174505431"
-        },
-        {
-            "key": "nemis_tili/D 5.MP4",
-            "name": "5-dars",
-            "lesson": "5-dars",
-            "url": "https://vimeo.com/1174505768"
-        },
-        {
-            "key": "nemis_tili/D 6.MP4",
-            "name": "6-dars",
-            "lesson": "6-dars",
-            "url": "https://vimeo.com/1174505768"
-        },
-        {
-            "key": "nemis_tili/D 7.MP4",
-            "name": "7-dars",
-            "lesson": "7-dars",
-            "url": "https://vimeo.com/1174505878"
-        },
-        {
-            "key": "nemis_tili/D 8.MP4",
-            "name": "8-dars",
-            "lesson": "8-dars",
-            "url": "https://vimeo.com/1174506125"
-        },
-        {
-            "key": "nemis_tili/D 9.MP4",
-            "name": "9-dars",
-            "lesson": "9-dars",
-            "url": "https://vimeo.com/1174506304"
-        },
-        {
-            "key": "nemis_tili/D10.MP4",
-            "name": "10-dars",
-            "lesson": "10-dars",
-            "url": "https://vimeo.com/1174506622"
-        },
-        {
-            "key": "nemis_tili/D11.MP4",
-            "name": "11-dars",
-            "lesson": "11-dars",
-            "url": "https://vimeo.com/1174507021"
-        },
-        {
-            "key": "nemis_tili/D12.MP4",
-            "name": "12-dars",
-            "lesson": "12-dars",
-            "url": "https://vimeo.com/1174507242"
-        },
-        {
-            "key": "nemis_tili/D 13.MP4",
-            "name": "13-dars",
-            "lesson": "13-dars",
-            "url": "https://vimeo.com/1174507374"
-        },
-        {
-            "key": "nemis_tili/D 14.MP4",
-            "name": "14-dars",
-            "lesson": "14-dars",
-            "url": ""
-        },
-        {
-            "key": "nemis_tili/D 15.MOV",
-            "name": "15-dars",
-            "lesson": "15-dars",
-            "url": "https://vimeo.com/1174470816"
-        },
-        {
-            "key": "nemis_tili/D 16.MOV",
-            "name": "16-dars",
-            "lesson": "16-dars",
-            "url": "https://vimeo.com/1174471192"
-        },
-        {
-            "key": "nemis_tili/D 17.MP4",
-            "name": "17-dars",
-            "lesson": "17-dars",
-            "url": "https://vimeo.com/1174507736"
-        },
-        {
-            "key": "nemis_tili/D 18.MP4",
-            "name": "18-dars",
-            "lesson": "18-dars",
-            "url": "https://vimeo.com/1174507986"
-        },
-        {
-            "key": "nemis_tili/D 19.MP4",
-            "name": "19-dars",
-            "lesson": "19-dars",
-            "url": "https://vimeo.com/1174508216"
-        },
-        {
-            "key": "nemis_tili/D 20.MP4",
-            "name": "20-dars",
-            "lesson": "20-dars",
-            "url": "https://vimeo.com/1174508429"
-        },
-        {
-            "key": "nemis_tili/D 21.MP4",
-            "name": "21-dars",
-            "lesson": "21-dars",
-            "url": "https://vimeo.com/1174508580"
-        },
-        {
-            "key": "nemis_tili/D 22.MP4",
-            "name": "22-dars",
-            "lesson": "22-dars",
-            "url": "https://vimeo.com/1174508907"
-        },
-        {
-            "key": "nemis_tili/D 23.MP4",
-            "name": "23-dars",
-            "lesson": "23-dars",
-            "url": "https://vimeo.com/1174509087"
-        },
-        {
-            "key": "nemis_tili/D 24.MP4",
-            "name": "24-dars",
-            "lesson": "24-dars",
-            "url": "https://vimeo.com/1174509331"
-        },
-        {
-            "key": "nemis_tili/D 25.MP4",
-            "name": "25-dars",
-            "lesson": "25-dars",
-            "url": "https://vimeo.com/1174509462"
-        },
-        {
-            "key": "nemis_tili/D 26.MP4",
-            "name": "26-dars",
-            "lesson": "26-dars",
-            "url": "https://vimeo.com/1174503454"
-        },
-        {
-            "key": "nemis_tili/D 27.MP4",
-            "name": "27-dars",
-            "lesson": "27-dars",
-            "url": "https://vimeo.com/1174503712"
-        },
-        {
-            "key": "nemis_tili/D 28.MP4",
-            "name": "28-dars",
-            "lesson": "28-dars",
-            "url": "https://vimeo.com/1174503925"
-        },
-        {
-            "key": "nemis_tili/D 29.MP4",
-            "name": "29-dars",
-            "lesson": "29-dars",
-            "url": "https://vimeo.com/1174504351"
-        },
-        {
-            "key": "nemis_tili/D 30.mp4",
-            "name": "30-dars",
-            "lesson": "30-dars",
-            "url": "https://vimeo.com/1174509627"
-        },
-        {
-            "key": "nemis_tili/D 31.MP4",
-            "name": "31-dars",
-            "lesson": "31-dars",
-            "url": "https://vimeo.com/1174504147"
-        }
-    ]
-}
+[
+  {
+    "id": "f1f17853-e762-452c-91c0-a43c5c94b4ee",
+    "videoUrl": "https://vimeo.com/1174504700"
+  },
+  {
+    "id": "3959e747-e2eb-438e-b260-a542171ae67a",
+    "videoUrl": "https://vimeo.com/1174505046"
+  },
+  {
+    "id": "fd7201a6-7345-448c-b266-d8bd9025b848",
+    "videoUrl": "https://vimeo.com/1174505267"
+  },
+  {
+    "id": "01b898e4-81d6-4ff9-b5d9-dff35e9029bb",
+    "videoUrl": "https://vimeo.com/1174505431"
+  },
+  {
+    "id": "8511123a-bd42-41b9-8de2-60d16233c1a8",
+    "videoUrl": "https://vimeo.com/1174505768"
+  },
+  {
+    "id": "44c404eb-f257-41f6-afab-12411f3e430c",
+    "videoUrl": "https://vimeo.com/1174505768"
+  },
+  {
+    "id": "fd3ae39c-9909-4870-8ce6-fb6d0140f897",
+    "videoUrl": "https://vimeo.com/1174505878"
+  },
+  {
+    "id": "02f90cc9-b5c8-4b5a-9262-54d3d1173590",
+    "videoUrl": "https://vimeo.com/1174506125"
+  },
+  {
+    "id": "3f42fa20-55fc-4d05-9174-ced53435012a",
+    "videoUrl": "https://vimeo.com/1174506304"
+  },
+  {
+    "id": "7563392d-027b-4c6c-b380-6b088d602e1c",
+    "videoUrl": "https://vimeo.com/1174506622"
+  },
+  {
+    "id": "10e5aee9-2aff-4da2-88ab-4bfd9ec7d2a2",
+    "videoUrl": "https://vimeo.com/1174507021"
+  },
+  {
+    "id": "f6a45474-6fca-47a2-9eda-6836cb1b17e5",
+    "videoUrl": "https://vimeo.com/1174507242"
+  },
+  {
+    "id": "54a20ebe-4c67-40a3-b6bd-ff684a020709",
+    "videoUrl": "https://vimeo.com/1174507374"
+  },
+  {
+    "id": "7799db2b-9c03-4875-b637-4eb3af070781",
+    "videoUrl": ""
+  },
+  {
+    "id": "63bb589b-ce1d-4021-8dfb-6fcf42fe98e8",
+    "videoUrl": "https://vimeo.com/1174470816"
+  },
+  {
+    "id": "662d4661-7407-4587-aab6-18a71b8fc522",
+    "videoUrl": "https://vimeo.com/1174471192"
+  },
+  {
+    "id": "b7e212ee-2050-4c01-bb12-ddafac9d0759",
+    "videoUrl": "https://vimeo.com/1174507736"
+  },
+  {
+    "id": "6233e96a-58c0-424b-b9af-6033387b50af",
+    "videoUrl": "https://vimeo.com/1174507986"
+  },
+  {
+    "id": "e3add650-05ec-4509-8057-0c66acc8ae56",
+    "videoUrl": "https://vimeo.com/1174508216"
+  },
+  {
+    "id": "ca365712-28a1-43bd-88c1-9b6caf4957d7",
+    "videoUrl": "https://vimeo.com/1174508429"
+  },
+  {
+    "id": "caa65d7e-611d-44d7-a52a-52022559a53f",
+    "videoUrl": "https://vimeo.com/1174508580"
+  },
+  {
+    "id": "13faf540-fcb9-4525-9ec6-f531de9d05c9",
+    "videoUrl": "https://vimeo.com/1174508907"
+  },
+  {
+    "id": "d9076a97-3b7b-4a64-bc30-0fb263fa15a8",
+    "videoUrl": "https://vimeo.com/1174509087"
+  },
+  {
+    "id": "ab3d09a7-7ee8-4422-aefa-ad1e74c52811",
+    "videoUrl": "https://vimeo.com/1174509331"
+  },
+  {
+    "id": "5e90b3c9-1068-406d-a7bd-3ba8c2138a9b",
+    "videoUrl": "https://vimeo.com/1174509462"
+  },
+  {
+    "id": "a7129fbd-1ce3-45b7-b1a6-9bd3533abd7a",
+    "videoUrl": "https://vimeo.com/1174503454"
+  },
+  {
+    "id": "c06748c9-e1d4-438c-b020-5dfbca683a7f",
+    "videoUrl": "https://vimeo.com/1174503712"
+  },
+  {
+    "id": "80f84550-54d8-48b7-adf8-8eff791c6020",
+    "videoUrl": "https://vimeo.com/1174503925"
+  },
+  {
+    "id": "8d8058dc-ea65-48c8-a2d0-54bd96ab768c",
+    "videoUrl": "https://vimeo.com/1174504351"
+  },
+  {
+    "id": "313d9115-f781-41db-b0f0-432d4e4997e4",
+    "videoUrl": "https://vimeo.com/1174509627"
+  },
+  {
+    "id": "d66702ad-4178-4545-93d4-36b4b96c4227",
+    "videoUrl": "https://vimeo.com/1174504147"
+  }
+]
