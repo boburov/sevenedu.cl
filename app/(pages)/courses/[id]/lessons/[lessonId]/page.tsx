@@ -52,13 +52,11 @@ function getJsonVideoUrlByLessonNumber(categoryId: string, lessonNumber: number)
   const item = course?.videos?.[lessonNumber - 1];
   if (!item) return "";
 
-  // Rus tili: url fieldidan Vimeo ID olamiz
-  if (categoryId === RUS_ID && item.url || categoryId === XITOY_ID && item.url || categoryId === KOREYS_ID && item.url || categoryId === NEMIS_TILI && item.url || categoryId === ARAB_ID && item.url || categoryId === TURK_TILI && item.url) {
+  if (item.url) {
     const vimeoId = extractVimeoId(item.url);
     return vimeoId ? `vimeo:${vimeoId}` : "";
   }
 
-  // Boshqa tillar: S3 dan key orqali
   if (!item.key) return "";
   return `https://sevenedu-bucet.s3.eu-north-1.amazonaws.com/${encodeURIComponent(item.key)}`;
 }
@@ -83,6 +81,13 @@ function getCorrectVideoUrl(url: string, categoryId: string, lessonIndex?: numbe
   return `https://sevenedu-s3.s3.eu-north-1.amazonaws.com/videos/${cleanedFilename}`;
 }
 
+/**
+ * Ingliz tili kurslari jsonOverrides ro'yxatida yo'q.
+ * Qolgan barcha kurslar (rus, xitoy, koreys, arab, nemis, turk) uchun:
+ *   1. Avval JSON fayldan URL qidiriladi (mavjud bo'lsa — ishlatiladi)
+ *   2. JSON da topilmasa — backenddan kelgan videoUrl ni Vimeo sifatida ishlatadi
+ * Ingliz tili kurslari uchun: S3 URL qaytaradi (avvalgi mantiq)
+ */
 function resolveVideoUrl(params: {
   categoryId: string;
   lessonIndex: number;
@@ -90,9 +95,35 @@ function resolveVideoUrl(params: {
 }): string {
   const { categoryId, lessonIndex, backendVideoUrl } = params;
 
-  const jsonUrl = getJsonVideoUrlByLessonNumber(categoryId, lessonIndex + 1);
-  if (jsonUrl) return jsonUrl;
+  const isJsonCourse = categoryId in jsonOverrides;
 
+  if (isJsonCourse) {
+    // 1. JSON fayldan URL qidiramiz
+    const jsonUrl = getJsonVideoUrlByLessonNumber(categoryId, lessonIndex + 1);
+    if (jsonUrl) return jsonUrl;
+
+    // 2. JSON da topilmasa — backenddan kelgan URL ni Vimeo sifatida ishlatamiz
+    if (backendVideoUrl) {
+      // Agar to'liq Vimeo URL kelsa (https://vimeo.com/...) — ID ni ajratamiz
+      if (backendVideoUrl.includes("vimeo.com/")) {
+        const vimeoId = extractVimeoId(backendVideoUrl);
+        return vimeoId ? `vimeo:${vimeoId}` : "";
+      }
+      // Agar faqat Vimeo ID raqam sifatida kelgan bo'lsa
+      if (/^\d+$/.test(backendVideoUrl.trim())) {
+        return `vimeo:${backendVideoUrl.trim()}`;
+      }
+      // Boshqa format — xuddi shunday Vimeo ID sifatida urinib ko'ramiz
+      const extracted = extractVimeoId(backendVideoUrl);
+      if (extracted && /^\d+$/.test(extracted)) {
+        return `vimeo:${extracted}`;
+      }
+    }
+
+    return "";
+  }
+
+  // Ingliz tili va boshqa S3 kurslar — avvalgi mantiq
   if (backendVideoUrl) return getCorrectVideoUrl(backendVideoUrl, categoryId, lessonIndex);
 
   return "";
@@ -135,7 +166,6 @@ const Page = () => {
   const isVimeo = cleanedVideoUrl.startsWith("vimeo:");
   const vimeoId = isVimeo ? cleanedVideoUrl.replace("vimeo:", "") : "";
 
-  // Vimeo embed URL — Vimeo ning o'z embed code parametrlari bilan
   const vimeoSrc = vimeoId
     ? `https://player.vimeo.com/video/${vimeoId}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479`
     : "";
@@ -145,10 +175,6 @@ const Page = () => {
 
       {/* Video */}
       <div className="rounded-2xl border border-border bg-surface shadow-card overflow-hidden">
-        {/* 
-          Vimeo o'zi tavsiya qilgan aspect-ratio wrapper:
-          padding-top: 56.25% = 16/9 nisbat 
-        */}
         <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
           {!cleanedVideoUrl ? (
             <div className="absolute inset-0 grid place-items-center bg-black">
