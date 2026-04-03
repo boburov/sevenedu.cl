@@ -76,7 +76,16 @@ export default function Login() {
     } catch (error: any) {
       console.error("Login error:", error);
 
-      setMsg(error);
+      // Xato turini tekshirib, string ga o'tkazish
+      if (error?.response?.data?.message) {
+        setMsg(error.response.data.message); // API dan kelgan xabar
+      } else if (error?.message) {
+        setMsg(error.message); // JS Error xabari
+      } else if (typeof error === "string") {
+        setMsg(error); // oddiy string
+      } else {
+        setMsg("Login xatosi yuz berdi. Qayta urinib ko'ring.");
+      }
     } finally {
       setLoading(false);
     }
