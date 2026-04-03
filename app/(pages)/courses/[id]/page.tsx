@@ -27,9 +27,6 @@ interface User {
   courses: UserCourse[];
 }
 
-// 🔒 maxsus kurs ID
-const SPECIAL_COURSE_ID = "a06d565b-1d61-4564-af5d-1ceb4cfb3f6b";
-const SECOND_SPECIAL_COURSE_ID = "16c43a51-8c65-4a29-995c-f2e8ab0d6073";
 
 const CourseLessonsPage: React.FC = () => {
   const params = useParams() as { id?: string };
@@ -71,12 +68,6 @@ const CourseLessonsPage: React.FC = () => {
 
         // 3️⃣ maxsus kurs bo'lsa filter
         let finalLessons = dataLessons;
-
-        if (courseId === SPECIAL_COURSE_ID) {
-          finalLessons = [...dataLessons.slice(0, 24), ...dataLessons.slice(64)];
-        } else if (courseId === SECOND_SPECIAL_COURSE_ID) {
-          finalLessons = [...dataLessons.slice(32), ...dataLessons.slice(64)];
-        }
 
         setLessons(finalLessons);
       } catch (err: any) {
@@ -123,7 +114,7 @@ const CourseLessonsPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen">
         <div className="container mx-auto px-4 py-12">
           <div className="flex items-center justify-center min-h-[60vh]">
             <motion.div
@@ -137,7 +128,7 @@ const CourseLessonsPage: React.FC = () => {
                   transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                   className="absolute inset-0 rounded-full border-4 border-purple-100 border-t-purple-600"
                 />
-                <div className="absolute inset-2 rounded-full bg-purple-50" />
+                <div className="absolute inset-2 rounded-full " />
               </div>
               <p className="text-gray-600 text-lg font-medium">Darslar yuklanmoqda...</p>
             </motion.div>
@@ -148,7 +139,7 @@ const CourseLessonsPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
         <div className="absolute top-0 left-0 w-full h-full">
@@ -256,8 +247,8 @@ const CourseLessonsPage: React.FC = () => {
                       <div className="absolute left-[18px] sm:left-1/2 sm:-translate-x-1/2 -top-2 sm:-top-3 h-2 sm:h-3 w-[3px]">
                         <div
                           className={`h-full rounded-full ${isDone
-                              ? "bg-gradient-to-b from-purple-500 to-purple-400"
-                              : "bg-gray-200"
+                            ? "bg-gradient-to-b from-purple-500 to-purple-400"
+                            : "bg-gray-200"
                             }`}
                         />
                       </div>
@@ -271,12 +262,12 @@ const CourseLessonsPage: React.FC = () => {
                           whileHover={{ scale: locked ? 1 : 1.1 }}
                           whileTap={{ scale: locked ? 1 : 0.95 }}
                           className={`relative w-10 h-10 rounded-xl flex items-center justify-center shadow-md ${locked
-                              ? "bg-gray-100 border-2 border-gray-200"
-                              : isDone
-                                ? "bg-gradient-to-br from-purple-500 to-purple-600 shadow-purple-200"
-                                : isCurrent
-                                  ? "bg-gradient-to-br from-purple-400 to-purple-500 shadow-purple-300 ring-2 ring-purple-100"
-                                  : "bg-gradient-to-br from-purple-500 to-purple-600 shadow-purple-200"
+                            ? "bg-gray-100 border-2 border-gray-200"
+                            : isDone
+                              ? "bg-gradient-to-br from-purple-500 to-purple-600 shadow-purple-200"
+                              : isCurrent
+                                ? "bg-gradient-to-br from-purple-400 to-purple-500 shadow-purple-300 ring-2 ring-purple-100"
+                                : "bg-gradient-to-br from-purple-500 to-purple-600 shadow-purple-200"
                             }`}
                         >
                           {locked ? (
@@ -338,8 +329,8 @@ const CourseLessonsPage: React.FC = () => {
                         >
                           <div
                             className={`h-full rounded-full ${isDone
-                                ? "bg-gradient-to-r from-purple-500 to-purple-400"
-                                : "bg-gray-200"
+                              ? "bg-gradient-to-r from-purple-500 to-purple-400"
+                              : "bg-gray-200"
                               }`}
                           />
                         </div>
@@ -348,12 +339,12 @@ const CourseLessonsPage: React.FC = () => {
                           whileHover={{ scale: locked ? 1 : 1.1 }}
                           whileTap={{ scale: locked ? 1 : 0.95 }}
                           className={`relative w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg ${locked
-                              ? "bg-gray-100 border-2 border-gray-200"
-                              : isDone
-                                ? "bg-gradient-to-br from-purple-500 to-purple-600 shadow-purple-200"
-                                : isCurrent
-                                  ? "bg-gradient-to-br from-purple-400 to-purple-500 shadow-purple-300 ring-4 ring-purple-100"
-                                  : "bg-gradient-to-br from-purple-500 to-purple-600 shadow-purple-200"
+                            ? "bg-gray-100 border-2 border-gray-200"
+                            : isDone
+                              ? "bg-gradient-to-br from-purple-500 to-purple-600 shadow-purple-200"
+                              : isCurrent
+                                ? "bg-gradient-to-br from-purple-400 to-purple-500 shadow-purple-300 ring-4 ring-purple-100"
+                                : "bg-gradient-to-br from-purple-500 to-purple-600 shadow-purple-200"
                             }`}
                         >
                           {locked ? (
@@ -420,23 +411,23 @@ const LessonCard: React.FC<{
     >
       <div
         className={`relative rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 ${locked
-            ? "bg-gray-50 border-2 border-gray-200 shadow-sm"
-            : isCurrent
-              ? "bg-white border-2 border-purple-300 shadow-xl shadow-purple-100"
-              : isDone
-                ? "bg-white border-2 border-purple-200 shadow-lg shadow-purple-50"
-                : "bg-white border-2 border-gray-200 shadow-lg hover:border-purple-300 hover:shadow-xl hover:shadow-purple-100"
+          ? "bg-gray-50 border-2 border-gray-200 shadow-sm"
+          : isCurrent
+            ? "bg-white border-2 border-purple-300 shadow-xl shadow-purple-100"
+            : isDone
+              ? "bg-white border-2 border-purple-200 shadow-lg shadow-purple-50"
+              : "bg-white border-2 border-gray-200 shadow-lg hover:border-purple-300 hover:shadow-xl hover:shadow-purple-100"
           }`}
       >
         {/* Gradient overlay */}
         <div
           className={`absolute inset-0 ${locked
-              ? "bg-gradient-to-br from-gray-50 to-transparent"
-              : isCurrent
-                ? "bg-gradient-to-br from-purple-50 via-transparent to-blue-50"
-                : isDone
-                  ? "bg-gradient-to-br from-purple-50/50 to-transparent"
-                  : "bg-gradient-to-br from-purple-50/30 via-transparent to-transparent"
+            ? "bg-gradient-to-br from-gray-50 to-transparent"
+            : isCurrent
+              ? "bg-gradient-to-br from-purple-50 via-transparent to-blue-50"
+              : isDone
+                ? "bg-gradient-to-br from-purple-50/50 to-transparent"
+                : "bg-gradient-to-br from-purple-50/30 via-transparent to-transparent"
             }`}
         />
 
@@ -541,10 +532,10 @@ const LessonCard: React.FC<{
         {!locked && (
           <div
             className={`absolute top-0 left-0 right-0 h-0.5 sm:h-1 ${isCurrent
-                ? "bg-gradient-to-r from-purple-500 via-purple-400 to-blue-500"
-                : isDone
-                  ? "bg-gradient-to-r from-purple-500 to-purple-400"
-                  : "bg-gradient-to-r from-purple-400/50 to-purple-300/50"
+              ? "bg-gradient-to-r from-purple-500 via-purple-400 to-blue-500"
+              : isDone
+                ? "bg-gradient-to-r from-purple-500 to-purple-400"
+                : "bg-gradient-to-r from-purple-400/50 to-purple-300/50"
               }`}
           />
         )}

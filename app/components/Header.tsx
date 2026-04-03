@@ -40,11 +40,11 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { href: `/user/${userId}`, icon: Home, label: "Home" },
-    { href: "/courses", icon: LayoutDashboard, label: "Courses" },
+    { href: `/user/${userId}`, icon: Home, label: "Asosiy" },
+    { href: "/courses", icon: LayoutDashboard, label: "Kurslar" },
     { href: "/dashboard", icon: ChartArea, label: "Dashboard" },
-    { href: "/notifications", icon: BellRing, label: "Notifications" },
-    { href: "/user/profile", icon: CircleUserIcon, label: "Profile" },
+    { href: "/notifications", icon: BellRing, label: "Bildirishnomalar" },
+    { href: "/user/profile", icon: CircleUserIcon, label: "Profil" },
   ]
 
   return (

@@ -76,7 +76,7 @@ const UserPage = () => {
     kurs.lessons?.filter((lesson: any) => lesson.isVisible).length || 0;
 
   return (
-    <section className="container px-4 py-6 bg-background">
+    <section className="container px-4 py-">
       {/* Top */}
       <div className="mb-6">
         <h1 className="text-lg font-semibold text-text-primary">
