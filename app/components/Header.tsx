@@ -48,8 +48,8 @@ const Header = () => {
   ]
 
   return (
-    <header className="w-full z-50 px-4 pt-3 block max-md:hidden bg-primary/10">
-      <div className="container bg-surface border border-border rounded-2xl px-4 py-3 mx-auto flex items-center justify-between shadow-card">
+    <header className="w-full z-50 block max-md:hidden bg-surface border-b-2 border-gray-300">
+      <div className="container px-4 py-3 mx-auto flex items-center justify-between ">
         <Link href={`/user/${userId}`} className="flex items-center gap-2">
           <div className="bg-primary rounded-xl p-1">
             <Image alt="logo" src={logo} className="w-12 object-cover" />

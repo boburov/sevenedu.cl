@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import Home from "./components/Home";
+import HomePage from "./components/Home";
 
 export default function Page() {
   useEffect(() => {
@@ -10,7 +10,7 @@ export default function Page() {
 
   return (
     <div>
-      <Home />
+      <HomePage />
     </div>
   );
 }

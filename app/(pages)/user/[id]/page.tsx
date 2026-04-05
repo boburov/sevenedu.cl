@@ -6,6 +6,7 @@ import { Lock, Play } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import ProgressSection from "@/app/components/UserProgress";
 
 interface Course {
   id: string;
@@ -84,6 +85,8 @@ const UserPage = () => {
           Kurslarim soni:{" "}
           <span className="text-primary">{user?.courses?.length ?? 0}</span>
         </h1>
+
+{/* <ProgressSection userCourses={userCourses} userName={user?.name} /> */}
 
         {/* USER COURSES */}
         <ul className="space-y-3 mb-8">

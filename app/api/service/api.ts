@@ -66,9 +66,9 @@ export const getMe = async (navigate?: (path: string) => void) => {
     } catch (err: any) {
         if (err.response?.status === 401) {
             if (navigate) {
-                navigate('/login');
+                navigate('/auth/login');
             } else {
-                window.location.href = '/login';
+                window.location.href = '/auth/login';
             }
             return null;
         }
