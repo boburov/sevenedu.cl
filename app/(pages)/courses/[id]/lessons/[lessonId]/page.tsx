@@ -38,18 +38,24 @@ const jsonOverrides: Record<string, JsonCourse> = {
   [TURK_TILI]: turk_tili as JsonCourse,
 };
 
+type VimeoRef = { id: string; hash?: string };
+
 /**
  * Har qanday Vimeo manbasidan ("https://vimeo.com/1174582208",
- * "vimeo:1174582208", yoki shunchaki "1174582208") Vimeo ID ni ajratib oladi.
+ * unlisted "https://vimeo.com/1174582208/abc123def0", "vimeo:1174582208",
+ * yoki shunchaki "1174582208") Vimeo ID va (bo'lsa) maxfiy hash'ni ajratadi.
+ * Admin paneldan yuklangan videolar unlisted — ular pleyerda faqat hash bilan ochiladi.
  */
-function toVimeoId(input?: string): string {
-  if (!input) return "";
+function toVimeoRef(input?: string): VimeoRef | null {
+  if (!input) return null;
 
   const value = input.trim();
   const raw = value.startsWith("vimeo:") ? value.slice("vimeo:".length) : value;
-  const candidate = raw.split("?")[0].split("/").pop() ?? "";
+  const m = raw.match(/(?:^|\/)(\d+)(?:\/([0-9a-f]+))?\/?(?:[?#]|$)/i);
+  if (!m) return null;
 
-  return /^\d+$/.test(candidate) ? candidate : "";
+  const h = raw.match(/[?&]h=([0-9a-f]+)/i)?.[1];
+  return { id: m[1], hash: m[2] || h };
 }
 
 /**
@@ -57,18 +63,18 @@ function toVimeoId(input?: string): string {
  *   1. Avval JSON fayldan Vimeo URL qidiriladi (mavjud bo'lsa — ishlatiladi)
  *   2. JSON da topilmasa — backenddan kelgan videoUrl Vimeo sifatida ishlatiladi
  */
-function resolveVimeoId(params: {
+function resolveVimeo(params: {
   categoryId: string;
   lessonIndex: number;
   backendVideoUrl?: string;
-}): string {
+}): VimeoRef | null {
   const { categoryId, lessonIndex, backendVideoUrl } = params;
 
   const jsonUrl = jsonOverrides[categoryId]?.videos?.[lessonIndex]?.url;
-  const fromJson = toVimeoId(jsonUrl);
+  const fromJson = toVimeoRef(jsonUrl);
   if (fromJson) return fromJson;
 
-  return toVimeoId(backendVideoUrl);
+  return toVimeoRef(backendVideoUrl);
 }
 
 const Page = () => {
@@ -76,7 +82,7 @@ const Page = () => {
   const lessonId = String(params.lessonId);
   const category_id = String(params.id);
 
-  const [vimeoId, setVimeoId] = useState("");
+  const [vimeo, setVimeo] = useState<VimeoRef | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -92,20 +98,20 @@ const Page = () => {
 
       const lesson = category.lessons[lessonIndex];
 
-      const id = resolveVimeoId({
+      const ref = resolveVimeo({
         categoryId: category_id,
         lessonIndex,
         backendVideoUrl: lesson?.videoUrl,
       });
 
-      if (id) setVimeoId(id);
+      if (ref) setVimeo(ref);
     });
 
     return () => { cancelled = true; };
   }, [lessonId, category_id]);
 
-  const vimeoSrc = vimeoId
-    ? `https://player.vimeo.com/video/${vimeoId}?sharing=0&byline=0&title=0&portrait=0`
+  const vimeoSrc = vimeo
+    ? `https://player.vimeo.com/video/${vimeo.id}?${vimeo.hash ? `h=${vimeo.hash}&` : ""}sharing=0&byline=0&title=0&portrait=0`
     : "";
 
   return (
@@ -114,7 +120,7 @@ const Page = () => {
       {/* Video */}
       <div className="rounded-2xl border border-border bg-surface shadow-card overflow-hidden">
         <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
-          {!vimeoId ? (
+          {!vimeo ? (
             <div className="absolute inset-0 grid place-items-center bg-black">
               <span className="text-sm text-white/50">Video yuklanmoqda…</span>
             </div>
