@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 const UPDATED = "2026-08-26";
-const EMAIL = "privacy@sevenedu.org";
+const EMAIL = "boburovdev@gmail.com";
 
 type Item = { t: string; d: string };
 type Group = { sub?: string; paras?: string[]; items?: Item[] };
@@ -363,8 +363,6 @@ const SECTIONS: Section[] = [
       {
         items: [
           { t: "Ilova egasi va ma'lumotlar operatori", d: "7EDU NTT" },
-          { t: "Yuridik manzil", d: "RO'YXATDAN O'TGAN MANZIL KIRITILISHI KERAK" },
-          { t: "STIR raqami", d: "STIR RAQAMI KIRITILISHI KERAK" },
           { t: "Elektron pochta", d: EMAIL },
           { t: "Telegram orqali yordam", d: "boburov_sh" },
           { t: "Veb-sayt", d: "sevenedu.org" },
@@ -558,7 +556,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
       <div className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:py-14">
-        <header className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm sm:p-8">
+        <header className="rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8">
           <p className="text-xs font-medium uppercase tracking-widest text-violet-600">
             SevenEdu • Privacy Policy
           </p>
@@ -595,7 +593,7 @@ export default function PrivacyPolicyPage() {
 
         <section
           aria-label="Eng muhimi qisqacha"
-          className="mt-6 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm sm:p-8"
+          className="mt-6 rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8"
         >
           <h2 className="text-lg font-semibold">Eng muhimi qisqacha</h2>
           <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -614,7 +612,7 @@ export default function PrivacyPolicyPage() {
         <div className="mt-6 lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] lg:items-start lg:gap-6">
           <nav
             aria-label="Mundarija"
-            className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm lg:sticky lg:top-6"
+            className="rounded-2xl border border-zinc-200 bg-white p-5 lg:sticky lg:top-6"
           >
             <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
               Mundarija
@@ -641,7 +639,7 @@ export default function PrivacyPolicyPage() {
               <section
                 key={s.id}
                 id={s.id}
-                className="scroll-mt-6 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm sm:p-8"
+                className="scroll-mt-6 rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8"
               >
                 <h2 className="flex gap-3 text-lg font-semibold tracking-tight sm:text-xl">
                   <span className="tabular-nums text-violet-500">{s.num}.</span>
@@ -673,7 +671,7 @@ export default function PrivacyPolicyPage() {
 
             <section
               id="boglanish"
-              className="scroll-mt-6 rounded-2xl border border-violet-200 bg-violet-50/60 p-6 shadow-sm sm:p-8"
+              className="scroll-mt-6 rounded-2xl border border-violet-200 bg-violet-50/60 p-6 sm:p-8"
             >
               <h2 className="text-lg font-semibold tracking-tight sm:text-xl">
                 Bog'lanish

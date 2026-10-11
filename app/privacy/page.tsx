@@ -20,8 +20,8 @@ type Block =
 
 type Section = { title: string; blocks: Block[] };
 
-const UPDATED = "2026-08-24";
-const CONTACT_EMAIL = "privacy@sevenedu.org";
+const UPDATED = "2026-10-11";
+const CONTACT_EMAIL = "boburovdev@gmail.com";
 
 const UZ: Section[] = [
   {
@@ -41,8 +41,6 @@ const UZ: Section[] = [
       {
         rows: [
           ["Nomi", "“7EDU NTT”"],
-          ["Manzil", "[Ro'yxatdan o'tgan manzil]"],
-          ["STIR / INN", "[Raqam]"],
           ["Elektron pochta", CONTACT_EMAIL],
           ["Telegram (yordam)", "@boburov_sh"],
         ],
@@ -190,7 +188,7 @@ const UZ: Section[] = [
         rows: [
           ["Hisob ma'lumotlari", "Hisob faol bo'lgunicha"],
           ["O'quv progressi va natijalar", "Hisob faol bo'lgunicha"],
-          ["Sertifikat yozuvlari", "Hisob o'chirilgandan keyin ham — haqiqiylikni tekshirish uchun"],
+          ["Sertifikat yozuvlari", "Hisob faol bo'lgunicha; hisob o'chirilganda ular ham o'chadi"],
           ["Ovoz yozuvlari", "Saqlanmaydi"],
           ["Push tokeni", "Hisobdan chiqqaningizda bekor qilinadi"],
           ["Qurilmadagi oflayn kesh", "Ilova o'chirilgunicha"],
@@ -234,15 +232,15 @@ const UZ: Section[] = [
     title: "13. Hisobni o'chirish",
     blocks: [
       {
-        p: `Hisobingizni o'chirish uchun ${CONTACT_EMAIL} manziliga hisobingiz elektron pochtasidan «Hisobni o'chirish» mavzusida xat yuboring yoki Telegram orqali @boburov_sh ga yozing.`,
+        p: `Hisobingizni ilovaning Sozlamalar → Hisobni o‘chirish bo‘limida o‘chirishingiz mumkin. Ilovaga kira olmasangiz, ${CONTACT_EMAIL} manziliga hisobingiz elektron pochtasidan «Hisobni o‘chirish» mavzusida xat yuboring.`,
       },
       {
-        p: "Shaxsingizni tasdiqlaganimizdan keyin o'chiriladi: profil ma'lumotlari, o'quv progressi, test natijalari, tanga va energiya balansi, xaridlar tarixi, push tokeni.",
+        p: "Ilovada tasdiqlash kodini kiritganingizdan so'ng hisob va unga bog'liq ma'lumotlar o'chiriladi: profil, o'quv progressi, test natijalari, sertifikatlar, tanga va energiya balansi, xaridlar tarixi va push tokeni.",
       },
       {
-        p: "Saqlanib qoladi: berilgan sertifikatlarning ro'yxatdagi yozuvi (ism, sertifikat raqami, sana, ball) — sertifikat haqiqiyligini uchinchi tomon tekshira olishi uchun.",
+        p: "Hisobni o'chirish amali tasdiqlangandan so'ng ilovadagi hisob qayta tiklanmaydi.",
       },
-      { note: "Ma'lumotlar so'rovdan keyin 30 kun ichida o'chiriladi." },
+      { note: "Elektron pochta orqali yuborilgan so'rovlar shaxs tasdiqlangach ko'rib chiqiladi." },
     ],
   },
   {
@@ -287,8 +285,6 @@ const EN: Section[] = [
       {
         rows: [
           ["Name", "“7EDU NTT”"],
-          ["Address", "[Registered address]"],
-          ["Tax ID", "[Number]"],
           ["Email", CONTACT_EMAIL],
           ["Telegram (support)", "@boburov_sh"],
         ],
@@ -399,7 +395,7 @@ const EN: Section[] = [
         p: "Permissions: Internet (required); Microphone (Speaking exercise only — declining leaves the rest of the app fully usable); Notifications (optional); Network state; Vibration (optional). All can be revoked in device settings at any time.",
       },
       {
-        p: "Retention: account data and learning progress are kept while the account is active. Certificate records are kept after deletion so a certificate can be verified. Voice recordings are not stored. Push tokens are revoked on sign-out.",
+        p: "Retention: account data, learning progress and certificate records are kept while the account is active and deleted with the account. Voice recordings are not stored. Push tokens are revoked on sign-out.",
       },
       {
         p: "Security: all traffic is encrypted with HTTPS/TLS and cleartext HTTP is blocked; passwords are stored as irreversible hashes; the session token stays on the device and is excluded from backups.",
@@ -413,9 +409,9 @@ const EN: Section[] = [
         p: "You may request access, correction, deletion, restriction, objection, a portable copy of your data, and you may withdraw consent at any time.",
       },
       {
-        p: `To delete your account, email ${CONTACT_EMAIL} from your account address with the subject “Delete my account”, or message @boburov_sh on Telegram. After identity verification we delete your profile, learning progress, test results, coin and energy balance, purchase history and push token. Certificate records (name, serial, date, score) are retained so issued certificates remain verifiable.`,
+        p: `You can delete your account in the app under Settings → Delete Account. If you cannot access the app, email ${CONTACT_EMAIL} from your account address with the subject “Delete my account”. After you confirm the code in the app, your profile, learning progress, test results, certificates, coin and energy balance, purchase history and push token are deleted.`,
       },
-      { note: "Requests are answered, and data deleted, within 30 days." },
+      { note: "Email requests are reviewed after identity verification." },
     ],
   },
   {
@@ -496,7 +492,7 @@ export default function PrivacyPage() {
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
       <div className="mx-auto w-full max-w-3xl px-4 py-10">
         {/* Header */}
-        <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
+        <div className="rounded-2xl border border-zinc-200 bg-white p-6">
           <div className="flex items-start justify-between gap-4">
             <div>
               <p className="text-xs font-medium tracking-wide text-zinc-500">
@@ -560,14 +556,14 @@ export default function PrivacyPage() {
           {sections.map((s) => (
             <section
               key={s.title}
-              className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm"
+              className="rounded-2xl border border-zinc-200 bg-white p-6"
             >
               <h2 className="text-base font-semibold md:text-lg">{s.title}</h2>
               <Blocks blocks={s.blocks} />
             </section>
           ))}
 
-          <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <div className="rounded-2xl border border-zinc-200 bg-white p-6">
             <h2 className="text-base font-semibold md:text-lg">
               {lang === "uz" ? "Bog'lanish" : "Contact"}
             </h2>
