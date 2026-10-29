@@ -167,11 +167,6 @@ body {
   @apply transition-all duration-200 ease-out;
 }
 
-/* Sertifikat foni */
-.sertificat {
-  background-image: url("./images/1741286335562.png") !important;
-}
-
 /* Next.js dev overlay'ini yashirish */
 nextjs-portal {
   display: none !important;

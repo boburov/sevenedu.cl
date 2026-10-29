@@ -731,3 +731,83 @@ Tekshirildi: `tsc` toza, gorizontal scroll yo'q, telefonda sidebar yashirin va p
 <sub>session `c0010f32` · branch `HEAD` · 21 ta qadam</sub>
 
 ---
+
+## 2026-10-29 06:46 — Ha, o'tkaz
+
+**So'rov**
+
+> Ha, o'tkaz
+
+**O'zgargan fayllar (9)**
+
+- `app/components/Home.tsx` — yaratildi/qayta yozildi
+- `app/components/auth/Google.tsx` — tahrirlandi
+- `app/auth/login/page.tsx` — tahrirlandi
+- `app/auth/signup/page.tsx` — tahrirlandi
+- `app/auth/forgot-password/page.tsx` — yaratildi/qayta yozildi
+- `app/auth/reset-password/ResetPasswordForm.tsx` — yaratildi/qayta yozildi
+- `app/not-found.tsx` — yaratildi/qayta yozildi
+- `app/(pages)/user/[id]/page.tsx` — tahrirlandi
+- `app/(pages)/courses/[id]/lessons/[lessonId]/speaking/page.tsx` — tahrirlandi
+
+**Buyruqlar (25)**
+
+```sh
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== app/ ichidagi (pages) dan tashqari sahifalar ===" find app -name '*.tsx' -not -path '*/\(pages\)/*' -not -…
+cd /Users/shukrullo/Desktop/sevenedu/client PAT='(bg|text|border|from|to|via|ring|fill|stroke|placeholder|divide|outline|shadow|accent|decoration)-(purple|viole…
+cd /Users/shukrullo/Desktop/sevenedu/client for f in app/page.tsx app/privicy-policy/page.tsx app/auth/popup/page.tsx app/components/ProtectedRoute.tsx app/auth…
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== ring-/shadow- (soya qoidasini buzadiganlar) ===" grep -rnE '(focus:)?(ring|shadow)-[a-z0-9/\[]' --include=…
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== terms/page.tsx (to'liq, 135 qator) ===" sed -n '1,60p' app/terms/page.tsx echo "..." echo "=== privacy-pol…
+cd /Users/shukrullo/Desktop/sevenedu/client ls -la app/*.png app/images/*.png 2>/dev/null | awk '{print $5, $9}' echo "=== logo.png ishlatuvchilar ===" grep -rn…
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== fayl nomlarini aniq ko'rish (yashirin belgilar bilan) ===" ls -b app/images/ | grep -i '7edu\|gold' echo "…
+cd /Users/shukrullo/Desktop/sevenedu/client f=app/auth/login/page.tsx perl -0pi -e ' s{className="inline-flex items-center gap-2 text-text-secondary}{className=…
+cd /Users/shukrullo/Desktop/sevenedu/client grep -n 'focus-ring\|className="inline-flex items-center gap-2 text-text-secondary\|className="absolute right-3\|rou…
+cd /Users/shukrullo/Desktop/sevenedu/client f=app/auth/login/page.tsx python3 - "$f" <<'PY' import sys, io p = sys.argv[1] s = io.open(p, encoding='utf-8').read…
+cd /Users/shukrullo/Desktop/sevenedu/client python3 - <<'PY' import io jobs = { 'app/auth/signup/page.tsx': [ ('"w-full h-12 border border-border rounded-input …
+cd /Users/shukrullo/Desktop/sevenedu/client grep -n 'bg-linear\|bg-gradient\|<section\|<main\|<div className="container' app/auth/signup/page.tsx | head
+cd /Users/shukrullo/Desktop/sevenedu/client for f in app/terms/page.tsx app/privacy/page.tsx app/privacy-policy/page.tsx; do echo "╔═══ $f" grep -n 'min-h-scree…
+cd /Users/shukrullo/Desktop/sevenedu/client python3 - <<'PY' import io, re # Tartib muhim: uzunroq/aniqroq satrlar oldin. MAP = [ # Sahifa ildizi ('min-h-screen…
+cd /Users/shukrullo/Desktop/sevenedu/client PAT='(bg|text|border|from|to|via|ring|fill|stroke|placeholder|divide|outline|shadow|decoration)-(purple|violet|indig…
+cd /Users/shukrullo/Desktop/sevenedu/client for c in UserProgress Certeficate; do echo "=== $c import qilinadimi? ===" grep -rn "$c" --include='*.tsx' --include…
+cd /Users/shukrullo/Desktop/sevenedu/client python3 - <<'PY' import io jobs = { 'app/(pages)/courses/[id]/lessons/[lessonId]/page.tsx': [ ('transition-colors fo…
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== user/[id] ~292 ==="; sed -n '285,298p' 'app/(pages)/user/[id]/page.tsx' echo "=== speaking ~524 ==="; sed …
+cd /Users/shukrullo/Desktop/sevenedu/client out=$(npx tsc --noEmit 2>&1); echo "tsc exit: $?" [ -n "$out" ] && echo "$out" | head -10 || echo "(tsc toza)" echo …
+cd /Users/shukrullo/Desktop/sevenedu/client for u in / /auth/login /auth/signup /auth/forgot-password "/auth/reset-password?token=[REDACTED: secret]" /terms /pr…
+cd /Users/shukrullo/Desktop/sevenedu/client sed -n '288,298p' 'app/(pages)/user/[id]/page.tsx' echo "--- HTTP ---" printf '/user/u1 %s\n' "$(curl -s -o /dev/nul…
+cd /Users/shukrullo/Desktop/sevenedu/client git status --short echo "--- .env qo'shilmasin ---" git status --porcelain --ignored | grep -i 'env' || true
+cd /Users/shukrullo/Desktop/sevenedu/client git diff -- app/components/shell/AppShell.tsx
+cd /Users/shukrullo/Desktop/sevenedu/client git add \ app/components/Home.tsx \ app/components/auth/Google.tsx \ app/components/ProtectedRoute.tsx \ app/compone…
+cd /Users/shukrullo/Desktop/sevenedu/client git commit -q -F - <<'MSG' feat(ui): logindan oldingi sahifalarni ham rang tizimiga o'tkazish Endi butun ilova bitta…
+```
+
+**Natija**
+
+Fayl nomida muammo yo'q ekan — `ls` bo'sh joyda kesib ko'rsatgan, import to'g'ri. Endi konvertatsiyaga o'taman.
+
+Pre-login tayyor. Sweep post-login'da ham bir nechta qoldiqni topdi — ularni ham tuzatay.
+
+Konsolda eski xato ko'rinyapti — uni allaqachon tuzatganman, lekin tasdiqlab olay.
+
+Logindan oldingi qism ham tizimga o'tdi — 291 ta qotirilgan rang qolmadi.
+
+**Nima o'zgardi**
+
+Bosh sahifa, Google tugmasi, login, signup, parol tiklash, 404 va uchta huquqiy sahifa (shartnoma, maxfiylik) endi bir xil tilda gapiradi: oq kartochka + chegara, qora asosiy tugma, orange faqat urg'u uchun. Violet/fuchsia gradientlar va shisha effektlar yo'qoldi.
+
+Bosh sahifadagi logoni qobiqdagi `goldedu7.png` ga almashtirdim — oldin boshqa fayl edi va violet kvadrat ichida turardi, brend ikki xil ko'rinardi.
+
+**Uchta narsani yo'l-yo'lakay tuzatdim** (ular so'ralmagan edi, lekin aynan shu fayllarda yotardi):
+
+1. Google tugmasidagi belgi `svgrepo.com` dan tashqi rasm sifatida kelardi — ya'ni kirish sahifasi uchinchi tomon CDN'iga bog'liq edi. Endi inline SVG.
+2. Login konsol oynasining foni `bg-opacity-50` ishlatardi. Bu klass Tailwind v4 da olib tashlangan, shuning uchun fon yarim shaffof emas, **to'liq qora** chiqardi. Endi to'g'ri.
+3. Ikkita kontrast xatosi: streak kunidagi oq matn sariq fonda 3.0:1 berardi (WCAG AA 4.5:1 talab qiladi), speaking yozib olish tugmasi 4.1:1. Ikkalasi ham tuzatildi — 7.0:1 va 5.3:1.
+
+**Sweep logindan keyingi qismda ham qoldiq topdi.** O'tgan safargi konvertatsiyada `lessons/[lessonId]` va `test` sahifalarida 7 ta `focus:ring-2` qolib ketgan ekan — Tailwind'da `ring` box-shadow bilan chiziladi, ya'ni "soya yo'q" qoidasini buzardi. Ularni ham `.focus-ring` ga o'tkazdim. Bu mening o'tgan safar to'liq bajarmagan ishim edi, shuning uchun hozir yopdim.
+
+**Tekshirildi:
+
+…(qisqartirildi)
+
+<sub>session `c0010f32` · branch `HEAD` · 58 ta qadam</sub>
+
+---
