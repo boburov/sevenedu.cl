@@ -1088,3 +1088,57 @@ Mobilda qolgani joyida: pastki navigatsiya oxirgi kartani bosmaydi, CTA tugmasi 
 <sub>session `c0010f32` · branch `HEAD` · 16 ta qadam</sub>
 
 ---
+
+## 2026-10-29 07:47 — Ha, tozala
+
+**So'rov**
+
+> Ha, tozala
+
+**Buyruqlar (13)**
+
+```sh
+echo "=== html2canvas / jspdf manbada ===" && grep -rniE "html2canvas|jspdf" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" --include="*.…
+for f in "1741286335562.png" "7edu white logo.png" "english.png" "germany.png" "goldedu7.png" "heroimg.png"; do base="${f%.png}" n=$(grep -rn --include="*.ts" -…
+for f in "1741286335562.png" "7edu white logo.png" "english.png" "germany.png" "goldedu7.png" "heroimg.png"; do hits=$(grep -rnF --include="*.ts" --include="*.t…
+echo "=== app/images ga har qanday ishora ===" && grep -rnE "app/images|\.\./images|/images/" --include="*.ts" --include="*.tsx" --include="*.css" --include="*.…
+npm uninstall html2canvas jspdf 2>&1 | tail -5 && echo "=== package.json dependencies ===" && node -e "const p=require('./package.json'); console.log(Object.key…
+git rm -q "app/images/1741286335562.png" "app/images/english.png" "app/images/germany.png" "app/images/heroimg.png" && echo "=== qolgan rasmlar ===" && ls -la a…
+echo "=== qo'shimcha tekshiruv: boshqa nom bilan import bormi? ===" && grep -rnE "useTheme|ThemeProvider|react-pdf|PDFDownloadLink|renderToStream" --include="*.…
+npx tsc --noEmit 2>&1 | tail -10; echo "=== tsc tugadi ==="; npm run build 2>&1 | tail -40
+rm -rf .next && echo ".next tozalandi"
+for r in "/" "/auth/login" "/auth/signup" "/speaking" "/courses" "/dashboard"; do code=$(curl -s -o /dev/null -m 25 -w "%{http_code}" "http://localhost:3200$r")…
+git status --short && echo "--- package.json o'zgarishi ---" && git diff package.json
+git add package.json package-lock.json .claude/WORKLOG.md && git commit -q -F - <<'MSG' chore: yetim qolgan paket va rasmlarni olib tashlash Sertifikat komponen…
+echo "=== package-lock: o'chgan paketlar soni ===" && git show --stat HEAD -- package-lock.json | tail -3 && echo && echo "=== node_modules'dan ketgan paketlar …
+```
+
+**Natija**
+
+Grep argumentlari noto'g'ri tartibda edi (`.` naqsh sifatida olingan). Qaytadan.
+
+Faqat statik import ishlaydi — `/images/...` dinamik yo'llari S3'ga ketadi. Demak `app/images/` dan ikki fayl ishlatiladi, to'rttasi o'lik. Uchtasini men `Home.tsx` ni qayta yozganimda yetim qoldirganman, shuning uchun ularni ham olib tashlayman.
+
+Yana ikkita o'lik paket chiqdi: `@react-pdf/renderer` (sertifikat komponenti bilan birga yetim qolgan) va `next-themes` (loyiha faqat yorug' rejimda). Ikkalasiga ham manbada bitta ham import yo'q.
+
+Build va tiplar toza, `/speaking` 5.23 kB. Rasm importlari buzilmaganini brauzerda tasdiqlayman.
+
+Dev server `npm uninstall` paytida ishlab turgan edi — CSS va rasmlar yo'qolgan. Build o'tgan, demak kod joyida; serverni qayta ishga tushirib tasdiqlayman.
+
+Rasmlar ikkalasi ham 200. 500/404 lar eski server sessiyasidan (`v=1793241695975`), qayta ishga tushgandan keyingi hamma so'rov 200. Buni serverdan to'g'ridan-to'g'ri tasdiqlayman.
+
+Hamma yo'nalish 200 — 500 lar haqiqatan eski server qoldig'i edi.
+
+Tozalandi — commit `772e189`. Siz aytgandan ko'proq narsa chiqdi, chunki tekshirganimda yana ikkita o'lik paket topildi.
+
+**Paketlar (4 ta).** `html2canvas` va `jspdf` dan tashqari `@react-pdf/renderer` ham o'lik ekan — uchalasi ham sertifikat PDF'i uchun edi, komponent o'chirilgandan keyin yetim qolgan. `next-themes` ham ishlatilmayapti: loyiha faqat yorug' rejimda, qorong'i rejim yo'q. Bog'liqliklari bilan birga lock fayldan **74 ta paket** ketdi.
+
+**Rasmlar (4 ta, ~560 KB).** `1741286335562.png` dan tashqari `heroimg.png` (514 KB), `english.png` va `germany.png` ham bog'lanmagan edi — ularni men `Home.tsx` ni qayta yozganimda yetim qoldirganman, shuning uchun o'z ishimni oxiriga yetkazdim. `goldedu7.png` va `7edu white logo.png` joyida qoldi.
+
+O'chirishd
+
+…(qisqartirildi)
+
+<sub>session `c0010f32` · branch `HEAD` · 25 ta qadam</sub>
+
+---
