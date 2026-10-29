@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import api, { getMe } from "@/app/api/service/api";
-import { Lock, Play, CheckCircle2, Sparkles, Crown, Zap } from "lucide-react";
+import { Check, Lock, Play } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, useRouter } from "next/navigation";
 import apiEndpoins from "@/app/api/api.endpoin";
@@ -26,6 +26,8 @@ interface User {
   courses: UserCourse[];
 }
 
+// Kichik belgilar qobiq bilan bir xil chiziq qalinligida.
+const BADGE_ICON = { size: 13, strokeWidth: 1.75 } as const;
 
 const CourseLessonsPage: React.FC = () => {
   const params = useParams() as { id?: string };
@@ -33,6 +35,7 @@ const CourseLessonsPage: React.FC = () => {
   const router = useRouter();
 
   const [lessons, setLessons] = useState<Lesson[]>([]);
+  const [courseTitle, setCourseTitle] = useState("");
   const [userSubscription, setUserSubscription] = useState<
     "FULL_CHARGE" | "MONTHLY" | null
   >(null);
@@ -61,12 +64,8 @@ const CourseLessonsPage: React.FC = () => {
         // 2️⃣ darslarni olish
         const res = await api.get(apiEndpoins.getCategory(courseId));
 
-        const dataLessons: Lesson[] = res.data.lessons || [];
-
-        // 3️⃣ maxsus kurs bo'lsa filter
-        let finalLessons = dataLessons;
-
-        setLessons(finalLessons);
+        setCourseTitle(res.data?.title || "");
+        setLessons(res.data.lessons || []);
       } catch (err: any) {
         console.error("❌ Xatolik:", err?.message || err);
       } finally {
@@ -109,26 +108,21 @@ const CourseLessonsPage: React.FC = () => {
     return idx === -1 ? 0 : idx;
   }, [visibleLessons, userHasCourse, userSubscription]);
 
+  const planLabel = userHasCourse
+    ? userSubscription === "FULL_CHARGE"
+      ? "To'liq kurs"
+      : "Oylik obuna"
+    : "Demo rejim";
+
   if (isLoading) {
     return (
-      <div className="min-h-screen">
-        <div className="container mx-auto px-4 py-12">
-          <div className="flex items-center justify-center min-h-[60vh]">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="text-center"
-            >
-              <div className="relative w-20 h-20 mx-auto mb-6">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 rounded-full border-4 border-purple-100 border-t-purple-600"
-                />
-                <div className="absolute inset-2 rounded-full " />
-              </div>
-              <p className="text-gray-600 text-lg font-medium">Darslar yuklanmoqda...</p>
-            </motion.div>
+      <div className="container py-10">
+        <div className="flex min-h-[60vh] items-center justify-center">
+          <div className="text-center">
+            <div className="mx-auto mb-5 h-10 w-10 animate-spin rounded-full border-2 border-border border-t-accent" />
+            <p className="text-[15px] text-text-secondary">
+              Darslar yuklanmoqda…
+            </p>
           </div>
         </div>
       </div>
@@ -136,259 +130,136 @@ const CourseLessonsPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
-        <div className="absolute top-0 left-0 w-full h-full">
-          <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <circle cx="20" cy="20" r="1" fill="#9333ea" opacity="0.1" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-        </div>
-      </div>
+    <div className="container py-8 sm:py-10">
+      <header className="mb-8 sm:mb-10">
+        <h1 className="text-[32px] font-bold leading-tight tracking-tight text-text-primary sm:text-[40px]">
+          {courseTitle || "Kurs darslari"}
+        </h1>
+        <p className="mt-2 text-[15px] text-text-secondary">
+          {visibleLessons.length} ta dars · {planLabel}
+        </p>
+      </header>
 
-      {/* Gradient accents */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.1, 0.15, 0.1],
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-          className="absolute -top-1/4 -left-1/4 w-96 h-96 bg-purple-300 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.1, 0.15, 0.1],
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-          className="absolute -bottom-1/4 -right-1/4 w-96 h-96 bg-blue-300 rounded-full blur-3xl"
-        />
-      </div>
-
-      <div className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-8 sm:mb-10 md:mb-12 text-center"
-        >
-          <div className="inline-flex items-center gap-2 mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-purple-50 border border-purple-200">
-            <Sparkles className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-purple-600" />
-            <span className="text-xs sm:text-sm font-medium text-purple-700">
-              {userHasCourse
-                ? userSubscription === "FULL_CHARGE"
-                  ? "To'liq kurs"
-                  : "Oylik obuna"
-                : "Demo rejim"}
-            </span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2 sm:mb-3 bg-gradient-to-r from-purple-600 via-gray-900 to-purple-600 bg-clip-text text-transparent px-4">
-            Kurs Darslari
-          </h1>
-          <p className="text-gray-500 text-base sm:text-lg">
-            {visibleLessons.length} ta dars mavjud
+      {visibleLessons.length === 0 ? (
+        <div className="mx-auto max-w-md rounded-card border border-border bg-surface p-10 text-center">
+          <h2 className="text-lg font-semibold text-text-primary">
+            Hozircha darslar yo&apos;q
+          </h2>
+          <p className="mt-2 text-sm text-text-secondary">
+            Tez orada yangi darslar qo&apos;shiladi.
           </p>
-        </motion.div>
+        </div>
+      ) : (
+        <ol className="mx-auto max-w-3xl space-y-3">
+          <AnimatePresence mode="popLayout">
+            {visibleLessons.map((lesson, index) => {
+              const locked = isLessonLocked(lesson, index);
+              const isCurrent = index === currentIndex && !locked;
+              const isDone = index < currentIndex && !locked;
 
-        {/* Empty state */}
-        {!lessons.length || visibleLessons.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="max-w-md mx-auto px-4"
-          >
-            <div className="relative rounded-2xl sm:rounded-3xl bg-white border border-gray-200 p-8 sm:p-12 text-center">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-transparent rounded-2xl sm:rounded-3xl" />
-              <div className="relative">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-full bg-purple-100 flex items-center justify-center">
-                  <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-purple-600" />
-                </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">
-                  Hozircha darslar mavjud emas
-                </h2>
-                <p className="text-sm sm:text-base text-gray-500">
-                  Tez orada yangi darslar qo'shiladi.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        ) : (
-          <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
-            <AnimatePresence mode="popLayout">
-              {visibleLessons.map((lesson, index) => {
-                const locked = isLessonLocked(lesson, index);
-                const isCurrent = index === currentIndex && !locked;
-                const isDone = index < currentIndex && !locked;
-                const leftSide = index % 2 === 0;
-
-                return (
-                  <motion.div
-                    key={lesson.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.4,
-                      delay: Math.min(index * 0.05, 0.3),
-                      ease: "easeOut",
-                    }}
-                    className="relative"
-                  >
-                    {/* Connector line */}
-                    {index !== 0 && (
-                      <div className="absolute left-[18px] sm:left-1/2 sm:-translate-x-1/2 -top-2 sm:-top-3 h-2 sm:h-3 w-[3px]">
-                        <div
-                          className={`h-full rounded-full ${isDone
-                            ? "bg-gradient-to-b from-purple-500 to-purple-400"
-                            : "bg-gray-200"
-                            }`}
-                        />
-                      </div>
-                    )}
-
-                    {/* Mobile layout: vertical stack */}
-                    <div className="sm:hidden flex items-start gap-3">
-                      {/* Left node (mobile) */}
-                      <div className="relative flex-shrink-0 pt-1">
-                        <motion.div
-                          whileHover={{ scale: locked ? 1 : 1.1 }}
-                          whileTap={{ scale: locked ? 1 : 0.95 }}
-                          className={`relative w-10 h-10 rounded-xl flex items-center justify-center ${locked
- ? "bg-gray-100 border-2 border-gray-200"
- : isDone
- ? "bg-gradient-to-br from-purple-500 to-purple-600 "
- : isCurrent
- ? "bg-gradient-to-br from-purple-400 to-purple-500 ring-2 ring-purple-100"
- : "bg-gradient-to-br from-purple-500 to-purple-600 "
- }`}
-                        >
-                          {locked ? (
-                            <Lock className="w-5 h-5 text-gray-400" />
-                          ) : isDone ? (
-                            <CheckCircle2 className="w-5 h-5 text-white" />
-                          ) : (
-                            <Play className="w-5 h-5 text-white" fill="white" />
-                          )}
-
-                          {isCurrent && !locked && (
-                            <motion.div
-                              animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0, 0.3] }}
-                              transition={{ duration: 2, repeat: Infinity }}
-                              className="absolute inset-0 rounded-xl bg-purple-400 ring-2 ring-purple-100"
-                            />
-                          )}
-                        </motion.div>
-                      </div>
-
-                      {/* Card (mobile) */}
-                      <LessonCard
-                        lesson={lesson}
-                        index={index}
-                        locked={locked}
-                        isCurrent={isCurrent}
-                        isDone={isDone}
-                        onClick={() => openLesson(lesson, index)}
-                        isMobile={true}
-                      />
-                    </div>
-
-                    {/* Desktop layout: snake pattern */}
-                    <div
-                      className={`hidden sm:flex items-center gap-4 ${leftSide ? "justify-start" : "justify-end"
+              return (
+                <motion.li
+                  key={lesson.id}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.35,
+                    delay: Math.min(index * 0.04, 0.3),
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="relative flex gap-4"
+                >
+                  {/* Bosqich ustuni: tugun + uni keyingisiga ulovchi chiziq */}
+                  <div className="flex shrink-0 flex-col items-center">
+                    <LessonNode
+                      locked={locked}
+                      isCurrent={isCurrent}
+                      isDone={isDone}
+                      step={index + 1}
+                    />
+                    {index !== visibleLessons.length - 1 && (
+                      <div
+                        className={`w-px flex-1 ${
+                          isDone ? "bg-primary" : "bg-border"
                         }`}
-                    >
-                      {/* Left card */}
-                      {leftSide ? (
-                        <LessonCard
-                          lesson={lesson}
-                          index={index}
-                          locked={locked}
-                          isCurrent={isCurrent}
-                          isDone={isDone}
-                          onClick={() => openLesson(lesson, index)}
-                          isMobile={false}
-                        />
-                      ) : (
-                        <div className="flex-1 max-w-[45%]" />
-                      )}
+                      />
+                    )}
+                  </div>
 
-                      {/* Center node */}
-                      <div className="relative flex-shrink-0">
-                        {/* Horizontal connector */}
-                        <div
-                          className={`absolute top-1/2 -translate-y-1/2 h-[3px] w-8 ${leftSide ? "-left-8" : "left-14"
-                            }`}
-                        >
-                          <div
-                            className={`h-full rounded-full ${isDone
-                              ? "bg-gradient-to-r from-purple-500 to-purple-400"
-                              : "bg-gray-200"
-                              }`}
-                          />
-                        </div>
-
-                        <motion.div
-                          whileHover={{ scale: locked ? 1 : 1.1 }}
-                          whileTap={{ scale: locked ? 1 : 0.95 }}
-                          className={`relative w-14 h-14 rounded-2xl flex items-center justify-center ${locked
- ? "bg-gray-100 border-2 border-gray-200"
- : isDone
- ? "bg-gradient-to-br from-purple-500 to-purple-600 "
- : isCurrent
- ? "bg-gradient-to-br from-purple-400 to-purple-500 ring-4 ring-purple-100"
- : "bg-gradient-to-br from-purple-500 to-purple-600 "
- }`}
-                        >
-                          {locked ? (
-                            <Lock className="w-6 h-6 text-gray-400" />
-                          ) : isDone ? (
-                            <CheckCircle2 className="w-6 h-6 text-white" />
-                          ) : (
-                            <Play className="w-6 h-6 text-white" fill="white" />
-                          )}
-
-                          {isCurrent && !locked && (
-                            <motion.div
-                              animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0, 0.3] }}
-                              transition={{ duration: 2, repeat: Infinity }}
-                              className="absolute inset-0 rounded-2xl bg-purple-400 ring-4 ring-purple-100"
-                            />
-                          )}
-                        </motion.div>
-                      </div>
-
-                      {/* Right card */}
-                      {!leftSide ? (
-                        <LessonCard
-                          lesson={lesson}
-                          index={index}
-                          locked={locked}
-                          isCurrent={isCurrent}
-                          isDone={isDone}
-                          onClick={() => openLesson(lesson, index)}
-                          isMobile={false}
-                        />
-                      ) : (
-                        <div className="flex-1 max-w-[45%]" />
-                      )}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
-        )}
-      </div>
+                  <LessonCard
+                    lesson={lesson}
+                    index={index}
+                    locked={locked}
+                    isCurrent={isCurrent}
+                    isDone={isDone}
+                    onClick={() => openLesson(lesson, index)}
+                  />
+                </motion.li>
+              );
+            })}
+          </AnimatePresence>
+        </ol>
+      )}
     </div>
   );
 };
 
-// Lesson Card Component
+// Bosqich tuguni. Uch holat ko'z bilan darhol ajraladi — oldingi dizaynda
+// "tugallangan" va "keyingi" bir xil binafsha gradient edi:
+//   tugallangan — qora to'ldirilgan
+//   joriy       — orange to'ldirilgan (dashboard'dagi "bugun" ustuni kabi)
+//   keyingi     — oq, chegarali
+const LessonNode = ({
+  locked,
+  isCurrent,
+  isDone,
+  step,
+}: {
+  locked: boolean;
+  isCurrent: boolean;
+  isDone: boolean;
+  step: number;
+}) => {
+  const base =
+    "grid h-10 w-10 shrink-0 place-items-center rounded-tile border text-[13px] font-semibold";
+
+  if (locked) {
+    return (
+      <span
+        className={`${base} border-border bg-surface-alt text-text-muted`}
+        aria-label="Yopiq dars"
+      >
+        <Lock size={16} strokeWidth={1.75} />
+      </span>
+    );
+  }
+  if (isDone) {
+    return (
+      <span
+        className={`${base} border-primary bg-primary text-primary-foreground`}
+        aria-label="Tugallangan dars"
+      >
+        <Check size={17} strokeWidth={2} />
+      </span>
+    );
+  }
+  if (isCurrent) {
+    return (
+      <span
+        className={`${base} border-accent bg-accent text-accent-foreground`}
+        aria-label="Joriy dars"
+      >
+        <Play size={15} strokeWidth={1.75} fill="currentColor" />
+      </span>
+    );
+  }
+  return (
+    <span className={`${base} border-border bg-surface text-text-secondary`}>
+      {step}
+    </span>
+  );
+};
+
 const LessonCard: React.FC<{
   lesson: Lesson;
   index: number;
@@ -396,149 +267,83 @@ const LessonCard: React.FC<{
   isCurrent: boolean;
   isDone: boolean;
   onClick: () => void;
-  isMobile: boolean;
-}> = ({ lesson, index, locked, isCurrent, isDone, onClick, isMobile }) => {
-  return (
-    <motion.button
-      onClick={onClick}
-      whileHover={{ scale: locked ? 1 : 1.02, y: locked ? 0 : -4 }}
-      whileTap={{ scale: locked ? 1 : 0.98 }}
-      className={`text-left group ${isMobile ? "flex-1" : "flex-1 max-w-[45%]"
-        }`}
+}> = ({ lesson, index, locked, isCurrent, isDone, onClick }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className={`focus-ring mb-3 flex-1 rounded-card border p-4 text-left transition-colors ${
+      locked
+        ? "border-border bg-surface-alt hover:border-border-strong"
+        : isCurrent
+          ? "border-accent bg-surface"
+          : "border-border bg-surface hover:border-border-strong"
+    }`}
+  >
+    <div className="mb-2 flex flex-wrap items-center gap-1.5">
+      <Badge tone="neutral">{index + 1}-bosqich</Badge>
+
+      {lesson.isDemo && <Badge tone="accent-soft">Demo</Badge>}
+
+      {isCurrent && <Badge tone="accent">Siz shu yerdasiz</Badge>}
+
+      {locked && (
+        <Badge tone="neutral">
+          <Lock {...BADGE_ICON} />
+          Yopiq
+        </Badge>
+      )}
+
+      {isDone && !isCurrent && (
+        <Badge tone="success">
+          <Check {...BADGE_ICON} strokeWidth={2} />
+          Tugallandi
+        </Badge>
+      )}
+    </div>
+
+    <h3
+      className={`line-clamp-2 text-[15px] font-semibold ${
+        locked ? "text-text-muted" : "text-text-primary"
+      }`}
     >
-      <div
-        className={`relative rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 ${locked
- ? "bg-gray-50 border-2 border-gray-200 "
- : isCurrent
- ? "bg-white border-2 border-purple-300 "
- : isDone
- ? "bg-white border-2 border-purple-200 "
- : "bg-white border-2 border-gray-200 hover:border-purple-300 "
- }`}
-      >
-        {/* Gradient overlay */}
-        <div
-          className={`absolute inset-0 ${locked
-            ? "bg-gradient-to-br from-gray-50 to-transparent"
-            : isCurrent
-              ? "bg-gradient-to-br from-purple-50 via-transparent to-blue-50"
-              : isDone
-                ? "bg-gradient-to-br from-purple-50/50 to-transparent"
-                : "bg-gradient-to-br from-purple-50/30 via-transparent to-transparent"
-            }`}
-        />
+      {lesson.title}
+    </h3>
 
-        {/* Shimmer effect on hover */}
-        {!locked && (
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden">
-            <motion.div
-              animate={{
-                x: ["-100%", "100%"],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatDelay: 3,
-              }}
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-200/30 to-transparent skew-x-12"
-            />
-          </div>
-        )}
+    <p
+      className={`mt-1 text-[13px] ${
+        locked ? "text-text-muted" : "text-text-secondary"
+      }`}
+    >
+      {locked
+        ? "Kirish uchun obuna kerak"
+        : isDone
+          ? "Tugallangan dars"
+          : isCurrent
+            ? "Hozir boshlang"
+            : "Davom eting"}
+    </p>
+  </button>
+);
 
-        <div className="relative p-3 sm:p-4 md:p-5">
-          {/* Badges */}
-          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3">
-            <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-gray-100 border border-gray-200 text-[10px] sm:text-xs font-semibold text-gray-700">
-              <Zap className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-purple-600" />
-              <span className="hidden xs:inline">{index + 1}-bosqich</span>
-              <span className="xs:hidden">{index + 1}</span>
-            </span>
+const BADGE_TONES = {
+  neutral: "border-border bg-surface-alt text-text-secondary",
+  accent: "border-accent bg-accent text-accent-foreground",
+  "accent-soft": "border-accent/30 bg-accent-soft text-accent-strong",
+  success: "border-success/30 bg-success-soft text-success",
+} as const;
 
-            {lesson.isDemo && (
-              <span className="inline-flex items-center gap-0.5 sm:gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-gradient-to-r from-amber-100 to-orange-100 border border-amber-300 text-[10px] sm:text-xs font-semibold text-amber-700">
-                <Crown className="w-2.5 sm:w-3 h-2.5 sm:h-3" />
-                Demo
-              </span>
-            )}
-
-            {isCurrent && (
-              <span className="inline-flex items-center gap-0.5 sm:gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-gradient-to-r from-purple-100 to-blue-100 border border-purple-300 text-[10px] sm:text-xs font-semibold text-purple-700 animate-pulse">
-                <Sparkles className="w-2.5 sm:w-3 h-2.5 sm:h-3" />
-                <span className="hidden sm:inline">Siz shu yerdasiz</span>
-                <span className="sm:hidden">Joriy</span>
-              </span>
-            )}
-
-            {locked && (
-              <span className="inline-flex items-center gap-0.5 sm:gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-gray-100 border border-gray-200 text-[10px] sm:text-xs font-semibold text-gray-500">
-                <Lock className="w-2.5 sm:w-3 h-2.5 sm:h-3" />
-                Locked
-              </span>
-            )}
-
-            {isDone && !isCurrent && (
-              <span className="inline-flex items-center gap-0.5 sm:gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-green-100 border border-green-300 text-[10px] sm:text-xs font-semibold text-green-700">
-                <CheckCircle2 className="w-2.5 sm:w-3 h-2.5 sm:h-3" />
-                <span className="hidden xs:inline">Tugallandi</span>
-                <span className="xs:hidden">✓</span>
-              </span>
-            )}
-          </div>
-
-          {/* Title */}
-          <h3
-            className={`text-sm sm:text-base font-bold mb-1.5 sm:mb-2 line-clamp-2 ${locked ? "text-gray-400" : "text-gray-900"
-              }`}
-          >
-            {lesson.title}
-          </h3>
-
-          {/* Description */}
-          <p
-            className={`text-xs sm:text-sm ${locked ? "text-gray-400" : "text-gray-600"
-              }`}
-          >
-            {locked
-              ? "🔒 Kirish uchun obuna kerak"
-              : isDone
-                ? "✓ Tugallangan dars"
-                : isCurrent
-                  ? "▶ Hozir boshlang"
-                  : "Davom eting"}
-          </p>
-
-          {/* Progress bar for current lesson */}
-          {isCurrent && !locked && (
-            <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-purple-200">
-              <div className="flex items-center justify-between text-[10px] sm:text-xs text-purple-600 mb-1">
-                <span>Davom eting</span>
-                <span>0%</span>
-              </div>
-              <div className="h-1 sm:h-1.5 bg-purple-100 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: "0%" }}
-                  className="h-full bg-gradient-to-r from-purple-500 to-purple-600 rounded-full"
-                />
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Top accent line */}
-        {!locked && (
-          <div
-            className={`absolute top-0 left-0 right-0 h-0.5 sm:h-1 ${isCurrent
-              ? "bg-gradient-to-r from-purple-500 via-purple-400 to-blue-500"
-              : isDone
-                ? "bg-gradient-to-r from-purple-500 to-purple-400"
-                : "bg-gradient-to-r from-purple-400/50 to-purple-300/50"
-              }`}
-          />
-        )}
-      </div>
-    </motion.button>
-  );
-};
+const Badge = ({
+  tone,
+  children,
+}: {
+  tone: keyof typeof BADGE_TONES;
+  children: React.ReactNode;
+}) => (
+  <span
+    className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-semibold ${BADGE_TONES[tone]}`}
+  >
+    {children}
+  </span>
+);
 
 export default CourseLessonsPage;

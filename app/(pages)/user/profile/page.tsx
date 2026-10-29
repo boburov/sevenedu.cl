@@ -2,10 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { Avatar } from "@/app/components/shell/AppShell";
-import { BookOpenCheck, Bell, Settings, Lock, LogOut } from "lucide-react";
+import {
+  BookOpenCheck,
+  Bell,
+  Settings,
+  Lock,
+  LogOut,
+  ChevronRight,
+} from "lucide-react";
 import { allCourse, getMe } from "@/app/api/service/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Button } from "@/app/components/ui/Button";
 
 interface Course {
   id: string;
@@ -37,119 +45,140 @@ const UserPage = () => {
     router.push("/");
   };
 
+  // Ko'rsatkich kartochkasi bosilmaydi — shuning uchun hover holati yo'q.
   const cardStyle =
-    "group flex items-center gap-4 rounded-2xl border border-[#0b0b14]/10 p-5 transition-all duration-200 hover:border-purple-500/10 hover:bg-[#141428]/10";
+    "flex items-center gap-4 rounded-card border border-border bg-surface p-5";
+
+  // Havola kartochkasi bosiladi: hover'da chegara quyuqlashadi + fokus halqasi.
+  const cardLinkStyle = `${cardStyle} focus-ring transition-colors hover:border-border-strong`;
 
   const iconStyle =
-    "h-9 w-9 rounded-xl bg-purple-500/10 text-purple-400 p-2 group-hover:bg-purple-500/20";
+    "grid h-10 w-10 shrink-0 place-items-center rounded-tile border border-border bg-surface-alt text-text-secondary";
 
   return (
-    <div className="min-h-screen text-[#0b0b14]">
-      <div className="container mx-auto max-w-6xl px-4 pt-10">
-        {/* Header */}
-        <div className="mb-10 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            {/* Rasm ustiga bosib almashtirish mumkin */}
-            <Avatar size={56} editable />
+    <div className="container py-8 sm:py-10">
+      {/* Header */}
+      <header className="flex flex-wrap items-start justify-between gap-4">
+        <div className="flex items-center gap-4">
+          {/* Rasm ustiga bosib almashtirish mumkin */}
+          <Avatar size={56} editable />
+          <div>
+            <h1 className="text-[32px] font-bold leading-tight tracking-tight text-text-primary sm:text-[40px]">
+              Profil
+            </h1>
+            <p className="mt-2 text-[15px] text-text-secondary">
+              Hisobingiz va sozlamalaringiz
+            </p>
+          </div>
+        </div>
+
+        <Button type="button" variant="outline" onClick={handleLogout}>
+          <LogOut size={16} strokeWidth={1.75} />
+          Chiqish
+        </Button>
+      </header>
+
+      {/* Content */}
+      {user ? (
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {/* My courses */}
+          <div className={cardStyle}>
+            <span className={iconStyle}>
+              <BookOpenCheck size={20} strokeWidth={1.75} />
+            </span>
             <div>
-              <h1 className="text-2xl font-semibold tracking-tight">Profil</h1>
-              <p className="text-sm text-[#0b0b14] mt-1">
-                Hisobingiz va sozlamalaringiz
+              <p className="text-sm text-text-secondary">Mening kurslarim</p>
+              <p className="mt-1 text-xl font-semibold text-text-primary">
+                {user.courses.length}
+                <span className="text-sm font-normal text-text-secondary">
+                  {" "}
+                  ta
+                </span>
               </p>
             </div>
           </div>
 
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-2 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-400 transition hover:bg-red-500/20"
-          >
-            <LogOut className="h-4 w-4" />
-            Chiqish
-          </button>
-        </div>
-
-        {/* Content */}
-        {user ? (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {/* My courses */}
-            <div className={cardStyle}>
-              <div className={iconStyle}>
-                <BookOpenCheck />
-              </div>
-              <div>
-                <p className="text-sm text-[#0b0b14]">Mening kurslarim</p>
-                <p className="mt-1 text-xl font-semibold">
-                  {user.courses.length}
-                  <span className="text-sm font-normal text-[#0b0b14]">
-                    {" "}
-                    ta
-                  </span>
-                </p>
-              </div>
+          {/* Notifications */}
+          <div className={cardStyle}>
+            <span className={iconStyle}>
+              <Bell size={20} strokeWidth={1.75} />
+            </span>
+            <div>
+              <p className="text-sm text-text-secondary">Bildirishnomalar</p>
+              <p className="mt-1 text-xl font-semibold text-text-primary">
+                0
+                <span className="text-sm font-normal text-text-secondary">
+                  {" "}
+                  ta
+                </span>
+              </p>
             </div>
-
-            {/* Notifications */}
-            <div className={cardStyle}>
-              <div className={iconStyle}>
-                <Bell />
-              </div>
-              <div>
-                <p className="text-sm text-[#0b0b14]">Bildirishnomalar</p>
-                <p className="mt-1 text-xl font-semibold">
-                  0
-                  <span className="text-sm font-normal text-[#0b0b14]">
-                    {" "}
-                    ta
-                  </span>
-                </p>
-              </div>
-            </div>
-
-            {/* All courses */}
-            <div className={cardStyle}>
-              <div className={iconStyle}>
-                <BookOpenCheck />
-              </div>
-              <div>
-                <p className="text-sm text-[#0b0b14]">Platformadagi kurslar</p>
-                <p className="mt-1 text-xl font-semibold">
-                  {courses.length}
-                  <span className="text-sm font-normal text-[#0b0b14]">
-                    {" "}
-                    ta
-                  </span>
-                </p>
-              </div>
-            </div>
-
-            {/* Settings */}
-            <Link href="/settings" className={cardStyle}>
-              <div className={iconStyle}>
-                <Settings />
-              </div>
-              <div>
-                <p className="text-sm text-[#0b0b14]">Profil sozlamalari</p>
-                <p className="mt-1 text-sm text-[#0b0b14]">
-                  Shaxsiy ma’lumotlarni tahrirlash
-                </p>
-              </div>
-            </Link>
-
-            {/* Password */}
-            <Link href="/user/settings/password" className={cardStyle}>
-              <div className={iconStyle}>
-                <Lock />
-              </div>
-              <div>
-                <p className="text-sm text-[#0b0b14]">Parol xavfsizligi</p>
-                <p className="mt-1 text-sm text-[#0b0b14]">Parolni yangilash</p>
-              </div>
-            </Link>
           </div>
-        ) : (
-          <p className="mt-20 text-center text-[#0b0b14]">Yuklanmoqda...</p>
-        )}
-      </div>
+
+          {/* All courses */}
+          <div className={cardStyle}>
+            <span className={iconStyle}>
+              <BookOpenCheck size={20} strokeWidth={1.75} />
+            </span>
+            <div>
+              <p className="text-sm text-text-secondary">
+                Platformadagi kurslar
+              </p>
+              <p className="mt-1 text-xl font-semibold text-text-primary">
+                {courses.length}
+                <span className="text-sm font-normal text-text-secondary">
+                  {" "}
+                  ta
+                </span>
+              </p>
+            </div>
+          </div>
+
+          {/* Settings */}
+          <Link href="/user/settings" className={cardLinkStyle}>
+            <span className={iconStyle}>
+              <Settings size={20} strokeWidth={1.75} />
+            </span>
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-text-primary">
+                Profil sozlamalari
+              </p>
+              <p className="mt-1 text-sm text-text-secondary">
+                Shaxsiy ma&rsquo;lumotlarni tahrirlash
+              </p>
+            </div>
+            <ChevronRight
+              size={16}
+              strokeWidth={1.75}
+              className="ml-auto shrink-0 text-text-muted"
+            />
+          </Link>
+
+          {/* Password */}
+          <Link href="/user/settings/password" className={cardLinkStyle}>
+            <span className={iconStyle}>
+              <Lock size={20} strokeWidth={1.75} />
+            </span>
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-text-primary">
+                Parol xavfsizligi
+              </p>
+              <p className="mt-1 text-sm text-text-secondary">
+                Parolni yangilash
+              </p>
+            </div>
+            <ChevronRight
+              size={16}
+              strokeWidth={1.75}
+              className="ml-auto shrink-0 text-text-muted"
+            />
+          </Link>
+        </div>
+      ) : (
+        <p className="mt-20 text-center text-[15px] text-text-secondary">
+          Yuklanmoqda...
+        </p>
+      )}
     </div>
   );
 };

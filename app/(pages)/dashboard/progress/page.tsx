@@ -34,11 +34,16 @@ type ViewType = "kunlik" | "umumiy";
 const percent = (c: number, t: number) =>
   t === 0 ? 0 : Math.round((c / t) * 100);
 
-const barColor = (p: number) =>
-  p >= 90 ? "bg-emerald-500" : p >= 70 ? "bg-amber-500" : "bg-rose-500";
-
-// GitHub uslubidagi yashil "contribution" ranglari (aynan GitHub palitrasi).
-const LEVEL_COLORS = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"];
+// Faollik zichligi: neytral (faollik yo'q) → urg'u orange (eng faol).
+// Oldin GitHub'ning yashil palitrasi qotirilgan hex bilan yozilgan edi;
+// tizimda yashil faqat "success" roli uchun, zichlik esa urg'u rangi bilan.
+const LEVEL_CLASSES = [
+  "border-border bg-surface-alt",
+  "border-accent/20 bg-accent/20",
+  "border-accent/40 bg-accent/40",
+  "border-accent/70 bg-accent/70",
+  "border-accent bg-accent",
+] as const;
 
 const WEEKDAY_LABELS = ["Yak", "Du", "Se", "Cho", "Pay", "Ju", "Sha"];
 const MONTH_LABELS = [
@@ -180,289 +185,333 @@ export default function DailyStats() {
     [data]
   );
 
-  if (loading)
-    return (
-      <div className="text-center py-16 text-text-secondary">Yuklanmoqda…</div>
-    );
+  // Ko'rsatkich kartochkalari — dashboard'dagi StatCard qolipi.
+  // Faqat streak urg'uli (orange), qolgani neytral belgi.
+  const statCards = [
+    { label: "Urunishlar", value: totals.total, icon: Activity, accent: false },
+    {
+      label: "Aniqlik",
+      value: `${percent(totals.correct, totals.total)}%`,
+      icon: Target,
+      accent: false,
+    },
+    {
+      label: "Active kunlar",
+      value: totals.activeDays,
+      icon: CalendarDays,
+      accent: false,
+    },
+    { label: "Streak", value: streak, icon: Flame, accent: true },
+  ];
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-6 space-y-6">
-      {/* VIEW SWITCH */}
-      <div className="flex justify-center gap-3">
-        {(["kunlik", "umumiy"] as ViewType[]).map((v) => (
-          <button
-            key={v}
-            onClick={() => setView(v)}
-            className={`px-4 py-2 rounded-xl border text-sm font-semibold transition ${
-              view === v
-                ? "bg-amber-500 text-white border-amber-500"
-                : "bg-surface text-text-secondary border-border hover:bg-surface-alt"
-            }`}
-          >
-            {v === "kunlik" ? "Kunlik" : "Umumiy"}
-          </button>
-        ))}
-      </div>
+    <div className="container py-8 sm:py-10">
+      <div className="mx-auto max-w-3xl space-y-6">
+        <header>
+          <h1 className="text-[32px] font-bold leading-tight tracking-tight text-text-primary sm:text-[40px]">
+            Statistika
+          </h1>
+          <p className="mt-2 text-[15px] text-text-secondary">
+            {loading
+              ? "Yuklanmoqda…"
+              : `Jami ${totals.total} urinish · ${totals.activeDays} faol kun`}
+          </p>
+        </header>
 
-      {/* HERO STATS */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {[
-          {
-            label: "Urunishlar",
-            value: totals.total,
-            icon: Activity,
-            color: "text-primary",
-          },
-          {
-            label: "Aniqlik",
-            value: percent(totals.correct, totals.total) + "%",
-            icon: Target,
-            color: "text-emerald-600",
-          },
-          {
-            label: "Active kunlar",
-            value: totals.activeDays,
-            icon: CalendarDays,
-            color: "text-sky-600",
-          },
-          {
-            label: "Streak",
-            value: `${streak} 🔥`,
-            icon: Flame,
-            color: "text-amber-600",
-          },
-        ].map((x, i) => (
-          <div
-            key={i}
-            className="rounded-2xl border border-border p-4 bg-surface"
-          >
-            <div className="flex items-center gap-2 text-sm text-text-secondary">
-              <x.icon size={16} className={x.color} />
-              {x.label}
-            </div>
-            <div className="mt-2 text-2xl font-bold text-text-primary">
-              {x.value}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* GITHUB-STYLE CONTRIBUTION GRAPH */}
-      <div className="rounded-2xl border border-border bg-surface p-4">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold text-text-primary">
-            Faollik jadvali
-          </h2>
-          <div className="flex items-center gap-1.5 text-xs text-text-muted">
-            <span>Kam</span>
-            {LEVEL_COLORS.map((c) => (
-              <span
-                key={c}
-                className="h-3 w-3 rounded-[3px]"
-                style={{ backgroundColor: c }}
-              />
-            ))}
-            <span>Ko&apos;p</span>
-          </div>
-        </div>
-
-        <div className="overflow-x-auto pb-1">
-          <div className="inline-flex flex-col gap-1">
-            {/* Oy yorliqlari */}
-            <div className="flex gap-1 pl-8">
-              {monthLabels.map((m, i) => (
-                <div
-                  key={i}
-                  className="w-3 text-[10px] text-text-muted"
-                  style={{ minWidth: "0.75rem" }}
+        {!loading && (
+          <>
+            {/* Ko'rinish almashtirgichi */}
+            <div className="inline-flex rounded-button border border-border bg-surface p-1">
+              {(["kunlik", "umumiy"] as ViewType[]).map((v) => (
+                <button
+                  key={v}
+                  type="button"
+                  onClick={() => setView(v)}
+                  className={`focus-ring rounded-button px-4 py-1.5 text-sm font-semibold transition-colors ${
+                    view === v
+                      ? "bg-primary text-primary-foreground"
+                      : "text-text-secondary hover:text-text-primary"
+                  }`}
                 >
-                  {m}
+                  {v === "kunlik" ? "Kunlik" : "Umumiy"}
+                </button>
+              ))}
+            </div>
+
+            {/* Ko'rsatkichlar */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+              {statCards.map((x) => (
+                <div
+                  key={x.label}
+                  className="rounded-card border border-border bg-surface p-4 sm:p-5"
+                >
+                  <p className="flex items-center gap-2 text-xs text-text-secondary sm:text-sm">
+                    <x.icon
+                      size={16}
+                      strokeWidth={1.75}
+                      className={x.accent ? "text-accent" : "text-text-muted"}
+                    />
+                    {x.label}
+                  </p>
+                  <p className="mt-2 text-2xl font-bold text-text-primary sm:text-3xl">
+                    {x.value}
+                  </p>
                 </div>
               ))}
             </div>
 
-            <div className="flex gap-1">
-              {/* Hafta kunlari yorlig'i */}
-              <div className="flex flex-col gap-1 pr-1 justify-between">
-                {WEEKDAY_LABELS.map((w, i) => (
-                  <div
-                    key={w}
-                    className="h-3 text-[10px] leading-3 text-text-muted"
-                    style={{ visibility: i % 2 === 1 ? "visible" : "hidden" }}
-                  >
-                    {w}
-                  </div>
-                ))}
-              </div>
-
-              {/* Ustunlar (haftalar) */}
-              {weeks.map((col, ci) => (
-                <div key={ci} className="flex flex-col gap-1">
-                  {col.map((cell) => (
-                    <div
-                      key={cell.date}
-                      title={
-                        cell.inRange
-                          ? `${cell.date}: ${cell.total} urinish${
-                              cell.total
-                                ? ` · ${percent(cell.correct, cell.total)}% aniqlik`
-                                : ""
-                            }`
-                          : undefined
-                      }
-                      className="h-3 w-3 rounded-[3px] border border-black/5"
-                      style={{
-                        backgroundColor: cell.inRange
-                          ? LEVEL_COLORS[cell.level]
-                          : "transparent",
-                      }}
+            {/* Faollik jadvali */}
+            <div className="rounded-card border border-border bg-surface p-5">
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                <h2 className="text-lg font-semibold text-text-primary">
+                  Faollik jadvali
+                </h2>
+                <div className="flex items-center gap-1.5 text-xs text-text-muted">
+                  <span>Kam</span>
+                  {LEVEL_CLASSES.map((c, i) => (
+                    <span
+                      key={i}
+                      className={`h-3 w-3 rounded-[3px] border ${c}`}
                     />
                   ))}
+                  <span>Ko&apos;p</span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+              </div>
 
-      {/* DAILY LIST */}
-      {view === "kunlik" && (
-        <div className="space-y-3">
-          {activeDailyList.length === 0 ? (
-            <div className="rounded-2xl border border-border bg-surface p-6 text-center text-text-secondary">
-              Hozircha faollik yo&apos;q. Dars o&apos;qing yoki test yeching!
-            </div>
-          ) : (
-            activeDailyList.map((d) => {
-              const total = d.vocabulary.total + d.quiz.total + d.test.total;
-              const correct =
-                d.vocabulary.correct + d.quiz.correct + d.test.correct;
-              const p = percent(correct, total);
-
-              return (
-                <div
-                  key={d.date}
-                  className="border border-border rounded-2xl p-4 bg-surface"
-                >
-                  <button
-                    onClick={() =>
-                      setExpanded(expanded === d.date ? null : d.date)
-                    }
-                    className="w-full flex justify-between items-center"
-                  >
-                    <div className="text-left">
-                      <p className="font-semibold text-text-primary">{d.date}</p>
-                      <p className="text-sm text-text-secondary">
-                        {correct}/{total} ({p}%)
-                      </p>
-                    </div>
-                    {expanded === d.date ? (
-                      <ChevronUp className="text-text-muted" />
-                    ) : (
-                      <ChevronDown className="text-text-muted" />
-                    )}
-                  </button>
-
-                  <div className="mt-2 h-2 bg-surface-alt rounded-full overflow-hidden">
-                    <div
-                      className={`h-full ${barColor(p)}`}
-                      style={{ width: `${p}%` }}
-                    />
+              <div className="overflow-x-auto pb-1">
+                <div className="inline-flex flex-col gap-1">
+                  {/* Oy yorliqlari */}
+                  <div className="flex gap-1 pl-8">
+                    {monthLabels.map((m, i) => (
+                      <div
+                        key={i}
+                        className="w-3 text-[10px] text-text-muted"
+                        style={{ minWidth: "0.75rem" }}
+                      >
+                        {m}
+                      </div>
+                    ))}
                   </div>
 
-                  {expanded === d.date && (
-                    <div className="mt-4 space-y-3 text-sm">
-                      {[
-                        { label: "Vocabulary", icon: BookText, ...d.vocabulary },
-                        { label: "Quiz", icon: HelpCircle, ...d.quiz },
-                        { label: "Test", icon: ClipboardCheck, ...d.test },
-                      ].map((x) => (
+                  <div className="flex gap-1">
+                    {/* Hafta kunlari yorlig'i */}
+                    <div className="flex flex-col justify-between gap-1 pr-1">
+                      {WEEKDAY_LABELS.map((w, i) => (
                         <div
-                          key={x.label}
-                          className="flex justify-between items-center border border-border rounded-xl px-3 py-2"
+                          key={w}
+                          className="h-3 text-[10px] leading-3 text-text-muted"
+                          style={{
+                            visibility: i % 2 === 1 ? "visible" : "hidden",
+                          }}
                         >
-                          <div className="flex items-center gap-2 text-text-secondary">
-                            <x.icon size={16} />
-                            {x.label}
-                          </div>
-                          <span className="font-semibold text-text-primary">
-                            {x.correct}/{x.total}
-                          </span>
+                          {w}
                         </div>
                       ))}
                     </div>
-                  )}
+
+                    {/* Ustunlar (haftalar) */}
+                    {weeks.map((col, ci) => (
+                      <div key={ci} className="flex flex-col gap-1">
+                        {col.map((cell) => (
+                          <div
+                            key={cell.date}
+                            title={
+                              cell.inRange
+                                ? `${cell.date}: ${cell.total} urinish${
+                                    cell.total
+                                      ? ` · ${percent(cell.correct, cell.total)}% aniqlik`
+                                      : ""
+                                  }`
+                                : undefined
+                            }
+                            className={`h-3 w-3 rounded-[3px] border ${
+                              cell.inRange
+                                ? LEVEL_CLASSES[cell.level]
+                                : "border-transparent"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              );
-            })
-          )}
-        </div>
-      )}
+              </div>
+            </div>
 
-      {/* SUMMARY */}
-      {view === "umumiy" && (
-        <div className="border border-border rounded-2xl p-6 bg-surface space-y-4">
-          <h2 className="text-xl font-bold text-center text-text-primary">
-            Umumiy natija
-          </h2>
-
-          {(() => {
-            const agg = data.reduce(
-              (a, b) => {
-                a.voc.total += b.vocabulary.total;
-                a.voc.correct += b.vocabulary.correct;
-                a.quiz.total += b.quiz.total;
-                a.quiz.correct += b.quiz.correct;
-                a.test.total += b.test.total;
-                a.test.correct += b.test.correct;
-                return a;
-              },
-              {
-                voc: { total: 0, correct: 0 },
-                quiz: { total: 0, correct: 0 },
-                test: { total: 0, correct: 0 },
-              }
-            );
-            const rows = [
-              { label: "Vocabulary", icon: BookText, ...agg.voc },
-              { label: "Quiz", icon: HelpCircle, ...agg.quiz },
-              { label: "Test", icon: ClipboardCheck, ...agg.test },
-            ];
-            return (
+            {/* Kunlik ro'yxat */}
+            {view === "kunlik" && (
               <div className="space-y-3">
-                {rows.map((r) => {
-                  const p = percent(r.correct, r.total);
-                  return (
-                    <div key={r.label} className="space-y-1">
-                      <div className="flex justify-between items-center text-sm">
-                        <div className="flex items-center gap-2 text-text-secondary">
-                          <r.icon size={16} />
-                          {r.label}
+                {activeDailyList.length === 0 ? (
+                  <div className="rounded-card border border-border bg-surface p-10 text-center">
+                    <p className="text-[15px] text-text-secondary">
+                      Hozircha faollik yo&apos;q. Dars o&apos;qing yoki test
+                      yeching!
+                    </p>
+                  </div>
+                ) : (
+                  activeDailyList.map((d) => {
+                    const total =
+                      d.vocabulary.total + d.quiz.total + d.test.total;
+                    const correct =
+                      d.vocabulary.correct + d.quiz.correct + d.test.correct;
+                    const p = percent(correct, total);
+
+                    return (
+                      <div
+                        key={d.date}
+                        className="rounded-card border border-border bg-surface p-4"
+                      >
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setExpanded(expanded === d.date ? null : d.date)
+                          }
+                          className="focus-ring flex w-full items-center justify-between gap-3 rounded-tile text-left"
+                          aria-expanded={expanded === d.date}
+                        >
+                          <span>
+                            <span className="block text-[15px] font-semibold text-text-primary">
+                              {d.date}
+                            </span>
+                            <span className="block text-[13px] text-text-secondary">
+                              {correct}/{total} ({p}%)
+                            </span>
+                          </span>
+                          {expanded === d.date ? (
+                            <ChevronUp
+                              size={20}
+                              strokeWidth={1.75}
+                              className="shrink-0 text-text-muted"
+                            />
+                          ) : (
+                            <ChevronDown
+                              size={20}
+                              strokeWidth={1.75}
+                              className="shrink-0 text-text-muted"
+                            />
+                          )}
+                        </button>
+
+                        {/* Aniqlik — joriy qiymat urg'uli, bo'sh qismi neytral */}
+                        <div className="mt-3 h-2 overflow-hidden rounded-full bg-surface-alt">
+                          <div
+                            className="h-full rounded-full bg-accent"
+                            style={{ width: `${p}%` }}
+                          />
                         </div>
+
+                        {expanded === d.date && (
+                          <div className="mt-4 space-y-2">
+                            {[
+                              {
+                                label: "Vocabulary",
+                                icon: BookText,
+                                ...d.vocabulary,
+                              },
+                              { label: "Quiz", icon: HelpCircle, ...d.quiz },
+                              {
+                                label: "Test",
+                                icon: ClipboardCheck,
+                                ...d.test,
+                              },
+                            ].map((x) => (
+                              <div
+                                key={x.label}
+                                className="flex items-center justify-between gap-3 rounded-tile border border-border px-3 py-2 text-sm"
+                              >
+                                <div className="flex items-center gap-2 text-text-secondary">
+                                  <x.icon
+                                    size={16}
+                                    strokeWidth={1.75}
+                                    className="text-text-muted"
+                                  />
+                                  {x.label}
+                                </div>
+                                <span className="font-semibold text-text-primary">
+                                  {x.correct}/{x.total}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+            )}
+
+            {/* Umumiy natija */}
+            {view === "umumiy" && (
+              <div className="rounded-card border border-border bg-surface p-5">
+                <h2 className="text-lg font-semibold text-text-primary">
+                  Umumiy natija
+                </h2>
+
+                {(() => {
+                  const agg = data.reduce(
+                    (a, b) => {
+                      a.voc.total += b.vocabulary.total;
+                      a.voc.correct += b.vocabulary.correct;
+                      a.quiz.total += b.quiz.total;
+                      a.quiz.correct += b.quiz.correct;
+                      a.test.total += b.test.total;
+                      a.test.correct += b.test.correct;
+                      return a;
+                    },
+                    {
+                      voc: { total: 0, correct: 0 },
+                      quiz: { total: 0, correct: 0 },
+                      test: { total: 0, correct: 0 },
+                    }
+                  );
+                  const rows = [
+                    { label: "Vocabulary", icon: BookText, ...agg.voc },
+                    { label: "Quiz", icon: HelpCircle, ...agg.quiz },
+                    { label: "Test", icon: ClipboardCheck, ...agg.test },
+                  ];
+                  return (
+                    <div className="mt-4 space-y-4">
+                      {rows.map((r) => {
+                        const p = percent(r.correct, r.total);
+                        return (
+                          <div key={r.label} className="space-y-2">
+                            <div className="flex items-center justify-between gap-3 text-sm">
+                              <div className="flex items-center gap-2 text-text-secondary">
+                                <r.icon
+                                  size={16}
+                                  strokeWidth={1.75}
+                                  className="text-text-muted"
+                                />
+                                {r.label}
+                              </div>
+                              <span className="font-semibold text-text-primary">
+                                {r.correct}/{r.total} ({p}%)
+                              </span>
+                            </div>
+                            <div className="h-2 overflow-hidden rounded-full bg-surface-alt">
+                              <div
+                                className="h-full rounded-full bg-accent"
+                                style={{ width: `${p}%` }}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                      <p className="border-t border-border pt-3 text-sm text-text-secondary">
+                        Umumiy aniqlik:{" "}
                         <span className="font-semibold text-text-primary">
-                          {r.correct}/{r.total} ({p}%)
+                          {percent(totals.correct, totals.total)}%
                         </span>
-                      </div>
-                      <div className="h-2 bg-surface-alt rounded-full overflow-hidden">
-                        <div
-                          className={`h-full ${barColor(p)}`}
-                          style={{ width: `${p}%` }}
-                        />
-                      </div>
+                      </p>
                     </div>
                   );
-                })}
-                <p className="text-center text-text-secondary text-sm pt-2">
-                  Umumiy aniqlik:{" "}
-                  <span className="font-semibold text-text-primary">
-                    {percent(totals.correct, totals.total)}%
-                  </span>
-                </p>
+                })()}
               </div>
-            );
-          })()}
-        </div>
-      )}
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 }

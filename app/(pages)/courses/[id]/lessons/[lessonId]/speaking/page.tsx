@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import api from "@/app/api/service/api";
+import { ChevronLeft, ChevronRight, Mic, Square, Volume2 } from "lucide-react";
 
 interface VocabularyItem {
     id: string;
@@ -20,7 +21,7 @@ const LANGS: Record<LangKey, { tts: string; stt: string; label: string }> = {
 };
 
 function detectLang(text: string): LangKey {
-    if (/[\u0600-\u06FF]/.test(text)) return "ar";
+    if (/[؀-ۿ]/.test(text)) return "ar";
     if (/[а-яА-ЯёЁ]/.test(text)) return "ru";
     return "en";
 }
@@ -73,12 +74,13 @@ function scoreSimilarity(spokenRaw: string, targetRaw: string) {
     return Math.max(0, Math.min(100, Math.round(similarity)));
 }
 
+// Emoji ikonkalar olib tashlandi — matn o'z joyida qoldi.
 function feedbackFor(score: number) {
-    if (score >= 95) return { emoji: "🏆", text: "Perfect! Juda zo'r!" };
-    if (score >= 90) return { emoji: "🎉", text: "Ajoyib! Juda to‘g‘ri!" };
-    if (score >= 75) return { emoji: "👍", text: "Yaxshi! Biroz mashq qilsangiz bo‘ladi." };
-    if (score >= 55) return { emoji: "📖", text: "Yaxshi urinish. Qayta urinib ko‘ring." };
-    return { emoji: "💪", text: "Davom eting! Yana bir bor harakat qiling." };
+    if (score >= 95) return { text: "Perfect! Juda zo'r!" };
+    if (score >= 90) return { text: "Ajoyib! Juda to‘g‘ri!" };
+    if (score >= 75) return { text: "Yaxshi! Biroz mashq qilsangiz bo‘ladi." };
+    if (score >= 55) return { text: "Yaxshi urinish. Qayta urinib ko‘ring." };
+    return { text: "Davom eting! Yana bir bor harakat qiling." };
 }
 
 function pickBestVoice(voices: SpeechSynthesisVoice[], lang: string) {
@@ -93,6 +95,13 @@ function pickBestVoice(voices: SpeechSynthesisVoice[], lang: string) {
     const def = voices.find((v) => (v as any).default);
     return def ?? voices[0] ?? null;
 }
+
+// Harakat tugmalari bir xil shaklda: pill, 1px chegara, fokus halqasi.
+const ACTION_BASE =
+    "focus-ring inline-flex items-center justify-center gap-2 rounded-button border px-7 py-4 text-[15px] font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50";
+
+const NAV_BASE =
+    "focus-ring inline-flex items-center gap-2 rounded-button border px-6 py-3 text-[15px] font-semibold transition-colors";
 
 const SpeakingPage = () => {
     const params = useParams();
@@ -189,7 +198,7 @@ const SpeakingPage = () => {
             setAccuracy(blended);
 
             const f = feedbackFor(blended);
-            setFeedback(`${f.emoji} ${f.text}`);
+            setFeedback(f.text);
 
             setIsListening(false);
 
@@ -209,7 +218,7 @@ const SpeakingPage = () => {
                 event.error === "not-allowed"
                     ? "Mikrofon ruxsati berilmagan. Brauzer sozlamasidan ruxsat bering."
                     : "Xatolik yuz berdi. Qaytadan urinib ko‘ring.";
-            setFeedback(`⚠️ ${msg}`);
+            setFeedback(msg);
         };
 
         rec.onend = () => setIsListening(false);
@@ -332,23 +341,27 @@ const SpeakingPage = () => {
         ? Math.round(((currentIndex + 1) / vocabulary.length) * 100)
         : 0;
 
+    // To'g'rilik darajasi — haqiqiy natija, shuning uchun status tokenlari.
+    // Eski sariq (70-89) va orange (50-69) bandlari bitta `warning` ga
+    // birlashtirildi: tizimda bitta warning bor, orange esa urg'u rangi va
+    // statusga ishlatilmaydi. 90 va 50 chegaralari o'zgarmadi.
     const scoreColor =
         accuracy === null
-            ? "bg-gray-200"
+            ? "bg-border"
             : accuracy >= 90
-                ? "bg-green-500"
-                : accuracy >= 70
-                    ? "bg-yellow-500"
-                    : accuracy >= 50
-                        ? "bg-orange-500"
-                        : "bg-red-500";
+                ? "bg-success"
+                : accuracy >= 50
+                    ? "bg-warning"
+                    : "bg-danger";
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50">
-                <div className="text-center">
-                    <div className="animate-spin rounded-full h-14 w-14 border-b-4 border-indigo-600 mx-auto mb-4" />
-                    <p className="text-lg text-gray-700">Yuklanmoqda...</p>
+            <div className="container py-10">
+                <div className="flex min-h-[60vh] items-center justify-center">
+                    <div className="text-center">
+                        <div className="mx-auto mb-5 h-10 w-10 animate-spin rounded-full border-2 border-border border-t-accent" />
+                        <p className="text-[15px] text-text-secondary">Yuklanmoqda...</p>
+                    </div>
                 </div>
             </div>
         );
@@ -356,171 +369,202 @@ const SpeakingPage = () => {
 
     if (vocabulary.length === 0) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50">
-                <div className="text-center p-8 bg-white rounded-2xl border border-slate-100">
-                    <p className="text-2xl text-gray-800 font-semibold">Lug‘at topilmadi.</p>
-                    <p className="text-gray-600 mt-2">Ushbu dars uchun so‘zlar hali qo‘shilmagan bo‘lishi mumkin.</p>
+            <div className="container py-8 sm:py-10">
+                <div className="mx-auto max-w-md rounded-card border border-border bg-surface p-10 text-center">
+                    <h2 className="text-lg font-semibold text-text-primary">
+                        Lug‘at topilmadi.
+                    </h2>
+                    <p className="mt-2 text-sm text-text-secondary">
+                        Ushbu dars uchun so‘zlar hali qo‘shilmagan bo‘lishi mumkin.
+                    </p>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 py-8 px-4">
-            <div className="max-w-5xl mx-auto">
-                {/* Top header */}
-                <div className="bg-white/80 backdrop-blur rounded-3xl border border-white p-6 mb-6">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                        <div>
-                            <h1 className="text-3xl font-extrabold text-gray-900 flex items-center gap-2">
-                                <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-600 text-white">
-                                    🎤
-                                </span>
-                                Talaffuz Mashqi
-                            </h1>
-                            <p className="text-gray-600 mt-1">
-                                Tinglang → ayting → natijani ko‘ring.{" "}
-                                <span className="text-gray-500">(Enter = tinglash, Space = aytish)</span>
-                            </p>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                            <span className="text-sm text-gray-600 px-3 py-1 rounded-full bg-slate-100 border border-slate-200">
-                                {lang.label} • {lang.tts}
-                            </span>
-                            <span className="text-sm text-gray-600 px-3 py-1 rounded-full bg-slate-100 border border-slate-200">
-                                {currentIndex + 1}/{vocabulary.length}
-                            </span>
-                        </div>
+        <div className="container py-8 sm:py-10">
+            <div className="mx-auto max-w-5xl">
+                {/* Sahifa sarlavhasi — barcha sahifalarda bir xil qolip */}
+                <header className="mb-8 sm:mb-10">
+                    <h1 className="text-[32px] font-bold leading-tight tracking-tight text-text-primary sm:text-[40px]">
+                        Talaffuz Mashqi
+                    </h1>
+                    <p className="mt-2 text-[15px] text-text-secondary">
+                        Tinglang → ayting → natijani ko‘ring.{" "}
+                        <span className="text-text-muted">
+                            (Enter = tinglash, Space = aytish)
+                        </span>
+                    </p>
+                    <div className="mt-3 flex flex-wrap items-center gap-1.5">
+                        <Badge>
+                            {lang.label} • {lang.tts}
+                        </Badge>
+                        <Badge>
+                            {currentIndex + 1}/{vocabulary.length}
+                        </Badge>
                     </div>
+                </header>
 
-                    <div className="mt-5">
-                        <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
+                {/* Progress + sozlamalar */}
+                <div className="rounded-card border border-border bg-surface p-6">
+                    <div>
+                        <div className="mb-2 flex items-center justify-between text-sm text-text-secondary">
                             <span>Progress</span>
-                            <span className="font-semibold text-gray-800">{progress}%</span>
+                            <span className="font-semibold text-text-primary">{progress}%</span>
                         </div>
-                        <div className="w-full bg-slate-200 rounded-full h-2">
+                        {/* Joriy holat indikatori → accent */}
+                        <div className="h-2 w-full rounded-full bg-border">
                             <div
-                                className="h-2 rounded-full bg-indigo-600 transition-all duration-300"
+                                className="h-2 rounded-full bg-accent transition-all duration-300"
                                 style={{ width: `${progress}%` }}
                             />
                         </div>
                     </div>
 
-                    <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-3">
-                        <div className="bg-white rounded-2xl border border-slate-100 p-4">
-                            <div className="text-xs text-gray-500 mb-2">Speaker speed</div>
+                    <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-3">
+                        <div className="rounded-card border border-border bg-surface p-4">
+                            <div className="mb-2 text-xs text-text-muted">Speaker speed</div>
                             <div className="flex items-center gap-2">
+                                {/* Ovoz boshqaruvi = asosiy harakat → tanlangani qora */}
                                 <button
-                                    className={`px-3 py-2 rounded-xl border text-sm font-semibold ${ttsRate <= 0.85 ? "bg-indigo-600 text-white border-indigo-600" : "bg-white text-gray-800 border-slate-200"
+                                    className={`focus-ring rounded-button border px-3 py-2 text-sm font-semibold transition-colors ${ttsRate <= 0.85
+                                        ? "border-primary bg-primary text-primary-foreground"
+                                        : "border-border bg-surface text-text-primary hover:border-border-strong"
                                         }`}
                                     onClick={() => setTtsRate(0.8)}
                                 >
                                     Slow
                                 </button>
                                 <button
-                                    className={`px-3 py-2 rounded-xl border text-sm font-semibold ${ttsRate > 0.85 ? "bg-indigo-600 text-white border-indigo-600" : "bg-white text-gray-800 border-slate-200"
+                                    className={`focus-ring rounded-button border px-3 py-2 text-sm font-semibold transition-colors ${ttsRate > 0.85
+                                        ? "border-primary bg-primary text-primary-foreground"
+                                        : "border-border bg-surface text-text-primary hover:border-border-strong"
                                         }`}
                                     onClick={() => setTtsRate(0.95)}
                                 >
                                     Normal
                                 </button>
-                                <div className="ml-auto text-xs text-gray-500">
-                                    {voicesReady ? "Voices ready ✅" : "Loading voices…"}
+                                <div className="ml-auto text-xs text-text-muted">
+                                    {voicesReady ? "Voices ready" : "Loading voices…"}
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-2xl border border-slate-100 p-4">
-                            <div className="text-xs text-gray-500 mb-2">Auto-next on 90%+</div>
+                        <div className="rounded-card border border-border bg-surface p-4">
+                            <div className="mb-2 text-xs text-text-muted">Auto-next on 90%+</div>
+                            {/* Yoqilgan holat (status emas) → accent */}
                             <button
                                 onClick={() => setAutoNext((v) => !v)}
-                                className={`w-full px-4 py-2 rounded-xl font-semibold border transition ${autoNext ? "bg-green-600 text-white border-green-600" : "bg-white text-gray-800 border-slate-200"
+                                aria-pressed={autoNext}
+                                className={`focus-ring w-full rounded-button border px-4 py-2 font-semibold transition-colors ${autoNext
+                                    ? "border-accent bg-accent text-accent-foreground"
+                                    : "border-border bg-surface text-text-primary hover:border-border-strong"
                                     }`}
                             >
                                 {autoNext ? "ON" : "OFF"}
                             </button>
                         </div>
 
-                        <div className="bg-white rounded-2xl border border-slate-100 p-4">
-                            <div className="text-xs text-gray-500 mb-2">Tips</div>
-                            <p className="text-sm text-gray-700">
-                                Mikrofon yaqinroq. Sekinroq ayting. Agar so‘z uzun bo‘lsa, bo‘lib ayting.
+                        <div className="rounded-card border border-border bg-surface p-4">
+                            <div className="mb-2 text-xs text-text-muted">Tips</div>
+                            <p className="text-sm text-text-secondary">
+                                Mikrofon yaqinroq. Sekinroq ayting. Agar so‘z uzun bo‘lsa, bo‘lib
+                                ayting.
                             </p>
                         </div>
                     </div>
                 </div>
 
                 {/* Main card */}
-                <div className="bg-white rounded-3xl border border-white p-7 md:p-10">
+                <div className="mt-6 rounded-card border border-border bg-surface p-6 md:p-10">
                     {/* Word */}
                     <div className="text-center">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200 text-sm text-gray-700">
-                            <span className={`h-2 w-2 rounded-full ${isSpeaking ? "bg-indigo-600 animate-pulse" : "bg-slate-400"}`} />
+                        <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-alt px-4 py-2 text-sm text-text-secondary">
+                            {/* TTS o'qiyotgani — faol indikator → accent */}
+                            <span
+                                className={`h-2 w-2 rounded-full ${isSpeaking ? "bg-accent" : "bg-border-strong"
+                                    }`}
+                            />
                             {isSpeaking ? "Speaking…" : "Ready"}
-                            <span className="mx-1 text-gray-400">•</span>
-                            <span className={`h-2 w-2 rounded-full ${isListening ? "bg-green-600 animate-pulse" : "bg-slate-400"}`} />
+                            <span className="mx-1 text-text-muted">•</span>
+                            {/* Mikrofon yozib olmoqda → danger */}
+                            <span
+                                className={`h-2 w-2 rounded-full ${isListening ? "bg-danger" : "bg-border-strong"
+                                    }`}
+                            />
                             {isListening ? "Listening…" : "Mic idle"}
                         </div>
 
-                        <h2 className="mt-6 text-5xl md:text-6xl font-black tracking-tight text-gray-900">
+                        <h2 className="mt-6 text-5xl font-bold tracking-tight text-text-primary md:text-6xl">
                             {currentWord?.word}
                         </h2>
-                        <p className="mt-3 text-xl md:text-2xl text-gray-600">
+                        <p className="mt-3 text-xl text-text-secondary md:text-2xl">
                             {currentWord?.translated}
                         </p>
                     </div>
 
                     {/* Actions */}
-                    <div className="mt-10 flex flex-col md:flex-row gap-3 justify-center">
+                    <div className="mt-10 flex flex-col justify-center gap-3 md:flex-row">
+                        {/* Audio boshqaruvi = asosiy harakat → qora */}
                         <button
                             onClick={() => speakWord(currentWord?.word || "")}
                             disabled={!currentWord?.word}
-                            className="group flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white px-7 py-4 rounded-2xl font-semibold transition"
+                            className={`${ACTION_BASE} border-primary bg-primary text-primary-foreground hover:bg-primary-hover`}
                         >
-                            <span className="text-xl">🔊</span>
-                            Tinglash <span className="opacity-70 text-sm">(Enter)</span>
+                            <Volume2 size={20} strokeWidth={1.75} />
+                            Tinglash <span className="text-sm opacity-70">(Enter)</span>
                         </button>
 
+                        {/* Yozib olish: boshlash → accent, yozilmoqda → danger */}
                         <button
                             onClick={startListening}
                             disabled={isListening}
-                            className={`group flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-semibold transition ${isListening
- ? "bg-red-500 hover:bg-red-600 text-white animate-pulse"
- : "bg-green-600 hover:bg-green-700 text-white"
- }`}
+                            className={`${ACTION_BASE} ${isListening
+                                ? "border-danger bg-danger text-white"
+                                : "border-accent bg-accent text-accent-foreground hover:bg-accent-hover"
+                                }`}
                         >
-                            <span className="text-xl">🎙️</span>
+                            <Mic size={20} strokeWidth={1.75} />
                             {isListening ? "Tinglanmoqda…" : "Aytish"}{" "}
-                            <span className="opacity-70 text-sm">(Space)</span>
+                            <span className="text-sm opacity-70">(Space)</span>
                         </button>
 
                         <button
                             onClick={stopSpeaking}
-                            className="flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-semibold border border-slate-200 bg-white hover:bg-slate-50 text-gray-800 transition"
+                            className={`${ACTION_BASE} border-border bg-surface text-text-primary hover:bg-surface-alt`}
                         >
-                            <span className="text-xl">⏹️</span> Stop
-                            <span className="opacity-70 text-sm">(Esc)</span>
+                            <Square size={20} strokeWidth={1.75} />
+                            Stop
+                            <span className="text-sm opacity-70">(Esc)</span>
                         </button>
                     </div>
 
                     {/* Results */}
                     {(userTranscript || accuracy !== null || feedback) && (
-                        <div className="mt-10 bg-slate-50 rounded-2xl border border-slate-200 p-6">
+                        <div className="mt-10 rounded-card border border-border bg-surface-alt p-6">
                             {userTranscript && (
                                 <div>
-                                    <div className="text-xs uppercase tracking-wide text-gray-500">Siz aytdingiz</div>
-                                    <div className="mt-1 text-2xl font-bold text-gray-900">{userTranscript}</div>
+                                    <div className="text-xs uppercase tracking-wide text-text-muted">
+                                        Siz aytdingiz
+                                    </div>
+                                    <div className="mt-1 text-2xl font-bold text-text-primary">
+                                        {userTranscript}
+                                    </div>
                                 </div>
                             )}
 
                             {accuracy !== null && (
                                 <div className="mt-5">
-                                    <div className="flex items-center justify-between mb-2">
-                                        <div className="text-sm font-medium text-gray-700">To‘g‘rilik darajasi</div>
-                                        <div className="text-2xl font-black text-indigo-700">{accuracy}%</div>
+                                    <div className="mb-2 flex items-center justify-between">
+                                        <div className="text-sm font-medium text-text-secondary">
+                                            To‘g‘rilik darajasi
+                                        </div>
+                                        <div className="text-2xl font-bold text-text-primary">
+                                            {accuracy}%
+                                        </div>
                                     </div>
-                                    <div className="w-full bg-slate-200 rounded-full h-3">
+                                    <div className="h-3 w-full rounded-full bg-border">
                                         <div
                                             className={`h-3 rounded-full transition-all duration-500 ${scoreColor}`}
                                             style={{ width: `${accuracy}%` }}
@@ -530,8 +574,8 @@ const SpeakingPage = () => {
                             )}
 
                             {feedback && (
-                                <div className="mt-5 bg-white rounded-xl border border-indigo-100 p-4">
-                                    <p className="text-base md:text-lg text-gray-800 text-center font-semibold">
+                                <div className="mt-5 rounded-card border border-border bg-surface p-4">
+                                    <p className="text-center text-base font-semibold text-text-primary md:text-lg">
                                         {feedback}
                                     </p>
                                 </div>
@@ -541,32 +585,40 @@ const SpeakingPage = () => {
                 </div>
 
                 {/* Navigation */}
-                <div className="mt-6 flex gap-4 justify-between">
+                <div className="mt-6 flex justify-between gap-4">
                     <button
                         onClick={goToPrevious}
                         disabled={currentIndex === 0}
-                        className={`px-6 py-3 rounded-2xl font-semibold transition ${currentIndex === 0
- ? "bg-slate-200 text-slate-500 cursor-not-allowed"
- : "bg-white text-gray-800 hover:bg-slate-50 border border-slate-200"
- }`}
+                        className={`${NAV_BASE} ${currentIndex === 0
+                            ? "cursor-not-allowed border-border bg-surface-alt text-text-muted"
+                            : "border-border bg-surface text-text-primary hover:border-border-strong"
+                            }`}
                     >
-                        ← Oldingi
+                        <ChevronLeft size={20} strokeWidth={1.75} />
+                        Oldingi
                     </button>
 
                     <button
                         onClick={goToNext}
                         disabled={currentIndex === vocabulary.length - 1}
-                        className={`px-6 py-3 rounded-2xl font-semibold transition ${currentIndex === vocabulary.length - 1
- ? "bg-slate-200 text-slate-500 cursor-not-allowed"
- : "bg-white text-gray-800 hover:bg-slate-50 border border-slate-200"
- }`}
+                        className={`${NAV_BASE} ${currentIndex === vocabulary.length - 1
+                            ? "cursor-not-allowed border-border bg-surface-alt text-text-muted"
+                            : "border-border bg-surface text-text-primary hover:border-border-strong"
+                            }`}
                     >
-                        Keyingi →
+                        Keyingi
+                        <ChevronRight size={20} strokeWidth={1.75} />
                     </button>
                 </div>
             </div>
         </div>
     );
 };
+
+const Badge = ({ children }: { children: React.ReactNode }) => (
+    <span className="inline-flex items-center gap-1 rounded-full border border-border bg-surface-alt px-2.5 py-1 text-[11px] font-semibold text-text-secondary">
+        {children}
+    </span>
+);
 
 export default SpeakingPage;

@@ -1,11 +1,14 @@
 "use client";
 
 import { allCourse, GetCourseById, getMe } from "@/app/api/service/api";
-import { Lock, Play, BookOpen, Search, Filter } from "lucide-react";
+import { Lock, Play, BookOpen, Search } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { getSafeThumbnail, PLACEHOLDER_THUMBNAIL } from "@/app/lib/thumbnail";
+import { Input } from "@/app/components/ui/Input";
+import { Button } from "@/app/components/ui/Button";
+import { COURSE_DOTS } from "@/app/components/shell/MeContext";
 
 interface Course {
   id: string;
@@ -26,6 +29,17 @@ interface User {
 }
 
 type Tab = "all" | "mine";
+
+// Kichik belgilar qobiq bilan bir xil chiziq qalinligida.
+const BADGE_ICON = { size: 13, strokeWidth: 1.75 } as const;
+
+// Kurs nuqtasi kurs id'siga bog'lanadi: ro'yxat filtrlanganda ham bitta
+// kurs bitta rangda qoladi (indeks bo'yicha olinsa rang sakrab ketardi).
+const courseDot = (id: string) =>
+  COURSE_DOTS[
+    Array.from(id).reduce((sum, ch) => sum + ch.charCodeAt(0), 0) %
+      COURSE_DOTS.length
+  ];
 
 const CoursesPage = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -81,80 +95,90 @@ const CoursesPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 rounded-full border-2 border-violet-500 border-t-transparent animate-spin" />
-          <p className="text-sm text-slate-500">Yuklanmoqda...</p>
+      <div className="container py-10">
+        <div className="flex min-h-[60vh] items-center justify-center">
+          <div className="text-center">
+            <div className="mx-auto mb-5 h-10 w-10 animate-spin rounded-full border-2 border-border border-t-accent" />
+            <p className="text-[15px] text-text-secondary">Yuklanmoqda...</p>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <main className="min-h-screen">
-      {/* ─── TOP BAR ─── */}
-      <div className="sticky top-0 z-20 border-b border-slate-100 bg-white/80 backdrop-blur-xl px-4 py-4 sm:px-8">
-        <div className="mx-auto max-w-5xl">
-          {/* Title row */}
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-lg font-bold text-slate-800">Kurslar</h1>
-            <span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-semibold text-violet-700">
-              {displayedCourses.length} ta
-            </span>
-          </div>
+    <main className="container py-8 sm:py-10">
+      <header>
+        <h1 className="text-[32px] font-bold leading-tight tracking-tight text-text-primary sm:text-[40px]">
+          Kurslar
+        </h1>
+        <p className="mt-2 text-[15px] text-text-secondary">
+          {displayedCourses.length} ta kurs
+        </p>
+      </header>
 
-          {/* Tab + Search row */}
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            {/* Tabs */}
-            <div className="flex gap-1 rounded-2xl bg-slate-100 p-1 w-fit">
-              {([
-                { key: "all", label: `Barcha (${courses.length})` },
-                { key: "mine", label: `Mening (${userCourses.length})` },
-              ] as { key: Tab; label: string }[]).map(({ key, label }) => (
-                <button
-                  key={key}
-                  onClick={() => setTab(key)}
-                  className={`rounded-xl px-4 py-1.5 text-xs font-semibold transition-all ${
- tab === key
- ? "bg-white text-violet-700 "
- : "text-slate-500 hover:text-slate-700"
- } border border-border`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
+      {/* Filtr qatori: tab + qidiruv */}
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="flex w-fit shrink-0 gap-1 rounded-button border border-border bg-surface-alt p-1">
+          {([
+            { key: "all", label: `Barcha (${courses.length})` },
+            { key: "mine", label: `Mening (${userCourses.length})` },
+          ] as { key: Tab; label: string }[]).map(({ key, label }) => (
+            <button
+              key={key}
+              type="button"
+              onClick={() => setTab(key)}
+              aria-pressed={tab === key}
+              className={`focus-ring rounded-button px-4 py-1.5 text-xs font-semibold transition-colors ${
+                tab === key
+                  ? "bg-surface text-text-primary"
+                  : "text-text-secondary hover:text-text-primary"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
 
-            {/* Search */}
-            <div className="relative flex-1 min-w-0">
-              <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-              <input
-                type="text"
-                placeholder="Kurs qidirish..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full rounded-2xl border border-slate-200 bg-white py-2 pl-9 pr-4 text-sm text-slate-700 placeholder-slate-400 focus:border-violet-300 focus:outline-none focus:ring-2 focus:ring-violet-100"
-              />
-            </div>
-          </div>
+        <div className="relative min-w-0 flex-1">
+          <Search
+            size={16}
+            strokeWidth={1.75}
+            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"
+          />
+          <Input
+            type="text"
+            placeholder="Kurs qidirish..."
+            aria-label="Kurs qidirish"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="pl-11"
+          />
         </div>
       </div>
 
       {/* ─── GRID ─── */}
-      <div className="mx-auto max-w-5xl px-4 py-6 sm:px-8">
+      <div className="mt-6">
         {displayedCourses.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-20 text-center">
-            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-white ring-1 ring-slate-100">
-              <BookOpen size={28} className="text-slate-300" />
-            </div>
-            <p className="text-sm font-medium text-slate-500">Kurs topilmadi</p>
+          <div className="mx-auto max-w-md rounded-card border border-border bg-surface p-10 text-center">
+            <BookOpen
+              size={28}
+              strokeWidth={1.75}
+              className="mx-auto text-text-muted"
+            />
+            <h2 className="mt-4 text-lg font-semibold text-text-primary">
+              Kurs topilmadi
+            </h2>
             {search && (
-              <button
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="mt-4"
                 onClick={() => setSearch("")}
-                className="mt-3 text-xs text-violet-600 hover:underline"
               >
                 Qidiruvni tozalash
-              </button>
+              </Button>
             )}
           </div>
         ) : (
@@ -164,16 +188,16 @@ const CoursesPage = () => {
               return (
                 <li
                   key={kurs.id}
-                  className="group flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-slate-100 transition-all"
+                  className="flex flex-col overflow-hidden rounded-card border border-border bg-surface transition-colors hover:border-border-strong"
                 >
                   {/* Thumbnail */}
-                  <div className="relative h-44 w-full overflow-hidden bg-slate-100">
+                  <div className="relative h-44 w-full overflow-hidden border-b border-border bg-surface-alt">
                     <Image
                       src={getSafeThumbnail(kurs.thumbnail)}
                       alt={kurs.title}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className={`object-cover transition-transform duration-500 group-hover:scale-105 ${!isOwned ? "opacity-65" : ""}`}
+                      className="object-cover"
                       unoptimized
                       onError={(e) => {
                         const img = e.currentTarget;
@@ -181,59 +205,59 @@ const CoursesPage = () => {
                         img.src = PLACEHOLDER_THUMBNAIL;
                       }}
                     />
-
-                    {/* gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
-
-                    {/* locked overlay */}
-                    {!isOwned && (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="flex items-center gap-1.5 rounded-full border border-white/30 bg-black/50 px-3 py-1.5 text-[11px] font-semibold text-white backdrop-blur-sm">
-                          <Lock size={12} /> Sotib olish
-                        </div>
-                      </div>
-                    )}
-
-                    {/* owned badge */}
-                    {isOwned && (
-                      <div className="absolute right-3 top-3 rounded-full bg-emerald-500 px-2.5 py-1 text-[10px] font-bold text-white">
-                        MENING
-                      </div>
-                    )}
-
-                    {/* lesson count */}
-                    <div className="absolute bottom-3 left-3 flex items-center gap-1 rounded-full bg-black/50 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
-                      <BookOpen size={11} />
-                      {countVisibleLessons(kurs)} dars
-                    </div>
                   </div>
 
                   {/* Body */}
                   <div className="flex flex-1 flex-col p-4">
-                    <h3 className="text-sm font-semibold text-slate-800 line-clamp-1">
-                      {kurs.title}
+                    <div className="mb-2 flex flex-wrap items-center gap-1.5">
+                      <Badge tone="neutral">
+                        <BookOpen {...BADGE_ICON} />
+                        {countVisibleLessons(kurs)} dars
+                      </Badge>
+
+                      {isOwned ? (
+                        <Badge tone="accent-soft">Mening</Badge>
+                      ) : (
+                        <Badge tone="neutral">
+                          <Lock {...BADGE_ICON} />
+                          Yopiq
+                        </Badge>
+                      )}
+                    </div>
+
+                    <h3 className="flex items-start gap-2 text-[15px] font-semibold text-text-primary">
+                      <span
+                        aria-hidden
+                        className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${courseDot(kurs.id)}`}
+                      />
+                      <span className="line-clamp-1">{kurs.title}</span>
                     </h3>
 
-                    <p className="mt-1.5 flex-1 text-xs leading-relaxed text-slate-500 line-clamp-2">
+                    <p className="mt-1.5 flex-1 text-[13px] leading-relaxed text-text-secondary line-clamp-2">
                       {kurs.goal}
                     </p>
 
                     {/* separator */}
-                    <div className="my-3 h-px bg-slate-100" />
+                    <div className="my-3 h-px bg-border" />
 
                     {/* action */}
                     <Link
                       href={`/courses/${kurs.id}`}
-                      className={
+                      className={`focus-ring inline-flex items-center gap-2 self-start rounded-button px-4 py-2 text-xs font-semibold transition-colors ${
                         isOwned
-                          ? "inline-flex items-center gap-2 self-start rounded-xl bg-violet-600 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-violet-700"
-                          : "inline-flex items-center gap-2 self-start rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-100"
-                      }
+                          ? "bg-primary text-primary-foreground hover:bg-primary-hover"
+                          : "border border-border bg-surface text-text-primary hover:border-border-strong hover:bg-surface-alt"
+                      }`}
                     >
                       {isOwned ? (
-                        <><Play size={13} fill="currentColor" /> Ko'rish</>
+                        <>
+                          <Play size={13} strokeWidth={1.75} fill="currentColor" />{" "}
+                          Ko&apos;rish
+                        </>
                       ) : (
-                        <><Lock size={13} /> Buyurtma</>
+                        <>
+                          <Lock size={13} strokeWidth={1.75} /> Buyurtma
+                        </>
                       )}
                     </Link>
                   </div>
@@ -246,5 +270,26 @@ const CoursesPage = () => {
     </main>
   );
 };
+
+// Belgilar kurs darslari sahifasi bilan bir xil qolipda — ikki sahifa
+// yonma-yon turganda bir tizim ko'rinishi uchun.
+const BADGE_TONES = {
+  neutral: "border-border bg-surface-alt text-text-secondary",
+  "accent-soft": "border-accent/30 bg-accent-soft text-accent-strong",
+} as const;
+
+const Badge = ({
+  tone,
+  children,
+}: {
+  tone: keyof typeof BADGE_TONES;
+  children: React.ReactNode;
+}) => (
+  <span
+    className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-semibold ${BADGE_TONES[tone]}`}
+  >
+    {children}
+  </span>
+);
 
 export default CoursesPage;

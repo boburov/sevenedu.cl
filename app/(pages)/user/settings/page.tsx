@@ -1,8 +1,10 @@
 "use client";
 
 import { checkEmail, getMe, updateUser } from "@/app/api/service/api";
-import { Edit2 } from "lucide-react";
+import { Edit2, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import { Input } from "@/app/components/ui/Input";
+import { Button } from "@/app/components/ui/Button";
 
 interface User {
   id: string;
@@ -45,13 +47,13 @@ const Page = () => {
         setEmailError(null);
         return;
       }
-  
+
       if (!isValidEmail(email)) {
         setEmailExists(false);
         setEmailError("Email formati noto‘g‘ri");
         return;
       }
-  
+
       try {
         const existingUser = await checkEmail(email);
         if (existingUser.exists) {
@@ -74,9 +76,9 @@ const Page = () => {
     }, 500),
     [user]
   );
-  
 
-  
+
+
   useEffect(() => {
     getMe()
       .then(setUser)
@@ -127,73 +129,93 @@ const Page = () => {
     }
   };
 
-  if (!user) return <div>Yuklanmoqda...</div>;
+  if (!user)
+    return (
+      <div className="container py-8 sm:py-10">
+        <p className="text-[15px] text-text-secondary">Yuklanmoqda...</p>
+      </div>
+    );
 
   return (
-    <div className="max-w-md mx-auto p-6 rounded-lg text-white">
-      <button
-        className="flex items-center gap-2 bg-green-600/30 hover:bg-green-700/40 border border-green-500/20 transition-colors px-5 py-2 rounded-lg mb-6"
-        onClick={() => setIsEditing(!isEditing)}
-        aria-label={isEditing ? "Bekor qilish" : "Tahrirlash"}
-      >
-        <Edit2 />
-        <span>{isEditing ? "Bekor qilish" : "Tahrirlash"}</span>
-      </button>
+    <div className="container py-8 sm:py-10">
+      <div className="max-w-xl">
+        <header>
+          <h1 className="text-[32px] font-bold leading-tight tracking-tight text-text-primary sm:text-[40px]">
+            Profil sozlamalari
+          </h1>
+          <p className="mt-2 text-[15px] text-text-secondary">
+            Shaxsiy ma&rsquo;lumotlarni tahrirlash
+          </p>
+        </header>
 
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          handleSave();
-        }}
-        className="space-y-5"
-      >
-        <InputField
-          id="name"
-          name="name"
-          label="Ism"
-          value={user.name}
-          onChange={handleChange}
-          disabled={!isEditing}
-          required
-        />
-        <InputField
-          id="surname"
-          name="surname"
-          label="Familya"
-          value={user.surname}
-          onChange={handleChange}
-          disabled={!isEditing}
-          required
-        />
-        <InputField
-          id="email"
-          name="email"
-          label="Email"
-          type="email"
-          value={user.email}
-          onChange={handleChange}
-          disabled={!isEditing}
-          required
-          error={emailExists || emailError ? emailError : null}
-          errorHighlight={emailExists || Boolean(emailError)}
-        />
-        <InputField
-          id="phonenumber"
-          name="phonenumber"
-          label="Telefon raqam"
-          value={user.phonenumber}
-          onChange={handleChange}
-          disabled={!isEditing}
-        />
-        {isEditing && (
-          <button
-            type="submit"
-            className="w-full bg-green-600/20 border border-green-600 hover:bg-green-700/40 transition-colors py-3 rounded-md text-white font-semibold mt-4"
+        <div className="mt-6">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => setIsEditing(!isEditing)}
+            aria-label={isEditing ? "Bekor qilish" : "Tahrirlash"}
           >
-            Saqlash
-          </button>
-        )}
-      </form>
+            {isEditing ? (
+              <X size={16} strokeWidth={1.75} />
+            ) : (
+              <Edit2 size={16} strokeWidth={1.75} />
+            )}
+            <span>{isEditing ? "Bekor qilish" : "Tahrirlash"}</span>
+          </Button>
+        </div>
+
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            handleSave();
+          }}
+          className="mt-4 space-y-5 rounded-card border border-border bg-surface p-5 sm:p-6"
+        >
+          <InputField
+            id="name"
+            name="name"
+            label="Ism"
+            value={user.name}
+            onChange={handleChange}
+            disabled={!isEditing}
+            required
+          />
+          <InputField
+            id="surname"
+            name="surname"
+            label="Familya"
+            value={user.surname}
+            onChange={handleChange}
+            disabled={!isEditing}
+            required
+          />
+          <InputField
+            id="email"
+            name="email"
+            label="Email"
+            type="email"
+            value={user.email}
+            onChange={handleChange}
+            disabled={!isEditing}
+            required
+            error={emailExists || emailError ? emailError : null}
+            errorHighlight={emailExists || Boolean(emailError)}
+          />
+          <InputField
+            id="phonenumber"
+            name="phonenumber"
+            label="Telefon raqam"
+            value={user.phonenumber}
+            onChange={handleChange}
+            disabled={!isEditing}
+          />
+          {isEditing && (
+            <Button type="submit" className="mt-2 w-full">
+              Saqlash
+            </Button>
+          )}
+        </form>
+      </div>
     </div>
   );
 };
@@ -224,10 +246,13 @@ const InputField = ({
   errorHighlight = false,
 }: InputFieldProps) => (
   <div>
-    <label htmlFor={id} className="block mb-1 text-sm font-medium text-gray-300">
+    <label
+      htmlFor={id}
+      className="mb-1.5 block text-sm font-medium text-text-secondary"
+    >
       {label}
     </label>
-    <input
+    <Input
       id={id}
       name={name}
       type={type}
@@ -236,10 +261,15 @@ const InputField = ({
       onChange={onChange}
       disabled={disabled}
       required={required}
-      className={`w-full bg-white/10 h-12 rounded-md px-5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 ${errorHighlight ? "focus:ring-red-500 border border-red-500" : "focus:ring-green-500"
-        }`}
+      error={errorHighlight}
+      aria-invalid={errorHighlight || undefined}
+      aria-describedby={error ? `${id}-error` : undefined}
     />
-    {error && <p className="text-red-500 mt-1 text-sm">{error}</p>}
+    {error && (
+      <p id={`${id}-error`} className="mt-1.5 text-sm text-danger">
+        {error}
+      </p>
+    )}
   </div>
 );
 

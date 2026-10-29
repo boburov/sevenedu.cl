@@ -55,6 +55,9 @@
   --warning-soft: #fdf3d4;
   --danger: #e0463c;
   --danger-soft: #fdeae8;
+  /* To'q fon uchun: oq matn --danger ustida 4.11:1 beradi (AA dan past),
+     bu esa 5.3:1. accent/accent-strong juftligi bilan bir xil mantiq. */
+  --danger-strong: #c5362d;
   --info: #2f6fed;
   --info-soft: #e4ecfd;
 
@@ -101,6 +104,7 @@
   --color-warning-soft: var(--warning-soft);
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
+  --color-danger-strong: var(--danger-strong);
   --color-info: var(--info);
   --color-info-soft: var(--info-soft);
 

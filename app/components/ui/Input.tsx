@@ -14,11 +14,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         className={cn(
           "flex h-12 w-full rounded-input border bg-surface px-4 py-3 text-sm text-text-primary",
           "placeholder:text-text-muted",
-          "transition-all duration-200",
-          "focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-primary",
+          "transition-colors duration-200",
+          // Fokus outline orqali (globals.css), ring-* emas — u box-shadow.
+          "focus-ring",
           "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-surface-alt",
           error
-            ? "border-danger focus:ring-danger/30"
+            ? "border-danger"
             : "border-border hover:border-border-strong",
           className
         )}

@@ -2,7 +2,7 @@
 
 import { getLeaderboard } from "@/app/api/service/api";
 import { useEffect, useMemo, useState } from "react";
-import { ChevronLeft, ChevronRight, Trophy } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type LeaderUser = {
     id: string;
@@ -29,33 +29,16 @@ function getInitial(name?: string, surname?: string) {
     return (n[0] || s[0] || "?").toUpperCase();
 }
 
-// deterministic gradient per user (same user => same colors)
-function gradientClassFromId(id: string) {
-    const gradients = [
-        "from-fuchsia-500 to-indigo-500",
-        "from-emerald-500 to-cyan-500",
-        "from-orange-500 to-rose-500",
-        "from-sky-500 to-violet-500",
-        "from-lime-500 to-teal-500",
-        "from-amber-500 to-pink-500",
-        "from-blue-500 to-emerald-500",
-        "from-purple-500 to-sky-500",
-    ];
-    let hash = 0;
-    for (let i = 0; i < id.length; i++) hash = (hash * 31 + id.charCodeAt(i)) >>> 0;
-    return gradients[hash % gradients.length];
-}
-
 function formatNumberWithCommas(num: number): string {
     return num.toLocaleString("en-US");
 }
 
-// Top 3 uchun medal ranglari
-function rankBadge(rank: number) {
-    if (rank === 1) return "bg-amber-100 text-amber-700 border-amber-300";
-    if (rank === 2) return "bg-slate-100 text-slate-600 border-slate-300";
-    if (rank === 3) return "bg-orange-100 text-orange-700 border-orange-300";
-    return "bg-surface-alt text-text-secondary border-border";
+// O'rin raqami. Medal ranglari yo'q — top-3 vazn va o'lcham bilan
+// ajraladi, "men" qatori esa dashboard'dagi kabi accent-strong bilan.
+function rankStyle(rank: number, isMe: boolean) {
+    if (isMe) return "text-[13px] font-bold text-accent-strong";
+    if (rank <= 3) return "text-[13px] font-bold text-text-primary";
+    return "text-xs font-semibold text-text-muted";
 }
 
 export default function Page() {
@@ -95,49 +78,43 @@ export default function Page() {
     }, [totalPages, page]);
 
     return (
-        <div className="container py-6">
-            <div className="flex items-end justify-between gap-3 mb-4">
-                <h1 className="text-xl font-bold text-text-primary flex items-center gap-2">
-                    <Trophy className="text-primary" size={18} />
+        <div className="container py-8 sm:py-10">
+            <header className="mb-8 sm:mb-10">
+                <h1 className="text-[32px] font-bold leading-tight tracking-tight text-text-primary sm:text-[40px]">
                     Peshqadamlar paneli
                 </h1>
-
-                <div className="text-xs text-text-muted">
+                <p className="mt-2 text-[15px] text-text-secondary">
                     Page{" "}
                     <span className="font-semibold text-text-primary">{page}</span> /{" "}
                     {totalPages}
-                </div>
-            </div>
+                </p>
+            </header>
 
             {/* Joriy foydalanuvchining o'rni */}
             {me && (
-                <div className="mb-4 rounded-2xl border border-primary-soft bg-primary-soft/50 px-4 py-3 flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-3 min-w-0">
-                        <span
-                            className={`grid place-items-center h-9 min-w-9 px-2 rounded-full border text-sm font-bold ${rankBadge(
-                                me.rank
-                            )}`}
-                        >
+                <div className="mb-4 flex items-center justify-between gap-3 rounded-card border border-accent/40 bg-accent-soft px-4 py-3">
+                    <div className="flex min-w-0 items-center gap-3">
+                        <span className="grid h-9 min-w-9 place-items-center rounded-full border border-accent/40 bg-surface px-2 text-sm font-bold text-accent-strong">
                             #{me.rank}
                         </span>
                         <div className="min-w-0">
-                            <p className="text-sm font-semibold text-text-primary truncate">
+                            <p className="truncate text-sm font-semibold text-text-primary">
                                 Sizning o&apos;rningiz
                             </p>
-                            <p className="text-xs text-text-secondary truncate">
+                            <p className="truncate text-xs text-text-secondary">
                                 {`${(me.name ?? "").trim()} ${(me.surname ?? "").trim()}`.trim() ||
                                     "Siz"}
                             </p>
                         </div>
                     </div>
-                    <span className="inline-flex items-center rounded-full border border-primary/20 bg-white px-3 py-1 text-xs font-bold text-primary">
-                        {formatNumberWithCommas(me.coins ?? 0)} 🪙
+                    <span className="inline-flex shrink-0 items-center rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold text-text-primary">
+                        {formatNumberWithCommas(me.coins ?? 0)}
                     </span>
                 </div>
             )}
 
-            <div className="rounded-2xl border border-border bg-surface overflow-hidden">
-                <div className="px-4 py-3 border-b border-border bg-surface-alt grid grid-cols-[40px_1fr_auto] items-center gap-2">
+            <div className="overflow-hidden rounded-card border border-border bg-surface">
+                <div className="grid grid-cols-[40px_1fr_auto] items-center gap-2 border-b border-border bg-surface-alt px-4 py-3">
                     <div className="text-sm font-semibold text-text-primary">Rank</div>
                     <div className="text-sm font-semibold text-text-primary">
                         Foydalanuvchilar
@@ -159,41 +136,32 @@ export default function Page() {
                     <ul className="divide-y divide-border">
                         {current.map((u) => {
                             const rank = u.rank;
+                            const isMe = !!me && me.id === u.id;
                             const fullName = `${(u.name ?? "").trim()} ${(u.surname ?? "").trim()}`.trim();
 
                             return (
                                 <li
                                     key={u.id}
-                                    className="px-4 py-3 hover:bg-surface-alt/60 transition"
+                                    className={`px-4 py-3 transition-colors ${isMe ? "bg-accent-soft" : "hover:bg-surface-alt/60"
+                                        }`}
                                 >
                                     <div className="grid grid-cols-[40px_1fr_auto] items-center gap-2">
                                         {/* Rank */}
-                                        <span
-                                            className={`grid place-items-center h-7 min-w-7 px-1.5 rounded-full border text-xs font-bold ${rankBadge(
-                                                rank
-                                            )}`}
-                                        >
-                                            {rank}
-                                        </span>
+                                        <span className={rankStyle(rank, isMe)}>{rank}</span>
 
                                         {/* User */}
-                                        <div className="flex items-center gap-2 min-w-0">
+                                        <div className="flex min-w-0 items-center gap-2">
                                             {hasRealProfilePic(u.profilePic) ? (
                                                 <img
                                                     src={u.profilePic}
                                                     alt={fullName || "User"}
-                                                    className="h-10 w-10 rounded-full object-cover ring-2 ring-primary-soft"
+                                                    className="h-10 w-10 shrink-0 rounded-full object-cover"
                                                     width={40}
                                                     height={40}
                                                 />
                                             ) : (
                                                 <div
-                                                    className={[
-                                                        "h-10 w-10 rounded-full grid place-items-center text-white font-bold",
-                                                        "bg-gradient-to-br",
-                                                        gradientClassFromId(u.id),
-                                                        "ring-2 ring-primary-soft",
-                                                    ].join(" ")}
+                                                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-accent-soft text-sm font-semibold text-accent-strong"
                                                     aria-label="User avatar"
                                                 >
                                                     {getInitial(u.name, u.surname)}
@@ -201,7 +169,10 @@ export default function Page() {
                                             )}
 
                                             <div className="min-w-0">
-                                                <p className="text-sm font-semibold text-text-primary truncate">
+                                                <p
+                                                    className={`truncate text-sm text-text-primary ${rank <= 3 ? "font-bold" : "font-semibold"
+                                                        }`}
+                                                >
                                                     {fullName || "Unnamed user"}
                                                 </p>
                                             </div>
@@ -228,13 +199,13 @@ export default function Page() {
                         type="button"
                         onClick={() => setPage((p) => Math.max(1, p - 1))}
                         disabled={page === 1}
-                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2 text-sm font-semibold text-text-primary transition hover:bg-surface-alt disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="focus-ring inline-flex items-center gap-2 rounded-button border border-border bg-surface px-4 py-2 text-sm font-semibold text-text-primary transition-colors hover:bg-surface-alt disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                        <ChevronLeft size={16} />
+                        <ChevronLeft size={16} strokeWidth={1.75} />
                         Prev
                     </button>
 
-                    <div className="flex items-center gap-2 flex-wrap justify-center">
+                    <div className="flex flex-wrap items-center justify-center gap-2">
                         {Array.from({ length: Math.min(totalPages, 7) }).map((_, idx) => {
                             const start = Math.max(1, Math.min(page - 3, totalPages - 6));
                             const p = start + idx;
@@ -247,9 +218,9 @@ export default function Page() {
                                     type="button"
                                     onClick={() => setPage(p)}
                                     className={[
-                                        "h-9 w-9 rounded-xl border text-sm font-semibold transition",
+                                        "focus-ring h-9 w-9 rounded-button border text-sm font-semibold transition-colors",
                                         active
-                                            ? "border-primary bg-primary text-white"
+                                            ? "border-primary bg-primary text-primary-foreground"
                                             : "border-border bg-surface text-text-primary hover:bg-surface-alt",
                                     ].join(" ")}
                                 >
@@ -265,9 +236,9 @@ export default function Page() {
                                 type="button"
                                 onClick={() => setPage(totalPages)}
                                 className={[
-                                    "h-9 w-9 rounded-xl border text-sm font-semibold transition",
+                                    "focus-ring h-9 w-9 rounded-button border text-sm font-semibold transition-colors",
                                     page === totalPages
-                                        ? "border-primary bg-primary text-white"
+                                        ? "border-primary bg-primary text-primary-foreground"
                                         : "border-border bg-surface text-text-primary hover:bg-surface-alt",
                                 ].join(" ")}
                             >
@@ -280,10 +251,10 @@ export default function Page() {
                         type="button"
                         onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                         disabled={page === totalPages}
-                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2 text-sm font-semibold text-text-primary transition hover:bg-surface-alt disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="focus-ring inline-flex items-center gap-2 rounded-button border border-border bg-surface px-4 py-2 text-sm font-semibold text-text-primary transition-colors hover:bg-surface-alt disabled:cursor-not-allowed disabled:opacity-50"
                     >
                         Next
-                        <ChevronRight size={16} />
+                        <ChevronRight size={16} strokeWidth={1.75} />
                     </button>
                 </div>
             )}

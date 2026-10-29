@@ -3,6 +3,7 @@
 import api from "@/app/api/service/api";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Check, CheckCircle2, ChevronRight, X } from "lucide-react";
 
 // Puzzle type
 interface SentencePuzzle {
@@ -56,11 +57,15 @@ const Page = () => {
 
   if (sentencePuzzles.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-[70vh] text-center space-y-4">
-        <p className="text-2xl font-semibold text-gray-700">
-          ❌ Hozircha savollar mavjud emas
-        </p>
-        <p className="text-gray-500">Keyinroq yana urinib ko‘ring 🙂</p>
+      <div className="container py-8 sm:py-10">
+        <div className="mx-auto max-w-md rounded-card border border-border bg-surface p-10 text-center">
+          <h2 className="text-lg font-semibold text-text-primary">
+            Hozircha savollar mavjud emas
+          </h2>
+          <p className="mt-2 text-sm text-text-secondary">
+            Keyinroq yana urinib ko‘ring
+          </p>
+        </div>
       </div>
     );
   }
@@ -91,81 +96,103 @@ const Page = () => {
 
   if (currentIndex >= sentencePuzzles.length) {
     return (
-      <div className="flex flex-col items-center justify-center h-[70vh] space-y-4 text-center">
-        <h2 className="text-3xl font-bold text-green-600">
-          🎉 Barcha mashqlar tugadi!
-        </h2>
-        <p className="text-gray-600">Tabriklaymiz! Endi boshqa darsni tanlang.</p>
+      <div className="container py-8 sm:py-10">
+        <div className="mx-auto max-w-md rounded-card border border-border bg-surface p-10 text-center">
+          {/* Tugallandi — haqiqiy muvaffaqiyat statusi */}
+          <CheckCircle2
+            size={32}
+            strokeWidth={1.75}
+            className="mx-auto mb-4 text-success"
+          />
+          <h2 className="text-xl font-semibold text-text-primary">
+            Barcha mashqlar tugadi!
+          </h2>
+          <p className="mt-2 text-sm text-text-secondary">
+            Tabriklaymiz! Endi boshqa darsni tanlang.
+          </p>
+        </div>
       </div>
     );
   }
 
+  const isCorrect = userWords.join(" ") === currentPuzzle.answer;
+
   return (
-    <div className="max-w-3xl mx-auto px-5 py-10 space-y-8">
-      {/* Sentence */}
-      <div className="p-6 bg-white rounded-2xl text-center space-y-3 border border-border">
-        <h2 className="text-lg text-gray-700">🇺🇿 {currentPuzzle.sentence}</h2>
-        <div className="flex flex-wrap justify-center gap-2 min-h-[50px] border rounded-lg p-3 bg-gray-50">
-          {userWords.map((word, i) => (
+    <div className="container py-8 sm:py-10">
+      <div className="mx-auto max-w-3xl space-y-6">
+        {/* Sentence */}
+        <div className="space-y-3 rounded-card border border-border bg-surface p-6 text-center">
+          <h2 className="text-lg text-text-secondary">{currentPuzzle.sentence}</h2>
+          <div className="flex min-h-[50px] flex-wrap justify-center gap-2 rounded-input border border-border bg-surface-alt p-3">
+            {/* Tanlangan so'zlar — tuzilayotgan javob */}
+            {userWords.map((word, i) => (
+              <button
+                key={i}
+                onClick={() => handleRemoveWord(word)}
+                className="focus-ring rounded-button border border-primary bg-primary px-3 py-1 text-primary-foreground transition-colors hover:bg-primary-hover"
+              >
+                {word}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Word options */}
+        <div className="flex flex-wrap justify-center gap-2">
+          {shuffledWords.map((word, i) => (
             <button
               key={i}
-              onClick={() => handleRemoveWord(word)}
-              className="px-3 py-1 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition"
+              onClick={() => handleWordClick(word)}
+              className="focus-ring rounded-button border border-border bg-surface-alt px-3 py-2 text-text-primary transition-colors hover:border-border-strong"
             >
               {word}
             </button>
           ))}
         </div>
-      </div>
 
-      {/* Word options */}
-      <div className="flex flex-wrap justify-center gap-2">
-        {shuffledWords.map((word, i) => (
+        {/* Actions */}
+        <div className="flex items-center justify-center gap-4">
           <button
-            key={i}
-            onClick={() => handleWordClick(word)}
-            className="px-3 py-2 bg-gray-200 hover:bg-gray-300 rounded-xl transition"
+            onClick={checkAnswer}
+            disabled={userWords.length === 0}
+            className="focus-ring inline-flex items-center gap-2 rounded-button border border-primary bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {word}
+            Tekshirish
           </button>
-        ))}
-      </div>
 
-      {/* Actions */}
-      <div className="flex items-center justify-center gap-4">
-        <button
-          onClick={checkAnswer}
-          disabled={userWords.length === 0}
-          className="px-5 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition disabled:opacity-50"
-        >
-          Tekshirish
-        </button>
-
-        {showResult && (
-          <button
-            onClick={goNext}
-            className="px-5 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition"
-          >
-            Next →
-          </button>
-        )}
-      </div>
-
-      {/* Result */}
-      {showResult && (
-        <div className="text-center">
-          {userWords.join(" ") === currentPuzzle.answer ? (
-            <p className="text-green-600 font-semibold text-lg">
-              ✅ To‘g‘ri javob!
-            </p>
-          ) : (
-            <p className="text-red-500 font-semibold text-lg">
-              ❌ Xato. To‘g‘ri javob: <br />
-              <span className="text-gray-700">{currentPuzzle.answer}</span>
-            </p>
+          {showResult && (
+            <button
+              onClick={goNext}
+              className="focus-ring inline-flex items-center gap-2 rounded-button border border-primary bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
+            >
+              Next
+              <ChevronRight size={16} strokeWidth={1.75} />
+            </button>
           )}
         </div>
-      )}
+
+        {/* Result */}
+        {showResult && (
+          <div>
+            {isCorrect ? (
+              /* To'g'ri javob → success */
+              <div className="flex items-center justify-center gap-2 rounded-card border border-success/30 bg-success-soft p-4 text-lg font-semibold text-success">
+                <Check size={20} strokeWidth={2} />
+                To‘g‘ri javob!
+              </div>
+            ) : (
+              /* Noto'g'ri javob → danger */
+              <div className="rounded-card border border-danger/30 bg-danger-soft p-4 text-center">
+                <p className="flex items-center justify-center gap-2 text-lg font-semibold text-danger">
+                  <X size={20} strokeWidth={2} />
+                  Xato. To‘g‘ri javob:
+                </p>
+                <p className="mt-1 text-text-primary">{currentPuzzle.answer}</p>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -24,42 +24,53 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="min-h-screen p-6">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8 flex items-center justify-center gap-2 text-white">
-          <Gift className="w-8 h-8 text-white" />
-          Mening Sovg‘alarim
-        </h1>
+    <div className="container py-8 sm:py-10">
+      <div className="mx-auto max-w-4xl">
+        <header className="mb-6 sm:mb-8">
+          <h1 className="text-[32px] font-bold leading-tight tracking-tight text-text-primary sm:text-[40px]">
+            Mening Sovg&apos;alarim
+          </h1>
+          <p className="mt-2 text-[15px] text-text-secondary">
+            {loading ? "…" : gifts.length} ta sovg&apos;a
+          </p>
+        </header>
 
         {loading ? (
-          <div className="text-center text-gray-500 animate-pulse">
-            ⏳ Yuklanmoqda...
-          </div>
+          <p className="text-[15px] text-text-secondary">Yuklanmoqda...</p>
         ) : gifts.length === 0 ? (
-          <div className="text-center text-gray-500">
-            Sizda hozircha hech qanday sovg'a yo‘q.
+          <div className="mx-auto max-w-md rounded-card border border-border bg-surface p-10 text-center">
+            <h2 className="text-lg font-semibold text-text-primary">
+              Sizda hozircha hech qanday sovg&apos;a yo&apos;q.
+            </h2>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {gifts.map((gift, index) => (
-              <div
+              <li
                 key={index}
-                className="backdrop-blur-lg bg-white/30 border border-white/40 rounded-2xl p-4 transition hover:scale-105 duration-200"
+                className="rounded-card border border-border bg-surface p-4 transition-colors hover:border-border-strong"
               >
-                <h2 className="text-lg font-semibold text-gray-800 mb-2">
-                  {gift.name}
-                </h2>
-                <p className="text-sm text-gray-600 mb-3">{gift.description}</p>
-                {gift.image && (
+                {gift.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={gift.image}
                     alt={gift.name}
-                    className="w-full h-40 object-cover rounded-xl border"
+                    className="h-40 w-full rounded-tile border border-border object-cover"
                   />
+                ) : (
+                  <span className="grid h-40 w-full place-items-center rounded-tile border border-border bg-surface-alt text-text-muted">
+                    <Gift size={20} strokeWidth={1.75} />
+                  </span>
                 )}
-              </div>
+                <h2 className="mt-3 text-[15px] font-semibold text-text-primary">
+                  {gift.name}
+                </h2>
+                <p className="mt-1 text-[13px] text-text-secondary">
+                  {gift.description}
+                </p>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
       </div>
     </div>

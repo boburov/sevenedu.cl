@@ -1,9 +1,18 @@
 "use client";
 
-import { Send, X, MessageCircle, Bot, AlertCircle } from "lucide-react";
+import {
+  Send,
+  X,
+  MessageCircle,
+  Bot,
+  AlertCircle,
+  AlertTriangle,
+} from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import api, { getMe } from "@/app/api/service/api";
+import { Button } from "@/app/components/ui/Button";
+import { Input } from "@/app/components/ui/Input";
 
 type Message = {
   role: "user" | "ai";
@@ -171,7 +180,7 @@ const ChatWidget = () => {
       {!isOpen && (
         <button
           onClick={openChat}
-          className="fixed z-50 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-4 rounded-full transition-all duration-300 hover:scale-105 group border border-gray-200 dark:border-gray-700 hover:border-border-strong"
+          className="focus-ring group fixed z-50 grid place-items-center rounded-full border border-primary bg-primary text-primary-foreground transition-colors hover:bg-primary-hover"
           style={{
             bottom: '100px',
             right: '1rem',
@@ -180,13 +189,13 @@ const ChatWidget = () => {
           }}
           aria-label="AI yordamchisi bilan suhbatlashish"
         >
-          <MessageCircle size={24} className="mx-auto text-gray-600 dark:text-gray-300" />
+          <MessageCircle size={24} strokeWidth={1.75} />
           {credit > 0 && (
-            <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-accent px-1.5 text-[11px] font-semibold text-accent-foreground">
               {credit}
             </span>
           )}
-          <span className="absolute opacity-0 group-hover:opacity-100 bg-gray-800 text-white text-xs px-2 py-1 rounded bottom-full mb-2 left-1/2 transform -translate-x-1/2 transition-opacity duration-300 whitespace-nowrap">
+          <span className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap rounded-tile bg-primary px-2 py-1 text-[11px] font-medium text-primary-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100">
             AI Yordamchisi
           </span>
         </button>
@@ -195,7 +204,7 @@ const ChatWidget = () => {
       {/* Chat Window */}
       {isOpen && (
         <div
-          className="fixed z-50 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col"
+          className="fixed z-50 flex flex-col overflow-hidden rounded-card border border-border bg-surface"
           style={{
             bottom: '100px',
             right: '1rem',
@@ -206,37 +215,37 @@ const ChatWidget = () => {
           }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-4 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+          <div className="flex items-center justify-between border-b border-border bg-surface p-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
-                <Bot size={16} className="text-blue-600 dark:text-blue-400" />
+              <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-accent-soft text-accent-strong">
+                <Bot size={16} strokeWidth={1.75} />
               </div>
               <div>
-                <h3 className="font-medium text-gray-900 dark:text-gray-100">AI Yordamchisi</h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <h3 className="text-[15px] font-semibold text-text-primary">AI Yordamchisi</h3>
+                <p className="text-xs text-text-muted">
                   {userId ? `Qolgan kredit: ${credit}/10` : "Yuklanmoqda..."}
                 </p>
               </div>
             </div>
             <button
               onClick={closeChat}
-              className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="focus-ring grid h-8 w-8 place-items-center rounded-full text-text-muted transition-colors hover:bg-surface-alt hover:text-text-primary"
               aria-label="Chatni yopish"
             >
-              <X size={18} />
+              <X size={18} strokeWidth={1.75} />
             </button>
           </div>
 
           {/* Messages Container */}
-          <div className="flex-1 overflow-y-auto p-4 bg-gray-50 dark:bg-gray-900">
+          <div className="flex-1 overflow-y-auto bg-surface-alt p-4">
             {messages.length === 0 ? (
-              <div className="text-center text-gray-500 dark:text-gray-400 py-12">
-                <div className="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Bot size={28} className="text-gray-400 dark:text-gray-500" />
+              <div className="py-12 text-center text-text-secondary">
+                <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-full border border-border bg-surface text-text-muted">
+                  <Bot size={28} strokeWidth={1.75} />
                 </div>
-                <p className="font-medium mb-2">Savolingizni yozing</p>
+                <p className="mb-2 text-[15px] font-semibold text-text-primary">Savolingizni yozing</p>
                 <p className="text-sm">Men sizga darslar bo'yicha yordam beraman</p>
-                <p className="text-xs mt-2 text-gray-400 dark:text-gray-500">Har kuni 10 ta bepul savol</p>
+                <p className="mt-2 text-xs text-text-muted">Har kuni 10 ta bepul savol</p>
               </div>
             ) : (
               <div className="space-y-3">
@@ -246,9 +255,9 @@ const ChatWidget = () => {
                     className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                   >
                     <div
-                      className={`max-w-[85%] px-4 py-2.5 rounded-lg text-sm whitespace-pre-wrap ${msg.role === "user"
-                        ? "bg-blue-500 text-white"
-                        : "bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700"
+                      className={`max-w-[85%] whitespace-pre-wrap rounded-card px-4 py-2.5 text-sm ${msg.role === "user"
+                        ? "bg-primary text-primary-foreground"
+                        : "border border-border bg-surface text-text-primary"
                         }`}
                     >
                       {msg.text}
@@ -257,12 +266,11 @@ const ChatWidget = () => {
                 ))}
                 {loading && (
                   <div className="flex justify-start">
-                    <div className="max-w-[85%] px-4 py-2.5 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                      <div className="flex items-center gap-1 text-gray-600 dark:text-gray-400">
-                        <div className="animate-pulse duration-1000">●</div>
-                        <div className="animate-pulse duration-1000 delay-300">●</div>
-                        <div className="animate-pulse duration-1000 delay-700">●</div>
-                      </div>
+                    <div className="max-w-[85%] rounded-card border border-border bg-surface px-4 py-3">
+                      <span
+                        className="block h-4 w-4 animate-spin rounded-full border-2 border-border border-t-accent"
+                        aria-label="Javob yozilmoqda"
+                      />
                     </div>
                   </div>
                 )}
@@ -272,52 +280,54 @@ const ChatWidget = () => {
 
             {/* Error Message */}
             {error && (
-              <div className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-300 text-sm flex items-start gap-2">
-                <AlertCircle size={16} className="mt-0.5 flex-shrink-0" />
+              <div className="mt-4 flex items-start gap-2 rounded-card border border-danger/30 bg-danger-soft p-3 text-sm text-danger">
+                <AlertCircle size={16} strokeWidth={1.75} className="mt-0.5 shrink-0" />
                 <span>{error}</span>
               </div>
             )}
 
             {/* Credit Warning */}
             {credit <= 0 && (
-              <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg text-yellow-700 dark:text-yellow-300 text-sm">
-                ⚠️ Kreditingiz tugadi. Ertaga 10 ta bepul savolga ega bo'lasiz.
+              <div className="mt-4 flex items-start gap-2 rounded-card border border-warning/30 bg-warning-soft p-3 text-sm text-warning">
+                <AlertTriangle size={16} strokeWidth={1.75} className="mt-0.5 shrink-0" />
+                <span>Kreditingiz tugadi. Ertaga 10 ta bepul savolga ega bo&apos;lasiz.</span>
               </div>
             )}
           </div>
 
           {/* Input Area */}
-          <div className="p-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+          <div className="border-t border-border bg-surface p-4">
             <div className="flex items-center gap-2">
-              <input
+              <Input
                 type="text"
                 placeholder={
                   credit <= 0
                     ? "Kreditingiz tugadi. Ertaga qayta urinib ko'ring."
                     : "Savolingizni yozing..."
                 }
-                className="flex-1 h-12 rounded-lg px-4 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyPress={handleKeyPress}
                 disabled={loading || credit <= 0 || !userId}
               />
-              <button
+              <Button
                 onClick={sendMessage}
                 disabled={loading || credit <= 0 || !userId || !message.trim()}
-                className="h-12 w-12 rounded-lg bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center text-white"
+                size="icon"
+                className="h-12 w-12 shrink-0"
                 aria-label="Xabar yuborish"
               >
                 {loading ? (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span className="h-5 w-5 animate-spin rounded-full border-2 border-primary-foreground/30 border-t-primary-foreground" />
                 ) : (
-                  <Send size={18} />
+                  <Send size={18} strokeWidth={1.75} />
                 )}
-              </button>
+              </Button>
             </div>
 
             {/* Credit Info */}
-            <div className="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">
+            <div className="mt-2 text-center text-xs text-text-muted">
               {userId ? (
                 credit > 0 ? (
                   `Qolgan kredit: ${credit} ta`

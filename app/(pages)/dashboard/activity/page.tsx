@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { CalendarDays, CalendarCheck, BarChart3 } from "lucide-react";
-import api, { getMe } from "@/app/api/service/api";
+import { getMe } from "@/app/api/service/api";
 
 const Page = () => {
   const [missed, setMissed] = useState({
@@ -89,43 +89,54 @@ const Page = () => {
     fetchData();
   }, []);
 
+  // Uch oyna — bir xil kartochka. Oldin har biri boshqa rangda edi
+  // (kulrang / amber / sky), lekin bu status emas, shunchaki davr oynasi.
+  const ranges = [
+    { label: "Haftalik", value: missed.week, icon: CalendarDays },
+    { label: "Oylik", value: missed.month, icon: CalendarCheck },
+    { label: "So‘nggi 4 Oy", value: missed.fourMonths, icon: BarChart3 },
+  ];
+
   return (
-    <div className="container space-y-6 pt-6 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-semibold text-text-primary text-center w-full">
-        O&apos;quvchining Davomat Qismi
-      </h1>
+    <div className="container py-8 sm:py-10">
+      <div className="mx-auto max-w-2xl">
+        <header className="mb-6 sm:mb-8">
+          <h1 className="text-[32px] font-bold leading-tight tracking-tight text-text-primary sm:text-[40px]">
+            O&apos;quvchining Davomat Qismi
+          </h1>
+          <p className="mt-2 text-[15px] text-text-secondary">
+            Jami {loading ? "…" : missedDates.length} kun qoldirilgan
+          </p>
+        </header>
 
-      {loading ? (
-        <p className="text-center text-text-secondary">Yuklanmoqda...</p>
-      ) : (
-        <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="flex items-center gap-5 w-full rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5">
-              <CalendarDays className="text-slate-500 shrink-0" size={40} strokeWidth={1.5} />
-              <div className="flex flex-col">
-                <p className="text-xl font-semibold text-text-primary">Haftalik</p>
-                <p className="text-base text-text-secondary">{missed.week} kun qoldirilgan</p>
+        {loading ? (
+          <p className="text-[15px] text-text-secondary">Yuklanmoqda...</p>
+        ) : (
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+            {ranges.map((r) => (
+              <div
+                key={r.label}
+                className="rounded-card border border-border bg-surface p-4 sm:p-5"
+              >
+                <p className="flex items-center gap-2 text-xs text-text-secondary sm:text-sm">
+                  <r.icon
+                    size={16}
+                    strokeWidth={1.75}
+                    className="shrink-0 text-text-muted"
+                  />
+                  {r.label}
+                </p>
+                <p className="mt-2 text-2xl font-bold text-text-primary sm:text-3xl">
+                  {r.value}
+                </p>
+                <p className="mt-1 text-[13px] text-text-secondary">
+                  kun qoldirilgan
+                </p>
               </div>
-            </div>
-
-            <div className="flex items-center gap-5 w-full rounded-2xl border border-amber-200 bg-amber-50 px-6 py-5">
-              <CalendarCheck className="text-amber-500 shrink-0" size={40} strokeWidth={1.5} />
-              <div className="flex flex-col">
-                <p className="text-xl font-semibold text-amber-700">Oylik</p>
-                <p className="text-base text-text-secondary">{missed.month} kun qoldirilgan</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-5 w-full rounded-2xl border border-sky-200 bg-sky-50 px-6 py-5">
-              <BarChart3 className="text-sky-500 shrink-0" size={40} strokeWidth={1.5} />
-              <div className="flex flex-col">
-                <p className="text-xl font-semibold text-sky-700">So‘nggi 4 Oy</p>
-                <p className="text-base text-text-secondary">{missed.fourMonths} kun qoldirilgan</p>
-              </div>
-            </div>
+            ))}
           </div>
-        </>
-      )}
+        )}
+      </div>
     </div>
   );
 };
