@@ -11,7 +11,7 @@ export default function NotFound() {
             <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-10 px-4 py-12 md:flex-row md:justify-between md:py-16">
                 {/* Left: text */}
                 <section className="w-full max-w-xl">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700 shadow-sm">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700">
                         <Sparkles className="h-4 w-4" />
                         <span>404 • Sahifa topilmadi</span>
                     </div>
@@ -29,7 +29,7 @@ export default function NotFound() {
                     <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                         <Link
                             href="/"
-                            className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-sm transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-slate-300"
+                            className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition focus:outline-none focus:ring-2 focus:ring-slate-300"
                         >
                             <Home className="h-4 w-4 transition group-hover:scale-110" />
                             Bosh sahifaga qaytish
@@ -38,7 +38,7 @@ export default function NotFound() {
                         <button
                             type="button"
                             onClick={() => window.history.back()}
-                            className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-800 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-200"
+                            className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-800 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-200"
                         >
                             <ArrowLeft className="h-4 w-4 transition group-hover:-translate-x-0.5" />
                             Orqaga
@@ -47,7 +47,7 @@ export default function NotFound() {
                         <button
                             type="button"
                             onClick={() => window.location.reload()}
-                            className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-800 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-200"
+                            className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-800 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-200"
                         >
                             <RefreshCcw className="h-4 w-4 transition group-hover:rotate-180" />
                             Qayta yuklash
@@ -55,7 +55,7 @@ export default function NotFound() {
                     </div>
 
                     {/* Search-ish hint */}
-                    <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
+                    <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-4">
                         <div className="flex items-center gap-3">
                             <div className="grid h-10 w-10 place-items-center rounded-2xl bg-slate-100">
                                 <Search className="h-5 w-5 text-slate-700" />
@@ -78,7 +78,7 @@ export default function NotFound() {
 
                 {/* Right: animation */}
                 <section className="w-full max-w-xl">
-                    <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+                    <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(15,23,42,0.06),transparent_55%),radial-gradient(circle_at_80%_70%,rgba(99,102,241,0.08),transparent_50%)]" />
                         <div className="relative p-6 md:p-8">
                             <Lottie

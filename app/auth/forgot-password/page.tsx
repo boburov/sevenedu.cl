@@ -30,7 +30,7 @@ export default function ForgotPasswordPage() {
     if (sent) {
         return (
             <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-violet-50 to-fuchsia-50 px-4">
-                <div className="w-full max-w-md rounded-3xl border border-white/60 bg-white/80 p-10 text-center shadow-xl backdrop-blur-xl">
+                <div className="w-full max-w-md rounded-3xl border border-white/60 bg-white/80 p-10 text-center backdrop-blur-xl">
                     <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-violet-100 text-3xl">
                         📧
                     </div>
@@ -58,7 +58,7 @@ export default function ForgotPasswordPage() {
             </main>
         }>
             <main className="flex min-h-screen items-center justify-center bg-linear-to-br from-violet-50 to-fuchsia-50 px-4">
-                <div className="w-full max-w-md rounded-3xl border border-white/60 bg-white/80 p-10 shadow-xl backdrop-blur-xl">
+                <div className="w-full max-w-md rounded-3xl border border-white/60 bg-white/80 p-10 backdrop-blur-xl">
                     <h1 className="text-2xl font-bold text-slate-900">Parolni unutdingizmi?</h1>
                     <p className="mt-2 text-sm text-slate-500">
                         Emailingizni kiriting, tiklash havolasini yuboramiz.
@@ -82,7 +82,7 @@ export default function ForgotPasswordPage() {
                         <button
                             onClick={handleSubmit}
                             disabled={loading || !email}
-                            className="w-full rounded-2xl bg-linear-to-r from-violet-600 to-fuchsia-600 py-3 text-sm font-semibold text-white shadow-lg disabled:opacity-60 hover:-translate-y-px hover:shadow-xl transition-all"
+                            className="w-full rounded-2xl bg-linear-to-r from-violet-600 to-fuchsia-600 py-3 text-sm font-semibold text-white disabled:opacity-60 hover:-translate-y-px transition-all"
                         >
                             {loading ? "Yuborilmoqda..." : "Havola yuborish"}
                         </button>

@@ -15,8 +15,8 @@ const Home = () => {
 
       {/* top-left brand */}
       <div className="absolute left-6 top-6">
-        <div className="flex items-center gap-3 rounded-2xl border border-white/60 bg-white/70 px-3 py-2 shadow-lg backdrop-blur-xl">
-          <div className="rounded-xl bg-violet-600 p-2 shadow-sm">
+        <div className="flex items-center gap-3 rounded-2xl border border-white/60 bg-white/70 px-3 py-2 backdrop-blur-xl">
+          <div className="rounded-xl bg-violet-600 p-2">
             <Image
               src={logo}
               alt="Seven Edu Logo"
@@ -30,9 +30,9 @@ const Home = () => {
       </div>
 
       {/* center card */}
-      <section className="relative z-10 w-full max-w-md rounded-[28px] border border-white/60 bg-white/80 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-2xl sm:p-10">
+      <section className="relative z-10 w-full max-w-md rounded-[28px] border border-white/60 bg-white/80 p-8 backdrop-blur-2xl sm:p-10">
         <div className="mb-8 flex flex-col items-center text-center">
-          <div className="mb-5 rounded-3xl bg-linear-to-br from-violet-500 to-fuchsia-500 p-px shadow-lg">
+          <div className="mb-5 rounded-3xl bg-linear-to-br from-violet-500 to-fuchsia-500 p-px">
             <div className="rounded-[22px] bg-white p-3">
               <Image
                 src={logo}
@@ -64,14 +64,11 @@ const Home = () => {
       border border-slate-200
       bg-white
       text-sm font-semibold text-slate-700
-      shadow-sm
       transition-all duration-200
       hover:-translate-y-px
       hover:border-slate-300
       hover:bg-slate-50
-      hover:shadow-md
       active:translate-y-0
-      active:shadow-sm
     "
           >
             Kirish
@@ -84,12 +81,9 @@ const Home = () => {
       rounded-2xl
       bg-linear-to-r from-violet-600 to-fuchsia-600
       text-sm font-semibold text-white
-      shadow-lg shadow-violet-600/25
       transition-all duration-200
       hover:-translate-y-px
-      hover:shadow-xl hover:shadow-violet-600/30
       active:translate-y-0
-      active:shadow-md
     "
           >
             Ro&apos;yxatdan o&apos;tish

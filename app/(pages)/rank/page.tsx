@@ -136,7 +136,7 @@ export default function Page() {
                 </div>
             )}
 
-            <div className="rounded-2xl border border-border bg-surface shadow-card overflow-hidden">
+            <div className="rounded-2xl border border-border bg-surface overflow-hidden">
                 <div className="px-4 py-3 border-b border-border bg-surface-alt grid grid-cols-[40px_1fr_auto] items-center gap-2">
                     <div className="text-sm font-semibold text-text-primary">Rank</div>
                     <div className="text-sm font-semibold text-text-primary">
@@ -228,7 +228,7 @@ export default function Page() {
                         type="button"
                         onClick={() => setPage((p) => Math.max(1, p - 1))}
                         disabled={page === 1}
-                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2 text-sm font-semibold text-text-primary shadow-sm transition hover:bg-surface-alt disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2 text-sm font-semibold text-text-primary transition hover:bg-surface-alt disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         <ChevronLeft size={16} />
                         Prev
@@ -280,7 +280,7 @@ export default function Page() {
                         type="button"
                         onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                         disabled={page === totalPages}
-                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2 text-sm font-semibold text-text-primary shadow-sm transition hover:bg-surface-alt disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2 text-sm font-semibold text-text-primary transition hover:bg-surface-alt disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         Next
                         <ChevronRight size={16} />

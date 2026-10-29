@@ -357,7 +357,7 @@ const SpeakingPage = () => {
     if (vocabulary.length === 0) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50">
-                <div className="text-center p-8 bg-white rounded-2xl shadow-xl border border-slate-100">
+                <div className="text-center p-8 bg-white rounded-2xl border border-slate-100">
                     <p className="text-2xl text-gray-800 font-semibold">Lug‘at topilmadi.</p>
                     <p className="text-gray-600 mt-2">Ushbu dars uchun so‘zlar hali qo‘shilmagan bo‘lishi mumkin.</p>
                 </div>
@@ -369,7 +369,7 @@ const SpeakingPage = () => {
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 py-8 px-4">
             <div className="max-w-5xl mx-auto">
                 {/* Top header */}
-                <div className="bg-white/80 backdrop-blur rounded-3xl shadow-xl border border-white p-6 mb-6">
+                <div className="bg-white/80 backdrop-blur rounded-3xl border border-white p-6 mb-6">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div>
                             <h1 className="text-3xl font-extrabold text-gray-900 flex items-center gap-2">
@@ -408,7 +408,7 @@ const SpeakingPage = () => {
                     </div>
 
                     <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-3">
-                        <div className="bg-white rounded-2xl border border-slate-100 p-4 shadow-sm">
+                        <div className="bg-white rounded-2xl border border-slate-100 p-4">
                             <div className="text-xs text-gray-500 mb-2">Speaker speed</div>
                             <div className="flex items-center gap-2">
                                 <button
@@ -431,7 +431,7 @@ const SpeakingPage = () => {
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-2xl border border-slate-100 p-4 shadow-sm">
+                        <div className="bg-white rounded-2xl border border-slate-100 p-4">
                             <div className="text-xs text-gray-500 mb-2">Auto-next on 90%+</div>
                             <button
                                 onClick={() => setAutoNext((v) => !v)}
@@ -442,7 +442,7 @@ const SpeakingPage = () => {
                             </button>
                         </div>
 
-                        <div className="bg-white rounded-2xl border border-slate-100 p-4 shadow-sm">
+                        <div className="bg-white rounded-2xl border border-slate-100 p-4">
                             <div className="text-xs text-gray-500 mb-2">Tips</div>
                             <p className="text-sm text-gray-700">
                                 Mikrofon yaqinroq. Sekinroq ayting. Agar so‘z uzun bo‘lsa, bo‘lib ayting.
@@ -452,7 +452,7 @@ const SpeakingPage = () => {
                 </div>
 
                 {/* Main card */}
-                <div className="bg-white rounded-3xl shadow-2xl border border-white p-7 md:p-10">
+                <div className="bg-white rounded-3xl border border-white p-7 md:p-10">
                     {/* Word */}
                     <div className="text-center">
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200 text-sm text-gray-700">
@@ -476,7 +476,7 @@ const SpeakingPage = () => {
                         <button
                             onClick={() => speakWord(currentWord?.word || "")}
                             disabled={!currentWord?.word}
-                            className="group flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white px-7 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition"
+                            className="group flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white px-7 py-4 rounded-2xl font-semibold transition"
                         >
                             <span className="text-xl">🔊</span>
                             Tinglash <span className="opacity-70 text-sm">(Enter)</span>
@@ -485,10 +485,10 @@ const SpeakingPage = () => {
                         <button
                             onClick={startListening}
                             disabled={isListening}
-                            className={`group flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition ${isListening
-                                    ? "bg-red-500 hover:bg-red-600 text-white animate-pulse"
-                                    : "bg-green-600 hover:bg-green-700 text-white"
-                                }`}
+                            className={`group flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-semibold transition ${isListening
+ ? "bg-red-500 hover:bg-red-600 text-white animate-pulse"
+ : "bg-green-600 hover:bg-green-700 text-white"
+ }`}
                         >
                             <span className="text-xl">🎙️</span>
                             {isListening ? "Tinglanmoqda…" : "Aytish"}{" "}
@@ -497,7 +497,7 @@ const SpeakingPage = () => {
 
                         <button
                             onClick={stopSpeaking}
-                            className="flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-semibold border border-slate-200 bg-white hover:bg-slate-50 text-gray-800 shadow-sm transition"
+                            className="flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-semibold border border-slate-200 bg-white hover:bg-slate-50 text-gray-800 transition"
                         >
                             <span className="text-xl">⏹️</span> Stop
                             <span className="opacity-70 text-sm">(Esc)</span>
@@ -545,10 +545,10 @@ const SpeakingPage = () => {
                     <button
                         onClick={goToPrevious}
                         disabled={currentIndex === 0}
-                        className={`px-6 py-3 rounded-2xl font-semibold shadow-sm transition ${currentIndex === 0
-                                ? "bg-slate-200 text-slate-500 cursor-not-allowed"
-                                : "bg-white text-gray-800 hover:bg-slate-50 border border-slate-200"
-                            }`}
+                        className={`px-6 py-3 rounded-2xl font-semibold transition ${currentIndex === 0
+ ? "bg-slate-200 text-slate-500 cursor-not-allowed"
+ : "bg-white text-gray-800 hover:bg-slate-50 border border-slate-200"
+ }`}
                     >
                         ← Oldingi
                     </button>
@@ -556,10 +556,10 @@ const SpeakingPage = () => {
                     <button
                         onClick={goToNext}
                         disabled={currentIndex === vocabulary.length - 1}
-                        className={`px-6 py-3 rounded-2xl font-semibold shadow-sm transition ${currentIndex === vocabulary.length - 1
-                                ? "bg-slate-200 text-slate-500 cursor-not-allowed"
-                                : "bg-white text-gray-800 hover:bg-slate-50 border border-slate-200"
-                            }`}
+                        className={`px-6 py-3 rounded-2xl font-semibold transition ${currentIndex === vocabulary.length - 1
+ ? "bg-slate-200 text-slate-500 cursor-not-allowed"
+ : "bg-white text-gray-800 hover:bg-slate-50 border border-slate-200"
+ }`}
                     >
                         Keyingi →
                     </button>

@@ -38,7 +38,7 @@ const VocabularyPage = () => {
  if (loading)
   return (
     <div className="min-h-screen bg-background px-5 py-10">
-      <div className="max-w-4xl mx-auto rounded-2xl border border-border bg-surface p-6 shadow-card">
+      <div className="max-w-4xl mx-auto rounded-2xl border border-border bg-surface p-6">
         <div className="animate-pulse space-y-4">
           <div className="h-6 w-40 rounded bg-surface-alt" />
           <div className="h-10 w-full rounded bg-surface-alt" />
@@ -63,11 +63,11 @@ return (
       </div>
 
       {vocabulary.length === 0 ? (
-        <div className="rounded-2xl border border-border bg-surface p-6 text-center shadow-card">
+        <div className="rounded-2xl border border-border bg-surface p-6 text-center">
           <p className="text-sm text-text-secondary">Lug‘at topilmadi.</p>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-card">
+        <div className="overflow-hidden rounded-2xl border border-border bg-surface">
           <table className="min-w-full border-collapse">
             <thead>
               <tr className="bg-surface-alt text-text-secondary">

@@ -229,9 +229,9 @@ const handleSignup = async () => {
               type="submit"
               disabled={isSubmitting}
               className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${isSubmitting
-                ? "bg-primary/60 cursor-not-allowed"
-                : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
-                }`}
+ ? "bg-primary/60 cursor-not-allowed"
+ : "bg-primary hover:bg-primary-hover "
+ }`}
             >
               {isSubmitting ? "Yuborilmoqda..." : "Kirish"}
             </button>

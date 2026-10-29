@@ -44,7 +44,7 @@ const Page = () => {
             {gifts.map((gift, index) => (
               <div
                 key={index}
-                className="backdrop-blur-lg bg-white/30 border border-white/40 shadow-xl rounded-2xl p-4 transition hover:scale-105 duration-200"
+                className="backdrop-blur-lg bg-white/30 border border-white/40 rounded-2xl p-4 transition hover:scale-105 duration-200"
               >
                 <h2 className="text-lg font-semibold text-gray-800 mb-2">
                   {gift.name}

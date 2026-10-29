@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
-import { getMe } from "@/app/api/service/api";
+import api, { getMe } from "@/app/api/service/api";
 import { Lock, Play, CheckCircle2, Sparkles, Crown, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, useRouter } from "next/navigation";
-import axios from "axios";
 import apiEndpoins from "@/app/api/api.endpoin";
 
 interface Lesson {
@@ -60,9 +59,7 @@ const CourseLessonsPage: React.FC = () => {
         }
 
         // 2️⃣ darslarni olish
-        const res = await axios.get(
-          "https://api.sevenedu.org/" + apiEndpoins.getCategory(courseId)
-        );
+        const res = await api.get(apiEndpoins.getCategory(courseId));
 
         const dataLessons: Lesson[] = res.data.lessons || [];
 
@@ -206,7 +203,7 @@ const CourseLessonsPage: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="max-w-md mx-auto px-4"
           >
-            <div className="relative rounded-2xl sm:rounded-3xl bg-white border border-gray-200 p-8 sm:p-12 text-center shadow-xl">
+            <div className="relative rounded-2xl sm:rounded-3xl bg-white border border-gray-200 p-8 sm:p-12 text-center">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-transparent rounded-2xl sm:rounded-3xl" />
               <div className="relative">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-full bg-purple-100 flex items-center justify-center">
@@ -261,14 +258,14 @@ const CourseLessonsPage: React.FC = () => {
                         <motion.div
                           whileHover={{ scale: locked ? 1 : 1.1 }}
                           whileTap={{ scale: locked ? 1 : 0.95 }}
-                          className={`relative w-10 h-10 rounded-xl flex items-center justify-center shadow-md ${locked
-                            ? "bg-gray-100 border-2 border-gray-200"
-                            : isDone
-                              ? "bg-gradient-to-br from-purple-500 to-purple-600 shadow-purple-200"
-                              : isCurrent
-                                ? "bg-gradient-to-br from-purple-400 to-purple-500 shadow-purple-300 ring-2 ring-purple-100"
-                                : "bg-gradient-to-br from-purple-500 to-purple-600 shadow-purple-200"
-                            }`}
+                          className={`relative w-10 h-10 rounded-xl flex items-center justify-center ${locked
+ ? "bg-gray-100 border-2 border-gray-200"
+ : isDone
+ ? "bg-gradient-to-br from-purple-500 to-purple-600 "
+ : isCurrent
+ ? "bg-gradient-to-br from-purple-400 to-purple-500 ring-2 ring-purple-100"
+ : "bg-gradient-to-br from-purple-500 to-purple-600 "
+ }`}
                         >
                           {locked ? (
                             <Lock className="w-5 h-5 text-gray-400" />
@@ -338,14 +335,14 @@ const CourseLessonsPage: React.FC = () => {
                         <motion.div
                           whileHover={{ scale: locked ? 1 : 1.1 }}
                           whileTap={{ scale: locked ? 1 : 0.95 }}
-                          className={`relative w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg ${locked
-                            ? "bg-gray-100 border-2 border-gray-200"
-                            : isDone
-                              ? "bg-gradient-to-br from-purple-500 to-purple-600 shadow-purple-200"
-                              : isCurrent
-                                ? "bg-gradient-to-br from-purple-400 to-purple-500 shadow-purple-300 ring-4 ring-purple-100"
-                                : "bg-gradient-to-br from-purple-500 to-purple-600 shadow-purple-200"
-                            }`}
+                          className={`relative w-14 h-14 rounded-2xl flex items-center justify-center ${locked
+ ? "bg-gray-100 border-2 border-gray-200"
+ : isDone
+ ? "bg-gradient-to-br from-purple-500 to-purple-600 "
+ : isCurrent
+ ? "bg-gradient-to-br from-purple-400 to-purple-500 ring-4 ring-purple-100"
+ : "bg-gradient-to-br from-purple-500 to-purple-600 "
+ }`}
                         >
                           {locked ? (
                             <Lock className="w-6 h-6 text-gray-400" />
@@ -411,13 +408,13 @@ const LessonCard: React.FC<{
     >
       <div
         className={`relative rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 ${locked
-          ? "bg-gray-50 border-2 border-gray-200 shadow-sm"
-          : isCurrent
-            ? "bg-white border-2 border-purple-300 shadow-xl shadow-purple-100"
-            : isDone
-              ? "bg-white border-2 border-purple-200 shadow-lg shadow-purple-50"
-              : "bg-white border-2 border-gray-200 shadow-lg hover:border-purple-300 hover:shadow-xl hover:shadow-purple-100"
-          }`}
+ ? "bg-gray-50 border-2 border-gray-200 "
+ : isCurrent
+ ? "bg-white border-2 border-purple-300 "
+ : isDone
+ ? "bg-white border-2 border-purple-200 "
+ : "bg-white border-2 border-gray-200 hover:border-purple-300 "
+ }`}
       >
         {/* Gradient overlay */}
         <div

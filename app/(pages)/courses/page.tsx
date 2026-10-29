@@ -37,19 +37,30 @@ const CoursesPage = () => {
 
   useEffect(() => {
     const fetchAll = async () => {
-      try {
-        const [allCoursesData, meData] = await Promise.all([allCourse(), getMe()]);
-        setCourses(allCoursesData);
+      // Kurslar ro'yxati va foydalanuvchi alohida olinadi: /auth/me yoki
+      // bitta kurs xato bersa ham umumiy ro'yxat ko'rinib turishi kerak.
+      const [coursesRes, meRes] = await Promise.allSettled([allCourse(), getMe()]);
+
+      if (coursesRes.status === "fulfilled" && Array.isArray(coursesRes.value)) {
+        setCourses(coursesRes.value);
+      } else if (coursesRes.status === "rejected") {
+        console.error("allCourse error:", coursesRes.reason);
+      }
+
+      const meData = meRes.status === "fulfilled" ? meRes.value : null;
+      if (meRes.status === "rejected") console.error("getMe error:", meRes.reason);
+
+      if (meData) {
         setUser(meData);
         const userCourseData = await Promise.all(
-          meData.courses.map((item: any) => GetCourseById(item.courseId))
+          (meData.courses || []).map((item: any) =>
+            GetCourseById(item.courseId).catch(() => null)
+          )
         );
-        setUserCourses(userCourseData);
-      } catch (e) {
-        console.error("fetchAll error:", e);
-      } finally {
-        setLoading(false);
+        setUserCourses(userCourseData.filter(Boolean));
       }
+
+      setLoading(false);
     };
     fetchAll();
   }, []);
@@ -104,10 +115,10 @@ const CoursesPage = () => {
                   key={key}
                   onClick={() => setTab(key)}
                   className={`rounded-xl px-4 py-1.5 text-xs font-semibold transition-all ${
-                    tab === key
-                      ? "bg-white text-violet-700 shadow-sm"
-                      : "text-slate-500 hover:text-slate-700"
-                  }`}
+ tab === key
+ ? "bg-white text-violet-700 "
+ : "text-slate-500 hover:text-slate-700"
+ } border border-border`}
                 >
                   {label}
                 </button>
@@ -153,7 +164,7 @@ const CoursesPage = () => {
               return (
                 <li
                   key={kurs.id}
-                  className="group flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-slate-100 transition-all hover:shadow-md"
+                  className="group flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-slate-100 transition-all"
                 >
                   {/* Thumbnail */}
                   <div className="relative h-44 w-full overflow-hidden bg-slate-100">
@@ -185,7 +196,7 @@ const CoursesPage = () => {
 
                     {/* owned badge */}
                     {isOwned && (
-                      <div className="absolute right-3 top-3 rounded-full bg-emerald-500 px-2.5 py-1 text-[10px] font-bold text-white shadow-sm">
+                      <div className="absolute right-3 top-3 rounded-full bg-emerald-500 px-2.5 py-1 text-[10px] font-bold text-white">
                         MENING
                       </div>
                     )}

@@ -171,7 +171,7 @@ const ChatWidget = () => {
       {!isOpen && (
         <button
           onClick={openChat}
-          className="fixed z-50 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 group border border-gray-200 dark:border-gray-700"
+          className="fixed z-50 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-4 rounded-full transition-all duration-300 hover:scale-105 group border border-gray-200 dark:border-gray-700 hover:border-border-strong"
           style={{
             bottom: '100px',
             right: '1rem',
@@ -195,7 +195,7 @@ const ChatWidget = () => {
       {/* Chat Window */}
       {isOpen && (
         <div
-          className="fixed z-50 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col"
+          className="fixed z-50 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col"
           style={{
             bottom: '100px',
             right: '1rem',

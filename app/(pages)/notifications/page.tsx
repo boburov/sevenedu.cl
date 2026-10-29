@@ -128,7 +128,7 @@ const Page = () => {
           {[...Array(3)].map((_, i) => (
             <div
               key={i}
-              className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm"
+              className="rounded-2xl border border-black/10 bg-white p-5"
             >
               <div className="flex gap-3">
                 <div className="h-10 w-10 rounded-xl bg-black/5" />
@@ -143,7 +143,7 @@ const Page = () => {
         </div>
       ) : notifications.length === 0 ? (
         <div className="flex flex-col items-center justify-center text-black/70 mt-20">
-          <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
+          <div className="rounded-2xl border border-black/10 bg-white p-6">
             <div className="flex flex-col items-center">
               <Inbox className="w-14 h-14 mb-3" />
               <p className="text-center text-base font-medium">
@@ -176,9 +176,9 @@ const Page = () => {
                     <article
                       key={habar.id}
                       className={[
-                        "group rounded-2xl border bg-white p-5 shadow-sm",
+                        "group rounded-2xl border bg-white p-5",
                         "transition-all duration-200",
-                        "hover:shadow-md hover:-translate-y-[1px]",
+                        "hover:-translate-y-[1px]",
                         "active:translate-y-0",
                         "border-black/10",
                       ].join(" ")}

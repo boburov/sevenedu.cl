@@ -234,7 +234,7 @@ export default function DailyStats() {
         ].map((x, i) => (
           <div
             key={i}
-            className="rounded-2xl border border-border p-4 bg-surface shadow-card"
+            className="rounded-2xl border border-border p-4 bg-surface"
           >
             <div className="flex items-center gap-2 text-sm text-text-secondary">
               <x.icon size={16} className={x.color} />
@@ -248,7 +248,7 @@ export default function DailyStats() {
       </div>
 
       {/* GITHUB-STYLE CONTRIBUTION GRAPH */}
-      <div className="rounded-2xl border border-border bg-surface shadow-card p-4">
+      <div className="rounded-2xl border border-border bg-surface p-4">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-sm font-semibold text-text-primary">
             Faollik jadvali
@@ -329,7 +329,7 @@ export default function DailyStats() {
       {view === "kunlik" && (
         <div className="space-y-3">
           {activeDailyList.length === 0 ? (
-            <div className="rounded-2xl border border-border bg-surface p-6 text-center text-text-secondary shadow-card">
+            <div className="rounded-2xl border border-border bg-surface p-6 text-center text-text-secondary">
               Hozircha faollik yo&apos;q. Dars o&apos;qing yoki test yeching!
             </div>
           ) : (
@@ -342,7 +342,7 @@ export default function DailyStats() {
               return (
                 <div
                   key={d.date}
-                  className="border border-border rounded-2xl p-4 bg-surface shadow-card"
+                  className="border border-border rounded-2xl p-4 bg-surface"
                 >
                   <button
                     onClick={() =>
@@ -401,7 +401,7 @@ export default function DailyStats() {
 
       {/* SUMMARY */}
       {view === "umumiy" && (
-        <div className="border border-border rounded-2xl p-6 bg-surface shadow-card space-y-4">
+        <div className="border border-border rounded-2xl p-6 bg-surface space-y-4">
           <h2 className="text-xl font-bold text-center text-text-primary">
             Umumiy natija
           </h2>

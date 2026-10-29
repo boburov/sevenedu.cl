@@ -1,13 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  BookOpenCheck,
-  Bell,
-  Settings,
-  Lock,
-  LogOut,
-} from "lucide-react";
+import { Avatar } from "@/app/components/shell/AppShell";
+import { BookOpenCheck, Bell, Settings, Lock, LogOut } from "lucide-react";
 import { allCourse, getMe } from "@/app/api/service/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -43,7 +38,7 @@ const UserPage = () => {
   };
 
   const cardStyle =
-    "group flex items-center gap-4 rounded-2xl border border-[#0b0b14]/10 p-5 shadow-sm transition-all duration-200 hover:border-purple-500/10 hover:bg-[#141428]/10";
+    "group flex items-center gap-4 rounded-2xl border border-[#0b0b14]/10 p-5 transition-all duration-200 hover:border-purple-500/10 hover:bg-[#141428]/10";
 
   const iconStyle =
     "h-9 w-9 rounded-xl bg-purple-500/10 text-purple-400 p-2 group-hover:bg-purple-500/20";
@@ -53,13 +48,15 @@ const UserPage = () => {
       <div className="container mx-auto max-w-6xl px-4 pt-10">
         {/* Header */}
         <div className="mb-10 flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-semibold tracking-tight">
-              Profil
-            </h1>
-            <p className="text-sm text-[#0b0b14] mt-1">
-              Hisobingiz va sozlamalaringiz
-            </p>
+          <div className="flex items-center gap-4">
+            {/* Rasm ustiga bosib almashtirish mumkin */}
+            <Avatar size={56} editable />
+            <div>
+              <h1 className="text-2xl font-semibold tracking-tight">Profil</h1>
+              <p className="text-sm text-[#0b0b14] mt-1">
+                Hisobingiz va sozlamalaringiz
+              </p>
+            </div>
           </div>
 
           <button
@@ -83,7 +80,10 @@ const UserPage = () => {
                 <p className="text-sm text-[#0b0b14]">Mening kurslarim</p>
                 <p className="mt-1 text-xl font-semibold">
                   {user.courses.length}
-                  <span className="text-sm font-normal text-[#0b0b14]"> ta</span>
+                  <span className="text-sm font-normal text-[#0b0b14]">
+                    {" "}
+                    ta
+                  </span>
                 </p>
               </div>
             </div>
@@ -97,7 +97,10 @@ const UserPage = () => {
                 <p className="text-sm text-[#0b0b14]">Bildirishnomalar</p>
                 <p className="mt-1 text-xl font-semibold">
                   0
-                  <span className="text-sm font-normal text-[#0b0b14]"> ta</span>
+                  <span className="text-sm font-normal text-[#0b0b14]">
+                    {" "}
+                    ta
+                  </span>
                 </p>
               </div>
             </div>
@@ -111,7 +114,10 @@ const UserPage = () => {
                 <p className="text-sm text-[#0b0b14]">Platformadagi kurslar</p>
                 <p className="mt-1 text-xl font-semibold">
                   {courses.length}
-                  <span className="text-sm font-normal text-[#0b0b14]"> ta</span>
+                  <span className="text-sm font-normal text-[#0b0b14]">
+                    {" "}
+                    ta
+                  </span>
                 </p>
               </div>
             </div>
@@ -136,9 +142,7 @@ const UserPage = () => {
               </div>
               <div>
                 <p className="text-sm text-[#0b0b14]">Parol xavfsizligi</p>
-                <p className="mt-1 text-sm text-[#0b0b14]">
-                  Parolni yangilash
-                </p>
+                <p className="mt-1 text-sm text-[#0b0b14]">Parolni yangilash</p>
               </div>
             </Link>
           </div>

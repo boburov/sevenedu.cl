@@ -118,7 +118,7 @@ const Page = () => {
     <div className="w-full max-w-4xl mx-auto px-5 py-6 space-y-6">
 
       {/* Video */}
-      <div className="rounded-2xl border border-border bg-surface shadow-card overflow-hidden">
+      <div className="rounded-2xl border border-border bg-surface overflow-hidden">
         <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
           {!vimeo ? (
             <div className="absolute inset-0 grid place-items-center bg-black">
@@ -144,7 +144,7 @@ const Page = () => {
           <span className="text-xs text-text-muted">Practice</span>
         </div>
 
-        <Link href={`${lessonId}/vocabulary`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]">
+        <Link href={`${lessonId}/vocabulary`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)] hover:border-border-strong">
           <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0"><Languages size={22} strokeWidth={1.5} /></span>
           <div className="min-w-0 flex-1">
             <div className="text-sm font-semibold text-text-primary">Lug'at</div>
@@ -153,7 +153,7 @@ const Page = () => {
           <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">Kirish →</span>
         </Link>
 
-        <Link href={`${lessonId}/test`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]">
+        <Link href={`${lessonId}/test`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)] hover:border-border-strong">
           <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0"><ListChecks size={22} strokeWidth={1.5} /></span>
           <div className="min-w-0 flex-1">
             <div className="text-sm font-semibold text-text-primary">Test</div>
@@ -162,7 +162,7 @@ const Page = () => {
           <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">Kirish →</span>
         </Link>
 
-        <Link href={`${lessonId}/quiz`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]">
+        <Link href={`${lessonId}/quiz`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)] hover:border-border-strong">
           <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0"><MessageCircleQuestion size={22} strokeWidth={1.5} /></span>
           <div className="min-w-0 flex-1">
             <div className="text-sm font-semibold text-text-primary">Savollar</div>
@@ -171,7 +171,7 @@ const Page = () => {
           <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">Kirish →</span>
         </Link>
 
-        <Link href={`${lessonId}/speaking`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]">
+        <Link href={`${lessonId}/speaking`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)] hover:border-border-strong">
           <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0"><Mic size={22} strokeWidth={1.5} /></span>
           <div className="min-w-0 flex-1">
             <div className="text-sm font-semibold text-text-primary">Talafuzz</div>
@@ -180,7 +180,7 @@ const Page = () => {
           <span className="text-xs font-semibold text-text-muted group-hover:text-text-secondary">Kirish →</span>
         </Link>
 
-        <Link href={`${lessonId}/ask-for-ai`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]">
+        <Link href={`${lessonId}/ask-for-ai`} className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)] hover:border-border-strong">
           <span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary shrink-0"><MessageCircleQuestion size={22} strokeWidth={1.5} /></span>
           <div className="min-w-0 flex-1">
             <div className="text-sm font-semibold text-text-primary">Ustozdan so'rash</div>

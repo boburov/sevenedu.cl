@@ -254,10 +254,10 @@ const ProgressSection = ({ userCourses, userName }: ProgressSectionProps) => {
             onClick={handleCheckin}
             disabled={checkedInToday}
             className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all ${
-              checkedInToday
-                ? "bg-emerald-100 text-emerald-600 cursor-default"
-                : "bg-primary text-white hover:bg-primary-hover active:scale-95 shadow-sm"
-            }`}
+ checkedInToday
+ ? "bg-emerald-100 text-emerald-600 cursor-default"
+ : "bg-primary text-white hover:bg-primary-hover active:scale-95 "
+ }`}
           >
             <CheckCircle2 size={15} />
             {checkedInToday ? "Bajarildi" : "Check-in"}

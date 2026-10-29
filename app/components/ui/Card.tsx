@@ -19,7 +19,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-card border border-border bg-surface shadow-card p-5 text-text-primary transition-all duration-200 hover:shadow-card-hover",
+        "rounded-card border border-border bg-surface p-5 text-text-primary transition-all duration-200 hover:border-border-strong",
         className
       )}
       {...props}

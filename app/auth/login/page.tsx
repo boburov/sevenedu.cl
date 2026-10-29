@@ -210,9 +210,9 @@ export default function Login() {
                 type="submit"
                 disabled={loading}
                 className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${loading
-                  ? "bg-primary/60 cursor-not-allowed"
-                  : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
-                  }`}
+ ? "bg-primary/60 cursor-not-allowed"
+ : "bg-primary hover:bg-primary-hover "
+ }`}
               >
                 {loading ? "Kirish..." : "Kirish"}
               </button>
@@ -241,9 +241,9 @@ export default function Login() {
                 type="submit"
                 disabled={loading}
                 className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${loading
-                  ? "bg-primary/60 cursor-not-allowed"
-                  : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
-                  }`}
+ ? "bg-primary/60 cursor-not-allowed"
+ : "bg-primary hover:bg-primary-hover "
+ }`}
               >
                 {loading ? "Yuborilmoqda..." : "Parolni tiklash"}
               </button>
@@ -273,7 +273,7 @@ export default function Login() {
       {/* Floating Terminal Button */}
       <button
         onClick={() => setShowConsole(!showConsole)}
-        className="fixed bottom-6 right-6 bg-gray-900 text-white p-4 rounded-full shadow-lg hover:bg-gray-800 transition-colors z-50"
+        className="fixed bottom-6 right-6 bg-gray-900 text-white p-4 rounded-full hover:bg-gray-800 transition-colors z-50"
         aria-label="Toggle Console"
       >
         <Terminal size={24} />
@@ -282,7 +282,7 @@ export default function Login() {
       {/* Console Modal */}
       {showConsole && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end sm:items-center sm:justify-center">
-          <div className="bg-gray-900 w-full sm:w-11/12 sm:max-w-4xl h-96 sm:h-3/4 rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col">
+          <div className="bg-gray-900 w-full sm:w-11/12 sm:max-w-4xl h-96 sm:h-3/4 rounded-t-2xl sm:rounded-2xl flex flex-col">
             {/* Header */}
             <div className="flex items-center justify-between bg-gray-800 px-4 py-3 rounded-t-2xl">
               <div className="flex items-center gap-2">

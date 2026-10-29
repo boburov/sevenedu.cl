@@ -133,7 +133,7 @@ export default function TestPage() {
   if (!current)
     return (
       <div className="min-h-screen bg-background px-5 py-10">
-        <div className="container max-w-xl rounded-2xl border border-border bg-surface p-6 shadow-card text-center">
+        <div className="container max-w-xl rounded-2xl border border-border bg-surface p-6 text-center">
           <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-2xl bg-danger-soft">
             <FileX size={22} className="text-danger" />
           </div>
@@ -161,7 +161,7 @@ export default function TestPage() {
 
   return (
     <div className="min-h-screen bg-background px-4 py-10">
-      <div className="mx-auto w-full max-w-xl rounded-2xl border border-border bg-surface p-6 shadow-card">
+      <div className="mx-auto w-full max-w-xl rounded-2xl border border-border bg-surface p-6">
         {/* Top bar */}
         <div className="mb-5">
           <div className="flex items-center justify-between">

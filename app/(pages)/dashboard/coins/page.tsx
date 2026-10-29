@@ -94,7 +94,7 @@ const Page = () => {
         return (
           <div
             key={index}
-            className={`w-full rounded-2xl border ${s.card} p-4 flex items-center justify-between gap-4 shadow-card`}
+            className={`w-full rounded-2xl border ${s.card} p-4 flex items-center justify-between gap-4`}
           >
             <div className="flex gap-4 items-center min-w-0">
               <span className="shrink-0">{item.icon}</span>

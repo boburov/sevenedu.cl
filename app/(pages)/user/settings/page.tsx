@@ -130,7 +130,7 @@ const Page = () => {
   if (!user) return <div>Yuklanmoqda...</div>;
 
   return (
-    <div className="max-w-md mx-auto p-6 rounded-lg shadow-lg text-white">
+    <div className="max-w-md mx-auto p-6 rounded-lg text-white">
       <button
         className="flex items-center gap-2 bg-green-600/30 hover:bg-green-700/40 border border-green-500/20 transition-colors px-5 py-2 rounded-lg mb-6"
         onClick={() => setIsEditing(!isEditing)}

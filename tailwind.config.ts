@@ -62,12 +62,6 @@ const config: Config = {
         24: "6rem",
         32: "8rem",
       },
-      boxShadow: {
-        card: "0 1px 3px rgba(26, 22, 37, 0.04), 0 4px 12px rgba(124, 58, 237, 0.06)",
-        "card-hover":
-          "0 2px 8px rgba(26, 22, 37, 0.06), 0 8px 24px rgba(124, 58, 237, 0.1)",
-        soft: "0 2px 8px rgba(26, 22, 37, 0.08)",
-      },
     },
   },
   plugins: [],

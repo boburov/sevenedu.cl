@@ -2,7 +2,7 @@ import axios from 'axios';
 import apiEndpoins from '../api.endpoin';
 
 const api = axios.create({
-    baseURL: 'https://api.sevenedu.org',
+    baseURL: process.env.NEXT_PUBLIC_API_URL || 'https://api.sevenedu.org',
 })
 
 api.interceptors.request.use((config) => {
@@ -206,6 +206,17 @@ export const getLeaderboard = async () => {
             coins: number;
             rank: number;
         } | null;
+    };
+};
+
+// Joriy foydalanuvchining streak ma'lumoti (uzilgan bo'lsa currentStreak = 0).
+export const getStreak = async () => {
+    const res = await api.get("streak");
+    return res.data as {
+        currentStreak: number;
+        longestStreak: number;
+        todayActive?: boolean;
+        weekDays?: { date: string; weekday: string; active: boolean; isToday: boolean }[];
     };
 };
 

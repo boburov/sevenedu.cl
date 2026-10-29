@@ -110,10 +110,10 @@ export default function TwoFactorForm() {
           onClick={checkCode}
           disabled={loading}
           className={`flex-1 h-12 rounded-button font-semibold text-primary-foreground transition-all duration-200 ${
-            loading
-              ? "bg-primary/60 cursor-not-allowed"
-              : "bg-primary hover:bg-primary-hover shadow-md hover:shadow-lg"
-          }`}
+ loading
+ ? "bg-primary/60 cursor-not-allowed"
+ : "bg-primary hover:bg-primary-hover "
+ }`}
         >
           {loading ? "Tekshirilmoqda..." : "Tasdiqlash"}
         </button>

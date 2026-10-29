@@ -100,7 +100,7 @@ const Page = () => {
       ) : (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="flex items-center gap-5 w-full rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5 shadow-card">
+            <div className="flex items-center gap-5 w-full rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5">
               <CalendarDays className="text-slate-500 shrink-0" size={40} strokeWidth={1.5} />
               <div className="flex flex-col">
                 <p className="text-xl font-semibold text-text-primary">Haftalik</p>
@@ -108,7 +108,7 @@ const Page = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-5 w-full rounded-2xl border border-amber-200 bg-amber-50 px-6 py-5 shadow-card">
+            <div className="flex items-center gap-5 w-full rounded-2xl border border-amber-200 bg-amber-50 px-6 py-5">
               <CalendarCheck className="text-amber-500 shrink-0" size={40} strokeWidth={1.5} />
               <div className="flex flex-col">
                 <p className="text-xl font-semibold text-amber-700">Oylik</p>
@@ -116,7 +116,7 @@ const Page = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-5 w-full rounded-2xl border border-sky-200 bg-sky-50 px-6 py-5 shadow-card">
+            <div className="flex items-center gap-5 w-full rounded-2xl border border-sky-200 bg-sky-50 px-6 py-5">
               <BarChart3 className="text-sky-500 shrink-0" size={40} strokeWidth={1.5} />
               <div className="flex flex-col">
                 <p className="text-xl font-semibold text-sky-700">So‘nggi 4 Oy</p>

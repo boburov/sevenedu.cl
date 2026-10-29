@@ -111,19 +111,6 @@ nextjs-portal {
   background-image: url("./images/1741286335562.png") !important;
 }
 
-/* Utility: Soft shadow for cards */
-.shadow-card {
-  box-shadow:
-    0 1px 3px rgba(26, 22, 37, 0.04),
-    0 4px 12px rgba(124, 58, 237, 0.06);
-}
-
-.shadow-card-hover {
-  box-shadow:
-    0 2px 8px rgba(26, 22, 37, 0.06),
-    0 8px 24px rgba(124, 58, 237, 0.1);
-}
-
 /* Glass effect for special elements */
 .glass-purple {
   background-color: rgba(255, 255, 255, 0.8);
