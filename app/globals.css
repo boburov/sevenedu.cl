@@ -1,42 +1,68 @@
 @import "tailwindcss";
 
+/* ───────────────────────────────────────────────────────────────
+   Dizayn tokenlari — yagona manba.
+
+   Palitra qoidasi: orange — URG'U rangi, asosiy harakat rangi emas.
+   Asosiy tugmalar qora, faol menyu elementi oq kartochka. Orange kam
+   ishlatilgani uchun ko'zga tashlanadi: logo, badge, indikator, FAB.
+   Butun kulrang shkala iliq-neytral (oldin binafsha tusli edi).
+   ─────────────────────────────────────────────────────────────── */
 
 :root {
-  /* Backgrounds */
-  --background: #fafafc;
+  /* ── Fon ─────────────────────────────────────────────────── */
+  --background: #fafaf9;
   --surface: #ffffff;
-  --surface-alt: #f4f2f7;
+  --surface-alt: #f5f4f2;
 
-  /* Text */
-  --text-primary: #1a1625;
-  --text-secondary: #6b6782;
-  --text-muted: #9d99af;
+  /* ── Matn ────────────────────────────────────────────────── */
+  --text-primary: #1a1a18;
+  --text-secondary: #6b6a66;
+  --text-muted: #9c9a95;
 
-  /* Borders */
-  --border: #e8e5f0;
-  --border-strong: #d4cfe6;
+  /* ── Chegara ─────────────────────────────────────────────── */
+  --border: #eae8e4;
+  --border-strong: #d6d3ce;
 
-  /* Primary Purple */
-  --primary: #7c3aed;
-  --primary-hover: #6d28d9;
-  --primary-soft: #ede9fe;
+  /* ── Asosiy harakat rangi: qora ──────────────────────────── */
+  --primary: #141414;
+  --primary-hover: #2b2b2b;
+  --primary-soft: #f2f1ef;
   --primary-foreground: #ffffff;
 
-  /* Focus Ring */
-  --focus-ring: rgba(124, 58, 237, 0.35);
+  /* ── Urg'u: orange ───────────────────────────────────────── */
+  --accent: #ff6b1a; /* bezak: logo, indikator, FAB — matnsiz shakllar */
+  --accent-hover: #e85d0e;
+  --accent-soft: #fff1e8;
+  --accent-strong: #c2410c; /* oq matn tushganda — WCAG AA, 5.9:1 */
+  --accent-foreground: #ffffff;
 
-  /* Status Colors */
-  --success: #10b981;
-  --success-soft: #d1fae5;
-  --warning: #f59e0b;
-  --warning-soft: #fef3c7;
-  --danger: #ef4444;
-  --danger-soft: #fee2e2;
-  --info: #3b82f6;
-  --info-soft: #dbeafe;
+  --focus-ring: rgba(255, 107, 26, 0.35);
+
+  /* ── Status ──────────────────────────────────────────────── */
+  /* warning sariqroq olindi: oldingi amber (#f59e0b) yangi orange
+     urg'u bilan deyarli bir xil ko'rinardi. */
+  --success: #0f9d6e;
+  --success-soft: #d8f3e9;
+  --warning: #ca8a04;
+  --warning-soft: #fdf3d4;
+  --danger: #e0463c;
+  --danger-soft: #fdeae8;
+  --info: #2f6fed;
+  --info-soft: #e4ecfd;
+
+  /* ── Kurs bezak ranglari ─────────────────────────────────── */
+  /* Status tokenlaridan mustaqil. Oldin kurs nuqtalari
+     bg-danger / bg-success ishlatardi — kursga "xato qizil" yoki
+     "muvaffaqiyat yashil" rang berish ma'no jihatdan noto'g'ri edi. */
+  --course-1: #0d9488;
+  --course-2: #6366f1;
+  --course-3: #db2777;
+  --course-4: #65a30d;
+  --course-5: #a16207;
 }
 
-/* Tailwind v4 Theme - Expose CSS variables as Tailwind colors */
+/* Tailwind v4 — tokenlarni utility sifatida ochish */
 @theme {
   --color-background: var(--background);
   --color-surface: var(--surface);
@@ -54,6 +80,12 @@
   --color-primary-soft: var(--primary-soft);
   --color-primary-foreground: var(--primary-foreground);
 
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-foreground: var(--accent-foreground);
+
   --color-focus-ring: var(--focus-ring);
 
   --color-success: var(--success);
@@ -65,69 +97,65 @@
   --color-info: var(--info);
   --color-info-soft: var(--info-soft);
 
-  --radius-card: 1rem;
-  --radius-button: 0.75rem;
-  --radius-input: 0.75rem;
+  --color-course-1: var(--course-1);
+  --color-course-2: var(--course-2);
+  --color-course-3: var(--course-3);
+  --color-course-4: var(--course-4);
+  --color-course-5: var(--course-5);
+
+  /* Radius — kartochka kengroq yumaloq, harakat tugmalari pill */
+  --radius-card: 1.25rem; /* 20px */
+  --radius-button: 9999px; /* pill */
+  --radius-input: 0.875rem; /* 14px — forma maydonlari pill bo'lmaydi */
+  --radius-nav: 0.875rem; /* 14px — sidebar elementi */
+  --radius-tile: 0.625rem; /* 10px — logo kvadrati, kichik belgilar */
+
+  /* Soya — yumshoq, ikki qatlamli, deyarli sezilmas */
+  --shadow-card: 0 1px 2px rgba(20, 20, 18, 0.04),
+    0 8px 24px rgba(20, 20, 18, 0.04);
+  --shadow-nav: 0 1px 3px rgba(20, 20, 18, 0.06),
+    0 4px 12px rgba(20, 20, 18, 0.05);
+  --shadow-pop: 0 2px 4px rgba(20, 20, 18, 0.06),
+    0 12px 32px rgba(20, 20, 18, 0.08);
+
+  /* Shrift — Onest, layout.tsx da next/font orqali ulanadi */
+  --font-sans: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Fonts */
-@font-face {
-  font-family: "robobold";
-  src: url(./fonts/robobold.ttf);
-}
-
-@font-face {
-  font-family: "robolight";
-  src: url(./fonts/robolightt.ttf);
-}
-
-.robo-light {
-  font-family: robolight;
-}
-
-/* Base Styles */
+/* ── Asos ──────────────────────────────────────────────────── */
 body {
   min-height: 100vh;
   background-color: var(--background);
-  font-family: "robobold", sans-serif;
+  font-family: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Container */
 .container {
   @apply w-full max-w-[1240px] mx-auto px-4;
   @apply sm:px-6 lg:px-8;
 }
 
-/* Hide Next.js portal */
-nextjs-portal {
-  display: none !important;
-}
-
-/* Certificate background */
-.sertificat {
-  background-image: url("./images/1741286335562.png") !important;
-}
-
-/* Glass effect for special elements */
-.glass-purple {
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--primary-soft);
-}
-
-/* Focus ring utility */
-.focus-ring:focus {
+/* Fokus halqasi — klaviatura bilan yurganda ko'rinadi */
+.focus-ring:focus-visible {
   outline: none;
   box-shadow:
     0 0 0 2px var(--background),
     0 0 0 4px var(--focus-ring);
 }
 
-/* Transitions */
 .transition-card {
   @apply transition-all duration-200 ease-out;
+}
+
+/* Sertifikat foni */
+.sertificat {
+  background-image: url("./images/1741286335562.png") !important;
+}
+
+/* Next.js dev overlay'ini yashirish */
+nextjs-portal {
+  display: none !important;
 }

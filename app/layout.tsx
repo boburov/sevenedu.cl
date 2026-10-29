@@ -1,6 +1,17 @@
 import { ToastContainer } from "react-toastify";
 import Script from "next/script";
+import { Onest } from "next/font/google";
 import "./globals.css";
+
+// Butun ilovaning shrifti. O'zgaruvchan (variable) shrift — bitta faylda
+// 400 dan 800 gacha vaznlar, shuning uchun sarlavha/matn/izoh ierarxiyasi
+// erkin quriladi. Oldingi robobold/robolight juftligida faqat ikki chekka
+// vazn bor edi va body sukut bo'yicha qalin edi.
+const onest = Onest({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-onest",
+  display: "swap",
+});
 
 export const metadata = {
   title: "SevenEdu Web App",
@@ -39,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="uz" suppressHydrationWarning className={onest.variable}>
       <body>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-Q3DLE0CTCG"
