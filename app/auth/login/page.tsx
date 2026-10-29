@@ -131,15 +131,17 @@ export default function Login() {
     }
   };
 
+  // focus:ring-* Tailwind'da box-shadow orqali chiziladi — dizaynda soya
+  // ishlatilmaydi. Shuning uchun fokus halqasi .focus-ring (outline) bilan.
   const inputBaseClass =
-    "w-full h-12 border border-border rounded-input px-4 bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-primary transition-all duration-200";
+    "focus-ring w-full h-12 border border-border rounded-input px-4 bg-surface text-text-primary placeholder:text-text-muted focus:border-primary transition-colors duration-200";
 
   return (
-    <section className="min-h-screen bg-linear-to-br from-primary-soft/30 via-background to-background">
+    <section className="min-h-screen bg-background">
       <div className="container pt-6">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors duration-200"
+          className="focus-ring rounded inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors duration-200"
         >
           <ArrowLeft size={24} strokeWidth={1.5} />
           <span className="text-sm font-medium">Orqaga</span>
@@ -199,7 +201,7 @@ export default function Login() {
                 <button
                   type="button"
                   onClick={() => setShowPassword((v) => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-primary transition-colors"
+                  className="focus-ring rounded absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-primary transition-colors"
                   aria-label={showPassword ? "Parolni yashirish" : "Parolni ko'rsatish"}
                 >
                   {showPassword ? <EyeClosed size={20} /> : <Eye size={20} />}
@@ -209,7 +211,7 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${loading
+                className={`focus-ring w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-colors duration-200 ${loading
  ? "bg-primary/60 cursor-not-allowed"
  : "bg-primary hover:bg-primary-hover "
  }`}
@@ -219,7 +221,7 @@ export default function Login() {
 
               <Link
                 href={'forgot-password'}
-                className="text-primary hover:text-primary-hover font-medium w-full text-center text-sm transition-colors duration-200"
+                className="focus-ring rounded text-primary hover:text-primary-hover font-medium w-full text-center text-sm transition-colors duration-200"
               >
                 Parolni unutdingizmi?
               </Link>
@@ -240,7 +242,7 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-all duration-200 ${loading
+                className={`focus-ring w-full h-12 rounded-button text-base font-semibold text-primary-foreground transition-colors duration-200 ${loading
  ? "bg-primary/60 cursor-not-allowed"
  : "bg-primary hover:bg-primary-hover "
  }`}
@@ -251,7 +253,7 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() => setForgotMode(false)}
-                className="text-primary hover:text-primary-hover font-medium w-full text-center text-sm transition-colors duration-200"
+                className="focus-ring rounded text-primary hover:text-primary-hover font-medium w-full text-center text-sm transition-colors duration-200"
                 disabled={loading}
               >
                 Orqaga
@@ -262,7 +264,7 @@ export default function Login() {
           {!forgotMode && (
             <Link
               href="signup"
-              className="mt-6 text-text-secondary hover:text-primary font-medium text-sm transition-colors duration-200"
+              className="focus-ring rounded mt-6 text-text-secondary hover:text-primary font-medium text-sm transition-colors duration-200"
             >
               Mehmon sifatida kirish
             </Link>
@@ -270,59 +272,69 @@ export default function Login() {
         </div>
       </div>
 
-      {/* Floating Terminal Button */}
+      {/* Suzuvchi konsol tugmasi.
+          Konsol — ishlab chiquvchi asbobi, mahsulot UI'si emas. Shuning uchun
+          u ataylab to'q: tizimning eng to'q neytrali (--primary) fon, oq matn.
+          Yangi rang kiritilmaydi. */}
       <button
+        type="button"
         onClick={() => setShowConsole(!showConsole)}
-        className="fixed bottom-6 right-6 bg-gray-900 text-white p-4 rounded-full hover:bg-gray-800 transition-colors z-50"
-        aria-label="Toggle Console"
+        className="focus-ring fixed bottom-6 right-6 z-50 rounded-button bg-primary p-4 text-primary-foreground transition-colors hover:bg-primary-hover"
+        aria-label="Konsolni ochish/yopish"
       >
         <Terminal size={24} />
       </button>
 
-      {/* Console Modal */}
       {showConsole && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end sm:items-center sm:justify-center">
-          <div className="bg-gray-900 w-full sm:w-11/12 sm:max-w-4xl h-96 sm:h-3/4 rounded-t-2xl sm:rounded-2xl flex flex-col">
-            {/* Header */}
-            <div className="flex items-center justify-between bg-gray-800 px-4 py-3 rounded-t-2xl">
+        <div className="fixed inset-0 z-50 flex items-end bg-text-primary/50 sm:items-center sm:justify-center">
+          <div className="flex h-96 w-full flex-col rounded-t-card bg-primary sm:h-3/4 sm:w-11/12 sm:max-w-4xl sm:rounded-card">
+            <div className="flex items-center justify-between rounded-t-card bg-primary-hover px-4 py-3">
               <div className="flex items-center gap-2">
-                <Terminal size={20} className="text-green-400" />
-                <h3 className="text-white font-semibold">Console</h3>
+                <Terminal size={20} className="text-accent" />
+                <h3 className="font-semibold text-primary-foreground">Console</h3>
               </div>
               <div className="flex items-center gap-2">
                 <button
+                  type="button"
                   onClick={clearLogs}
-                  className="text-gray-400 hover:text-white px-3 py-1 text-sm rounded hover:bg-gray-700 transition-colors"
+                  className="focus-ring rounded-input px-3 py-1 text-sm text-primary-foreground/70 transition-colors hover:bg-primary hover:text-primary-foreground"
                 >
-                  Clear
+                  Tozalash
                 </button>
                 <button
+                  type="button"
                   onClick={() => setShowConsole(false)}
-                  className="text-gray-400 hover:text-white p-1 rounded hover:bg-gray-700 transition-colors"
-                  aria-label="Close Console"
+                  className="focus-ring rounded-input p-1 text-primary-foreground/70 transition-colors hover:bg-primary hover:text-primary-foreground"
+                  aria-label="Konsolni yopish"
                 >
                   <X size={20} />
                 </button>
               </div>
             </div>
 
-            {/* Console Content */}
             <div className="flex-1 overflow-y-auto p-4 font-mono text-sm">
               {logs.length === 0 ? (
-                <div className="text-gray-500 italic">No logs yet...</div>
+                <div className="italic text-primary-foreground/50">
+                  Hozircha yozuv yo&apos;q...
+                </div>
               ) : (
                 logs.map((log, index) => (
                   <div
                     key={index}
-                    className={`mb-2 ${log.type === 'error'
-                      ? 'text-red-400'
-                      : log.type === 'warn'
-                        ? 'text-yellow-400'
-                        : 'text-gray-300'
-                      }`}
+                    className={`mb-2 ${
+                      log.type === "error"
+                        ? "text-danger"
+                        : log.type === "warn"
+                          ? "text-warning"
+                          : "text-primary-foreground/80"
+                    }`}
                   >
-                    <span className="text-gray-500 text-xs mr-2">[{log.timestamp}]</span>
-                    <span className="text-gray-400 mr-2">{log.type}:</span>
+                    <span className="mr-2 text-xs text-primary-foreground/50">
+                      [{log.timestamp}]
+                    </span>
+                    <span className="mr-2 text-primary-foreground/60">
+                      {log.type}:
+                    </span>
                     {log.message}
                   </div>
                 ))

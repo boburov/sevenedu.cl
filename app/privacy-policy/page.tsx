@@ -541,11 +541,11 @@ const SECTIONS: Section[] = [
 
 function Items({ items }: { items: Item[] }) {
   return (
-    <dl className="mt-4 divide-y divide-zinc-100 rounded-xl border border-zinc-200 bg-zinc-50/60">
+    <dl className="mt-4 divide-y divide-border rounded-input border border-border bg-surface-alt">
       {items.map((it) => (
         <div key={it.t} className="grid gap-1 p-4 sm:grid-cols-[minmax(0,15rem)_1fr] sm:gap-5">
-          <dt className="text-sm font-semibold text-zinc-900">{it.t}</dt>
-          <dd className="text-sm leading-6 text-zinc-600">{it.d}</dd>
+          <dt className="text-sm font-semibold text-text-primary">{it.t}</dt>
+          <dd className="text-sm leading-6 text-text-secondary">{it.d}</dd>
         </div>
       ))}
     </dl>
@@ -554,16 +554,16 @@ function Items({ items }: { items: Item[] }) {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-900">
+    <div className="min-h-screen bg-background text-text-primary">
       <div className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:py-14">
-        <header className="rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8">
-          <p className="text-xs font-medium uppercase tracking-widest text-violet-600">
+        <header className="rounded-card border border-border bg-surface p-6 sm:p-8">
+          <p className="text-xs font-medium uppercase tracking-widest text-accent-strong">
             SevenEdu • Privacy Policy
           </p>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
             Maxfiylik siyosati
           </h1>
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-600">
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-text-secondary">
             Ushbu hujjat SevenEdu mobil ilovasidan va sevenedu.org veb-saytidan
             foydalanganingizda qanday shaxsiy ma'lumotlar yig'ilishini, ular nima
             uchun ishlatilishini, kimlar bilan ulashilishini, qanday
@@ -571,21 +571,21 @@ export default function PrivacyPolicyPage() {
             tushuntiradi.
           </p>
 
-          <dl className="mt-6 grid gap-x-6 gap-y-3 border-t border-zinc-100 pt-6 text-sm sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="mt-6 grid gap-x-6 gap-y-3 border-t border-border pt-6 text-sm sm:grid-cols-2 lg:grid-cols-4">
             <div>
-              <dt className="text-xs font-medium text-zinc-500">Ilova nomi</dt>
+              <dt className="text-xs font-medium text-text-secondary">Ilova nomi</dt>
               <dd className="mt-0.5 font-medium">SevenEdu</dd>
             </div>
             <div>
-              <dt className="text-xs font-medium text-zinc-500">Paket nomi</dt>
+              <dt className="text-xs font-medium text-text-secondary">Paket nomi</dt>
               <dd className="mt-0.5 font-mono text-[13px] font-medium">com.sevenedu.app</dd>
             </div>
             <div>
-              <dt className="text-xs font-medium text-zinc-500">Platformalar</dt>
+              <dt className="text-xs font-medium text-text-secondary">Platformalar</dt>
               <dd className="mt-0.5 font-medium">Android va iOS</dd>
             </div>
             <div>
-              <dt className="text-xs font-medium text-zinc-500">Oxirgi yangilanish</dt>
+              <dt className="text-xs font-medium text-text-secondary">Oxirgi yangilanish</dt>
               <dd className="mt-0.5 font-medium">{UPDATED}</dd>
             </div>
           </dl>
@@ -593,17 +593,17 @@ export default function PrivacyPolicyPage() {
 
         <section
           aria-label="Eng muhimi qisqacha"
-          className="mt-6 rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8"
+          className="mt-6 rounded-card border border-border bg-surface p-6 sm:p-8"
         >
           <h2 className="text-lg font-semibold">Eng muhimi qisqacha</h2>
           <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {FACTS.map((f) => (
               <li
                 key={f.t}
-                className="rounded-xl border border-zinc-200 bg-zinc-50/60 p-4"
+                className="rounded-input border border-border bg-surface-alt p-4"
               >
-                <p className="text-sm font-semibold text-zinc-900">{f.t}</p>
-                <p className="mt-1 text-sm leading-6 text-zinc-600">{f.d}</p>
+                <p className="text-sm font-semibold text-text-primary">{f.t}</p>
+                <p className="mt-1 text-sm leading-6 text-text-secondary">{f.d}</p>
               </li>
             ))}
           </ul>
@@ -612,9 +612,9 @@ export default function PrivacyPolicyPage() {
         <div className="mt-6 lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] lg:items-start lg:gap-6">
           <nav
             aria-label="Mundarija"
-            className="rounded-2xl border border-zinc-200 bg-white p-5 lg:sticky lg:top-6"
+            className="rounded-card border border-border bg-surface p-5 lg:sticky lg:top-6"
           >
-            <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
+            <p className="text-xs font-medium uppercase tracking-widest text-text-secondary">
               Mundarija
             </p>
             <ol className="mt-3 space-y-1">
@@ -622,9 +622,9 @@ export default function PrivacyPolicyPage() {
                 <li key={s.id}>
                   <a
                     href={"#" + s.id}
-                    className="flex gap-2 rounded-lg px-2 py-1.5 text-sm text-zinc-600 transition hover:bg-violet-50 hover:text-violet-700"
+                    className="flex gap-2 rounded-tile px-2 py-1.5 text-sm text-text-secondary transition hover:bg-accent-soft hover:text-accent-strong"
                   >
-                    <span className="w-4 shrink-0 tabular-nums text-zinc-400">
+                    <span className="w-4 shrink-0 tabular-nums text-text-muted">
                       {s.num}
                     </span>
                     <span>{s.title}</span>
@@ -639,17 +639,17 @@ export default function PrivacyPolicyPage() {
               <section
                 key={s.id}
                 id={s.id}
-                className="scroll-mt-6 rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8"
+                className="scroll-mt-6 rounded-card border border-border bg-surface p-6 sm:p-8"
               >
                 <h2 className="flex gap-3 text-lg font-semibold tracking-tight sm:text-xl">
-                  <span className="tabular-nums text-violet-500">{s.num}.</span>
+                  <span className="tabular-nums text-accent-strong">{s.num}.</span>
                   <span>{s.title}</span>
                 </h2>
 
                 {s.groups.map((g, gi) => (
                   <div key={gi} className={gi === 0 ? "mt-4" : "mt-7"}>
                     {g.sub ? (
-                      <h3 className="text-sm font-semibold text-zinc-900">
+                      <h3 className="text-sm font-semibold text-text-primary">
                         {g.sub}
                       </h3>
                     ) : null}
@@ -657,7 +657,7 @@ export default function PrivacyPolicyPage() {
                       ? g.paras.map((p, pi) => (
                           <p
                             key={pi}
-                            className="mt-2 text-sm leading-7 text-zinc-700"
+                            className="mt-2 text-sm leading-7 text-text-primary"
                           >
                             {p}
                           </p>
@@ -671,32 +671,32 @@ export default function PrivacyPolicyPage() {
 
             <section
               id="boglanish"
-              className="scroll-mt-6 rounded-2xl border border-violet-200 bg-violet-50/60 p-6 sm:p-8"
+              className="scroll-mt-6 rounded-card border border-accent/25 bg-accent-soft p-6 sm:p-8"
             >
               <h2 className="text-lg font-semibold tracking-tight sm:text-xl">
                 Bog'lanish
               </h2>
-              <p className="mt-2 text-sm leading-7 text-zinc-700">
+              <p className="mt-2 text-sm leading-7 text-text-primary">
                 Maxfiylik bo'yicha savolingiz bo'lsa yoki ma'lumotlaringiz
                 ustidan huquqlaringizdan foydalanmoqchi bo'lsangiz, biz bilan
                 bog'laning.
               </p>
               <dl className="mt-4 grid gap-4 sm:grid-cols-3">
-                <div className="rounded-xl border border-violet-200 bg-white p-4">
-                  <dt className="text-xs font-medium text-zinc-500">
+                <div className="rounded-input border border-accent/25 bg-surface p-4">
+                  <dt className="text-xs font-medium text-text-secondary">
                     Elektron pochta
                   </dt>
                   <dd className="mt-1 text-sm font-semibold break-all">
-                    <a className="hover:text-violet-700" href={"mailto:" + EMAIL}>
+                    <a className="hover:text-accent-strong" href={"mailto:" + EMAIL}>
                       {EMAIL}
                     </a>
                   </dd>
                 </div>
-                <div className="rounded-xl border border-violet-200 bg-white p-4">
-                  <dt className="text-xs font-medium text-zinc-500">Telegram</dt>
+                <div className="rounded-input border border-accent/25 bg-surface p-4">
+                  <dt className="text-xs font-medium text-text-secondary">Telegram</dt>
                   <dd className="mt-1 text-sm font-semibold">
                     <a
-                      className="hover:text-violet-700"
+                      className="hover:text-accent-strong"
                       href="https://t.me/boburov_sh"
                       target="_blank"
                       rel="noreferrer"
@@ -705,8 +705,8 @@ export default function PrivacyPolicyPage() {
                     </a>
                   </dd>
                 </div>
-                <div className="rounded-xl border border-violet-200 bg-white p-4">
-                  <dt className="text-xs font-medium text-zinc-500">Veb-sayt</dt>
+                <div className="rounded-input border border-accent/25 bg-surface p-4">
+                  <dt className="text-xs font-medium text-text-secondary">Veb-sayt</dt>
                   <dd className="mt-1 text-sm font-semibold">sevenedu.org</dd>
                 </div>
               </dl>
@@ -714,10 +714,10 @@ export default function PrivacyPolicyPage() {
           </main>
         </div>
 
-        <footer className="mt-8 text-center text-xs text-zinc-500">
+        <footer className="mt-8 text-center text-xs text-text-secondary">
           <p>
             Xizmatdan foydalanish shartlari alohida hujjatda:{" "}
-            <a className="text-violet-600 hover:underline" href="/terms">
+            <a className="text-accent-strong hover:underline" href="/terms">
               Shartnoma
             </a>
           </p>

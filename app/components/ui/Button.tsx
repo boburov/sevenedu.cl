@@ -19,7 +19,7 @@ const buttonVariants = cva(
         // To'q variant: oq matn --danger ustida 4.11:1 beradi, AA uchun
         // yetarli emas. --danger-strong 5.3:1 beradi.
         destructive:
-          "bg-danger-strong text-white hover:bg-danger",
+          "bg-danger-strong text-primary-foreground hover:bg-danger",
       },
       size: {
         default: "text-sm h-10",

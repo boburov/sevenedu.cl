@@ -6,91 +6,110 @@ import { ArrowLeft, Home, RefreshCcw, Search, Sparkles } from "lucide-react";
 import notFoundAnim from "./lottie/404 error page with cat.json";
 
 export default function NotFound() {
+    // Ikkilamchi harakatlar — chegara bilan, fonsiz. Soya ishlatilmaydi.
+    const secondaryAction =
+        "focus-ring group inline-flex items-center justify-center gap-2 rounded-button border border-border bg-surface px-5 py-3 text-sm font-medium text-text-primary transition-colors hover:border-border-strong hover:bg-surface-alt";
+
     return (
-        <main className="min-h-[100svh] bg-gradient-to-b from-slate-50 to-white">
-            <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-10 px-4 py-12 md:flex-row md:justify-between md:py-16">
-                {/* Left: text */}
+        <main className="relative min-h-[100svh] overflow-hidden bg-background">
+            {/* Iliq gradient — ilovaning qolgan qismidagi bilan bir xil */}
+            <div
+                aria-hidden
+                className="pointer-events-none fixed right-0 top-0 h-[520px] w-[720px] bg-[radial-gradient(ellipse_at_top_right,rgba(255,107,26,0.07),transparent_65%)]"
+            />
+
+            <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center gap-10 px-4 py-12 md:flex-row md:justify-between md:py-16">
+                {/* Chap: matn */}
                 <section className="w-full max-w-xl">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700">
-                        <Sparkles className="h-4 w-4" />
-                        <span>404 • Sahifa topilmadi</span>
+                    <div className="inline-flex items-center gap-2 rounded-button border border-border bg-surface px-3 py-1 text-sm text-text-secondary">
+                        <Sparkles size={16} strokeWidth={1.75} className="text-accent" />
+                        <span>404 &middot; Sahifa topilmadi</span>
                     </div>
 
-                    <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
-                        Bu sahifa yo‘qolib qolgan ko‘rinadi 🐾
+                    <h1 className="mt-4 text-4xl font-bold tracking-tight text-text-primary md:text-5xl">
+                        Bu sahifa yo&lsquo;qolib qolgan ko&lsquo;rinadi
                     </h1>
 
-                    <p className="mt-4 text-base leading-relaxed text-slate-600 md:text-lg">
-                        Havotir olmang — bu sizning aybingiz emas. Link noto‘g‘ri bo‘lishi
-                        mumkin yoki sahifa ko‘chirilgan.
+                    <p className="mt-4 text-base leading-relaxed text-text-secondary md:text-lg">
+                        Havotir olmang — bu sizning aybingiz emas. Havola noto&lsquo;g&lsquo;ri
+                        bo&lsquo;lishi mumkin yoki sahifa ko&lsquo;chirilgan.
                     </p>
 
-                    {/* Quick actions */}
                     <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+                        {/* Asosiy harakat: qora — orange faqat urg'u uchun */}
                         <Link
                             href="/"
-                            className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition focus:outline-none focus:ring-2 focus:ring-slate-300"
+                            className="focus-ring group inline-flex items-center justify-center gap-2 rounded-button bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
                         >
-                            <Home className="h-4 w-4 transition group-hover:scale-110" />
+                            <Home
+                                size={16}
+                                strokeWidth={1.75}
+                                className="transition-transform group-hover:scale-110"
+                            />
                             Bosh sahifaga qaytish
                         </Link>
 
                         <button
                             type="button"
                             onClick={() => window.history.back()}
-                            className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-800 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-200"
+                            className={secondaryAction}
                         >
-                            <ArrowLeft className="h-4 w-4 transition group-hover:-translate-x-0.5" />
+                            <ArrowLeft
+                                size={16}
+                                strokeWidth={1.75}
+                                className="transition-transform group-hover:-translate-x-0.5"
+                            />
                             Orqaga
                         </button>
 
                         <button
                             type="button"
                             onClick={() => window.location.reload()}
-                            className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-800 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-200"
+                            className={secondaryAction}
                         >
-                            <RefreshCcw className="h-4 w-4 transition group-hover:rotate-180" />
+                            <RefreshCcw
+                                size={16}
+                                strokeWidth={1.75}
+                                className="transition-transform group-hover:rotate-180"
+                            />
                             Qayta yuklash
                         </button>
                     </div>
 
-                    {/* Search-ish hint */}
-                    <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-4">
+                    <div className="mt-8 rounded-card border border-border bg-surface p-4">
                         <div className="flex items-center gap-3">
-                            <div className="grid h-10 w-10 place-items-center rounded-2xl bg-slate-100">
-                                <Search className="h-5 w-5 text-slate-700" />
-                            </div>
+                            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-tile border border-border bg-surface-alt text-text-secondary">
+                                <Search size={20} strokeWidth={1.75} />
+                            </span>
                             <div>
-                                <p className="text-sm font-medium text-slate-900">
+                                <p className="text-sm font-medium text-text-primary">
                                     Tezkor maslahat
                                 </p>
-                                <p className="text-sm text-slate-600">
-                                    URL-ni tekshirib ko‘ring yoki menyudan kerakli bo‘limni tanlang.
+                                <p className="mt-1 text-sm text-text-secondary">
+                                    Manzilni tekshirib ko&lsquo;ring yoki menyudan kerakli
+                                    bo&lsquo;limni tanlang.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <p className="mt-6 text-xs text-slate-500">
+                    <p className="mt-6 text-xs text-text-muted">
                         Kod: <span className="font-mono">404_NOT_FOUND</span>
                     </p>
                 </section>
 
-                {/* Right: animation */}
+                {/* O'ng: animatsiya */}
                 <section className="w-full max-w-xl">
-                    <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(15,23,42,0.06),transparent_55%),radial-gradient(circle_at_80%_70%,rgba(99,102,241,0.08),transparent_50%)]" />
-                        <div className="relative p-6 md:p-8">
+                    <div className="overflow-hidden rounded-card border border-border bg-surface">
+                        <div className="p-6 md:p-8">
                             <Lottie
                                 animationData={notFoundAnim}
                                 className="mx-auto w-full max-w-md"
                                 loop
                             />
-                            <div className="mt-2 text-center">
-                                <p className="text-sm text-slate-600">
-                                    Mushuk ham qidiryapti… topolmayapti 😅
-                                </p>
-                            </div>
+                            <p className="mt-2 text-center text-sm text-text-secondary">
+                                Mushuk ham qidiryapti… topolmayapti
+                            </p>
                         </div>
                     </div>
                 </section>

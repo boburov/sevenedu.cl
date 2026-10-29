@@ -99,7 +99,7 @@ export default function TwoFactorForm() {
             onChange={(e) => handleChange(e.target.value, i)}
             onKeyDown={(e) => handleKeyDown(e, i)}
             inputMode="text"
-            className="h-14 w-full rounded-input bg-surface text-center text-xl font-semibold border border-border text-text-primary focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-primary transition-all duration-200"
+            className="focus-ring h-14 w-full rounded-input bg-surface text-center text-xl font-semibold border border-border text-text-primary focus:border-primary transition-colors duration-200"
             disabled={loading}
           />
         ))}

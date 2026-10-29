@@ -23,7 +23,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   if (loading) {
-    return <div className="text-white text-center pt-20">Yuklanmoqda...</div>;
+    return <div className="pt-20 text-center text-[15px] text-text-secondary">Yuklanmoqda...</div>;
   }
 
   return <>{children}</>;

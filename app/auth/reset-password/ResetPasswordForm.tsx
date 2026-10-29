@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import { AlertCircle, Check, Eye, EyeClosed } from "lucide-react";
 
 export default function ResetPasswordForm() {
     const searchParams = useSearchParams();
@@ -43,12 +44,28 @@ export default function ResetPasswordForm() {
         }
     };
 
+    // Kartochka: soya yo'q — chegara va fon bilan ajraladi.
+    const cardClass =
+        "w-full max-w-md rounded-card border border-border bg-surface p-10";
+
+    // Parolni ko'rsatish tugmasi — maydon ichida, o'ng tomonda.
+    const toggleClass =
+        "focus-ring absolute right-3 top-1/2 -translate-y-1/2 rounded text-text-secondary transition-colors hover:text-text-primary";
+
     if (!token) {
         return (
-            <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-violet-50 to-fuchsia-50 px-4">
-                <div className="text-center">
-                    <p className="text-2xl">⚠️</p>
-                    <p className="mt-2 text-slate-600">Havola yaroqsiz yoki muddati tugagan.</p>
+            <main className="flex min-h-screen items-center justify-center bg-background px-4">
+                <div className={`${cardClass} text-center`}>
+                    <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-full bg-danger-soft text-danger-strong">
+                        <AlertCircle size={28} strokeWidth={1.75} />
+                    </div>
+                    <h1 className="text-2xl font-bold text-text-primary">
+                        Havola yaroqsiz
+                    </h1>
+                    <p className="mt-3 text-sm leading-6 text-text-secondary">
+                        Havola yaroqsiz yoki muddati tugagan. Parolni tiklashni qaytadan
+                        boshlang.
+                    </p>
                 </div>
             </main>
         );
@@ -56,89 +73,112 @@ export default function ResetPasswordForm() {
 
     if (success) {
         return (
-            <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-violet-50 to-fuchsia-50 px-4">
-                <div className="w-full max-w-md rounded-3xl border border-white/60 bg-white/80 p-10 text-center backdrop-blur-xl">
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-3xl">
-                        ✅
+            <main className="flex min-h-screen items-center justify-center bg-background px-4">
+                <div className={`${cardClass} text-center`}>
+                    <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-full bg-success-soft text-success">
+                        <Check size={28} strokeWidth={2} />
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-900">Parol yangilandi!</h2>
-                    <p className="mt-2 text-sm text-slate-500">Kirish sahifasiga yo'naltirilmoqda...</p>
+                    <h1 className="text-2xl font-bold text-text-primary">
+                        Parol yangilandi!
+                    </h1>
+                    <p className="mt-3 text-sm text-text-secondary">
+                        Kirish sahifasiga yo&apos;naltirilmoqda...
+                    </p>
                 </div>
             </main>
         );
     }
 
     return (
-        <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-violet-50 to-fuchsia-50 px-4">
-            <div className="w-full max-w-md rounded-3xl border border-white/60 bg-white/80 p-10 backdrop-blur-xl">
-                <h1 className="text-2xl font-bold text-slate-900">Yangi parol o'rnatish</h1>
-                <p className="mt-2 text-sm text-slate-500">Yangi parolingizni kiriting.</p>
+        <main className="flex min-h-screen items-center justify-center bg-background px-4">
+            <div className={cardClass}>
+                <h1 className="text-2xl font-bold text-text-primary">
+                    Yangi parol o&apos;rnatish
+                </h1>
+                <p className="mt-2 text-sm leading-6 text-text-secondary">
+                    Yangi parolingizni kiriting.
+                </p>
 
                 <div className="mt-8 space-y-4">
-
-                    {/* Password field */}
                     <div className="relative">
                         <input
                             type={showPassword ? "text" : "password"}
+                            autoComplete="new-password"
                             placeholder="Yangi parol"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-2 focus:ring-violet-100 pr-12"
+                            className="focus-ring h-12 w-full rounded-input border border-border bg-surface px-4 pr-12 text-sm text-text-primary placeholder:text-text-muted transition-colors focus:border-primary"
                         />
                         <button
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
-                            className="absolute right-4 top-3.5 text-slate-400 hover:text-slate-600 text-lg"
+                            aria-label={showPassword ? "Parolni yashirish" : "Parolni ko'rsatish"}
+                            className={toggleClass}
                         >
-                            {showPassword ? "🙈" : "👁️"}
+                            {showPassword ? <EyeClosed size={20} /> : <Eye size={20} />}
                         </button>
                     </div>
 
-                    {/* Strength indicator */}
+                    {/* Parol kuchi ko'rsatkichi */}
                     {password && (
                         <div className="flex items-center gap-2">
-                            <div className={`h-1.5 flex-1 rounded-full ${isStrong ? "bg-green-400" : "bg-red-300"}`} />
-                            <span className={`text-xs ${isStrong ? "text-green-600" : "text-red-500"}`}>
-                                {isStrong ? "Kuchli parol ✓" : "Kamida 8 ta belgi"}
+                            <div
+                                className={`h-1.5 flex-1 rounded-full ${isStrong ? "bg-success" : "bg-border-strong"}`}
+                            />
+                            <span
+                                className={`text-xs ${isStrong ? "text-success" : "text-text-secondary"}`}
+                            >
+                                {isStrong ? "Kuchli parol" : "Kamida 8 ta belgi"}
                             </span>
                         </div>
                     )}
 
-                    {/* Confirm field */}
                     <div className="relative">
                         <input
                             type={showConfirm ? "text" : "password"}
+                            autoComplete="new-password"
                             placeholder="Parolni tasdiqlang"
                             value={confirm}
                             onChange={(e) => setConfirm(e.target.value)}
-                            className={`w-full rounded-2xl border px-4 py-3 text-sm outline-none focus:ring-2 pr-12 ${confirm && !isMatch
-                                    ? "border-red-300 focus:border-red-400 focus:ring-red-100"
-                                    : "border-slate-200 focus:border-violet-400 focus:ring-violet-100"
-                                }`}
+                            className={`focus-ring h-12 w-full rounded-input border bg-surface px-4 pr-12 text-sm text-text-primary placeholder:text-text-muted transition-colors ${
+                                confirm && !isMatch
+                                    ? "border-danger focus:border-danger"
+                                    : "border-border focus:border-primary"
+                            }`}
                         />
                         <button
                             type="button"
                             onClick={() => setShowConfirm(!showConfirm)}
-                            className="absolute right-4 top-3.5 text-slate-400 hover:text-slate-600 text-lg"
+                            aria-label={showConfirm ? "Parolni yashirish" : "Parolni ko'rsatish"}
+                            className={toggleClass}
                         >
-                            {showConfirm ? "🙈" : "👁️"}
+                            {showConfirm ? <EyeClosed size={20} /> : <Eye size={20} />}
                         </button>
                     </div>
 
                     {confirm && !isMatch && (
-                        <p className="text-xs text-red-500">⚠️ Parollar mos kelmadi</p>
+                        <p className="text-xs text-danger-strong">Parollar mos kelmadi</p>
                     )}
 
                     {error && (
-                        <div className="rounded-xl bg-red-50 border border-red-100 px-4 py-3 text-sm text-red-600">
-                            ⚠️ {error}
+                        <div
+                            role="alert"
+                            className="flex items-start gap-2 rounded-input border border-danger/25 bg-danger-soft px-4 py-3"
+                        >
+                            <AlertCircle
+                                size={16}
+                                strokeWidth={2}
+                                className="mt-0.5 shrink-0 text-danger-strong"
+                            />
+                            <p className="text-sm text-danger-strong">{error}</p>
                         </div>
                     )}
 
                     <button
+                        type="button"
                         onClick={handleSubmit}
                         disabled={loading || !isMatch || !isStrong}
-                        className="w-full rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-600 py-3 text-sm font-semibold text-white disabled:opacity-60 hover:-translate-y-px transition-all"
+                        className="focus-ring h-12 w-full rounded-button bg-primary text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
                     >
                         {loading ? "Saqlanmoqda..." : "Parolni saqlash"}
                     </button>

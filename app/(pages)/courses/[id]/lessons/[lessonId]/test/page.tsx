@@ -147,7 +147,7 @@ export default function TestPage() {
 
           <button
             onClick={() => window.location.reload()}
-            className="mt-5 inline-flex items-center gap-2 rounded-xl border border-border bg-surface-alt px-4 py-2 text-sm font-semibold text-text-primary transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)]"
+            className="mt-5 inline-flex items-center gap-2 rounded-xl border border-border bg-surface-alt px-4 py-2 text-sm font-semibold text-text-primary focus-ring transition hover:opacity-90"
           >
             <RefreshCcw size={18} className="text-primary" />
             Qayta yuklash
@@ -209,7 +209,7 @@ export default function TestPage() {
 
             <button
               onClick={() => router.back()}
-              className="mt-2 inline-flex items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-[var(--focus-ring)] active:scale-[0.99]"
+              className="mt-2 inline-flex items-center justify-center rounded-xl bg-primary px-5 py-2.5 focus-ring text-sm font-semibold text-primary-foreground transition hover:bg-primary-hover active:scale-[0.99]"
             >
               Orqaga qaytish
             </button>

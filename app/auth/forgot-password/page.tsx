@@ -1,6 +1,7 @@
 "use client";
 import { Suspense, useState } from "react";
 import Link from "next/link";
+import { AlertCircle, ArrowLeft, Mail } from "lucide-react";
 
 export default function ForgotPasswordPage() {
     const [email, setEmail] = useState("");
@@ -27,22 +28,31 @@ export default function ForgotPasswordPage() {
         }
     };
 
+    // Kartochka: soya yo'q — chegara va fon bilan ajraladi.
+    const cardClass =
+        "w-full max-w-md rounded-card border border-border bg-surface p-10";
+
     if (sent) {
         return (
-            <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-violet-50 to-fuchsia-50 px-4">
-                <div className="w-full max-w-md rounded-3xl border border-white/60 bg-white/80 p-10 text-center backdrop-blur-xl">
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-violet-100 text-3xl">
-                        📧
+            <main className="flex min-h-screen items-center justify-center bg-background px-4">
+                <div className={`${cardClass} text-center`}>
+                    <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-full bg-accent-soft text-accent-strong">
+                        <Mail size={28} strokeWidth={1.75} />
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-900">Email yuborildi!</h2>
-                    <p className="mt-3 text-sm text-slate-500">
-                        <span className="font-medium text-violet-600">{email}</span> manziliga
-                        parol tiklash havolasi yuborildi. Iltimos, emailingizni tekshiring.
+                    <h1 className="text-2xl font-bold text-text-primary">
+                        Email yuborildi!
+                    </h1>
+                    <p className="mt-3 text-sm leading-6 text-text-secondary">
+                        <span className="font-medium text-text-primary">{email}</span>{" "}
+                        manziliga parol tiklash havolasi yuborildi. Iltimos, emailingizni
+                        tekshiring.
                     </p>
-                    <p className="mt-2 text-xs text-slate-400">Havola 30 daqiqa amal qiladi.</p>
+                    <p className="mt-2 text-xs text-text-muted">
+                        Havola 30 daqiqa amal qiladi.
+                    </p>
                     <Link
                         href="/auth/login"
-                        className="mt-8 flex h-11 items-center justify-center rounded-2xl bg-violet-600 text-sm font-semibold text-white hover:bg-violet-700"
+                        className="focus-ring mt-8 flex h-12 items-center justify-center rounded-button bg-primary text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
                     >
                         Kirish sahifasiga qaytish
                     </Link>
@@ -52,46 +62,61 @@ export default function ForgotPasswordPage() {
     }
 
     return (
-        <Suspense fallback={
-            <main className="flex min-h-screen items-center justify-center bg-linear-to-br from-violet-50 to-fuchsia-50">
-                <div className="text-slate-400 text-sm">Yuklanmoqda...</div>
-            </main>
-        }>
-            <main className="flex min-h-screen items-center justify-center bg-linear-to-br from-violet-50 to-fuchsia-50 px-4">
-                <div className="w-full max-w-md rounded-3xl border border-white/60 bg-white/80 p-10 backdrop-blur-xl">
-                    <h1 className="text-2xl font-bold text-slate-900">Parolni unutdingizmi?</h1>
-                    <p className="mt-2 text-sm text-slate-500">
+        <Suspense
+            fallback={
+                <main className="flex min-h-screen items-center justify-center bg-background">
+                    <p className="text-sm text-text-secondary">Yuklanmoqda...</p>
+                </main>
+            }
+        >
+            <main className="flex min-h-screen items-center justify-center bg-background px-4">
+                <div className={cardClass}>
+                    <h1 className="text-2xl font-bold text-text-primary">
+                        Parolni unutdingizmi?
+                    </h1>
+                    <p className="mt-2 text-sm leading-6 text-text-secondary">
                         Emailingizni kiriting, tiklash havolasini yuboramiz.
                     </p>
 
                     <div className="mt-8 space-y-4">
                         <input
                             type="email"
+                            autoComplete="email"
                             placeholder="Email manzilingiz"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-2 focus:ring-violet-100"
+                            className="focus-ring h-12 w-full rounded-input border border-border bg-surface px-4 text-sm text-text-primary placeholder:text-text-muted transition-colors focus:border-primary"
                         />
 
                         {error && (
-                            <div className="rounded-xl bg-red-50 border border-red-100 px-4 py-3 text-sm text-red-600">
-                                ⚠️ {error}
+                            <div
+                                role="alert"
+                                className="flex items-start gap-2 rounded-input border border-danger/25 bg-danger-soft px-4 py-3"
+                            >
+                                <AlertCircle
+                                    size={16}
+                                    strokeWidth={2}
+                                    className="mt-0.5 shrink-0 text-danger-strong"
+                                />
+                                <p className="text-sm text-danger-strong">{error}</p>
                             </div>
                         )}
 
                         <button
+                            type="button"
                             onClick={handleSubmit}
                             disabled={loading || !email}
-                            className="w-full rounded-2xl bg-linear-to-r from-violet-600 to-fuchsia-600 py-3 text-sm font-semibold text-white disabled:opacity-60 hover:-translate-y-px transition-all"
+                            className="focus-ring h-12 w-full rounded-button bg-primary text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
                         >
                             {loading ? "Yuborilmoqda..." : "Havola yuborish"}
                         </button>
 
                         <Link
                             href="/auth/login"
-                            className="flex justify-center text-sm text-slate-400 hover:text-violet-600"
+                            className="focus-ring flex items-center justify-center gap-2 rounded text-sm text-text-secondary transition-colors hover:text-text-primary"
                         >
-                            ← Kirish sahifasiga qaytish
+                            <ArrowLeft size={16} strokeWidth={1.75} />
+                            Kirish sahifasiga qaytish
                         </Link>
                     </div>
                 </div>

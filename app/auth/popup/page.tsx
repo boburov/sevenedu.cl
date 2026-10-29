@@ -41,7 +41,7 @@ export default function OAuthPopupPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <p className="text-sm text-gray-500">Signing you in…</p>
+      <p className="text-sm text-text-secondary">Kirilmoqda…</p>
     </div>
   );
 }

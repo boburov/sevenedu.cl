@@ -48,33 +48,33 @@ export default function TermsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-900">
+    <div className="min-h-screen bg-background text-text-primary">
       <div className="mx-auto w-full max-w-3xl px-4 py-10">
         {/* Header */}
-        <div className="rounded-2xl border border-zinc-200 bg-white p-6">
-          <p className="text-xs font-medium tracking-wide text-zinc-500">
+        <div className="rounded-card border border-border bg-surface p-6">
+          <p className="text-xs font-medium tracking-wide text-text-secondary">
             7EDU • Terms & Conditions
           </p>
           <h1 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
             7EDU Shartnoma
           </h1>
-          <p className="mt-2 text-sm leading-6 text-zinc-600">
+          <p className="mt-2 text-sm leading-6 text-text-secondary">
             Ushbu shartnoma 7EDU va O’quvchi o‘rtasida ta’lim xizmatlarini
             ko‘rsatish tartibini belgilaydi.
           </p>
 
           {/* Quick highlights */}
           <div className="mt-5 grid gap-3 md:grid-cols-3">
-            <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
-              <p className="text-xs font-medium text-zinc-500">Muddati</p>
+            <div className="rounded-input border border-border bg-surface-alt p-4">
+              <p className="text-xs font-medium text-text-secondary">Muddati</p>
               <p className="mt-1 text-sm font-semibold">4 oy</p>
             </div>
-            <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
-              <p className="text-xs font-medium text-zinc-500">Support</p>
+            <div className="rounded-input border border-border bg-surface-alt p-4">
+              <p className="text-xs font-medium text-text-secondary">Support</p>
               <p className="mt-1 text-sm font-semibold">24–48 soat</p>
             </div>
-            <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
-              <p className="text-xs font-medium text-zinc-500">Bekor qilish</p>
+            <div className="rounded-input border border-border bg-surface-alt p-4">
+              <p className="text-xs font-medium text-text-secondary">Bekor qilish</p>
               <p className="mt-1 text-sm font-semibold">3 kun ichida</p>
             </div>
           </div>
@@ -85,12 +85,12 @@ export default function TermsPage() {
           {sections.map((s) => (
             <section
               key={s.title}
-              className="rounded-2xl border border-zinc-200 bg-white p-6"
+              className="rounded-card border border-border bg-surface p-6"
             >
               <h2 className="text-base font-semibold md:text-lg">{s.title}</h2>
               <div className="mt-3 space-y-2">
                 {s.items.map((text, idx) => (
-                  <p key={idx} className="text-sm leading-6 text-zinc-700">
+                  <p key={idx} className="text-sm leading-6 text-text-primary">
                     {text}
                   </p>
                 ))}
@@ -99,25 +99,25 @@ export default function TermsPage() {
           ))}
 
           {/* Notice / Acceptance */}
-          <div className="rounded-2xl border border-zinc-200 bg-white p-6">
+          <div className="rounded-card border border-border bg-surface p-6">
             <h2 className="text-base font-semibold md:text-lg">
               VI. Tomonlar
             </h2>
             <div className="mt-3 grid gap-3 md:grid-cols-2">
-              <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
-                <p className="text-xs font-medium text-zinc-500">Kompaniya</p>
+              <div className="rounded-input border border-border bg-surface-alt p-4">
+                <p className="text-xs font-medium text-text-secondary">Kompaniya</p>
                 <p className="mt-1 text-sm font-semibold">“7EDU NTT”</p>
               </div>
-              <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
-                <p className="text-xs font-medium text-zinc-500">O‘quvchi</p>
+              <div className="rounded-input border border-border bg-surface-alt p-4">
+                <p className="text-xs font-medium text-text-secondary">O‘quvchi</p>
                 <p className="mt-1 text-sm font-semibold">
                   (F.I.Sh. / Telegram username)
                 </p>
               </div>
             </div>
 
-            <div className="mt-4 rounded-xl border border-zinc-200 bg-zinc-50 p-4">
-              <p className="text-sm leading-6 text-zinc-700">
+            <div className="mt-4 rounded-input border border-border bg-surface-alt p-4">
+              <p className="text-sm leading-6 text-text-primary">
                 Telegram orqali yuborilgan shartnoma matniga “roziman” deb javob
                 berilgan taqdirda, shartnoma kuchga kiradi.
               </p>
@@ -126,7 +126,7 @@ export default function TermsPage() {
         </div>
 
         {/* Footer */}
-        <p className="mt-6 text-center text-xs text-zinc-500">
+        <p className="mt-6 text-center text-xs text-text-secondary">
           © {new Date().getFullYear()} 7EDU. Barcha huquqlar himoyalangan.
         </p>
       </div>

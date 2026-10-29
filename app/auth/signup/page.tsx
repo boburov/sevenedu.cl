@@ -97,10 +97,10 @@ const handleSignup = async () => {
 };
 
   const inputClasses =
-    "w-full h-12 border border-border rounded-input px-4 bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-primary transition-all duration-200";
+    "focus-ring w-full h-12 border border-border rounded-input px-4 bg-surface text-text-primary placeholder:text-text-muted focus:border-primary transition-colors duration-200";
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-primary-soft/30 via-background to-background">
+    <section className="min-h-screen bg-background">
       <div className="container pt-6">
         <Link
           href="/"
@@ -211,7 +211,7 @@ const handleSignup = async () => {
                 type="checkbox"
                 checked={isAllowed}
                 onChange={() => setAllow(!isAllowed)}
-                className="w-5 h-5 mt-0.5 rounded border-border text-primary focus:ring-primary accent-primary"
+                className="focus-ring w-5 h-5 mt-0.5 rounded border-border accent-primary"
               />
               <p className="text-sm text-text-secondary leading-relaxed">
                 men{" "}

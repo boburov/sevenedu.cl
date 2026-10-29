@@ -436,7 +436,7 @@ function Blocks({ blocks }: { blocks: Block[] }) {
       {blocks.map((b, i) => {
         if ("p" in b)
           return (
-            <p key={i} className="text-sm leading-6 text-zinc-700">
+            <p key={i} className="text-sm leading-6 text-text-primary">
               {b.p}
             </p>
           );
@@ -444,7 +444,7 @@ function Blocks({ blocks }: { blocks: Block[] }) {
           return (
             <ul key={i} className="list-disc space-y-1.5 pl-5">
               {b.ul.map((li, j) => (
-                <li key={j} className="text-sm leading-6 text-zinc-700">
+                <li key={j} className="text-sm leading-6 text-text-primary">
                   {li}
                 </li>
               ))}
@@ -454,17 +454,17 @@ function Blocks({ blocks }: { blocks: Block[] }) {
           return (
             <div
               key={i}
-              className="overflow-hidden rounded-xl border border-zinc-200"
+              className="overflow-hidden rounded-input border border-border"
             >
               {b.rows.map(([k, v], j) => (
                 <div
                   key={j}
-                  className="flex flex-col gap-1 border-b border-zinc-200 bg-zinc-50 px-4 py-3 last:border-b-0 md:flex-row md:gap-4"
+                  className="flex flex-col gap-1 border-b border-border bg-surface-alt px-4 py-3 last:border-b-0 md:flex-row md:gap-4"
                 >
-                  <p className="text-sm font-medium text-zinc-900 md:w-64 md:shrink-0">
+                  <p className="text-sm font-medium text-text-primary md:w-64 md:shrink-0">
                     {k}
                   </p>
-                  <p className="text-sm leading-6 text-zinc-600">{v}</p>
+                  <p className="text-sm leading-6 text-text-secondary">{v}</p>
                 </div>
               ))}
             </div>
@@ -472,9 +472,9 @@ function Blocks({ blocks }: { blocks: Block[] }) {
         return (
           <div
             key={i}
-            className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3"
+            className="rounded-input border border-warning/30 bg-warning-soft px-4 py-3"
           >
-            <p className="text-sm font-medium leading-6 text-amber-900">
+            <p className="text-sm font-medium leading-6 text-text-primary">
               {b.note}
             </p>
           </div>
@@ -489,28 +489,28 @@ export default function PrivacyPage() {
   const sections = lang === "uz" ? UZ : EN;
 
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-900">
+    <div className="min-h-screen bg-background text-text-primary">
       <div className="mx-auto w-full max-w-3xl px-4 py-10">
         {/* Header */}
-        <div className="rounded-2xl border border-zinc-200 bg-white p-6">
+        <div className="rounded-card border border-border bg-surface p-6">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="text-xs font-medium tracking-wide text-zinc-500">
+              <p className="text-xs font-medium tracking-wide text-text-secondary">
                 7EDU • Privacy Policy
               </p>
               <h1 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
                 {lang === "uz" ? "Maxfiylik siyosati" : "Privacy Policy"}
               </h1>
             </div>
-            <div className="flex shrink-0 overflow-hidden rounded-lg border border-zinc-200">
+            <div className="flex shrink-0 overflow-hidden rounded-tile border border-border">
               {(["uz", "en"] as const).map((code) => (
                 <button
                   key={code}
                   onClick={() => setLang(code)}
                   className={`px-3 py-1.5 text-xs font-semibold uppercase transition ${
                     lang === code
-                      ? "bg-zinc-900 text-white"
-                      : "bg-white text-zinc-600 hover:bg-zinc-50"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-surface text-text-secondary hover:bg-surface-alt"
                   }`}
                 >
                   {code}
@@ -519,29 +519,29 @@ export default function PrivacyPage() {
             </div>
           </div>
 
-          <p className="mt-2 text-sm leading-6 text-zinc-600">
+          <p className="mt-2 text-sm leading-6 text-text-secondary">
             {lang === "uz"
               ? "SevenEdu mobil ilovasi va veb-saytida shaxsiy ma'lumotlaringiz qanday yig'ilishi va himoyalanishi."
               : "How personal data is collected and protected in the SevenEdu mobile app and website."}
           </p>
 
           <div className="mt-5 grid gap-3 md:grid-cols-3">
-            <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
-              <p className="text-xs font-medium text-zinc-500">
+            <div className="rounded-input border border-border bg-surface-alt p-4">
+              <p className="text-xs font-medium text-text-secondary">
                 {lang === "uz" ? "Oxirgi yangilanish" : "Last updated"}
               </p>
               <p className="mt-1 text-sm font-semibold">{UPDATED}</p>
             </div>
-            <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
-              <p className="text-xs font-medium text-zinc-500">
+            <div className="rounded-input border border-border bg-surface-alt p-4">
+              <p className="text-xs font-medium text-text-secondary">
                 {lang === "uz" ? "Ovoz yozuvlari" : "Voice recordings"}
               </p>
               <p className="mt-1 text-sm font-semibold">
                 {lang === "uz" ? "Saqlanmaydi" : "Not stored"}
               </p>
             </div>
-            <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
-              <p className="text-xs font-medium text-zinc-500">
+            <div className="rounded-input border border-border bg-surface-alt p-4">
+              <p className="text-xs font-medium text-text-secondary">
                 {lang === "uz" ? "Reklama / treker" : "Ads / trackers"}
               </p>
               <p className="mt-1 text-sm font-semibold">
@@ -556,31 +556,31 @@ export default function PrivacyPage() {
           {sections.map((s) => (
             <section
               key={s.title}
-              className="rounded-2xl border border-zinc-200 bg-white p-6"
+              className="rounded-card border border-border bg-surface p-6"
             >
               <h2 className="text-base font-semibold md:text-lg">{s.title}</h2>
               <Blocks blocks={s.blocks} />
             </section>
           ))}
 
-          <div className="rounded-2xl border border-zinc-200 bg-white p-6">
+          <div className="rounded-card border border-border bg-surface p-6">
             <h2 className="text-base font-semibold md:text-lg">
               {lang === "uz" ? "Bog'lanish" : "Contact"}
             </h2>
             <div className="mt-3 grid gap-3 md:grid-cols-2">
-              <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
-                <p className="text-xs font-medium text-zinc-500">Email</p>
+              <div className="rounded-input border border-border bg-surface-alt p-4">
+                <p className="text-xs font-medium text-text-secondary">Email</p>
                 <p className="mt-1 text-sm font-semibold">{CONTACT_EMAIL}</p>
               </div>
-              <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
-                <p className="text-xs font-medium text-zinc-500">Telegram</p>
+              <div className="rounded-input border border-border bg-surface-alt p-4">
+                <p className="text-xs font-medium text-text-secondary">Telegram</p>
                 <p className="mt-1 text-sm font-semibold">@boburov_sh</p>
               </div>
             </div>
           </div>
         </div>
 
-        <p className="mt-6 text-center text-xs text-zinc-500">
+        <p className="mt-6 text-center text-xs text-text-secondary">
           © {new Date().getFullYear()} 7EDU NTT · SevenEdu
         </p>
       </div>

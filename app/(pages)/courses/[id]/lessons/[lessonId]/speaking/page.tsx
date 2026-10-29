@@ -521,7 +521,7 @@ const SpeakingPage = () => {
                             onClick={startListening}
                             disabled={isListening}
                             className={`${ACTION_BASE} ${isListening
-                                ? "border-danger bg-danger text-white"
+                                ? "border-danger-strong bg-danger-strong text-primary-foreground"
                                 : "border-accent bg-accent text-accent-foreground hover:bg-accent-hover"
                                 }`}
                         >

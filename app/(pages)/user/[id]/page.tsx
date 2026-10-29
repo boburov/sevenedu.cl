@@ -168,7 +168,7 @@ const HomePage = () => {
           </Link>
           <Link
             href={continueHref}
-            className="inline-flex h-11 items-center gap-2 rounded-button border border-text-primary bg-text-primary px-5 text-sm font-semibold text-white transition-colors hover:bg-primary hover:border-primary"
+            className="inline-flex h-11 items-center gap-2 rounded-button border border-primary bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover hover:border-primary-hover"
           >
             <Play size={16} /> Davom ettirish
           </Link>
@@ -198,8 +198,8 @@ const HomePage = () => {
               </div>
 
               <div className="mt-4 grid grid-cols-[112px_1fr] gap-4 sm:grid-cols-[140px_1fr]">
-                <div className="relative flex flex-col justify-between overflow-hidden rounded-xl border border-primary bg-primary p-3 text-white">
-                  <span className="text-xs text-white/80">Umumiy</span>
+                <div className="relative flex flex-col justify-between overflow-hidden rounded-input border border-primary bg-primary p-3 text-primary-foreground">
+                  <span className="text-xs text-primary-foreground/80">Umumiy</span>
                   <svg
                     viewBox="0 0 120 50"
                     className="absolute inset-x-0 top-1/3 w-full"
@@ -289,7 +289,9 @@ const HomePage = () => {
                     title={`${weekdayOf(d.date)} · ${d.date}`}
                     className={`grid h-6 w-6 place-items-center rounded-full border text-[10px] ${
                       d.active
-                        ? "border-warning bg-warning text-white"
+                        ? // Yorqin sariq ustiga QORA matn: oq 3.0:1 beradi (AA
+                          // dan past), qora esa 7.0:1 — accent bilan bir xil mantiq.
+                          "border-warning bg-warning text-text-primary"
                         : d.isToday
                           ? "border-primary text-primary"
                           : "border-border text-text-muted"
@@ -447,7 +449,7 @@ const HomePage = () => {
                           {owned ? (
                             <Link
                               href={`/courses/${c.id}`}
-                              className="inline-flex items-center gap-1.5 rounded-button border border-primary bg-primary px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-primary-hover"
+                              className="inline-flex items-center gap-1.5 rounded-button border border-primary bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
                             >
                               <Play size={13} /> Ko&apos;rish
                             </Link>
@@ -522,7 +524,7 @@ const HomePage = () => {
                       <span
                         className={`relative z-10 grid h-8 w-8 shrink-0 place-items-center rounded-full border text-xs font-semibold ${
                           first
-                            ? "border-primary bg-primary text-white"
+                            ? "border-primary bg-primary text-primary-foreground"
                             : "border-border bg-surface text-text-muted"
                         }`}
                       >
@@ -532,7 +534,7 @@ const HomePage = () => {
                         href={`/courses/${current!.course.id}/lessons/${l.id}`}
                         className={`min-w-0 flex-1 rounded-full border px-4 py-2.5 text-sm transition-colors ${
                           first
-                            ? "border-primary bg-primary font-semibold text-white hover:bg-primary-hover"
+                            ? "border-primary bg-primary font-semibold text-primary-foreground hover:bg-primary-hover"
                             : "border-border bg-surface-alt text-text-primary hover:border-primary/40"
                         }`}
                       >
@@ -540,7 +542,7 @@ const HomePage = () => {
                           {l.title || "Dars"}
                         </span>
                         <span
-                          className={`text-[11px] ${first ? "text-white/80" : "text-text-muted"}`}
+                          className={`text-[11px] ${first ? "text-primary-foreground/80" : "text-text-muted"}`}
                         >
                           {first
                             ? "Hozir ko'rish"
