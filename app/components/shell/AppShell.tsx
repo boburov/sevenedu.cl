@@ -254,7 +254,12 @@ const Sidebar = () => {
   return (
     // Gorizontal padding yo'q: menyu kartochkalari va profil avatari
     // header'dagi logo bilan bir vertikal chiziqda boshlanadi.
-    <aside className="sticky top-6 hidden h-[calc(100vh-3rem)] w-60 shrink-0 flex-col pb-2 lg:flex">
+    //
+    // Balandlik: 5rem — header (h-20), 1.5rem — sticky top-6.
+    // Sidebar ekranning tepasidan emas, header OSTIDAN boshlanadi. Shuning
+    // uchun 100vh dan faqat top-6 ni ayirish yetmaydi: quti ekrandan 80px
+    // pastga chiqib ketadi va eng pastdagi "Chiqish" kesilib qoladi.
+    <aside className="sticky top-6 hidden h-[calc(100vh-5rem-1.5rem)] w-60 shrink-0 flex-col pb-2 lg:flex">
       {/* Profil kartochkasi — rasmdagidek menyuning tepasida */}
       <div className="flex items-center gap-3 pb-6">
         <Avatar size={48} editable />
@@ -284,7 +289,7 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      <div className="mt-4 border-t border-border pt-3">
+      <div className="shrink-0 border-t border-border pt-0">
         <button
           type="button"
           onClick={logout}

@@ -811,3 +811,52 @@ Bosh sahifadagi logoni qobiqdagi `goldedu7.png` ga almashtirdim — oldin boshqa
 <sub>session `c0010f32` · branch `HEAD` · 58 ta qadam</sub>
 
 ---
+
+## 2026-10-29 06:58 — Ha, o'chir
+
+**So'rov**
+
+> Ha, o'chir
+
+**O'zgargan fayllar (1)**
+
+- `app/globals.css` — tahrirlandi
+
+**Buyruqlar (7)**
+
+```sh
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== 1) Nom bo'yicha har qanday havola (ts/tsx/js/json/css) ===" grep -rn 'UserProgress\|Certeficate\|Certifica…
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== 1741286335562.png boshqa joyda ishlatiladimi? ===" grep -rn '1741286335562' --include='*.tsx' --include='*…
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== Certeficate.tsx ($(wc -l < app/components/Certeficate.tsx | tr -d ' ') qator) ===" sed -n '1,62p' app/comp…
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== Git tarixida bormi (tiklash mumkinmi)? ===" for f in app/components/UserProgress.tsx app/components/Certef…
+cd /Users/shukrullo/Desktop/sevenedu/client out=$(npx tsc --noEmit 2>&1); echo "tsc exit: $?" [ -n "$out" ] && echo "$out" | head -8 || echo "(tsc toza)" echo "…
+cd /Users/shukrullo/Desktop/sevenedu/client PAT='(bg|text|border|from|to|via|ring|fill|stroke|placeholder|divide|outline|shadow|decoration)-(purple|violet|indig…
+cd /Users/shukrullo/Desktop/sevenedu/client git add app/globals.css .claude/WORKLOG.md git commit -q -F - <<'MSG' chore: ishlatilmaydigan UserProgress va Certef…
+```
+
+**Natija**
+
+O'chirildi.
+
+**Nima ketdi**
+
+`UserProgress.tsx` (streak/tanga vidjeti, ichiga yozib qo'yilgan kunlik savollar bilan) va `Certeficate.tsx` (html2canvas + jsPDF orqali sertifikat PDF'i). O'chirishdan oldin to'rt xil tekshirdim: statik import, dinamik import, string orqali yo'l, va umuman nom bo'yicha havola — hech qayerda yo'q edi. Ikkalasi ham tugallangan, lekin hech qachon ulanmagan funksiyalar.
+
+Ular bilan birga `globals.css` dagi `.sertificat` qoidasini ham olib tashladim — uni faqat shu komponent ishlatardi.
+
+**Natija:** `app/` bo'ylab qotirilgan rang endi **0 ta**. Butun ilova — logindan oldin ham, keyin ham — faqat `globals.css` dagi tokenlardan oziqlanadi.
+
+**Ikki narsaga ataylab tegmadim,** chunki ular alohida qaror:
+
+- `html2canvas` va `jspdf` endi hech qayerda ishlatilmaydi, lekin `package.json` da qoldi. O'chirsa, lockfile ham o'zgaradi.
+- `app/images/1741286335562.png` (sertifikat foni, 43KB) — endi hech narsa unga murojaat qilmaydi. Rasmni qaytarish o'chirgandan ko'ra qiyinroq, shuning uchun qoldirdim.
+
+Ikkala fayl ham git tarixida saqlanib qoldi (`12b333d` va `46d7ea4`), kerak bo'lsa bitta buyruq bilan qaytariladi.
+
+Tekshirildi: `tsc` toza, `/`, `/dashboard`, `/courses`, `/user/:id` va `/terms` 200 qaytaryapti.
+
+Ochiq qolgan ikki narsa o'zgarmadi: 8 ta commit faqat shu kompyuterda, va `client/.env.local` (lokal mock API uchun) ish tugagach o'chirilishi kerak. `AppShell.tsx` dagi sizning tahriringiz ham hali ishchi daraxtda — unga tegmadim.
+
+<sub>session `c0010f32` · branch `HEAD` · 12 ta qadam</sub>
+
+---
