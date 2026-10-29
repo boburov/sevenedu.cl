@@ -62,7 +62,7 @@ const PasswordChanger = () => {
   const isSuccess = message === SUCCESS_MESSAGE;
 
   return (
-    <div className="container py-8 sm:py-10">
+    <div className="page py-8 sm:py-10">
       <div className="max-w-xl">
         <header>
           <h1 className="text-[32px] font-bold leading-tight tracking-tight text-text-primary sm:text-[40px]">

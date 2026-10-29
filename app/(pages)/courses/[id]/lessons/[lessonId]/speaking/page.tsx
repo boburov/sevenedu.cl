@@ -356,7 +356,7 @@ const SpeakingPage = () => {
 
     if (loading) {
         return (
-            <div className="container py-10">
+            <div className="page py-10">
                 <div className="flex min-h-[60vh] items-center justify-center">
                     <div className="text-center">
                         <div className="mx-auto mb-5 h-10 w-10 animate-spin rounded-full border-2 border-border border-t-accent" />
@@ -369,7 +369,7 @@ const SpeakingPage = () => {
 
     if (vocabulary.length === 0) {
         return (
-            <div className="container py-8 sm:py-10">
+            <div className="page py-8 sm:py-10">
                 <div className="mx-auto max-w-md rounded-card border border-border bg-surface p-10 text-center">
                     <h2 className="text-lg font-semibold text-text-primary">
                         Lug‘at topilmadi.
@@ -383,7 +383,7 @@ const SpeakingPage = () => {
     }
 
     return (
-        <div className="container py-8 sm:py-10">
+        <div className="page py-8 sm:py-10">
             <div className="mx-auto max-w-5xl">
                 {/* Sahifa sarlavhasi — barcha sahifalarda bir xil qolip */}
                 <header className="mb-8 sm:mb-10">

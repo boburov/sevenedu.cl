@@ -17,7 +17,7 @@ import {
   Voice,
   Wallet,
 } from "react-iconly";
-import logo from "@/app/images/";
+import logo from "@/app/images/goldedu7.png";
 import {
   deleteUserProfilePic,
   updateUserProfilePic,
@@ -191,13 +191,13 @@ const Logo = () => {
   return (
     <Link
       href={me ? `/user/${me.id}` : "#"}
-      className="focus-ring flex items-center gap-2.5 rounded-tile"
+      className="focus-ring flex items-center rounded-tile"
       aria-label="SevenEdu — bosh sahifa"
     >
       {/* <span className="grid h-9 w-9 shrink-0 place-items-center rounded-tile bg-accent"> */}
-        <Image alt="" src={logo} className="w-6 object-contain" />
       {/* </span> */}
-      <span className="text-[15px] font-semibold tracking-tight text-text-primary">
+        <Image alt="" src={logo} className="w-12 object-contain" />
+      <span className="text-xl font-semibold mt-1.5 text-text-primary ">
         SevenEdu
       </span>
     </Link>
@@ -252,9 +252,11 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 flex-col px-3 py-5 lg:flex">
+    // Gorizontal padding yo'q: menyu kartochkalari va profil avatari
+    // header'dagi logo bilan bir vertikal chiziqda boshlanadi.
+    <aside className="sticky top-6 hidden h-[calc(100vh-3rem)] w-60 shrink-0 flex-col pb-2 lg:flex">
       {/* Profil kartochkasi — rasmdagidek menyuning tepasida */}
-      <div className="flex items-center gap-3 px-2 pb-5">
+      <div className="flex items-center gap-3 pb-6">
         <Avatar size={48} editable />
         <Link href="/user/profile" className="group min-w-0 flex-1">
           <p className="truncate text-[15px] font-semibold leading-tight text-text-primary transition-colors group-hover:text-accent-strong">
@@ -296,15 +298,19 @@ const Sidebar = () => {
   );
 };
 
-// Butun kenglik bo'ylab, eng yuqorida. Soya ishlatilmagani uchun kontentdan
-// pastki chegara bilan ajraladi.
+// Chegarasiz va fonsiz — rasmdagidek sidebar bilan bir xil fonda turadi.
+// Shuning uchun STICKY EMAS: fonsiz yopishgan header ostidan kontent
+// ko'rinib, logo va tangalar ustiga matn chiqardi. Sidebar yopishib
+// qoladi, demak menyu baribir doim ko'z oldida.
+// Gorizontal bo'shliqni AppShell beradi — logo sidebar avatari bilan
+// bir vertikal chiziqda turishi uchun bu yerda px yo'q.
 const TopBar = () => {
   const { me } = useMe();
   const { unread } = useNav();
 
   return (
-    <header className="sticky top-0 z-50  ">
-      <div className="flex h-16 items-center gap-3 px-4 lg:px-6">
+    <header>
+      <div className="flex h-20 items-center gap-3">
         <Logo />
 
         <div className="ml-auto flex items-center gap-2">
@@ -414,10 +420,15 @@ const AppShell = ({ children }: { children: React.ReactNode }) => (
       aria-hidden
       className="pointer-events-none fixed right-0 top-0 h-[520px] w-[720px] bg-[radial-gradient(ellipse_at_top_right,rgba(255,107,26,0.07),transparent_65%)]"
     />
-    <TopBar />
-    <div className="relative flex">
-      <Sidebar />
-      <main className="min-w-0 flex-1 pb-28 lg:pb-10">{children}</main>
+    {/* Butun ilova ichkariga surilgan: header, sidebar va kontent bitta
+        bo'shliq ichida. Shuning uchun header va sidebar chegara bilan emas,
+        atrofdagi havo bilan ajraladi — rasmdagi kabi. */}
+    <div className="relative mx-auto w-full max-w-[1560px] px-5 sm:px-8 lg:px-12">
+      <TopBar />
+      <div className="flex gap-8 lg:gap-12">
+        <Sidebar />
+        <main className="min-w-0 flex-1 pb-28 lg:pb-12">{children}</main>
+      </div>
     </div>
     <MobileNav />
   </div>

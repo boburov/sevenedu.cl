@@ -140,9 +140,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Logindan OLDINGI sahifalar uchun: qobiq yo'q, shuning uchun
+   gorizontal bo'shliqni o'zi beradi. */
 .container {
   @apply w-full max-w-[1240px] mx-auto px-4;
   @apply sm:px-6 lg:px-8;
+}
+
+/* Logindan KEYINGI sahifalar uchun: gorizontal bo'shliqni AppShell
+   beradi (header, sidebar va kontent bir xil chiziqda boshlanishi shart).
+   Shuning uchun bu yerda px YO'Q — aks holda ikki marta qo'shilib,
+   kontent sidebar'dan uzoqlashib ketadi. */
+.page {
+  @apply w-full max-w-[1240px] mx-auto;
 }
 
 /* Fokus halqasi — klaviatura bilan yurganda ko'rinadi.

@@ -78,7 +78,7 @@ export default function Page() {
     }, [totalPages, page]);
 
     return (
-        <div className="container py-8 sm:py-10">
+        <div className="page py-8 sm:py-10">
             <header className="mb-8 sm:mb-10">
                 <h1 className="text-[32px] font-bold leading-tight tracking-tight text-text-primary sm:text-[40px]">
                     Peshqadamlar paneli

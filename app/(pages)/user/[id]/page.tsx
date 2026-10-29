@@ -128,7 +128,7 @@ const HomePage = () => {
       : "/courses";
 
   return (
-    <div className="px-4 py-6 lg:px-8">
+    <div className="page py-6">
       {/* ── Sarlavha ─────────────────────────────────── */}
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="min-w-0">

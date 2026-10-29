@@ -113,7 +113,7 @@ const Page = () => {
   }, [notifications]);
 
   return (
-    <section className="container py-8 sm:py-10">
+    <section className="page py-8 sm:py-10">
       <div className="mx-auto max-w-2xl">
         {/* Header */}
         <header className="mb-8 sm:mb-10">

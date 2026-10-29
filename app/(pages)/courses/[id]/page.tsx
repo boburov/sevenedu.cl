@@ -116,7 +116,7 @@ const CourseLessonsPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="container py-10">
+      <div className="page py-10">
         <div className="flex min-h-[60vh] items-center justify-center">
           <div className="text-center">
             <div className="mx-auto mb-5 h-10 w-10 animate-spin rounded-full border-2 border-border border-t-accent" />
@@ -130,7 +130,7 @@ const CourseLessonsPage: React.FC = () => {
   }
 
   return (
-    <div className="container py-8 sm:py-10">
+    <div className="page py-8 sm:py-10">
       <header className="mb-8 sm:mb-10">
         <h1 className="text-[32px] font-bold leading-tight tracking-tight text-text-primary sm:text-[40px]">
           {courseTitle || "Kurs darslari"}

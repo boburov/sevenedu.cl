@@ -57,7 +57,7 @@ const Page = () => {
 
   if (sentencePuzzles.length === 0) {
     return (
-      <div className="container py-8 sm:py-10">
+      <div className="page py-8 sm:py-10">
         <div className="mx-auto max-w-md rounded-card border border-border bg-surface p-10 text-center">
           <h2 className="text-lg font-semibold text-text-primary">
             Hozircha savollar mavjud emas
@@ -96,7 +96,7 @@ const Page = () => {
 
   if (currentIndex >= sentencePuzzles.length) {
     return (
-      <div className="container py-8 sm:py-10">
+      <div className="page py-8 sm:py-10">
         <div className="mx-auto max-w-md rounded-card border border-border bg-surface p-10 text-center">
           {/* Tugallandi — haqiqiy muvaffaqiyat statusi */}
           <CheckCircle2
@@ -118,7 +118,7 @@ const Page = () => {
   const isCorrect = userWords.join(" ") === currentPuzzle.answer;
 
   return (
-    <div className="container py-8 sm:py-10">
+    <div className="page py-8 sm:py-10">
       <div className="mx-auto max-w-3xl space-y-6">
         {/* Sentence */}
         <div className="space-y-3 rounded-card border border-border bg-surface p-6 text-center">

@@ -84,7 +84,7 @@ const DashboardPage = () => {
   const fullName = [me?.name, me?.surname].filter(Boolean).join(" ");
 
   return (
-    <section className="px-4 py-6 lg:px-8">
+    <section className="page py-6">
       <div>
         {/* ── Asosiy qism ────────────────────────────── */}
         <div className="min-w-0 space-y-6">
