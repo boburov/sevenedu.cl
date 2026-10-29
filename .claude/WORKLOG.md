@@ -860,3 +860,173 @@ Ochiq qolgan ikki narsa o'zgarmadi: 8 ta commit faqat shu kompyuterda, va `clien
 <sub>session `c0010f32` · branch `HEAD` · 12 ta qadam</sub>
 
 ---
+
+## 2026-10-29 07:01 — chiqish buttoni korinmay qolyapti fix
+
+**So'rov**
+
+> chiqish buttoni korinmay qolyapti fix
+
+**O'zgargan fayllar (1)**
+
+- `app/components/shell/AppShell.tsx` — tahrirlandi
+
+**Buyruqlar (3)**
+
+```sh
+cd /Users/shukrullo/Desktop/sevenedu/client if curl -s -o /dev/null -m 2 http://localhost:4000/auth/me; then echo "mock API ishlayapti" else echo "mock API o'ch…
+cd /Users/shukrullo/Desktop/sevenedu/client out=$(npx tsc --noEmit 2>&1); echo "tsc exit: $?"; [ -n "$out" ] && echo "$out" | head -5 || echo "(toza)" echo "===…
+cd /Users/shukrullo/Desktop/sevenedu/client git add app/components/shell/AppShell.tsx .claude/WORKLOG.md git commit -q -F - <<'MSG' fix(shell): sidebar pastidag…
+```
+
+**Natija**
+
+Brauzer paneli har navigatsiyada localStorage'ni tozalayapti. Reload'siz, mijoz tomonidagi navigatsiya bilan kirib ko'ray.
+
+Takrorlandi: ekran 900px, header 80px, sidebar balandligi `100vh−3rem` = 852 — lekin u 80px pastdan boshlanadi, shuning uchun pastki chetidan **32px ekrandan chiqib ketgan**, Chiqish tugmasining 24px'i kesilgan.
+
+Tuzatildi.
+
+**Sabab**
+
+Sidebar balandligi `calc(100vh - 3rem)` edi — ya'ni faqat `sticky top-6` hisobga olingan. Lekin sidebar ekranning tepasidan emas, **80px balandlikdagi header ostidan** boshlanadi. Shuning uchun quti ekrandan 32px pastga chiqib ketardi, va eng pastda turgan "Chiqish" tugmasining 24px'i ko'rinmasdi.
+
+Brauzerda o'lchab tasdiqladim: ekran 900px, sidebar pastki cheti 932, Chiqish pastki cheti 924 — ikkalasi ham ekrandan tashqarida.
+
+**Yechim**
+
+Balandlik `calc(100vh - 5rem - 1.5rem)` bo'ldi: `5rem` — header (`h-20`), `1.5rem` — `top-6`. Endi raqamlar nimadan kelib chiqqani kodda yozib qo'yilgan, keyingi safar header balandligi o'zgarsa darhol ko'rinadi.
+
+Siz `shrink-0` ni o'zingiz qo'shib qo'ygan ekansiz — aynan to'g'ri qadam, shuning uchun uni ham shu commitga oldim. Menyuda `overflow-y-auto` allaqachon bor edi, demak menyu uzayib ketsa endi **nav o'zi scroll bo'ladi**, Chiqish esa siqilib chiqib ketmaydi.
+
+**To'rtta holatda o'lchab tekshirdim** (1440px kenglikda, dashboard'da):
+
+| Ekran | Chiqish pastki cheti | Holat |
+|---|---|---|
+| 900px, tepada | 868 < 900 | ✓ (oldin 924) |
+| 900px, scroll qilingan | 812 | ✓ |
+| 700px | 668 < 700 | ✓ |
+| 560px | 528 < 560 | ✓ menyu scroll bo'ldi |
+
+`tsc` toza. Commit `a45d5c8`.
+
+Bir kichik eslatma: brauzer paneli har navigatsiyada `localStorage`'ni tozalab tashlar ekan, shuning uchun mock token bilan kira olmadim — mijoz tomonidagi navigatsiya orqali kirdim. Bu faqat mening test muh
+
+…(qisqartirildi)
+
+<sub>session `c0010f32` · branch `HEAD` · 21 ta qadam</sub>
+
+---
+
+## 2026-10-29 07:28 — Hozircha yo'q
+
+**So'rov**
+
+> Hozircha yo'q
+
+**Natija**
+
+Yaxshi, push qilmayman — 9 ta commit lokal branch'da turibdi.
+
+Ish tugaganda ikki narsa qoladi: `client/.env.local` ni o'chirish (lokal mock API uchun edi, gitignore'da, lekin kerak emas) va 4000-portdagi mock serverni to'xtatish. Ayting, bajaraman.
+
+<sub>session `c0010f32` · branch `HEAD` · 0 ta qadam</sub>
+
+---
+
+## 2026-10-29 07:28 — speaking page uchun plan tuz mavjud qisimlardan qanday clean va chroyl
+
+**So'rov**
+
+> speaking page uchun plan tuz mavjud qisimlardan qanday clean va chroyli hoziri website stylega tusadigan ui page qilsa bo'ladi
+
+**Buyruqlar (3)**
+
+```sh
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== Sidebar'dagi Speaking qayerga ketadi? ===" grep -n 'Speaking\|speaking' app/components/shell/AppShell.tsx …
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== /speaking/page.tsx (sidebar havolasi) ==="; cat -n 'app/(pages)/speaking/page.tsx' echo echo "=== vocabula…
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== API xizmatidagi endpointlar ===" grep -nE "(get|post|patch|put|delete)\(\s*[\`\"']" app/api/service/api.ts…
+```
+
+**Natija**
+
+`/speaking` sahifasi bo'sh ekan — sidebar'dagi havola hech narsaga olib bormaydi. Buni tasdiqlab, keyin rejani tuzay.
+
+Kodni o'qib chiqdim. Rejadan oldin uchta fakt — ular rejani tubdan o'zgartiradi.
+
+**1. Ikkita "speaking sahifasi" bor.** Sidebar'dagi `Speaking` → `/speaking` ga olib boradi, va o'sha fayl atigi 9 qator: bo'sh `<div>`. Brauzerda tekshirdim — kontent maydoni 664px, matn **nol**. Ya'ni asosiy menyudagi havola hech narsaga olib bormaydi.
+
+**2. Haqiqiy mashq boshqa joyda** — `/courses/[id]/lessons/[lessonId]/speaking`, 625 qator: TTS bilan tinglash, Web Speech API bilan ovozni tanish, Levenshtein masofasi orqali to'g'rilik foizi, progress, tezlik va auto-next sozlamalari, klaviatura yorliqlari. U allaqachon dizayn tokenlarida.
+
+**3. Backend'da speaking uchun hech narsa yo'q.** API xizmatida na `/speaking`, na talaffuz statistikasi. Ball brauzerda hisoblanadi va **hech qayerga saqlanmaydi**. `daily-stats` faqat vocabulary, quiz va test'ni biladi.
+
+---
+
+❓ **Q1** — **Qaysi sahifa**: `/speaking` ni mavjud qismlardan yig'amizmi (kurslar → darslar → lug'at soni, har biridan mashqqa kirish), yoki mavjud mashq sahifasining joylashuvini tozalaymizmi? Yoki ikkalasi?
+
+➡️ **A — `/speaking` hub.** Sabab: mashq sahifasi allaqachon ishlaydi va tizimga tushgan, bo'sh havola esa har bir foydalanuvchi ko'radigan teshik. Va "mavjud qismlardan yig'ish" aynan shu — yangi backend kerak emas, bor ma'lumot yetarli.
+
+---
+
+❓ **Q2** — **Natijalar saqlanadimi**: hozir foydalanuvchi 95% olsa ham, sahifani yopsa iz qolmaydi. Hub'da "sizning talaffuz progressingiz" ko'rsatish uchun backend kerak (`POST /speaking/attempt` va `daily-stats` ga `speaking` bo'limi). Siz backend'ni ham boshqarasizmi?
+
+➡️ **Hozircha yo'q.** Hub'ni progress joyini qoldirgan holda qilamiz — keyin backend tayyor b
+
+…(qisqartirildi)
+
+<sub>session `c0010f32` · branch `HEAD` · 10 ta qadam</sub>
+
+---
+
+## 2026-10-29 07:32 — q1) a q2) backend yozma tayyorini ishlat qoshimcha ish bo'lib ketyapti
+
+**So'rov**
+
+> q1) a q2) backend yozma tayyorini ishlat qoshimcha ish bo'lib ketyapti q3) ha
+
+**Buyruqlar (2)**
+
+```sh
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== api.endpoin.ts ==="; cat app/api/api.endpoin.ts 2>/dev/null || ls app/api echo echo "=== GetCourseById nat…
+cd /Users/shukrullo/Desktop/sevenedu/client echo "=== courses/page.tsx — allCourse dan nima olinadi ===" grep -n 'interface\|lessons\|allCourse\|me?.courses\|my…
+```
+
+**Natija**
+
+Faktlar to'liq yig'ildi. Eng muhimi: hub uchun **bitta ham yangi so'rov kerak emas**.
+
+# `/speaking` hub — reja
+
+## Eng muhim topilma: ma'lumot allaqachon qo'lda
+
+`MeContext` qobiq darajasida `me` va `myCourses` ni **allaqachon yuklaydi** — har bir kurs o'z `lessons[]` massivi bilan. `me.showedLesson` esa qaysi darslar ko'rilganini biladi.
+
+Ya'ni hub uchun **nol qo'shimcha so'rov**. Shu bilan birga ikkita tayyor yordamchi ham bor:
+- `courseProgress(course, me)` → `{done, total, percent}`
+- `COURSE_DOTS` → kurslarni ajratuvchi bezak ranglari
+
+Backend yozilmaydi — siz aytganingizdek.
+
+## Nimani ko'rsata olmaymiz (va nega)
+
+So'zlar soni `/dictonary/lesson/:id` dan keladi — **har bir dars uchun alohida so'rov**. 3 kurs × 20 dars = 60 ta so'rov. Shuning uchun hub'da "12 so'z" yozuvi bo'lmaydi; u mashqning o'zida ko'rinadi.
+
+Talaffuz natijasi ham ko'rsatilmaydi — hech qayerda saqlanmaydi. Progress o'rniga **"ko'rilgan / ko'rilmagan"** ishlatamiz, u haqiqiy ma'lumot.
+
+## Sahifa tuzilishi
+
+Yuqoridan pastga, barchasi mavjud qolipda (`rounded-card`, `border-border`, `bg-surface`, soyasiz):
+
+**1. Sarlavha** — boshqa sahifalardagi bilan bir xil: `h1` + tavsif. "Talaffuz mashqi / Tinglang, ayting, natijani ko'ring."
+
+**2. Davom ettirish kartasi** — `me.showedLesson` dan eng oxirgi `watchedAt`. Kurs nomi, dars nomi, qora pill tugma "Mashqni boshlash" → to'g'ridan-to'g'ri `/courses/:id/lessons/:lessonId/speaking`. Dashboard'dagi "Davom ettirish" bilan bir xil til.
+
+**3. Brauzer ogohlantirishi** (Q3) — faqat `SpeechRecognition` yo'q bo'lsa. `alert()` o'rniga `warning-soft` fonli kartochka: "Brauzeringiz ovoz tanishni qo'llab-quvvatlamaydi. Chrome yoki Safari'da oching." Kirishni **to'smaydi** — tinglash qismi Firefox'da ham ishlaydi.
+
+**4. Kurslar ro'yxati** — har bir kurs uchun karta:
+
+…(qisqartirildi)
+
+<sub>session `c0010f32` · branch `HEAD` · 7 ta qadam</sub>
+
+---
