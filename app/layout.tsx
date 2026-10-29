@@ -16,9 +16,11 @@ const onest = Onest({
 export const metadata = {
   title: "SevenEdu Web App",
   description: "Platformaga kirish usulini tanlang. O‘quvchi sifatida kirish · Mehmon sifatida kirish.",
+  // /favicon.ico bu yerda e'lon qilinmaydi: app/favicon.ico fayl konvensiyasi
+  // uni o'zi <link rel="icon"> qilib ulaydi. Ikkalasi bo'lsa link ikki marta
+  // chiqadi va brauzer qaysinisini olishi aniq bo'lmay qoladi.
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
       { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
       { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
     ],
