@@ -124,12 +124,16 @@ export const courseProgress = (course: MeCourse, me: Me | null) => {
   return { done, total, percent: total ? Math.round((done / total) * 100) : 0 };
 };
 
+// Kurslarni bir-biridan ajratish uchun bezak ranglari. Status tokenlaridan
+// (success/warning/danger) ataylab mustaqil: kursga "xato qizil" yoki
+// "ogohlantirish sariq" rang berish ma'no jihatdan noto'g'ri edi, hamda
+// yangi orange urg'u bilan chalkashardi.
 export const COURSE_DOTS = [
-  "bg-primary",
-  "bg-warning",
-  "bg-info",
-  "bg-success",
-  "bg-danger",
+  "bg-course-1",
+  "bg-course-2",
+  "bg-course-3",
+  "bg-course-4",
+  "bg-course-5",
 ];
 
 export const fullName = (me: Pick<Me, "name" | "surname"> | null) =>
