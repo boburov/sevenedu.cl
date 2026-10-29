@@ -5,14 +5,7 @@ import {
   getLeaderboard,
   getStreak,
 } from "@/app/api/service/api";
-import {
-  ArrowUpRight,
-  Flame,
-  GraduationCap,
-  PlayCircle,
-  Sparkles,
-  Trophy,
-} from "lucide-react";
+import { ArrowUpRight, Flame, PlayCircle, Trophy } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -95,26 +88,16 @@ const DashboardPage = () => {
       <div>
         {/* ── Asosiy qism ────────────────────────────── */}
         <div className="min-w-0 space-y-6">
-          <div>
-            <p className="text-sm text-text-secondary">
-              Xush kelibsiz{me?.name ? `, ${me.name}` : ""}
-            </p>
-            <h1 className="mt-1 flex flex-wrap items-center gap-2 text-3xl font-bold text-text-primary sm:text-4xl">
-              O&apos;rganing
-              <span className="inline-flex items-center gap-1">
-                <span className="grid h-9 w-9 place-items-center rounded-xl border border-border bg-surface">
-                  <Sparkles size={18} className="text-primary" />
-                </span>
-                <span className="grid h-9 w-9 place-items-center rounded-xl bg-warning text-white">
-                  <Flame size={18} />
-                </span>
-                <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-white">
-                  <GraduationCap size={18} />
-                </span>
-              </span>
-              <span className="text-text-muted">yangi narsalarni</span>
+          {/* Sahifa sarlavhasi — barcha sahifalarda bir xil pattern:
+              katta qalin H1 + bitta qatorli kulrang izoh. */}
+          <header>
+            <h1 className="text-[32px] font-bold leading-tight tracking-tight text-text-primary sm:text-[40px]">
+              Dashboard
             </h1>
-          </div>
+            <p className="mt-2 text-[15px] text-text-secondary">
+              O&apos;quv jarayoningiz, faolligingiz va natijalaringiz.
+            </p>
+          </header>
 
           {/* Ko'rsatkichlar */}
           <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
@@ -130,7 +113,7 @@ const DashboardPage = () => {
               </div>
               <div className="mt-2 h-2 overflow-hidden rounded-full bg-surface-alt">
                 <div
-                  className="h-full rounded-full bg-primary transition-all"
+                  className="h-full rounded-full bg-accent transition-all"
                   style={{ width: `${totals.percent}%` }}
                 />
               </div>
@@ -138,7 +121,7 @@ const DashboardPage = () => {
 
             <StatCard label="Streak" value={`${streak.currentStreak} kun`}>
               <p className="flex items-center gap-1.5 text-xs text-text-secondary">
-                <Flame size={14} className="text-warning" />
+                <Flame size={14} className="text-accent" />
                 Rekord: {streak.longestStreak} kun
               </p>
             </StatCard>
@@ -148,7 +131,7 @@ const DashboardPage = () => {
               value={(me?.coins ?? 0).toLocaleString("en-US")}
             >
               <p className="flex items-center gap-1.5 text-xs text-text-secondary">
-                <Trophy size={14} className="text-primary" />
+                <Trophy size={14} className="text-text-muted" />
                 Reytingda:{" "}
                 {board?.currentUser ? `#${board.currentUser.rank}` : "—"}
               </p>
@@ -156,7 +139,7 @@ const DashboardPage = () => {
 
             <StatCard label="Ko'rilgan darslar" value={totals.done}>
               <p className="flex items-center gap-1.5 text-xs text-text-secondary">
-                <PlayCircle size={14} className="text-success" />
+                <PlayCircle size={14} className="text-text-muted" />
                 Bu hafta: {lessonsThisWeek}
               </p>
             </StatCard>
@@ -225,7 +208,7 @@ const DashboardPage = () => {
                         <div
                           className={`w-full max-w-14 rounded-lg border transition-all ${
                             isActive
-                              ? "border-primary bg-primary"
+                              ? "border-accent bg-accent"
                               : "border-border bg-surface-alt"
                           }`}
                           style={{
@@ -236,7 +219,7 @@ const DashboardPage = () => {
                         />
                       </div>
                       <span
-                        className={`text-xs ${d.isToday ? "font-semibold text-primary" : "text-text-muted"}`}
+                        className={`text-xs ${d.isToday ? "font-semibold text-accent-strong" : "text-text-muted"}`}
                       >
                         {d.label}
                       </span>
@@ -254,7 +237,7 @@ const DashboardPage = () => {
                 </h2>
                 <Link
                   href="/rank"
-                  className="grid h-8 w-8 place-items-center rounded-lg border border-border text-text-secondary transition-colors hover:border-primary hover:text-primary"
+                  className="grid h-8 w-8 place-items-center rounded-tile border border-border text-text-secondary transition-colors hover:border-accent/40 hover:bg-accent-soft hover:text-accent-strong"
                   aria-label="Reytingni ochish"
                 >
                   <ArrowUpRight size={16} />
@@ -268,14 +251,14 @@ const DashboardPage = () => {
                       key={u.id}
                       className={`flex items-center gap-3 rounded-button border px-3 py-2 ${
                         isMe
-                          ? "border-primary/30 bg-primary-soft"
+                          ? "border-accent/40 bg-accent-soft"
                           : "border-border"
                       }`}
                     >
                       <span className="w-5 text-sm font-semibold text-text-muted">
                         {u.rank}
                       </span>
-                      <span className="grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-full border border-border bg-primary-soft text-xs font-semibold text-primary">
+                      <span className="grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-full bg-accent-soft text-xs font-semibold text-accent-strong">
                         {u.profilePic ? (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
@@ -303,7 +286,7 @@ const DashboardPage = () => {
               {board?.currentUser && board.currentUser.rank > 5 && (
                 <p className="mt-3 border-t border-border pt-3 text-xs text-text-secondary">
                   Sizning o&apos;rningiz:{" "}
-                  <span className="font-semibold text-primary">
+                  <span className="font-semibold text-accent-strong">
                     #{board.currentUser.rank}
                   </span>
                 </p>
@@ -319,7 +302,7 @@ const DashboardPage = () => {
 
             {loading ? (
               <div className="flex justify-center py-8">
-                <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                <div className="h-6 w-6 animate-spin rounded-full border-2 border-accent border-t-transparent" />
               </div>
             ) : courseProgress.length === 0 ? (
               <div className="py-8 text-center">
@@ -367,7 +350,7 @@ const DashboardPage = () => {
                             </span>
                             <span className="mt-2 block h-1.5 overflow-hidden rounded-full bg-surface-alt">
                               <span
-                                className={`block h-full rounded-full ${percent >= 50 ? "bg-success" : "bg-warning"}`}
+                                className="block h-full rounded-full bg-accent"
                                 style={{ width: `${percent}%` }}
                               />
                             </span>
@@ -425,7 +408,7 @@ const DashboardPage = () => {
                               <div className="flex items-center gap-3">
                                 <div className="h-1.5 w-28 overflow-hidden rounded-full bg-surface-alt">
                                   <div
-                                    className={`h-full rounded-full ${percent >= 50 ? "bg-success" : "bg-warning"}`}
+                                    className="h-full rounded-full bg-accent"
                                     style={{ width: `${percent}%` }}
                                   />
                                 </div>
@@ -437,7 +420,7 @@ const DashboardPage = () => {
                             <td className="py-3 text-right">
                               <Link
                                 href={`/courses/${course.id}`}
-                                className="inline-grid h-8 w-8 place-items-center rounded-lg border border-border text-text-secondary transition-colors hover:border-primary hover:bg-primary hover:text-white"
+                                className="inline-grid h-8 w-8 place-items-center rounded-tile border border-border text-text-secondary transition-colors hover:border-accent/40 hover:bg-accent-soft hover:text-accent-strong"
                                 aria-label={`${course.title} kursini ochish`}
                               >
                                 <ArrowUpRight size={16} />

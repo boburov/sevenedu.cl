@@ -31,11 +31,18 @@
   --primary-foreground: #ffffff;
 
   /* ── Urg'u: orange ───────────────────────────────────────── */
-  --accent: #ff6b1a; /* bezak: logo, indikator, FAB — matnsiz shakllar */
+  /* Butun ilovada YAGONA orange: logo, badge, indikator, FAB.
+     Ikki xil orange yonma-yon turganda nomutanosib ko'rinardi. */
+  --accent: #ff6b1a;
   --accent-hover: #e85d0e;
   --accent-soft: #fff1e8;
-  --accent-strong: #c2410c; /* oq matn tushganda — WCAG AA, 5.9:1 */
-  --accent-foreground: #ffffff;
+  /* Orange ustiga tushadigan matn QORA bo'ladi: oq matn kontrastdan
+     o'tmaydi (2.7:1), qora esa o'tadi (6.1:1, WCAG AA). Shunday qilib
+     orange yorqinligicha qoladi va raqamlar ham o'qiladi. */
+  --accent-foreground: #1a1a18;
+  /* Och fon ustiga ORANGE MATN yozilganda yorqin orange o'qilmaydi,
+     shuning uchun to'qrog'i: avatar harfi, havola hover holati. */
+  --accent-strong: #c2410c;
 
   --focus-ring: rgba(255, 107, 26, 0.35);
 
@@ -110,13 +117,9 @@
   --radius-nav: 0.875rem; /* 14px — sidebar elementi */
   --radius-tile: 0.625rem; /* 10px — logo kvadrati, kichik belgilar */
 
-  /* Soya — yumshoq, ikki qatlamli, deyarli sezilmas */
-  --shadow-card: 0 1px 2px rgba(20, 20, 18, 0.04),
-    0 8px 24px rgba(20, 20, 18, 0.04);
-  --shadow-nav: 0 1px 3px rgba(20, 20, 18, 0.06),
-    0 4px 12px rgba(20, 20, 18, 0.05);
-  --shadow-pop: 0 2px 4px rgba(20, 20, 18, 0.06),
-    0 12px 32px rgba(20, 20, 18, 0.08);
+  /* Soya YO'Q — ataylab.
+     Qatlamlar bir-biridan soya bilan emas, CHEGARA va FON bilan ajraladi.
+     Yangi soya tokeni qo'shmang; kerak bo'lsa border-border ishlating. */
 
   /* Shrift — Onest, layout.tsx da next/font orqali ulanadi */
   --font-sans: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
@@ -138,12 +141,12 @@ body {
   @apply sm:px-6 lg:px-8;
 }
 
-/* Fokus halqasi — klaviatura bilan yurganda ko'rinadi */
+/* Fokus halqasi — klaviatura bilan yurganda ko'rinadi.
+   box-shadow emas, outline: dizaynda soya ishlatilmaydi, hamda outline
+   yuqori kontrast rejimida ham ko'rinib turadi. */
 .focus-ring:focus-visible {
-  outline: none;
-  box-shadow:
-    0 0 0 2px var(--background),
-    0 0 0 4px var(--focus-ring);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .transition-card {

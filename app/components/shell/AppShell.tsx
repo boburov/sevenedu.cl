@@ -26,7 +26,7 @@ import {
 import { fullName, useMe } from "./MeContext";
 
 // Ikonkalar bir xil qoida bo'yicha: nozik chiziq, bir xil o'lcham.
-const ICON = { size: 18, strokeWidth: 1.75 } as const;
+const ICON = { size: 20, strokeWidth: 1.75 } as const;
 
 const useNav = () => {
   const { me } = useMe();
@@ -187,7 +187,10 @@ const Logo = ({ withWordmark = true }: { withWordmark?: boolean }) => {
   );
 };
 
-// Menyu elementi — faol holat oq kartochka + yumshoq soya (orange emas).
+// Menyu elementi.
+//   faol  — oq fon + chegara, qora qalin matn (soya ishlatilmaydi)
+//   hover — och orange fon + orange matn; ikonka currentColor orqali
+//           avtomatik orange bo'ladi
 const NavItem = ({
   href,
   active,
@@ -204,16 +207,16 @@ const NavItem = ({
   <Link
     href={href}
     aria-current={active ? "page" : undefined}
-    className={`focus-ring flex items-center gap-3 rounded-nav px-3 py-2.5 text-sm transition-all duration-150 ${
+    className={`focus-ring flex items-center gap-3.5 rounded-nav border px-4 py-3 text-[15px] transition-colors ${
       active
-        ? "bg-surface font-semibold text-text-primary shadow-nav"
-        : "text-text-secondary hover:bg-surface/70 hover:text-text-primary"
+        ? "border-border bg-surface font-semibold text-text-primary"
+        : "border-transparent text-text-secondary hover:bg-accent-soft hover:text-accent-strong"
     }`}
   >
     <Icon {...ICON} className="shrink-0" />
     <span className="flex-1 truncate">{label}</span>
     {!!badge && (
-      <span className="grid h-5 min-w-5 shrink-0 place-items-center rounded-full bg-accent-strong px-1.5 text-[11px] font-semibold text-white">
+      <span className="grid h-5 min-w-5 shrink-0 place-items-center rounded-full bg-accent px-1.5 text-[11px] font-semibold text-accent-foreground">
         {badge}
       </span>
     )}
@@ -232,22 +235,22 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="sticky top-0 hidden h-screen w-[272px] shrink-0 flex-col px-4 py-6 lg:flex">
+    <aside className="sticky top-0 hidden h-screen w-[288px] shrink-0 flex-col px-4 py-6 lg:flex">
       {/* Profil kartochkasi — rasmdagidek menyuning tepasida */}
-      <div className="flex items-center gap-3 px-2 pb-6">
-        <Avatar size={44} editable />
+      <div className="flex items-center gap-3.5 px-2 pb-7">
+        <Avatar size={56} editable />
         <Link href="/user/profile" className="group min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold text-text-primary transition-colors group-hover:text-accent-strong">
+          <p className="truncate text-[17px] font-semibold leading-tight text-text-primary transition-colors group-hover:text-accent-strong">
             {fullName(me) || "…"}
           </p>
-          <p className="truncate text-xs text-text-secondary">
+          <p className="mt-1 truncate text-[13px] text-text-secondary">
             {me?.email || "…"}
           </p>
         </Link>
       </div>
 
       <nav className="min-h-0 flex-1 overflow-y-auto" aria-label="Asosiy menyu">
-        <ul className="space-y-1">
+        <ul className="space-y-1.5">
           {items.map(({ href, match, icon, label, badge }) => (
             <li key={label}>
               <NavItem
@@ -262,11 +265,11 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      <div className="mt-4 border-t border-border pt-3">
+      <div className="mt-5 border-t border-border pt-4">
         <button
           type="button"
           onClick={logout}
-          className="focus-ring flex w-full items-center gap-3 rounded-nav px-3 py-2.5 text-sm text-text-secondary transition-colors hover:bg-danger-soft hover:text-danger"
+          className="focus-ring flex w-full items-center gap-3.5 rounded-nav border border-transparent px-4 py-3 text-[15px] text-text-secondary transition-colors hover:bg-accent-soft hover:text-accent-strong"
         >
           <LogOut {...ICON} className="shrink-0" />
           Chiqish
@@ -308,7 +311,7 @@ const TopBar = () => {
           >
             <Bell size={17} strokeWidth={1.75} />
             {unread > 0 && (
-              <span className="absolute -right-1 -top-1 grid h-4.5 min-w-4.5 place-items-center rounded-full bg-accent-strong px-1 text-[10px] font-semibold text-white">
+              <span className="absolute -right-1 -top-1 grid h-4.5 min-w-4.5 place-items-center rounded-full bg-accent px-1 text-[10px] font-semibold text-accent-foreground">
                 {unread}
               </span>
             )}
@@ -354,7 +357,7 @@ const MobileNav = () => {
       className="fixed inset-x-0 bottom-0 z-50 px-3 pb-3 lg:hidden"
       aria-label="Asosiy menyu"
     >
-      <ul className="mx-auto flex max-w-md items-center justify-between rounded-card border border-border bg-surface/95 px-2 py-2 shadow-card backdrop-blur-xl">
+      <ul className="mx-auto flex max-w-md items-center justify-between rounded-card border border-border bg-surface/95 px-2 py-2 backdrop-blur-xl">
         {items.map(({ href, match, icon: Icon, label }) => {
           const active = isActive(pathname, match);
           return (
